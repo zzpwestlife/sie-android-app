@@ -103,8 +103,9 @@ cd "$path"
 Auto-detect and run appropriate setup:
 
 ```bash
-# Node.js
+# Node.js / React Native
 if [ -f package.json ]; then npm install; fi
+if [ -f ios/Podfile ]; then cd ios && pod install && cd ..; fi
 
 # Rust
 if [ -f Cargo.toml ]; then cargo build; fi
@@ -112,9 +113,6 @@ if [ -f Cargo.toml ]; then cargo build; fi
 # Python
 if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 if [ -f pyproject.toml ]; then poetry install; fi
-
-# Go
-if [ -f go.mod ]; then go mod download; fi
 ```
 
 ### 4. Verify Clean Baseline

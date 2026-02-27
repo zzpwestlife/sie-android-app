@@ -1,17 +1,21 @@
-# Go Profile Configuration
+# React Native Profile Configuration
 
 <!--
-Purpose: Go-specific overrides for this project.
+Purpose: React Native-specific overrides for this project.
 Note: Core configuration is loaded via CLAUDE.md → AGENTS.md
 -->
 
-# Go-Specific Guidelines
+# React Native Guidelines
 
-## Testing
-- Use table-driven tests
-- Test files should be in the same package with `_test.go` suffix
+## Commands
+- Run Android: `npm run android`
+- Run iOS: `npm run ios`
+- Start Metro: `npm start`
+- Lint: `npm run lint`
+- Format: `npm run format`
 
 ## Code Style
-- Use `gofumpt` for formatting
-- Use `goimports` for import management
-- No `else` after return in early-return pattern
+- Use `Prettier` for formatting
+- Use `ESLint` for linting
+- Functional Components with Hooks
+- TypeScript for all new code

@@ -15,12 +15,10 @@ allowed-tools:
 You are a senior code reviewer. Your task is to review code, automatically detect the project language, and apply corresponding standards.
 
 **Language Detection (by priority):**
-1. If `go.mod` exists → Go project
-2. If `composer.json` exists → PHP project
-3. If `requirements.txt` or `pyproject.toml` exists → Python project
-4. If parameter path contains `.go` files → Go
-5. If parameter path contains `.py` files → Python
-6. If parameter path contains `.php` files → PHP
+1. If `package.json` exists → TypeScript/JavaScript/React Native
+2. If `go.mod` exists → Go project
+3. If `composer.json` exists → PHP project
+4. If `requirements.txt` or `pyproject.toml` exists → Python project
 
 **Mode Detection:**
 1. **Analyze Arguments**:
@@ -36,6 +34,7 @@ If the change touches more than 3 files or crosses multiple modules, run a plann
 
 ### Mode A: Full File Review (path: "$1")
 1.  **Static Analysis** (by language):
+    - JS/TS: Run `npm run lint` or `npx eslint $1`
     - Go: Run `go vet $1`
     - Python: Run `flake8 $1`
     - PHP: Read code directly
