@@ -1,7 +1,7 @@
 ---
 name: skill-architect
 description: The master skill for creating, evolving, and maintaining other skills. It unifies the lifecycle of skills from birth (Forge) to growth (Refine).
-version: "1.0.0"
+version: '1.0.0'
 user-invocable: true
 allowed-tools:
   - Read
@@ -21,6 +21,7 @@ The **Skill Architect** is the meta-skill responsible for the entire lifecycle o
 The architect provides a unified CLI tool located at `${CLAUDE_PLUGIN_ROOT}/scripts/architect.py`.
 
 ### 1. Forge (Create New Skill)
+
 Use this when you want to encapsulate a new capability into a reusable skill.
 
 ```bash
@@ -28,11 +29,13 @@ python3 ${CLAUDE_PLUGIN_ROOT}/scripts/architect.py forge <name> --desc "<descrip
 ```
 
 **Example:**
+
 ```bash
 python3 ${CLAUDE_PLUGIN_ROOT}/scripts/architect.py forge "yt-dlp" --desc "A wrapper for video downloading"
 ```
 
 ### 2. Refine (Evolve Existing Skill)
+
 Use this to save "wisdom" (preferences, bug fixes, prompts) into a skill. This updates the `evolution.json` and automatically restitches the `SKILL.md`.
 
 ```bash
@@ -40,16 +43,19 @@ python3 ${CLAUDE_PLUGIN_ROOT}/scripts/architect.py refine <name> <type> "<conten
 ```
 
 **Parameters:**
+
 - `name`: The name of the skill (e.g., `writing-plans`)
 - `type`: One of `preference`, `fix`, `prompt`
 - `content`: The text to save
 
 **Example:**
+
 ```bash
 python3 ${CLAUDE_PLUGIN_ROOT}/scripts/architect.py refine "yt-dlp" "fix" "Use --cookies-from-browser for 403 errors"
 ```
 
 ### 3. Stitch (Manual Update)
+
 Manually force a re-generation of `SKILL.md` from the template and `evolution.json`.
 
 ```bash

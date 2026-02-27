@@ -1,6 +1,6 @@
 ---
-name: "changelog-generator"
-description: "在用户请求生成变更日志、Changelog 或总结差异时触发。提取 Git 差异并辅助生成 CHANGELOG.md。Do not use for generating commit messages."
+name: 'changelog-generator'
+description: '在用户请求生成变更日志、Changelog 或总结差异时触发。提取 Git 差异并辅助生成 CHANGELOG.md。Do not use for generating commit messages.'
 ---
 
 # 变更日志生成器 (Changelog Generator)

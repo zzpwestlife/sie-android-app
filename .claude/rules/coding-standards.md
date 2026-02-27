@@ -1,12 +1,16 @@
 # Coding Standards & Collaboration
 
 ## 1. Tech Stack & Environment
+
 - **Languages**: Go, PHP, Python, Shell
 - **Tools**: Claude Code, MCP, Docker
 
 ## 2. AI Collaboration Instructions
+
 ### 2.1 Execution Guidelines
+
 Apply "Simplicity Principle" to the execution itself.
+
 - **Discovery**: Clarify needs and define scope (Iteration Scoping).
 - **Read First**: Always read relevant files and context before modifying.
 - **TDD**: Implement with Test-Driven Development where applicable.
@@ -15,6 +19,7 @@ Apply "Simplicity Principle" to the execution itself.
 - **Delivery**: List verification results.
 
 ### 2.2 Quality Assurance
+
 - **Code Quality Principles**:
   - **Demand Elegance**: For non-trivial changes, pause and ask "Is there a more elegant way?". If a fix feels hacky, stop and redesign.
   - **Readability First**: Prioritize readability; make the simplest necessary changes.
@@ -34,6 +39,7 @@ Apply "Simplicity Principle" to the execution itself.
 - **Production Mindset**: Handle edge cases; do not assume "happy path".
 
 ### 2.3 Code Review Workflow
+
 - Pre‑flight: read `.claude/constitution/constitution.md` and the language annex under `.claude/constitution/`.
 - Scope guard: if a change touches more than 3 files or crosses multiple modules, run a planning step (/plan) first and define acceptance criteria.
 - Mode selection: use `.claude/commands/review-code.md` to choose between Diff Mode (incremental) or Full Path Review.

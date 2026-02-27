@@ -15,7 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const {execSync} = require('child_process');
 
 function extractDotBlocks(markdown) {
   const blocks = [];
@@ -29,7 +29,7 @@ function extractDotBlocks(markdown) {
     const nameMatch = content.match(/digraph\s+(\w+)/);
     const name = nameMatch ? nameMatch[1] : `graph_${blocks.length + 1}`;
 
-    blocks.push({ name, content });
+    blocks.push({name, content});
   }
 
   return blocks;
@@ -54,7 +54,10 @@ function combineGraphs(blocks, skillName) {
     // Wrap each subgraph in a cluster for visual grouping
     return `  subgraph cluster_${i} {
     label="${block.name}";
-    ${body.split('\n').map(line => '  ' + line).join('\n')}
+    ${body
+      .split('\n')
+      .map(line => '  ' + line)
+      .join('\n')}
   }`;
   });
 
@@ -72,7 +75,7 @@ function renderToSvg(dotContent) {
     return execSync('dot -Tsvg', {
       input: dotContent,
       encoding: 'utf-8',
-      maxBuffer: 10 * 1024 * 1024
+      maxBuffer: 10 * 1024 * 1024,
     });
   } catch (err) {
     console.error('Error running dot:', err.message);
@@ -94,7 +97,9 @@ function main() {
     console.error('');
     console.error('Example:');
     console.error('  ./render-graphs.js ../subagent-driven-development');
-    console.error('  ./render-graphs.js ../subagent-driven-development --combine');
+    console.error(
+      '  ./render-graphs.js ../subagent-driven-development --combine',
+    );
     process.exit(1);
   }
 
@@ -109,7 +114,7 @@ function main() {
 
   // Check if dot is available
   try {
-    execSync('which dot', { encoding: 'utf-8' });
+    execSync('which dot', {encoding: 'utf-8'});
   } catch {
     console.error('Error: graphviz (dot) not found. Install with:');
     console.error('  brew install graphviz    # macOS');
@@ -125,7 +130,9 @@ function main() {
     process.exit(0);
   }
 
-  console.log(`Found ${blocks.length} diagram(s) in ${path.basename(skillDir)}/SKILL.md`);
+  console.log(
+    `Found ${blocks.length} diagram(s) in ${path.basename(skillDir)}/SKILL.md`,
+  );
 
   const outputDir = path.join(skillDir, 'diagrams');
   if (!fs.existsSync(outputDir)) {

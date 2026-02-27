@@ -15,6 +15,7 @@
 ### Task 1.1: Update TypeScript Configuration
 
 **Files:**
+
 - Modify: `tsconfig.json`
 
 **Step 1: Backup existing tsconfig**
@@ -46,7 +47,12 @@ Replace entire content with:
     }
   },
   "include": ["src/**/*", "App.tsx", "index.js"],
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }
 ```
 
@@ -73,6 +79,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 1.2: Update ESLint Configuration
 
 **Files:**
+
 - Modify: `.eslintrc.js`
 
 **Step 1: Update .eslintrc.js with TypeScript rules**
@@ -95,20 +102,33 @@ module.exports = {
     '@typescript-eslint/no-unsafe-assignment': 'warn',
 
     // 未使用变量检查
-    '@typescript-eslint/no-unused-vars': ['error', {
-      argsIgnorePattern: '^_',
-      varsIgnorePattern: '^_',
-    }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
 
     // Import 排序
-    'import/order': ['error', {
-      groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-      'newlines-between': 'always',
-      alphabetize: { order: 'asc', caseInsensitive: true },
-    }],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        'newlines-between': 'always',
+        alphabetize: {order: 'asc', caseInsensitive: true},
+      },
+    ],
 
     // 禁止 console（生产环境）
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': ['warn', {allow: ['warn', 'error']}],
   },
   settings: {
     'import/resolver': {
@@ -145,6 +165,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 1.3: Update Babel Configuration
 
 **Files:**
+
 - Modify: `babel.config.js`
 
 **Step 1: Update babel.config.js**
@@ -154,9 +175,7 @@ Replace entire content with:
 ```javascript
 module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
-  plugins: [
-    'react-native-reanimated/plugin',
-  ],
+  plugins: ['react-native-reanimated/plugin'],
 };
 ```
 
@@ -177,6 +196,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 1.4: Update .gitignore
 
 **Files:**
+
 - Modify: `.gitignore`
 
 **Step 1: Add .claude/tmp/ to .gitignore**
@@ -212,6 +232,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 2.1: Install Development Dependencies
 
 **Files:**
+
 - Modify: `package.json` (via npm)
 
 **Step 1: Install TypeScript ESLint dependencies**
@@ -243,6 +264,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 2.2: Install Runtime Dependencies
 
 **Files:**
+
 - Modify: `package.json` (via npm)
 
 **Step 1: Install React Navigation dependencies**
@@ -284,6 +306,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 3.1: Create Navigation Types
 
 **Files:**
+
 - Create: `src/navigation/types.ts`
 
 **Step 1: Create navigation directory**
@@ -329,6 +352,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 3.2: Create AppNavigator
 
 **Files:**
+
 - Create: `src/navigation/AppNavigator.tsx`
 - Create: `src/navigation/index.ts`
 
@@ -342,11 +366,11 @@ Create `src/navigation/AppNavigator.tsx`:
 // POS: 应用根导航入口
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import { HomeScreen } from '@/screens';
-import type { RootStackParamList } from './types';
+import {HomeScreen} from '@/screens';
+import type {RootStackParamList} from './types';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -357,7 +381,7 @@ export const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Home' }}
+          options={{title: 'Home'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -370,8 +394,8 @@ export const AppNavigator: React.FC = () => {
 Create `src/navigation/index.ts`:
 
 ```typescript
-export { AppNavigator } from './AppNavigator';
-export type { RootStackParamList } from './types';
+export {AppNavigator} from './AppNavigator';
+export type {RootStackParamList} from './types';
 ```
 
 **Step 3: Verify TypeScript (will fail until screens exist)**
@@ -397,6 +421,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 3.3: Create Zustand Store
 
 **Files:**
+
 - Create: `src/stores/useCounterStore.ts`
 - Create: `src/stores/index.ts`
 
@@ -414,7 +439,7 @@ Create `src/stores/useCounterStore.ts`:
 // OUTPUT: 计数器状态管理 Hook
 // POS: 全局状态示例
 
-import { create } from 'zustand';
+import {create} from 'zustand';
 
 interface CounterState {
   count: number;
@@ -423,11 +448,11 @@ interface CounterState {
   reset: () => void;
 }
 
-export const useCounterStore = create<CounterState>((set) => ({
+export const useCounterStore = create<CounterState>(set => ({
   count: 0,
-  increment: () => set((state) => ({ count: state.count + 1 })),
-  decrement: () => set((state) => ({ count: state.count - 1 })),
-  reset: () => set({ count: 0 }),
+  increment: () => set(state => ({count: state.count + 1})),
+  decrement: () => set(state => ({count: state.count - 1})),
+  reset: () => set({count: 0}),
 }));
 ```
 
@@ -436,7 +461,7 @@ export const useCounterStore = create<CounterState>((set) => ({
 Create `src/stores/index.ts`:
 
 ```typescript
-export { useCounterStore } from './useCounterStore';
+export {useCounterStore} from './useCounterStore';
 ```
 
 **Step 4: Verify TypeScript**
@@ -462,6 +487,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 3.4: Create HomeScreen
 
 **Files:**
+
 - Create: `src/screens/HomeScreen.tsx`
 - Create: `src/screens/index.ts`
 
@@ -480,12 +506,12 @@ Create `src/screens/HomeScreen.tsx`:
 // POS: 应用主界面
 
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 
-import { useCounterStore } from '@/stores';
+import {useCounterStore} from '@/stores';
 
 export const HomeScreen: React.FC = () => {
-  const { count, increment, decrement, reset } = useCounterStore();
+  const {count, increment, decrement, reset} = useCounterStore();
 
   return (
     <View style={styles.container}>
@@ -528,7 +554,7 @@ const styles = StyleSheet.create({
 Create `src/screens/index.ts`:
 
 ```typescript
-export { HomeScreen } from './HomeScreen';
+export {HomeScreen} from './HomeScreen';
 ```
 
 **Step 4: Verify TypeScript**
@@ -554,6 +580,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 3.5: Create Utility Directories
 
 **Files:**
+
 - Create: `src/types/index.ts`
 - Create: `src/utils/index.ts`
 
@@ -584,6 +611,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 3.6: Update App.tsx
 
 **Files:**
+
 - Modify: `App.tsx`
 
 **Step 1: Backup existing App.tsx**
@@ -603,7 +631,7 @@ Replace entire content with:
 import React from 'react';
 import 'react-native-gesture-handler';
 
-import { AppNavigator } from '@/navigation';
+import {AppNavigator} from '@/navigation';
 
 const App: React.FC = () => {
   return <AppNavigator />;
@@ -637,6 +665,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 4.1: Run ESLint Validation
 
 **Files:**
+
 - None (validation only)
 
 **Step 1: Run ESLint with auto-fix**
@@ -666,6 +695,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 4.2: Run Prettier Validation
 
 **Files:**
+
 - None (validation only)
 
 **Step 1: Run Prettier**
@@ -695,6 +725,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 4.3: Run TypeScript Validation
 
 **Files:**
+
 - None (validation only)
 
 **Step 1: Run TypeScript type checking**
@@ -705,6 +736,7 @@ Expected: No errors
 **Step 2: If errors exist, analyze and fix**
 
 Common fixes:
+
 - Add explicit return types to functions
 - Fix implicit `any` types
 - Handle null/undefined cases
@@ -732,6 +764,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ### Task 4.4: Build and Run Android App
 
 **Files:**
+
 - None (validation only)
 
 **Step 1: Clear Metro cache**
@@ -759,7 +792,7 @@ If `react-native-gesture-handler` requires manual setup:
 
 Create `.claude/tmp/native-setup.md`:
 
-```markdown
+````markdown
 # Native Configuration Notes
 
 ## Android Manual Setup (if needed)
@@ -779,6 +812,7 @@ protected ReactActivityDelegate createReactActivityDelegate() {
   );
 }
 ```
+````
 
 **Step 5: Final validation commit**
 
@@ -797,6 +831,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ## Success Criteria
 
 **Definition of Done:**
+
 - [x] All configuration files updated (tsconfig, eslint, babel, gitignore)
 - [x] All dependencies installed successfully
 - [x] Directory structure created (navigation, screens, stores, types, utils)
@@ -826,14 +861,17 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ## Risk Mitigation Summary
 
 **Risk 1: Native Auto-linking Failure**
+
 - Mitigation: Documentation in `.claude/tmp/native-setup.md`
 - Fallback: Manual Java/Kotlin configuration
 
 **Risk 2: App.tsx Overwrite**
+
 - Mitigation: Created `App.tsx.backup` before modification
 - Rollback: `cp App.tsx.backup App.tsx`
 
 **Risk 3: TypeScript Strict Errors**
+
 - Mitigation: Task 4.3 dedicated to fixing type errors
 - Approach: Analyze errors, add explicit types, commit fixes
 

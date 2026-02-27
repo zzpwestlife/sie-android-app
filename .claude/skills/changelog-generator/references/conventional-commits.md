@@ -1,6 +1,7 @@
 # Conventional Commits Quick Reference
 
 ## Common Types
+
 - feat: new feature
 - fix: bug fix
 - docs: documentation only
@@ -10,6 +11,7 @@
 - chore: tooling or maintenance
 
 ## Changelog Mapping
+
 - feat: Added
 - fix: Fixed
 - docs: Documentation
