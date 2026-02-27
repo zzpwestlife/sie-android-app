@@ -6,6 +6,9 @@ module.exports = {
     'plugin:import/typescript',
   ],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   plugins: ['@typescript-eslint', 'import'],
   rules: {
     // 禁止 any 类型（Constitution 要求）
@@ -49,4 +52,16 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      // 配置文件不需要类型检查
+      files: ['*.js'],
+      parserOptions: {
+        project: null,
+      },
+      rules: {
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+      },
+    },
+  ],
 };
