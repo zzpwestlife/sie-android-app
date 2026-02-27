@@ -2,3 +2,6 @@
 .trae
 .DS_Store
 /node_modules
+
+# Claude temporary files
+.claude/tmp/
