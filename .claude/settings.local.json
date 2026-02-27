@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__sequential-thinking__sequentialthinking",
+      "mcp__web-search-prime__webSearchPrime",
+      "mcp__fetch__fetch",
+      "Bash(npm install:*)",
+      "Bash(npm run build)",
+      "Skill(optimize-prompt)",
+      "Bash(tree:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Skill(executing-plans)",
+      "Bash(chmod:*)",
+      "Bash(/Users/joeyzou/Code/OpenSource/learn-claude-code/.claude/hooks/superpowers-session-start)",
+      "Bash(python3:*)",
+      "Bash(xargs test:*)",
+      "Bash(done)",
+      "Bash(echo:*)",
+      "Bash(du:*)",
+      "Bash(/Users/joeyzou/Code/OpenSource/learn-claude-code/.claude/hooks/claudeception-activator.sh:*)",
+      "Bash(ls:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/format-go-code.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

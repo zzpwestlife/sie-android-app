@@ -1,0 +1,71 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/superpowers-session-start"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/admin/openSource/learn-claude-code/.claude/hooks/claudeception-activator.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": []
+  },
+  "permissions": {
+    "defaultMode": "plan",
+    "allow": [
+      "Read(*.go)",
+      "Read(*.py)",
+      "Read(*.php)",
+      "Read(*.js)",
+      "Read(*.ts)",
+      "Read(*.md)",
+      "Read(go.mod)",
+      "Read(Makefile)",
+      "Read(constitution.md)",
+      "Read(specs/**)",
+      "Grep",
+      "Glob",
+      "LS",
+      "Bash(go:version)",
+      "Bash(go:list:*)",
+      "Bash(go:build:*)",
+      "Bash(go:test:*)",
+      "Bash(gofmt:*)",
+      "Bash(goimports:*)",
+      "Bash(golangci-lint:run:*)",
+      "Bash(python:*)",
+      "Bash(php:*)"
+    ],
+    "ask": [
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "Bash(go:get:*)",
+      "Bash(go:mod:tidy)",
+      "Bash(git:add:*)",
+      "Bash(git:commit:*)",
+      "Bash(pip:install:*)",
+      "Bash(composer:require:*)"
+    ],
+    "deny": [
+      "Read(./.env*)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Bash(rm:*)",
+      "Bash(git:push:*)",
+      "WebFetch"
+    ]
+  }
+}
