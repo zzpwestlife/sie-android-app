@@ -78,4 +78,30 @@ class StudyViewModelTest {
         assertTrue(state.isAnswerRevealed)
         assertTrue(state.isCorrect)
     }
+
+    @Test
+    fun `selectOption with wrong answer shows explanation and marks incorrect`() = runTest {
+        // Arrange
+        val mockQuestion = Question(
+            id = 3,
+            content = "What is the capital of Japan?",
+            options = listOf("Seoul", "Beijing", "Tokyo", "Bangkok"),
+            correctAnswerIndex = 2, // "Tokyo"
+            explanation = "Tokyo is the capital of Japan.",
+            category = "Geography"
+        )
+        coEvery { questionRepository.getRandomQuestions(1) } returns flowOf(listOf(mockQuestion))
+
+        // Act
+        viewModel = StudyViewModel(questionRepository)
+        mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
+        viewModel.selectOption(0) // Select wrong answer "Seoul"
+        mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
+
+        // Assert
+        val state = viewModel.uiState.value as StudyUiState.Success
+        assertEquals(0, state.selectedOptionIndex)
+        assertTrue(state.isAnswerRevealed)
+        assertEquals(false, state.isCorrect)
+    }
 }
