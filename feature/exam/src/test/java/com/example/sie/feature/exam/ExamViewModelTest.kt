@@ -58,7 +58,8 @@ class ExamViewModelTest {
                 options = listOf("A", "B", "C", "D"),
                 correctAnswerIndex = 0, // A
                 explanation = "Explanation 1",
-                category = "Category 1"
+                category = "Category 1",
+                lastStudiedAt = null
             ),
             Question(
                 id = 2,
@@ -66,7 +67,8 @@ class ExamViewModelTest {
                 options = listOf("A", "B", "C", "D"),
                 correctAnswerIndex = 1, // B
                 explanation = "Explanation 2",
-                category = "Category 2"
+                category = "Category 2",
+                lastStudiedAt = null
             )
         )
 
@@ -132,7 +134,8 @@ class ExamViewModelTest {
                 options = listOf("A", "B", "C", "D"),
                 correctAnswerIndex = 0,
                 explanation = "Explanation $id",
-                category = "1. Macroeconomics / 宏观经济学"
+                category = "1. Macroeconomics / 宏观经济学",
+                lastStudiedAt = null
             )
         }
         coEvery { questionRepository.getAllQuestionsList() } returns questions
