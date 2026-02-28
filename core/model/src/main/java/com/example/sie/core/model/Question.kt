@@ -9,7 +9,8 @@ data class Question(
     val category: String,
     val isBookmarked: Boolean = false,
     val isWrong: Boolean = false,
-    val wrongCount: Int = 0  // NEW: Track wrong answer count
+    val wrongCount: Int = 0,  // Track wrong answer count
+    val lastStudiedAt: Long? = null  // NEW: Timestamp in milliseconds
 ) {
     fun getLocalizedContent(language: String): String {
         val parts = content.split("\n")

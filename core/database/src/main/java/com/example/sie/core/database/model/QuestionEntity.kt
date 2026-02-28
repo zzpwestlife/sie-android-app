@@ -11,7 +11,8 @@ import org.json.JSONException
     tableName = "questions",
     indices = [
         Index(value = ["isBookmarked", "category", "id"], name = "index_bookmark_category"),
-        Index(value = ["isWrong", "wrongCount", "category", "id"], name = "index_wrong_category")
+        Index(value = ["isWrong", "wrongCount", "category", "id"], name = "index_wrong_category"),
+        Index(value = ["category", "lastStudiedAt", "id"], name = "index_category_studied")
     ]
 )
 data class QuestionEntity(
@@ -24,7 +25,8 @@ data class QuestionEntity(
     val category: String,
     val isBookmarked: Boolean = false,
     val isWrong: Boolean = false,
-    val wrongCount: Int = 0  // NEW: Track wrong answer count
+    val wrongCount: Int = 0,  // Track wrong answer count
+    val lastStudiedAt: Long? = null  // NEW: Timestamp in milliseconds
 )
 
 fun QuestionEntity.asExternalModel() = Question(
@@ -41,5 +43,6 @@ fun QuestionEntity.asExternalModel() = Question(
     category = category,
     isBookmarked = isBookmarked,
     isWrong = isWrong,
-    wrongCount = wrongCount
+    wrongCount = wrongCount,
+    lastStudiedAt = lastStudiedAt
 )
