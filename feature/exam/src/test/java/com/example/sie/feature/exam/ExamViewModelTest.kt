@@ -41,6 +41,7 @@ class ExamViewModelTest {
 
     private val questionRepository: QuestionRepository = mockk()
     private val examRepository: ExamRepository = mockk(relaxed = true)
+    private val userDataRepository = mockk<com.example.sie.core.data.repository.UserDataRepository>(relaxed = true)
     private lateinit var viewModel: ExamViewModel
 
     @Test
@@ -68,7 +69,7 @@ class ExamViewModelTest {
         coEvery { questionRepository.getRandomQuestions(75) } returns flowOf(questions)
 
         // Initialize ViewModel
-        viewModel = ExamViewModel(questionRepository, examRepository)
+        viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
         
         // Ensure init block and startExam coroutine runs
         mainDispatcherRule.testDispatcher.scheduler.runCurrent()
