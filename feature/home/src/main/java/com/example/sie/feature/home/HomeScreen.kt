@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 import com.example.sie.core.designsystem.component.SieButton
 import com.example.sie.core.designsystem.component.SieTopAppBar
 import com.example.sie.core.designsystem.component.GlassCard
@@ -80,32 +81,76 @@ internal fun HomeScreen(
                     color = Color.White
                 )
 
-                SieButton(
-                    onClick = onTopicSelectionClick,
-                    modifier = Modifier.fillMaxWidth()
+                GlassCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    gradient = PrimaryGradient,
+                    onClick = onTopicSelectionClick
                 ) {
-                    Text("Start Practice")
+                    Text(
+                        text = "🎯 Start Practice",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Study questions by topic",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White.copy(alpha = 0.7f)
+                    )
                 }
 
-                SieButton(
-                    onClick = onMockExamClick,
-                    modifier = Modifier.fillMaxWidth()
+                GlassCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    gradient = SecondaryGradient,
+                    onClick = onMockExamClick
                 ) {
-                    Text("Mock Exam")
+                    Text(
+                        text = "📝 Mock Exam",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Take a full practice test",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White.copy(alpha = 0.7f)
+                    )
                 }
 
-                SieButton(
-                    onClick = onStatsClick,
-                    modifier = Modifier.fillMaxWidth()
+                GlassCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    gradient = TertiaryGradient,
+                    onClick = onStatsClick
                 ) {
-                    Text("Statistics")
+                    Text(
+                        text = "📊 Statistics",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "View your performance",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White.copy(alpha = 0.7f)
+                    )
                 }
 
-                SieButton(
-                    onClick = onSettingsClick,
-                    modifier = Modifier.fillMaxWidth()
+                GlassCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    gradient = AccentGradient,
+                    onClick = onSettingsClick
                 ) {
-                    Text("Settings")
+                    Text(
+                        text = "⚙️ Settings",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Configure app preferences",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White.copy(alpha = 0.7f)
+                    )
                 }
             }
         }
