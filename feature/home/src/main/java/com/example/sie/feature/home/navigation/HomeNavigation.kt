@@ -16,6 +16,8 @@ fun NavGraphBuilder.homeScreen(
     onTopicSelectionClick: () -> Unit,
     onMockExamClick: () -> Unit,
     onStatsClick: () -> Unit,
+    onBookmarkedClick: () -> Unit,
+    onWrongQuestionsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     composable(route = homeRoute) {
@@ -23,6 +25,8 @@ fun NavGraphBuilder.homeScreen(
             onTopicSelectionClick = onTopicSelectionClick,
             onMockExamClick = onMockExamClick,
             onStatsClick = onStatsClick,
+            onBookmarkedClick = onBookmarkedClick,
+            onWrongQuestionsClick = onWrongQuestionsClick,
             onSettingsClick = onSettingsClick,
         )
     }

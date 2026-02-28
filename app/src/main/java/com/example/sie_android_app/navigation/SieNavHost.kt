@@ -6,6 +6,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.sie.feature.home.navigation.homeRoute
 import com.example.sie.feature.home.navigation.homeScreen
+import com.example.sie.feature.home.navigation.bookmarkedScreen
+import com.example.sie.feature.home.navigation.navigateToBookmarked
+import com.example.sie.feature.home.navigation.wrongQuestionsScreen
+import com.example.sie.feature.home.navigation.navigateToWrongQuestions
 import com.example.sie.feature.study.navigation.studyScreen
 import com.example.sie.feature.study.navigation.navigateToStudy
 import com.example.sie.feature.exam.navigation.examScreen
@@ -30,12 +34,20 @@ fun SieNavHost(
             onTopicSelectionClick = { navController.navigateToStudy() },
             onMockExamClick = { navController.navigateToExam() },
             onStatsClick = { navController.navigateToStats() },
+            onBookmarkedClick = { navController.navigateToBookmarked() },
+            onWrongQuestionsClick = { navController.navigateToWrongQuestions() },
             onSettingsClick = { navController.navigateToSettings() }
         )
         studyScreen(
             onBackClick = { navController.popBackStack() }
         )
         examScreen(
+            onBackClick = { navController.popBackStack() }
+        )
+        bookmarkedScreen(
+            onBackClick = { navController.popBackStack() }
+        )
+        wrongQuestionsScreen(
             onBackClick = { navController.popBackStack() }
         )
         statsScreen()
