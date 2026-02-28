@@ -158,4 +158,37 @@ class ExamViewModelTest {
         assertEquals(0, state.currentQuestionIndex)
         assertEquals(30 * 60 * 1000L, state.timeLeftMillis) // 30 minutes
     }
+
+    @Test
+    fun onAnswerSelected_updatesUserAnswersMap() = runTest {
+        // Arrange
+        val questions = listOf(
+            Question(1, "Q1", listOf("A", "B"), 0, "Exp1", "Cat1"),
+            Question(2, "Q2", listOf("C", "D"), 1, "Exp2", "Cat2")
+        )
+        coEvery { questionRepository.getAllQuestionsList() } returns questions
+        every { userDataRepository.userData } returns flowOf(
+            UserData(
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                useDynamicColor = false,
+                fontSizeScale = 0,
+                language = "zh"
+            )
+        )
+
+        // Act
+        viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+        viewModel.startExam()
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        viewModel.onAnswerSelected(1, 0) // Answer question 1 with option 0
+        viewModel.onAnswerSelected(2, 1) // Answer question 2 with option 1
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Assert
+        val state = viewModel.uiState.value as ExamUiState.InProgress
+        assertEquals(0, state.userAnswers[1])
+        assertEquals(1, state.userAnswers[2])
+    }
 }
