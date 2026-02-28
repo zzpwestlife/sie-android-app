@@ -17,8 +17,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.BookmarkRemove
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
@@ -128,7 +128,7 @@ internal fun BookmarkedScreen(
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                 Icon(
-                                    imageVector = Icons.Default.Bookmark,
+                                    imageVector = Icons.Filled.Star,
                                     contentDescription = null,
                                     modifier = Modifier.size(64.dp),
                                     tint = Color.White.copy(alpha = 0.5f)
@@ -295,7 +295,7 @@ private fun BookmarkedQuestionCard(
 
             IconButton(onClick = onRemoveBookmark) {
                 Icon(
-                    imageVector = Icons.Default.BookmarkRemove,
+                    imageVector = Icons.Default.Close,
                     contentDescription = "Remove bookmark",
                     tint = Color.White.copy(alpha = 0.7f)
                 )

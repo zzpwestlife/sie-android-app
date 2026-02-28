@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -124,8 +124,8 @@ internal fun StudyScreen(
                                 }
                             ) {
                                 Icon(
-                                    imageVector = if (isBookmarked) Icons.Default.Bookmark
-                                        else Icons.Default.BookmarkBorder,
+                                    imageVector = if (isBookmarked) Icons.Filled.Star
+                                        else Icons.Outlined.Star,
                                     contentDescription = if (isBookmarked) "Remove bookmark"
                                         else "Add bookmark",
                                     tint = if (isBookmarked) Color(0xFFfee140)

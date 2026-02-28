@@ -18,7 +18,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.outlined.ErrorOutline
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
@@ -48,7 +48,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.runtime.collectAsState
 import com.example.sie.core.designsystem.component.GlassCard
 import com.example.sie.core.designsystem.component.SieTopAppBar
 import com.example.sie.core.designsystem.theme.ErrorGradient
@@ -60,7 +60,7 @@ fun WrongQuestionsRoute(
     onBackClick: () -> Unit,
     viewModel: WrongQuestionsViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
@@ -138,7 +138,7 @@ internal fun WrongQuestionsScreen(
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(
-                                imageVector = Icons.Outlined.ErrorOutline,
+                                imageVector = Icons.Filled.Warning,
                                 contentDescription = null,
                                 modifier = Modifier.size(64.dp),
                                 tint = Color.White.copy(alpha = 0.5f)
