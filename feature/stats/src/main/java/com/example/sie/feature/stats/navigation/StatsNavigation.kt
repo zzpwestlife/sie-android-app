@@ -12,8 +12,14 @@ fun NavController.navigateToStats(navOptions: NavOptions? = null) {
     this.navigate(statsRoute, navOptions)
 }
 
-fun NavGraphBuilder.statsScreen() {
+fun NavGraphBuilder.statsScreen(
+    onExamHistoryClick: () -> Unit = {},
+    onExamResultClick: (Int) -> Unit = {}
+) {
     composable(route = statsRoute) {
-        StatsRoute()
+        StatsRoute(
+            onExamHistoryClick = onExamHistoryClick,
+            onExamResultClick = onExamResultClick
+        )
     }
 }

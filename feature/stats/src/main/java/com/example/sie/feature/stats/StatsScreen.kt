@@ -40,14 +40,24 @@ import java.util.Locale
 
 @Composable
 fun StatsRoute(
+    onExamHistoryClick: () -> Unit = {},
+    onExamResultClick: (Int) -> Unit = {},
     viewModel: StatsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    StatsScreen(uiState)
+    StatsScreen(
+        uiState = uiState,
+        onExamHistoryClick = onExamHistoryClick,
+        onExamResultClick = onExamResultClick
+    )
 }
 
 @Composable
-internal fun StatsScreen(uiState: StatsUiState) {
+internal fun StatsScreen(
+    uiState: StatsUiState,
+    onExamHistoryClick: () -> Unit = {},
+    onExamResultClick: (Int) -> Unit = {}
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -91,6 +101,22 @@ internal fun StatsScreen(uiState: StatsUiState) {
                         }
                     }
 
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    GlassCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        gradient = SecondaryGradient,
+                        onClick = onExamHistoryClick
+                    ) {
+                        Text(
+                            text = stringResource(CommonR.string.exam_history_view_all),
+                            style = MaterialTheme.typography.titleMedium,
+                            color = Color.White,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        )
+                    }
+
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Text(
@@ -104,7 +130,8 @@ internal fun StatsScreen(uiState: StatsUiState) {
                         items(uiState.recentResults) { result ->
                             GlassCard(
                                 modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-                                gradient = SecondaryGradient
+                                gradient = SecondaryGradient,
+                                onClick = { onExamResultClick(result.id) }
                             ) {
                                 ExamResultItemContent(result)
                             }

@@ -13,7 +13,11 @@ import com.example.sie.feature.home.navigation.navigateToWrongQuestions
 import com.example.sie.feature.study.navigation.studyScreen
 import com.example.sie.feature.study.navigation.navigateToStudy
 import com.example.sie.feature.exam.navigation.examScreen
+import com.example.sie.feature.exam.navigation.examHistoryScreen
+import com.example.sie.feature.exam.navigation.examDetailScreen
 import com.example.sie.feature.exam.navigation.navigateToExam
+import com.example.sie.feature.exam.navigation.navigateToExamHistory
+import com.example.sie.feature.exam.navigation.navigateToExamDetail
 import com.example.sie.feature.stats.navigation.statsScreen
 import com.example.sie.feature.stats.navigation.navigateToStats
 import com.example.sie.feature.settings.navigation.settingsScreen
@@ -50,14 +54,20 @@ fun SieNavHost(
         chapterSelectionScreen(
             onBackClick = { navController.popBackStack() },
             onStartStudy = { selectedCategories ->
-                navController.navigateToStudy()
-                // TODO: Pass categories to study screen
+                navController.navigateToStudy(selectedCategories)
             }
         )
         studyScreen(
             onBackClick = { navController.popBackStack() }
         )
         examScreen(
+            onBackClick = { navController.popBackStack() }
+        )
+        examHistoryScreen(
+            onBackClick = { navController.popBackStack() },
+            onExamClick = { examResultId -> navController.navigateToExamDetail(examResultId) }
+        )
+        examDetailScreen(
             onBackClick = { navController.popBackStack() }
         )
         bookmarkedScreen(
@@ -77,7 +87,10 @@ fun SieNavHost(
         cardCreateScreen(
             onBackClick = { navController.popBackStack() }
         )
-        statsScreen()
+        statsScreen(
+            onExamHistoryClick = { navController.navigateToExamHistory() },
+            onExamResultClick = { examResultId -> navController.navigateToExamDetail(examResultId) }
+        )
         settingsScreen()
     }
 }
