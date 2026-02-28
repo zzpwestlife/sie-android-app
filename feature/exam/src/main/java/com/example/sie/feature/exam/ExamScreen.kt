@@ -48,6 +48,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.ui.draw.scale
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -329,11 +335,24 @@ private fun ExamInProgressContent(
                             else -> Color.White
                         }
 
+                        // Pulse animation when time is running out
+                        val infiniteTransition = rememberInfiniteTransition(label = "timer_pulse")
+                        val scale by infiniteTransition.animateFloat(
+                            initialValue = 1f,
+                            targetValue = if (state.timeLeftMillis < 5 * 60 * 1000) 1.08f else 1f,
+                            animationSpec = infiniteRepeatable(
+                                animation = tween(1000),
+                                repeatMode = RepeatMode.Reverse
+                            ),
+                            label = "timer_pulse_scale"
+                        )
+
                         Text(
                             text = formatTime(state.timeLeftMillis),
                             style = MaterialTheme.typography.titleMedium,
                             color = timeColor,
-                            fontWeight = if (state.timeLeftMillis < 5 * 60 * 1000) FontWeight.Bold else FontWeight.Normal
+                            fontWeight = if (state.timeLeftMillis < 5 * 60 * 1000) FontWeight.Bold else FontWeight.Normal,
+                            modifier = Modifier.scale(scale)
                         )
                     }
                 },
