@@ -8,6 +8,7 @@ import com.example.sie.core.model.Question
 import com.example.sie.core.model.UserData
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -69,8 +70,8 @@ class ExamViewModelTest {
             )
         )
 
-        coEvery { questionRepository.getRandomQuestions(75) } returns flowOf(questions)
-        coEvery { userDataRepository.userData } returns flowOf(
+        coEvery { questionRepository.getAllQuestionsList() } returns questions
+        every { userDataRepository.userData } returns flowOf(
             UserData(
                 darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
                 useDynamicColor = false,
@@ -81,27 +82,36 @@ class ExamViewModelTest {
 
         // Initialize ViewModel
         viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
-        
-        // Ensure init block and startExam coroutine runs
+
+        // Ensure init block runs
         mainDispatcherRule.testDispatcher.scheduler.runCurrent()
-        
+
+        // Start the exam
+        viewModel.startExam()
+        // Use runCurrent to execute only immediate coroutines, not delayed ones (timer)
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Verify exam started
+        val stateAfterStart = viewModel.uiState.value
+        assertTrue("State should be InProgress after startExam, but was $stateAfterStart",
+            stateAfterStart is ExamUiState.InProgress)
+
         // Act
         // Answer Question 1 Correctly (0)
         viewModel.onAnswerSelected(1, 0)
-        
+
         // Answer Question 2 Incorrectly (0, correct is 1)
         viewModel.onAnswerSelected(2, 0)
-        
+
         // Submit
         viewModel.submitExam()
-        
+
         // Ensure saveResult coroutine runs
         mainDispatcherRule.testDispatcher.scheduler.runCurrent()
 
         // Assert
         val uiState = viewModel.uiState.value
-        println("DEBUG: uiState = $uiState")
-        assertTrue("State should be Finished but was $uiState", uiState is ExamUiState.Finished)
+        assertTrue("State should be Finished", uiState is ExamUiState.Finished)
 
         val finishedState = uiState as ExamUiState.Finished
         assertEquals("User answers count should be 2", 2, finishedState.userAnswers.size)
@@ -110,5 +120,42 @@ class ExamViewModelTest {
 
         // Verify Repository Interaction
         coVerify { examRepository.saveExamResult(any()) }
+    }
+
+    @Test
+    fun startExam_loads32QuestionsSuccessfully() = runTest {
+        // Arrange
+        val questions = (1..100).map { id ->
+            Question(
+                id = id,
+                content = "Question $id",
+                options = listOf("A", "B", "C", "D"),
+                correctAnswerIndex = 0,
+                explanation = "Explanation $id",
+                category = "1. Macroeconomics / 宏观经济学"
+            )
+        }
+        coEvery { questionRepository.getAllQuestionsList() } returns questions
+        every { userDataRepository.userData } returns flowOf(
+            UserData(
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                useDynamicColor = false,
+                fontSizeScale = 0,
+                language = "zh"
+            )
+        )
+
+        // Act
+        viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+        viewModel.startExam()
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Assert
+        val state = viewModel.uiState.value
+        assertTrue("State should be InProgress", state is ExamUiState.InProgress)
+        assertEquals(32, (state as ExamUiState.InProgress).questions.size)
+        assertEquals(0, state.currentQuestionIndex)
+        assertEquals(30 * 60 * 1000L, state.timeLeftMillis) // 30 minutes
     }
 }
