@@ -45,6 +45,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -157,17 +158,27 @@ private fun ExamIntroContent(
     language: String
 ) {
     Scaffold(
+        containerColor = Color.Transparent,
         topBar = {
             TopAppBar(
-                title = { Text(if (language == "zh") "模拟考试" else "Mock Exam") },
+                title = {
+                    Text(
+                        text = if (language == "zh") "模拟考试" else "Mock Exam",
+                        color = Color.White
+                    )
+                },
                 navigationIcon = {
                     androidx.compose.material3.IconButton(onClick = onBackClick) {
                         androidx.compose.material3.Icon(
                             imageVector = androidx.compose.material.icons.Icons.Default.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = "Back",
+                            tint = Color.White
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent
+                )
             )
         }
     ) { paddingValues ->
@@ -332,10 +343,16 @@ private fun ExamInProgressContent(
                         // Flag is now inside the card, but we can keep a submit button here or just time
                         // Keeping Submit here for accessibility
                         TextButton(onClick = { showSubmitDialog = true }) {
-                            Text(if (language == "zh") "提交" else "Submit")
+                            Text(
+                                text = if (language == "zh") "提交" else "Submit",
+                                color = Color.White
+                            )
                         }
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent
+                )
             )
         },
         bottomBar = {
@@ -569,17 +586,27 @@ private fun ExamResultContent(
         )
     } else {
         Scaffold(
+            containerColor = Color.Transparent,
             topBar = {
                 TopAppBar(
-                    title = { Text(if (language == "zh") "考试结果" else "Exam Result") },
+                    title = {
+                        Text(
+                            text = if (language == "zh") "考试结果" else "Exam Result",
+                            color = Color.White
+                        )
+                    },
                     navigationIcon = {
                         androidx.compose.material3.IconButton(onClick = onBackClick) {
                             androidx.compose.material3.Icon(
                                 imageVector = androidx.compose.material.icons.Icons.Default.Close,
-                                contentDescription = "Close"
+                                contentDescription = "Close",
+                                tint = Color.White
                             )
                         }
-                    }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = Color.Transparent
+                    )
                 )
             }
         ) { paddingValues ->
@@ -784,19 +811,28 @@ private fun ExamReviewContent(
     val scope = rememberCoroutineScope()
 
     Scaffold(
+        containerColor = Color.Transparent,
         topBar = {
             TopAppBar(
-                title = { Text("Review: Question ${pagerState.currentPage + 1}/${state.questions.size}") },
+                title = {
+                    Text(
+                        text = "Review: Question ${pagerState.currentPage + 1}/${state.questions.size}",
+                        color = Color.White
+                    )
+                },
                 navigationIcon = {
                     TextButton(onClick = onCloseReview) {
-                        Text("Close")
+                        Text("Close", color = Color.White)
                     }
                 },
                 actions = {
                     TextButton(onClick = { showReviewDialog = true }) {
-                        Text("All Questions")
+                        Text("All Questions", color = Color.White)
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent
+                )
             )
         },
         bottomBar = {
@@ -980,16 +1016,23 @@ private fun ExamReviewContent(
     val scope = rememberCoroutineScope()
 
     Scaffold(
+        containerColor = Color.Transparent,
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Question ${pagerState.currentPage + 1}/${state.questions.size}")
+                    Text(
+                        text = "Question ${pagerState.currentPage + 1}/${state.questions.size}",
+                        color = Color.White
+                    )
                 },
                 actions = {
                     TextButton(onClick = onCloseReview) {
-                        Text("Close")
+                        Text("Close", color = Color.White)
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent
+                )
             )
         },
         bottomBar = {
