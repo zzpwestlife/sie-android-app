@@ -1,0 +1,337 @@
+package com.example.sie.feature.exam
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.sie.core.common.R as CommonR
+import com.example.sie.core.designsystem.component.QuestionCard
+import com.example.sie.core.model.ExamAnswer
+import com.example.sie.core.model.Question
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
+@Composable
+fun ExamDetailRoute(
+    onBackClick: () -> Unit,
+    viewModel: ExamDetailViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    ExamDetailScreen(
+        uiState = uiState,
+        onBackClick = onBackClick,
+        onToggleFilter = viewModel::toggleFilter
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun ExamDetailScreen(
+    uiState: ExamDetailUiState,
+    onBackClick: () -> Unit,
+    onToggleFilter: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFF1a1a2e),
+                        Color(0xFF16213e),
+                        Color(0xFF0f3460)
+                    )
+                )
+            )
+    ) {
+        Scaffold(
+            containerColor = Color.Transparent,
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(
+                            text = stringResource(CommonR.string.exam_detail_title),
+                            color = Color.White
+                        )
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(CommonR.string.common_back),
+                                tint = Color.White
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                )
+            }
+        ) { paddingValues ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                when (uiState) {
+                    ExamDetailUiState.Loading -> {
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator(color = Color.White)
+                        }
+                    }
+                    ExamDetailUiState.Error -> {
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            Text(
+                                text = stringResource(CommonR.string.common_error),
+                                color = Color.White,
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                        }
+                    }
+                    is ExamDetailUiState.Success -> {
+                        ExamDetailContent(
+                            state = uiState,
+                            onToggleFilter = onToggleFilter
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun ExamDetailContent(
+    state: ExamDetailUiState.Success,
+    onToggleFilter: () -> Unit
+) {
+    val filteredQuestions = state.filteredQuestions
+    val filteredAnswers = state.filteredAnswers
+    val answersMap = filteredAnswers.associateBy { it.questionId }
+
+    if (filteredQuestions.isEmpty()) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Text(
+                text = stringResource(CommonR.string.exam_history_empty),
+                color = Color.White,
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+        return
+    }
+
+    val pagerState = rememberPagerState(pageCount = { filteredQuestions.size })
+    val scope = rememberCoroutineScope()
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        // Header info
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(
+                    text = dateFormat.format(Date(state.examResult.date)),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.White.copy(alpha = 0.7f)
+                )
+                Text(
+                    text = "${state.examResult.score}% · ${state.examResult.correctCount}/${state.examResult.totalQuestions}",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FilterChip(
+                    selected = !state.filterWrongOnly,
+                    onClick = { if (state.filterWrongOnly) onToggleFilter() },
+                    label = { Text(stringResource(CommonR.string.exam_detail_filter_all)) }
+                )
+                FilterChip(
+                    selected = state.filterWrongOnly,
+                    onClick = { if (!state.filterWrongOnly) onToggleFilter() },
+                    label = { Text(stringResource(CommonR.string.exam_detail_filter_wrong)) }
+                )
+            }
+        }
+
+        // Question counter
+        Text(
+            text = stringResource(
+                CommonR.string.exam_detail_question_index,
+                pagerState.currentPage + 1,
+                filteredQuestions.size
+            ),
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color.White.copy(alpha = 0.8f),
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+        )
+
+        // Question pager
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) { page ->
+            val question = filteredQuestions[page]
+            val answer = answersMap[question.id]
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Column {
+                    // Status indicators
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        if (answer != null) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Icon(
+                                    imageVector = if (answer.isCorrect) Icons.Default.CheckCircle else Icons.Default.Close,
+                                    contentDescription = null,
+                                    tint = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Text(
+                                    text = if (answer.isCorrect) stringResource(CommonR.string.exam_result_correct)
+                                           else stringResource(CommonR.string.exam_result_incorrect),
+                                    color = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+
+                        if (answer?.isFlagged == true) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Info,
+                                    contentDescription = null,
+                                    tint = Color(0xFFFFA500),
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Text(
+                                    text = stringResource(CommonR.string.exam_detail_flagged),
+                                    color = Color(0xFFFFA500),
+                                    style = MaterialTheme.typography.bodySmall
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    QuestionCard(
+                        question = question,
+                        selectedOptionIndex = answer?.selectedOptionIndex,
+                        onOptionSelected = {},
+                        showFeedback = true,
+                        showExplanation = true
+                    )
+                }
+            }
+        }
+
+        // Bottom navigation
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            OutlinedButton(
+                onClick = {
+                    scope.launch {
+                        if (pagerState.currentPage > 0) {
+                            pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                        }
+                    }
+                },
+                enabled = pagerState.currentPage > 0,
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = Color.White,
+                    disabledContentColor = Color.White.copy(alpha = 0.38f)
+                ),
+                border = BorderStroke(
+                    1.dp,
+                    if (pagerState.currentPage > 0) Color.White else Color.White.copy(alpha = 0.12f)
+                )
+            ) {
+                Text(stringResource(CommonR.string.common_previous))
+            }
+
+            Button(
+                onClick = {
+                    scope.launch {
+                        if (pagerState.currentPage < filteredQuestions.size - 1) {
+                            pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                        }
+                    }
+                },
+                enabled = pagerState.currentPage < filteredQuestions.size - 1
+            ) {
+                Text(stringResource(CommonR.string.common_next))
+            }
+        }
+    }
+}

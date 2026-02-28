@@ -84,6 +84,22 @@
     <string name="stats_recent_results">Recent Results</string>
     <string name="stats_score_label">Score: %d%%</string>
 
+    <!-- Exam History -->
+    <string name="exam_history_title">Exam History</string>
+    <string name="exam_history_empty">No exam records yet</string>
+    <string name="exam_history_view_all">View All History</string>
+    <string name="exam_history_total_exams">Total Exams: %d</string>
+    <string name="exam_history_best_score">Best: %d%%</string>
+    <string name="exam_history_pass_rate">Pass Rate: %d%%</string>
+    <string name="exam_detail_title">Exam Detail</string>
+    <string name="exam_detail_filter_all">All</string>
+    <string name="exam_detail_filter_wrong">Wrong Only</string>
+    <string name="exam_detail_question_index">Question %1$d / %2$d</string>
+    <string name="exam_detail_your_answer">Your Answer</string>
+    <string name="exam_detail_correct_answer">Correct Answer</string>
+    <string name="exam_detail_flagged">Flagged</string>
+    <string name="exam_detail_not_answered">Not Answered</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">Settings</string>
     <string name="settings_theme">Theme</string>

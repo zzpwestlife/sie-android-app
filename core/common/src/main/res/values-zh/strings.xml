@@ -84,6 +84,22 @@
     <string name="stats_recent_results">最近成绩</string>
     <string name="stats_score_label">得分: %d%%</string>
 
+    <!-- Exam History -->
+    <string name="exam_history_title">考试历史</string>
+    <string name="exam_history_empty">暂无考试记录</string>
+    <string name="exam_history_view_all">查看全部历史</string>
+    <string name="exam_history_total_exams">考试次数: %d</string>
+    <string name="exam_history_best_score">最高分: %d%%</string>
+    <string name="exam_history_pass_rate">通过率: %d%%</string>
+    <string name="exam_detail_title">考试详情</string>
+    <string name="exam_detail_filter_all">全部</string>
+    <string name="exam_detail_filter_wrong">仅错题</string>
+    <string name="exam_detail_question_index">第 %1$d / %2$d 题</string>
+    <string name="exam_detail_your_answer">你的答案</string>
+    <string name="exam_detail_correct_answer">正确答案</string>
+    <string name="exam_detail_flagged">已标记</string>
+    <string name="exam_detail_not_answered">未作答</string>
+
     <!-- Settings Screen -->
     <string name="settings_title">设置</string>
     <string name="settings_theme">主题</string>
