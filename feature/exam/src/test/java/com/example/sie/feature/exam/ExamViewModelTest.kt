@@ -228,4 +228,44 @@ class ExamViewModelTest {
         assertTrue("State should be Finished after timeout", state is ExamUiState.Finished)
         coVerify { examRepository.saveExamResult(any()) }
     }
+
+    @Test
+    fun submitExam_calculatesZeroPercentForAllWrongAnswers() = runTest {
+        // Arrange
+        val questions = listOf(
+            Question(1, "Q1", listOf("A", "B"), 0, "Exp1", "Cat1"),
+            Question(2, "Q2", listOf("C", "D"), 1, "Exp2", "Cat2"),
+            Question(3, "Q3", listOf("E", "F"), 0, "Exp3", "Cat3")
+        )
+        coEvery { questionRepository.getAllQuestionsList() } returns questions
+        every { userDataRepository.userData } returns flowOf(
+            UserData(
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                useDynamicColor = false,
+                fontSizeScale = 0,
+                language = "zh"
+            )
+        )
+
+        // Act
+        viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+        viewModel.startExam()
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Answer all questions incorrectly
+        viewModel.onAnswerSelected(1, 1) // Correct is 0
+        viewModel.onAnswerSelected(2, 0) // Correct is 1
+        viewModel.onAnswerSelected(3, 1) // Correct is 0
+
+        viewModel.submitExam()
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Assert
+        val state = viewModel.uiState.value as ExamUiState.Finished
+        assertEquals(0, state.score) // 0/3 = 0%
+        assertEquals(false, state.passed) // < 70%
+        assertEquals(3, state.totalQuestions)
+        coVerify { examRepository.saveExamResult(any()) }
+    }
 }
