@@ -6,6 +6,7 @@ import com.example.sie.core.common.AppConfig
 import com.example.sie.core.data.repository.ExamRepository
 import com.example.sie.core.data.repository.QuestionRepository
 import com.example.sie.core.data.repository.UserDataRepository
+import com.example.sie.core.model.ExamAnswer
 import com.example.sie.core.model.ExamResult
 import com.example.sie.core.model.Question
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -223,7 +224,10 @@ class ExamViewModel @Inject constructor(
                 val score = if (state.questions.isNotEmpty()) (correctCount * 100) / state.questions.size else 0
                 val passed = score >= 70 // 70% passing score
 
-                saveResult(score, state.questions.size, correctCount)
+                saveResultWithAnswers(
+                    score, state.questions.size, correctCount,
+                    state.questions, state.userAnswers, state.flaggedQuestions
+                )
                 markWrongQuestions(state.questions, state.userAnswers)
 
                 ExamUiState.Finished(
@@ -239,18 +243,35 @@ class ExamViewModel @Inject constructor(
         }
     }
 
-    private fun saveResult(score: Int, totalQuestions: Int, correctCount: Int) {
-         viewModelScope.launch {
-             examRepository.saveExamResult(
-                 ExamResult(
-                     id = 0,
-                     date = System.currentTimeMillis(),
-                     score = score,
-                     totalQuestions = totalQuestions,
-                     correctCount = correctCount
-                 )
-             )
-         }
+    private fun saveResultWithAnswers(
+        score: Int,
+        totalQuestions: Int,
+        correctCount: Int,
+        questions: List<Question>,
+        userAnswers: Map<Int, Int>,
+        flaggedQuestions: Set<Int>
+    ) {
+        viewModelScope.launch {
+            val answers = questions.map { question ->
+                ExamAnswer(
+                    examResultId = 0,
+                    questionId = question.id,
+                    selectedOptionIndex = userAnswers[question.id] ?: -1,
+                    isCorrect = userAnswers[question.id] == question.correctAnswerIndex,
+                    isFlagged = question.id in flaggedQuestions
+                )
+            }
+            examRepository.saveExamResultWithAnswers(
+                ExamResult(
+                    id = 0,
+                    date = System.currentTimeMillis(),
+                    score = score,
+                    totalQuestions = totalQuestions,
+                    correctCount = correctCount
+                ),
+                answers
+            )
+        }
     }
 
     private fun markWrongQuestions(questions: List<Question>, userAnswers: Map<Int, Int>) {

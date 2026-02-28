@@ -1,8 +1,10 @@
 package com.example.sie.core.data.repository
 
 import com.example.sie.core.database.dao.ExamResultDao
+import com.example.sie.core.database.model.ExamAnswerEntity
 import com.example.sie.core.database.model.ExamResultEntity
 import com.example.sie.core.database.model.asExternalModel
+import com.example.sie.core.model.ExamAnswer
 import com.example.sie.core.model.ExamResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -26,4 +28,44 @@ class OfflineExamRepository @Inject constructor(
             )
         )
     }
+
+    override suspend fun saveExamResultWithAnswers(examResult: ExamResult, answers: List<ExamAnswer>) {
+        val resultId = examResultDao.insertExamResultAndGetId(
+            ExamResultEntity(
+                date = examResult.date,
+                score = examResult.score,
+                totalQuestions = examResult.totalQuestions,
+                correctCount = examResult.correctCount
+            )
+        )
+        val answerEntities = answers.map { answer ->
+            ExamAnswerEntity(
+                examResultId = resultId.toInt(),
+                questionId = answer.questionId,
+                selectedOptionIndex = answer.selectedOptionIndex,
+                isCorrect = answer.isCorrect,
+                isFlagged = answer.isFlagged
+            )
+        }
+        examResultDao.insertExamAnswers(answerEntities)
+    }
+
+    override fun getExamAnswers(examResultId: Int): Flow<List<ExamAnswer>> =
+        examResultDao.getExamAnswers(examResultId).map { entities ->
+            entities.map { entity ->
+                ExamAnswer(
+                    id = entity.id,
+                    examResultId = entity.examResultId,
+                    questionId = entity.questionId,
+                    selectedOptionIndex = entity.selectedOptionIndex,
+                    isCorrect = entity.isCorrect,
+                    isFlagged = entity.isFlagged
+                )
+            }
+        }
+
+    override fun getExamResultById(id: Int): Flow<ExamResult?> =
+        examResultDao.getExamResultById(id).map { entity ->
+            entity?.asExternalModel()
+        }
 }

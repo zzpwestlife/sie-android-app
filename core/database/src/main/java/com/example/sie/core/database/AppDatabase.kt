@@ -10,6 +10,7 @@ import com.example.sie.core.database.dao.CardDao
 import com.example.sie.core.database.dao.ExamResultDao
 import com.example.sie.core.database.dao.QuestionDao
 import com.example.sie.core.database.model.CardEntity
+import com.example.sie.core.database.model.ExamAnswerEntity
 import com.example.sie.core.database.model.ExamResultEntity
 import com.example.sie.core.database.model.QuestionEntity
 
@@ -68,7 +69,28 @@ val MIGRATION_12_13 = object : Migration(12, 13) {
     }
 }
 
-@Database(entities = [QuestionEntity::class, ExamResultEntity::class, CardEntity::class], version = 13, exportSchema = true)
+val MIGRATION_13_14 = object : Migration(13, 14) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            """
+            CREATE TABLE IF NOT EXISTS `exam_answers` (
+                `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                `examResultId` INTEGER NOT NULL,
+                `questionId` INTEGER NOT NULL,
+                `selectedOptionIndex` INTEGER NOT NULL,
+                `isCorrect` INTEGER NOT NULL DEFAULT 0,
+                `isFlagged` INTEGER NOT NULL DEFAULT 0,
+                FOREIGN KEY(`examResultId`) REFERENCES `exam_results`(`id`) ON DELETE CASCADE
+            )
+            """.trimIndent()
+        )
+        database.execSQL(
+            "CREATE INDEX IF NOT EXISTS `index_exam_answers_result` ON `exam_answers`(`examResultId`)"
+        )
+    }
+}
+
+@Database(entities = [QuestionEntity::class, ExamResultEntity::class, CardEntity::class, ExamAnswerEntity::class], version = 14, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao
