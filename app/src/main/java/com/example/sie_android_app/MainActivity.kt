@@ -4,9 +4,11 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -46,6 +48,7 @@ class MainActivity : ComponentActivity() {
             )
 
             SieTheme(
+                darkTheme = shouldUseDarkTheme(userData.darkThemeConfig),
                 fontScale = userData.fontSizeScale
             ) {
                 Surface(
@@ -56,6 +59,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+    
+    @Composable
+    private fun shouldUseDarkTheme(
+        darkThemeConfig: DarkThemeConfig,
+    ): Boolean = when (darkThemeConfig) {
+        DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
+        DarkThemeConfig.LIGHT -> false
+        DarkThemeConfig.DARK -> true
     }
 
     private fun observeLanguageChanges() {
