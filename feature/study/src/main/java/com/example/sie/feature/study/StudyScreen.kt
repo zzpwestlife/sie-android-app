@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -23,6 +25,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -31,6 +35,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +47,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.sie.core.designsystem.component.QuestionCard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 @Composable
@@ -56,6 +62,7 @@ fun StudyRoute(
         onOptionSelected = viewModel::selectOption,
         onNextQuestion = viewModel::loadNextQuestion,
         onPreviousQuestion = viewModel::loadPreviousQuestion,
+        onToggleBookmark = viewModel::toggleBookmark,
         onBackClick = onBackClick
     )
 }
@@ -67,8 +74,12 @@ internal fun StudyScreen(
     onOptionSelected: (Int) -> Unit,
     onNextQuestion: () -> Unit,
     onPreviousQuestion: () -> Unit,
+    onToggleBookmark: (Int) -> Unit,
     onBackClick: () -> Unit
 ) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -84,6 +95,7 @@ internal fun StudyScreen(
     ) {
         Scaffold(
             containerColor = Color.Transparent,
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             topBar = {
                 TopAppBar(
                     title = { Text("Practice Mode", color = Color.White) },
@@ -96,46 +108,72 @@ internal fun StudyScreen(
                             )
                         }
                     },
+                    actions = {
+                        if (uiState is StudyUiState.Success) {
+                            val isBookmarked = uiState.currentQuestion.isBookmarked
+                            IconButton(
+                                onClick = {
+                                    onToggleBookmark(uiState.currentQuestion.id)
+                                    scope.launch {
+                                        snackbarHostState.currentSnackbarData?.dismiss()
+                                        snackbarHostState.showSnackbar(
+                                            if (isBookmarked) "Bookmark removed"
+                                            else "Bookmarked"
+                                        )
+                                    }
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = if (isBookmarked) Icons.Default.Bookmark
+                                        else Icons.Default.BookmarkBorder,
+                                    contentDescription = if (isBookmarked) "Remove bookmark"
+                                        else "Add bookmark",
+                                    tint = if (isBookmarked) Color(0xFFfee140)
+                                        else Color.White.copy(alpha = 0.7f)
+                                )
+                            }
+                        }
+                    },
                     colors = androidx.compose.material3.TopAppBarDefaults.topAppBarColors(
                         containerColor = Color.Transparent
                     )
                 )
             }
         ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            contentAlignment = Alignment.Center
-        ) {
-            when (uiState) {
-                is StudyUiState.Loading -> {
-                    CircularProgressIndicator()
-                }
-                is StudyUiState.Error -> {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            text = uiState.message,
-                            color = MaterialTheme.colorScheme.error,
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Button(onClick = onBackClick) {
-                            Text("Go Back")
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.Center
+            ) {
+                when (uiState) {
+                    is StudyUiState.Loading -> {
+                        CircularProgressIndicator()
+                    }
+                    is StudyUiState.Error -> {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = uiState.message,
+                                color = MaterialTheme.colorScheme.error,
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Button(onClick = onBackClick) {
+                                Text("Go Back")
+                            }
                         }
                     }
-                }
-                is StudyUiState.Success -> {
-                    StudyContent(
-                        state = uiState,
-                        onOptionSelected = onOptionSelected,
-                        onNextQuestion = onNextQuestion,
-                        onPreviousQuestion = onPreviousQuestion
-                    )
+                    is StudyUiState.Success -> {
+                        StudyContent(
+                            state = uiState,
+                            onOptionSelected = onOptionSelected,
+                            onNextQuestion = onNextQuestion,
+                            onPreviousQuestion = onPreviousQuestion
+                        )
+                    }
                 }
             }
         }
-    }
     }
 }
 
