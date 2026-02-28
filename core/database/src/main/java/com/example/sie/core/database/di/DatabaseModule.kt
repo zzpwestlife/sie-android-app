@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.sie.core.database.AppDatabase
 import com.example.sie.core.database.DatabaseCallback
+import com.example.sie.core.database.MIGRATION_9_10
 import com.example.sie.core.database.dao.ExamResultDao
 import com.example.sie.core.database.dao.QuestionDao
 import dagger.Module
@@ -37,6 +38,7 @@ object DatabaseModule {
             CoroutineScope(Dispatchers.IO + SupervisorJob())
         )
     )
+    .addMigrations(MIGRATION_9_10)
     .fallbackToDestructiveMigration()
     .build()
 

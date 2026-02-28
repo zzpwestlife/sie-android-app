@@ -16,7 +16,8 @@ data class QuestionEntity(
     val explanation: String,
     val category: String,
     val isBookmarked: Boolean = false,
-    val isWrong: Boolean = false
+    val isWrong: Boolean = false,
+    val wrongCount: Int = 0  // NEW: Track wrong answer count
 )
 
 fun QuestionEntity.asExternalModel() = Question(
@@ -32,5 +33,6 @@ fun QuestionEntity.asExternalModel() = Question(
     explanation = explanation,
     category = category,
     isBookmarked = isBookmarked,
-    isWrong = isWrong
+    isWrong = isWrong,
+    wrongCount = wrongCount
 )

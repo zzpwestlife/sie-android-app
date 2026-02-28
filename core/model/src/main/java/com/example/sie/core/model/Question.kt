@@ -8,7 +8,8 @@ data class Question(
     val explanation: String,
     val category: String,
     val isBookmarked: Boolean = false,
-    val isWrong: Boolean = false
+    val isWrong: Boolean = false,
+    val wrongCount: Int = 0  // NEW: Track wrong answer count
 ) {
     fun getLocalizedContent(language: String): String {
         val parts = content.split("\n")
