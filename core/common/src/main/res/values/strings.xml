@@ -142,4 +142,14 @@
     <string name="card_learning_finished_title">All caught up!</string>
     <string name="card_learning_finished_message">You\'ve reviewed all scheduled cards for now.</string>
     <string name="card_learning_back_to_dashboard">Back to Dashboard</string>
+
+    <!-- Chapter Selection Screen -->
+    <string name="chapter_title">Chapter Selection</string>
+    <string name="chapter_start">Start</string>
+    <string name="chapter_empty">No chapters available</string>
+    <string name="chapter_error">Failed to load chapters. Please try again.</string>
+    <string name="chapter_retry">Retry</string>
+    <string name="chapter_select_hint">Select at least one chapter</string>
+    <string name="chapter_progress_format">%1$d questions | Studied %2$d | %3$.0f%%</string>
+    <string name="chapter_not_studied">Not studied yet</string>
 </resources>

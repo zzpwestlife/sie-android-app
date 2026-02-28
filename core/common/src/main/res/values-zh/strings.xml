@@ -142,4 +142,14 @@
     <string name="card_learning_finished_title">全部完成！</string>
     <string name="card_learning_finished_message">你已经复习了所有今日安排的闪卡。</string>
     <string name="card_learning_back_to_dashboard">返回主页</string>
+
+    <!-- Chapter Selection Screen -->
+    <string name="chapter_title">章节选择</string>
+    <string name="chapter_start">开始</string>
+    <string name="chapter_empty">暂无章节</string>
+    <string name="chapter_error">加载章节失败，请重试</string>
+    <string name="chapter_retry">重试</string>
+    <string name="chapter_select_hint">请至少选择一个章节</string>
+    <string name="chapter_progress_format">%1$d题 | 已学%2$d | %3$.0f%%</string>
+    <string name="chapter_not_studied">尚未学习</string>
 </resources>
