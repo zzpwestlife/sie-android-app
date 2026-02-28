@@ -253,12 +253,14 @@ class ExamViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val answers = questions.map { question ->
+                val isAnswered = userAnswers.containsKey(question.id)
                 ExamAnswer(
                     examResultId = 0,
                     questionId = question.id,
                     selectedOptionIndex = userAnswers[question.id] ?: -1,
-                    isCorrect = userAnswers[question.id] == question.correctAnswerIndex,
-                    isFlagged = question.id in flaggedQuestions
+                    isCorrect = isAnswered && userAnswers[question.id] == question.correctAnswerIndex,
+                    isFlagged = question.id in flaggedQuestions,
+                    isAnswered = isAnswered
                 )
             }
             examRepository.saveExamResultWithAnswers(

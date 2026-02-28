@@ -6,5 +6,6 @@ data class ExamAnswer(
     val questionId: Int,
     val selectedOptionIndex: Int,
     val isCorrect: Boolean,
-    val isFlagged: Boolean = false
+    val isFlagged: Boolean = false,
+    val isAnswered: Boolean = true
 )

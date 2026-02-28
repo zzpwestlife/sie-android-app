@@ -243,19 +243,34 @@ private fun ExamDetailContent(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
-                                Icon(
-                                    imageVector = if (answer.isCorrect) Icons.Default.CheckCircle else Icons.Default.Close,
-                                    contentDescription = null,
-                                    tint = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
-                                    modifier = Modifier.size(20.dp)
-                                )
-                                Text(
-                                    text = if (answer.isCorrect) stringResource(CommonR.string.exam_result_correct)
-                                           else stringResource(CommonR.string.exam_result_incorrect),
-                                    color = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                if (!answer.isAnswered) {
+                                    Icon(
+                                        imageVector = Icons.Default.Info,
+                                        contentDescription = null,
+                                        tint = Color(0xFF9E9E9E),
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                    Text(
+                                        text = stringResource(CommonR.string.exam_detail_not_answered),
+                                        color = Color(0xFF9E9E9E),
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                } else {
+                                    Icon(
+                                        imageVector = if (answer.isCorrect) Icons.Default.CheckCircle else Icons.Default.Close,
+                                        contentDescription = null,
+                                        tint = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                    Text(
+                                        text = if (answer.isCorrect) stringResource(CommonR.string.exam_result_correct)
+                                               else stringResource(CommonR.string.exam_result_incorrect),
+                                        color = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
 

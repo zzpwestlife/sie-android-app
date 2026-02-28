@@ -30,24 +30,23 @@ class OfflineExamRepository @Inject constructor(
     }
 
     override suspend fun saveExamResultWithAnswers(examResult: ExamResult, answers: List<ExamAnswer>) {
-        val resultId = examResultDao.insertExamResultAndGetId(
-            ExamResultEntity(
-                date = examResult.date,
-                score = examResult.score,
-                totalQuestions = examResult.totalQuestions,
-                correctCount = examResult.correctCount
-            )
+        val resultEntity = ExamResultEntity(
+            date = examResult.date,
+            score = examResult.score,
+            totalQuestions = examResult.totalQuestions,
+            correctCount = examResult.correctCount
         )
         val answerEntities = answers.map { answer ->
             ExamAnswerEntity(
-                examResultId = resultId.toInt(),
+                examResultId = 0, // Will be set by DAO transaction
                 questionId = answer.questionId,
                 selectedOptionIndex = answer.selectedOptionIndex,
                 isCorrect = answer.isCorrect,
-                isFlagged = answer.isFlagged
+                isFlagged = answer.isFlagged,
+                isAnswered = answer.isAnswered
             )
         }
-        examResultDao.insertExamAnswers(answerEntities)
+        examResultDao.insertExamResultWithAnswers(resultEntity, answerEntities)
     }
 
     override fun getExamAnswers(examResultId: Int): Flow<List<ExamAnswer>> =
@@ -59,7 +58,8 @@ class OfflineExamRepository @Inject constructor(
                     questionId = entity.questionId,
                     selectedOptionIndex = entity.selectedOptionIndex,
                     isCorrect = entity.isCorrect,
-                    isFlagged = entity.isFlagged
+                    isFlagged = entity.isFlagged,
+                    isAnswered = entity.isAnswered
                 )
             }
         }

@@ -3,6 +3,7 @@ package com.example.sie.feature.exam
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import android.util.Log
 import com.example.sie.core.data.repository.ExamRepository
 import com.example.sie.core.data.repository.QuestionRepository
 import com.example.sie.core.model.ExamAnswer
@@ -25,6 +26,10 @@ class ExamDetailViewModel @Inject constructor(
 
     private val examResultId: Int = checkNotNull(savedStateHandle["examResultId"])
 
+    companion object {
+        private const val TAG = "ExamDetailViewModel"
+    }
+
     private val _uiState = MutableStateFlow<ExamDetailUiState>(ExamDetailUiState.Loading)
     val uiState: StateFlow<ExamDetailUiState> = _uiState.asStateFlow()
 
@@ -43,15 +48,33 @@ class ExamDetailViewModel @Inject constructor(
                     return@launch
                 }
 
-                val questionIds = answers.map { it.questionId }
                 val allQuestions = questionRepository.getAllQuestionsList()
                 val questionsMap = allQuestions.associateBy { it.id }
-                val questions = questionIds.mapNotNull { questionsMap[it] }
+
+                // Filter out answers whose questions no longer exist in the repository
+                val validAnswers = mutableListOf<ExamAnswer>()
+                val validQuestions = mutableListOf<Question>()
+                var missingCount = 0
+
+                for (answer in answers) {
+                    val question = questionsMap[answer.questionId]
+                    if (question != null) {
+                        validAnswers.add(answer)
+                        validQuestions.add(question)
+                    } else {
+                        missingCount++
+                        Log.w(TAG, "Question ${answer.questionId} not found in repository")
+                    }
+                }
+
+                if (missingCount > 0) {
+                    Log.w(TAG, "Missing $missingCount questions from exam result $examResultId")
+                }
 
                 _uiState.value = ExamDetailUiState.Success(
                     examResult = result,
-                    answers = answers,
-                    questions = questions
+                    answers = validAnswers,
+                    questions = validQuestions
                 )
             } catch (e: Exception) {
                 _uiState.value = ExamDetailUiState.Error

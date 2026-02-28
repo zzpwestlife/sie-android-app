@@ -23,7 +23,8 @@ data class ExamAnswerEntity(
     val questionId: Int,
     val selectedOptionIndex: Int,
     val isCorrect: Boolean,
-    val isFlagged: Boolean = false
+    val isFlagged: Boolean = false,
+    val isAnswered: Boolean = true
 )
 
 fun ExamAnswerEntity.asExternalModel() = ExamAnswer(
@@ -32,7 +33,8 @@ fun ExamAnswerEntity.asExternalModel() = ExamAnswer(
     questionId = questionId,
     selectedOptionIndex = selectedOptionIndex,
     isCorrect = isCorrect,
-    isFlagged = isFlagged
+    isFlagged = isFlagged,
+    isAnswered = isAnswered
 )
 
 fun ExamAnswer.asEntity() = ExamAnswerEntity(
@@ -41,5 +43,6 @@ fun ExamAnswer.asEntity() = ExamAnswerEntity(
     questionId = questionId,
     selectedOptionIndex = selectedOptionIndex,
     isCorrect = isCorrect,
-    isFlagged = isFlagged
+    isFlagged = isFlagged,
+    isAnswered = isAnswered
 )

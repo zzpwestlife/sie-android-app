@@ -85,12 +85,20 @@ val MIGRATION_13_14 = object : Migration(13, 14) {
             """.trimIndent()
         )
         database.execSQL(
-            "CREATE INDEX IF NOT EXISTS `index_exam_answers_result` ON `exam_answers`(`examResultId`)"
+            "CREATE INDEX IF NOT EXISTS `index_exam_answers_examResultId` ON `exam_answers`(`examResultId`)"
         )
     }
 }
 
-@Database(entities = [QuestionEntity::class, ExamResultEntity::class, CardEntity::class, ExamAnswerEntity::class], version = 14, exportSchema = true)
+val MIGRATION_14_15 = object : Migration(14, 15) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "ALTER TABLE exam_answers ADD COLUMN isAnswered INTEGER NOT NULL DEFAULT 1"
+        )
+    }
+}
+
+@Database(entities = [QuestionEntity::class, ExamResultEntity::class, CardEntity::class, ExamAnswerEntity::class], version = 15, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao
