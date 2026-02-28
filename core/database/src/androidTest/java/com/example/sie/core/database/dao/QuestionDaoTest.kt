@@ -292,7 +292,7 @@ class QuestionDaoTest {
         questionDao.insertAll(listOf(question))
 
         // When
-        questionDao.markAsWrongSingle(5001)
+        questionDao.markAsWrong(5001)
 
         // Then
         val updated = questionDao.getQuestionById(5001)

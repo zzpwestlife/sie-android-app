@@ -35,7 +35,7 @@ interface QuestionDao {
     suspend fun toggleBookmark(questionId: Int)
 
     @Query("UPDATE questions SET isWrong = 1, wrongCount = wrongCount + 1 WHERE id = :questionId")
-    suspend fun markAsWrongSingle(questionId: Int)
+    suspend fun markAsWrong(questionId: Int)
 
     @Query("UPDATE questions SET isWrong = 1, wrongCount = wrongCount + 1 WHERE id IN (:questionIds)")
     suspend fun markAsWrongBatch(questionIds: List<Int>)
