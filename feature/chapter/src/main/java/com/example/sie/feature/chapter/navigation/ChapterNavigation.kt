@@ -14,14 +14,12 @@ fun NavController.navigateToChapterSelection(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.chapterSelectionScreen(
     onBackClick: () -> Unit,
-    onStartStudy: (List<String>) -> Unit,
-    language: String
+    onStartStudy: (List<String>) -> Unit
 ) {
     composable(route = CHAPTER_SELECTION_ROUTE) {
         ChapterSelectionScreen(
             onBackClick = onBackClick,
-            onStartStudy = onStartStudy,
-            language = language
+            onStartStudy = onStartStudy
         )
     }
 }

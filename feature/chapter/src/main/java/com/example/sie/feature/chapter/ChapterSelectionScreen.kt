@@ -37,11 +37,11 @@ import com.example.sie.core.common.R as CommonR
 fun ChapterSelectionScreen(
     onBackClick: () -> Unit,
     onStartStudy: (List<String>) -> Unit,
-    language: String,
     modifier: Modifier = Modifier,
     viewModel: ChapterSelectionViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val language by viewModel.language.collectAsStateWithLifecycle()
 
     LaunchedEffect(language) {
         viewModel.setLanguage(language)

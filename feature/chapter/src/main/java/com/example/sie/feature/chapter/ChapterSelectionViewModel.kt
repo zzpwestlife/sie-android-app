@@ -3,13 +3,17 @@ package com.example.sie.feature.chapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sie.core.data.repository.QuestionRepository
+import com.example.sie.core.data.repository.UserDataRepository
 import com.example.sie.core.model.Chapter
 import com.example.sie.core.model.extractLocalizedName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,22 +25,23 @@ sealed interface ChapterSelectionUiState {
 
 @HiltViewModel
 class ChapterSelectionViewModel @Inject constructor(
-    private val questionRepository: QuestionRepository
+    private val questionRepository: QuestionRepository,
+    private val userDataRepository: UserDataRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<ChapterSelectionUiState>(ChapterSelectionUiState.Loading)
     val uiState: StateFlow<ChapterSelectionUiState> = _uiState.asStateFlow()
 
-    private val _language = MutableStateFlow("en")
-    val language: StateFlow<String> = _language.asStateFlow()
+    val language: StateFlow<String> = userDataRepository.userData
+        .map { it.language }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "en")
 
     init {
         loadChapters()
     }
 
     fun setLanguage(lang: String) {
-        _language.value = lang
-        // Reload chapters to update displayName
+        // No-op: language is managed by userDataRepository
         loadChapters()
     }
 
@@ -52,7 +57,7 @@ class ChapterSelectionViewModel @Inject constructor(
 
                             Chapter(
                                 name = category,
-                                displayName = category.extractLocalizedName(_language.value),
+                                displayName = category.extractLocalizedName(language.value),
                                 totalQuestions = chapterQuestions.size,
                                 studiedQuestions = studiedQuestions.size,
                                 correctCount = correctCount,

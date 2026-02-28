@@ -75,6 +75,7 @@ dependencies {
     implementation(project(":feature:stats"))
     implementation(project(":feature:settings"))
     implementation(project(":feature:card"))
+    implementation(project(":feature:chapter"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

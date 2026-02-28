@@ -24,6 +24,8 @@ import com.example.sie.feature.card.navigation.cardLearningScreen
 import com.example.sie.feature.card.navigation.navigateToCardLearning
 import com.example.sie.feature.card.navigation.cardCreateScreen
 import com.example.sie.feature.card.navigation.navigateToCardCreate
+import com.example.sie.feature.chapter.navigation.chapterSelectionScreen
+import com.example.sie.feature.chapter.navigation.navigateToChapterSelection
 
 @Composable
 fun SieNavHost(
@@ -37,13 +39,20 @@ fun SieNavHost(
         modifier = modifier
     ) {
         homeScreen(
-            onTopicSelectionClick = { navController.navigateToStudy() },
+            onTopicSelectionClick = { navController.navigateToChapterSelection() },
             onMockExamClick = { navController.navigateToExam() },
             onStatsClick = { navController.navigateToStats() },
             onBookmarkedClick = { navController.navigateToBookmarked() },
             onWrongQuestionsClick = { navController.navigateToWrongQuestions() },
             onFlashcardsClick = { navController.navigateToCard() },
             onSettingsClick = { navController.navigateToSettings() }
+        )
+        chapterSelectionScreen(
+            onBackClick = { navController.popBackStack() },
+            onStartStudy = { selectedCategories ->
+                navController.navigateToStudy()
+                // TODO: Pass categories to study screen
+            }
         )
         studyScreen(
             onBackClick = { navController.popBackStack() }
