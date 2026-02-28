@@ -70,8 +70,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.designsystem.component.QuestionCard
 import com.example.sie.core.designsystem.component.GradientProgressIndicator
+import com.example.sie.core.designsystem.component.GradientButton
 import com.example.sie.core.designsystem.theme.SuccessGradient
 import com.example.sie.core.designsystem.theme.ErrorGradient
+import com.example.sie.core.designsystem.theme.PrimaryGradient
+import com.example.sie.core.designsystem.theme.SecondaryGradient
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -697,38 +700,32 @@ private fun ExamResultContent(
                 }
 
                 // Action Buttons
-                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Button(
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    GradientButton(
+                        text = if (language == "zh") "查看答案解析" else "Review Answers",
+                        gradient = PrimaryGradient,
                         onClick = { isReviewing = true },
-                        modifier = Modifier.fillMaxWidth().height(50.dp),
-                        shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
-                    ) {
-                        androidx.compose.material3.Icon(
-                            imageVector = androidx.compose.material.icons.Icons.Default.List,
-                            contentDescription = null,
-                            modifier = Modifier.padding(end = 8.dp)
-                        )
-                        Text(if (language == "zh") "查看答案解析" else "Review Answers")
-                    }
+                        modifier = Modifier.fillMaxWidth()
+                    )
 
-                    androidx.compose.material3.FilledTonalButton(
+                    GradientButton(
+                        text = if (language == "zh") "重新考试" else "Retake Exam",
+                        gradient = SecondaryGradient,
                         onClick = onResetExam,
-                        modifier = Modifier.fillMaxWidth().height(50.dp),
-                        shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
-                    ) {
-                        androidx.compose.material3.Icon(
-                            imageVector = androidx.compose.material.icons.Icons.Default.Refresh,
-                            contentDescription = null,
-                            modifier = Modifier.padding(end = 8.dp)
-                        )
-                        Text(if (language == "zh") "重新考试" else "Retake Exam")
-                    }
-                    
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
                     TextButton(
                         onClick = onBackClick,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text(if (language == "zh") "返回首页" else "Back to Home")
+                        Text(
+                            text = if (language == "zh") "返回首页" else "Back to Home",
+                            color = Color.White
+                        )
                     }
                 }
 
