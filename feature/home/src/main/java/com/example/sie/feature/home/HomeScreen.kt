@@ -37,12 +37,16 @@ fun HomeRoute(
     onTopicSelectionClick: () -> Unit,
     onMockExamClick: () -> Unit,
     onStatsClick: () -> Unit,
+    onBookmarkedClick: () -> Unit,
+    onWrongQuestionsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     HomeScreen(
         onTopicSelectionClick = onTopicSelectionClick,
         onMockExamClick = onMockExamClick,
         onStatsClick = onStatsClick,
+        onBookmarkedClick = onBookmarkedClick,
+        onWrongQuestionsClick = onWrongQuestionsClick,
         onSettingsClick = onSettingsClick
     )
 }
@@ -53,6 +57,8 @@ internal fun HomeScreen(
     onTopicSelectionClick: () -> Unit,
     onMockExamClick: () -> Unit,
     onStatsClick: () -> Unit,
+    onBookmarkedClick: () -> Unit,
+    onWrongQuestionsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     var cardsVisible by remember { mutableStateOf(false) }
@@ -127,6 +133,24 @@ internal fun HomeScreen(
                     visible = cardsVisible,
                     delay = 300,
                     gradient = AccentGradient,
+                    onClick = onBookmarkedClick,
+                    title = "⭐ Bookmarked",
+                    subtitle = "Review your saved questions"
+                )
+
+                AnimatedGlassCard(
+                    visible = cardsVisible,
+                    delay = 400,
+                    gradient = ErrorGradient,
+                    onClick = onWrongQuestionsClick,
+                    title = "❌ Wrong Questions",
+                    subtitle = "Practice questions you got wrong"
+                )
+
+                AnimatedGlassCard(
+                    visible = cardsVisible,
+                    delay = 500,
+                    gradient = SuccessGradient,
                     onClick = onSettingsClick,
                     title = "⚙️ Settings",
                     subtitle = "Configure app preferences"
