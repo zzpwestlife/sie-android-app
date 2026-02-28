@@ -196,16 +196,25 @@ private fun StudyContent(
             OutlinedButton(
                 onClick = onPreviousQuestion,
                 enabled = state.hasPrevious,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                colors = androidx.compose.material3.ButtonDefaults.outlinedButtonColors(
+                    contentColor = Color.White,
+                    disabledContentColor = Color.White.copy(alpha = 0.38f)
+                ),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.5f))
             ) {
                 Text("Previous")
             }
-            
+
             Spacer(modifier = Modifier.width(8.dp))
-            
+
             Button(
                 onClick = onNextQuestion,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF667eea),
+                    contentColor = Color.White
+                )
             ) {
                 Text(if (state.isAnswerRevealed) "Next" else "Skip")
             }
@@ -217,13 +226,14 @@ private fun StudyContent(
                 Text(
                     text = "Explanation:",
                     style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.primary
+                    color = Color(0xFF4facfe),
+                    fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = state.currentQuestion.getExplanation("en"),
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 4.dp),
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = Color.White.copy(alpha = 0.9f)
                 )
             }
         }
@@ -236,12 +246,13 @@ private fun StatItem(label: String, value: String) {
         Text(
             text = value,
             style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color.White
         )
         Text(
             text = label,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = Color.White.copy(alpha = 0.7f)
         )
     }
 }
