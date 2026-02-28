@@ -2,7 +2,10 @@ package com.example.sie.feature.exam
 
 import com.example.sie.core.data.repository.ExamRepository
 import com.example.sie.core.data.repository.QuestionRepository
+import com.example.sie.core.data.repository.UserDataRepository
+import com.example.sie.core.model.DarkThemeConfig
 import com.example.sie.core.model.Question
+import com.example.sie.core.model.UserData
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -41,7 +44,7 @@ class ExamViewModelTest {
 
     private val questionRepository: QuestionRepository = mockk()
     private val examRepository: ExamRepository = mockk(relaxed = true)
-    private val userDataRepository = mockk<com.example.sie.core.data.repository.UserDataRepository>(relaxed = true)
+    private val userDataRepository: UserDataRepository = mockk(relaxed = true)
     private lateinit var viewModel: ExamViewModel
 
     @Test
@@ -67,6 +70,14 @@ class ExamViewModelTest {
         )
 
         coEvery { questionRepository.getRandomQuestions(75) } returns flowOf(questions)
+        coEvery { userDataRepository.userData } returns flowOf(
+            UserData(
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                useDynamicColor = false,
+                fontSizeScale = 0,
+                language = "zh"
+            )
+        )
 
         // Initialize ViewModel
         viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
