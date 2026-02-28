@@ -27,7 +27,7 @@ interface QuestionDao {
     @Query("UPDATE questions SET isBookmarked = NOT isBookmarked WHERE id = :questionId")
     suspend fun toggleBookmark(questionId: Int)
 
-    @Query("UPDATE questions SET isWrong = 1 WHERE id IN (:questionIds)")
+    @Query("UPDATE questions SET isWrong = 1, wrongCount = wrongCount + 1 WHERE id IN (:questionIds)")
     suspend fun markAsWrong(questionIds: List<Int>)
 
 
