@@ -121,7 +121,7 @@ class ExamViewModelTest {
         assertEquals(2, finishedState.totalQuestions)
 
         // Verify Repository Interaction
-        coVerify { examRepository.saveExamResult(any()) }
+        coVerify { examRepository.saveExamResultWithAnswers(any(), any()) }
     }
 
     @Test
@@ -229,7 +229,7 @@ class ExamViewModelTest {
         // Assert
         val state = viewModel.uiState.value
         assertTrue("State should be Finished after timeout", state is ExamUiState.Finished)
-        coVerify { examRepository.saveExamResult(any()) }
+        coVerify { examRepository.saveExamResultWithAnswers(any(), any()) }
     }
 
     @Test
@@ -269,7 +269,7 @@ class ExamViewModelTest {
         assertEquals(0, state.score) // 0/3 = 0%
         assertEquals(false, state.passed) // < 70%
         assertEquals(3, state.totalQuestions)
-        coVerify { examRepository.saveExamResult(any()) }
+        coVerify { examRepository.saveExamResultWithAnswers(any(), any()) }
     }
 
     @Test
