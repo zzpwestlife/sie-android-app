@@ -61,4 +61,26 @@ interface QuestionDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(questions: List<QuestionEntity>)
+
+    // Chapter-based learning queries
+
+    @Query("SELECT DISTINCT category FROM questions ORDER BY category")
+    fun getAllCategories(): Flow<List<String>>
+
+    @Query("SELECT * FROM questions WHERE category IN (:categories)")
+    fun getQuestionsByCategories(categories: List<String>): Flow<List<QuestionEntity>>
+
+    @Query("UPDATE questions SET lastStudiedAt = :timestamp WHERE id = :questionId")
+    suspend fun updateLastStudiedAt(questionId: Int, timestamp: Long)
+
+    @Query("""
+        SELECT * FROM questions
+        WHERE category = :category
+        ORDER BY
+            CASE WHEN isWrong = 1 THEN 0 ELSE 1 END,
+            wrongCount DESC,
+            CASE WHEN lastStudiedAt IS NULL THEN 0 ELSE lastStudiedAt END,
+            id
+    """)
+    fun getQuestionsByCategorySmartSorted(category: String): Flow<List<QuestionEntity>>
 }
