@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
@@ -98,38 +100,52 @@ internal fun ExamScreen(
     onResetExam: () -> Unit,
     language: String
 ) {
-    when (uiState) {
-        ExamUiState.Loading -> {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator()
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFF1a1a2e),
+                        Color(0xFF16213e),
+                        Color(0xFF0f3460)
+                    )
+                )
+            )
+    ) {
+        when (uiState) {
+            ExamUiState.Loading -> {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
             }
-        }
-        ExamUiState.Intro -> {
-            ExamIntroContent(
-                onStartExam = onStartExam,
-                onBackClick = onBackClick,
-                language = language
-            )
-        }
-        is ExamUiState.InProgress -> {
-            ExamInProgressContent(
-                state = uiState,
-                onAnswerSelected = onAnswerSelected,
-                onFlagQuestion = onFlagQuestion,
-                onToggleBookmark = onToggleBookmark,
-                onSubmitExam = onSubmitExam,
-                onQuestionSelected = onQuestionSelected,
-                language = language
-            )
-        }
-        is ExamUiState.Finished -> {
-            ExamResultContent(
-                state = uiState,
-                onToggleBookmark = onToggleBookmark,
-                onBackClick = onBackClick,
-                onResetExam = onResetExam,
-                language = language
-            )
+            ExamUiState.Intro -> {
+                ExamIntroContent(
+                    onStartExam = onStartExam,
+                    onBackClick = onBackClick,
+                    language = language
+                )
+            }
+            is ExamUiState.InProgress -> {
+                ExamInProgressContent(
+                    state = uiState,
+                    onAnswerSelected = onAnswerSelected,
+                    onFlagQuestion = onFlagQuestion,
+                    onToggleBookmark = onToggleBookmark,
+                    onSubmitExam = onSubmitExam,
+                    onQuestionSelected = onQuestionSelected,
+                    language = language
+                )
+            }
+            is ExamUiState.Finished -> {
+                ExamResultContent(
+                    state = uiState,
+                    onToggleBookmark = onToggleBookmark,
+                    onBackClick = onBackClick,
+                    onResetExam = onResetExam,
+                    language = language
+                )
+            }
         }
     }
 }
@@ -283,24 +299,26 @@ private fun ExamInProgressContent(
     }
 
     Scaffold(
+        containerColor = Color.Transparent,
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     TextButton(onClick = { showReviewDialog = true }) {
                         androidx.compose.material3.Icon(
-                            imageVector = androidx.compose.material.icons.Icons.Default.Menu, // Grid icon replacement
-                            contentDescription = "Review"
+                            imageVector = androidx.compose.material.icons.Icons.Default.Menu,
+                            contentDescription = "Review",
+                            tint = Color.White
                         )
                     }
                 },
                 title = {
                     Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                          val timeColor = when {
-                            state.timeLeftMillis < 1 * 60 * 1000 -> MaterialTheme.colorScheme.error
+                            state.timeLeftMillis < 1 * 60 * 1000 -> Color(0xFFF44336)
                             state.timeLeftMillis < 5 * 60 * 1000 -> Color(0xFFFFA500)
-                            else -> MaterialTheme.colorScheme.onSurface
+                            else -> Color.White
                         }
-                        
+
                         Text(
                             text = formatTime(state.timeLeftMillis),
                             style = MaterialTheme.typography.titleMedium,
