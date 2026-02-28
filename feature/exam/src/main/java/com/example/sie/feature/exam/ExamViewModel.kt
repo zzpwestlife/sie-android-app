@@ -204,8 +204,9 @@ class ExamViewModel @Inject constructor(
                 val correctCount = calculateCorrectCount(state.questions, state.userAnswers)
                 val score = if (state.questions.isNotEmpty()) (correctCount * 100) / state.questions.size else 0
                 val passed = score >= 70 // 70% passing score
-                
+
                 saveResult(score, state.questions.size, correctCount)
+                markWrongQuestions(state.questions, state.userAnswers)
 
                 ExamUiState.Finished(
                     score = score, // percentage
@@ -232,6 +233,25 @@ class ExamViewModel @Inject constructor(
                  )
              )
          }
+    }
+
+    private fun markWrongQuestions(questions: List<Question>, userAnswers: Map<Int, Int>) {
+        val wrongQuestionIds = questions
+            .filter { question ->
+                val userAnswer = userAnswers[question.id]
+                userAnswer == null || userAnswer != question.correctAnswerIndex
+            }
+            .map { it.id }
+
+        if (wrongQuestionIds.isNotEmpty()) {
+            viewModelScope.launch {
+                try {
+                    questionRepository.markAsWrongBatch(wrongQuestionIds)
+                } catch (_: Exception) {
+                    // 静默处理
+                }
+            }
+        }
     }
 
     private fun calculateCorrectCount(questions: List<Question>, userAnswers: Map<Int, Int>): Int {
