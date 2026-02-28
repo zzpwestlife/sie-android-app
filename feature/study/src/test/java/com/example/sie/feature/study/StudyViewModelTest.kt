@@ -104,4 +104,34 @@ class StudyViewModelTest {
         assertTrue(state.isAnswerRevealed)
         assertEquals(false, state.isCorrect)
     }
+
+    @Test
+    fun `loadNewQuestion with empty list emits Error state`() = runTest {
+        // Arrange
+        coEvery { questionRepository.getRandomQuestions(1) } returns flowOf(emptyList())
+
+        // Act
+        viewModel = StudyViewModel(questionRepository)
+        mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
+
+        // Assert
+        val state = viewModel.uiState.value
+        assertTrue("State should be Error", state is StudyUiState.Error)
+        assertTrue((state as StudyUiState.Error).message.contains("No questions"))
+    }
+
+    @Test
+    fun `loadNewQuestion handles repository exception`() = runTest {
+        // Arrange
+        coEvery { questionRepository.getRandomQuestions(1) } throws RuntimeException("Database error")
+
+        // Act
+        viewModel = StudyViewModel(questionRepository)
+        mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
+
+        // Assert
+        val state = viewModel.uiState.value
+        assertTrue("State should be Error", state is StudyUiState.Error)
+        assertTrue((state as StudyUiState.Error).message.contains("Database error"))
+    }
 }
