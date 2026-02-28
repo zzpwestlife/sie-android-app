@@ -50,22 +50,46 @@ class ChapterSelectionViewModel @Inject constructor(
             try {
                 questionRepository.getAllCategories()
                     .combine(questionRepository.getAllQuestions()) { categories, questions ->
-                        categories.map { category ->
-                            val chapterQuestions = questions.filter { it.category == category }
+                        val totalQuestionsCount = questions.size
+                        
+                        // Group categories by chapter prefix (e.g., "1", "2")
+                        val groupedCategories = categories.groupBy { it.split(".").firstOrNull() ?: "" }
+                        
+                        groupedCategories.mapNotNull { (prefix, groupCategories) ->
+                            if (prefix.isEmpty()) return@mapNotNull null
+                            
+                            // Find the main category name (e.g., "1. Macroeconomics")
+                            // Prefer the one that starts with "$prefix. " (space after dot)
+                            val mainCategoryName = groupCategories.find { it.startsWith("$prefix. ") } 
+                                ?: groupCategories.minByOrNull { it.length } 
+                                ?: return@mapNotNull null
+
+                            // Filter questions belonging to any category in this group
+                            val chapterQuestions = questions.filter { it.category in groupCategories }
                             val studiedQuestions = chapterQuestions.filter { it.lastStudiedAt != null }
                             val correctCount = studiedQuestions.count { !it.isWrong }
+                            val proportion = if (totalQuestionsCount > 0) {
+                                chapterQuestions.size.toFloat() / totalQuestionsCount
+                            } else {
+                                0f
+                            }
 
                             Chapter(
-                                name = category,
-                                displayName = category.extractLocalizedName(language.value),
+                                name = mainCategoryName,
+                                displayName = mainCategoryName.extractLocalizedName(language.value),
                                 totalQuestions = chapterQuestions.size,
                                 studiedQuestions = studiedQuestions.size,
                                 correctCount = correctCount,
                                 wrongCount = chapterQuestions.sumOf { it.wrongCount },
                                 accuracyRate = if (studiedQuestions.isEmpty()) 0f
                                     else (correctCount.toFloat() / studiedQuestions.size) * 100f,
-                                lastStudiedAt = chapterQuestions.mapNotNull { it.lastStudiedAt }.maxOrNull()
+                                lastStudiedAt = chapterQuestions.mapNotNull { it.lastStudiedAt }.maxOrNull(),
+                                proportion = proportion,
+                                includedCategories = groupCategories
                             )
+                        }.sortedBy { 
+                            // Sort by chapter number
+                            it.name.split(".").firstOrNull()?.toIntOrNull() ?: Int.MAX_VALUE 
                         }
                     }
                     .collect { chapters ->
@@ -95,7 +119,7 @@ class ChapterSelectionViewModel @Inject constructor(
     fun getSelectedChapters(): List<String> {
         val currentState = _uiState.value
         val selected = if (currentState is ChapterSelectionUiState.Success) {
-            currentState.chapters.filter { it.isSelected }.map { it.name }
+            currentState.chapters.filter { it.isSelected }.flatMap { it.includedCategories }
         } else {
             emptyList()
         }

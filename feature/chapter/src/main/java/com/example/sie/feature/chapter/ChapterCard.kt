@@ -59,14 +59,19 @@ fun ChapterCard(
                             CommonR.string.chapter_progress_format,
                             chapter.totalQuestions,
                             chapter.studiedQuestions,
-                            chapter.accuracyRate
+                            chapter.accuracyRate,
+                            chapter.proportion * 100
                         ),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.White.copy(alpha = 0.7f)
                     )
                 } else {
                     Text(
-                        text = stringResource(CommonR.string.chapter_not_studied),
+                        text = stringResource(
+                            CommonR.string.chapter_not_studied_format,
+                            chapter.totalQuestions,
+                            chapter.proportion * 100
+                        ),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.White.copy(alpha = 0.7f)
                     )

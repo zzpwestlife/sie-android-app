@@ -182,6 +182,7 @@
     <string name="chapter_error">Failed to load chapters. Please try again.</string>
     <string name="chapter_retry">Retry</string>
     <string name="chapter_select_hint">Select at least one chapter</string>
-    <string name="chapter_progress_format">%1$d questions | Studied %2$d | Accuracy %3$.0f%%</string>
+    <string name="chapter_progress_format">%1$d questions (%4$.1f%%) | Studied %2$d | Accuracy %3$.0f%%</string>
     <string name="chapter_not_studied">Not studied yet</string>
+    <string name="chapter_not_studied_format">%1$d questions (%2$.1f%%) • Not studied yet</string>
 </resources>

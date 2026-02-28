@@ -9,7 +9,9 @@ data class Chapter(
     val wrongCount: Int,            // Total wrong answers
     val accuracyRate: Float,        // Percentage: correctCount / studiedQuestions * 100
     val lastStudiedAt: Long?,       // Latest lastStudiedAt in this chapter
-    val isSelected: Boolean = false // UI state: is this chapter selected?
+    val isSelected: Boolean = false, // UI state: is this chapter selected?
+    val proportion: Float = 0f,     // Percentage of total questions in this chapter
+    val includedCategories: List<String> = listOf(name) // List of actual category strings included in this chapter
 )
 
 /**

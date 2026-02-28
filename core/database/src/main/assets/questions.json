@@ -237,7 +237,7 @@
     ],
     "correctAnswerIndex": 0,
     "explanation": "ETFs trade like stocks throughout the trading day (9:30 AM - 4:00 PM EST) at live market prices, while mutual funds only trade once daily at 4:00 PM NAV (Net Asset Value). If you want to buy SPY (S&P 500 ETF) at 10:00 AM when S&P 500 is 5,200, you execute immediately. With a mutual fund like VFIAX (Vanguard S&P 500), you submit an order during the day but don't know the execution price until 4:00 PM close. This intraday liquidity lets ETF investors react to breaking news—e.g., Fed announcements at 2:00 PM. SPY averages 70-100 million shares/day ($40-50 billion notional), making it the most liquid security globally. Mutual funds settle T+1, ETFs settle T+2 like stocks.\nETF 像股票一样在整个交易日（美东时间上午 9:30 - 下午 4:00）按实时市场价格交易，而共同基金仅在下午 4:00 按 NAV（净资产价值）每日交易一次。如果你想在上午 10:00 标普 500 为 5200 点时购买 SPY（标普 500 ETF），你立即执行。而使用 VFIAX（先锋标普 500）等共同基金，你在白天提交订单但直到下午 4:00 收盘才知道执行价格。这种日内流动性让 ETF 投资者能够对突发新闻做出反应——例如，下午 2:00 的美联储公告。SPY 平均每天交易 7000-1 亿股（名义价值 400-500 亿美元），使其成为全球流动性最强的证券。共同基金 T+1 结算，ETF 像股票一样 T+2 结算。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 21,
@@ -249,7 +249,7 @@
     ],
     "correctAnswerIndex": 1,
     "explanation": "ARKK (ARK Innovation ETF) is a thematic ETF managed by Cathie Wood, focusing on disruptive innovation across DNA sequencing, robotics, energy storage, AI, and blockchain. Launched in 2014, ARKK peaked at $159 in February 2021 (10x return from 2019) holding Tesla (10%), Coinbase, Roku, and Zoom. By 2023 it fell to $35 (-78% from peak) as rising rates crushed growth stocks. Other thematic ETFs include ICLN (clean energy), HACK (cybersecurity), BOTZ (robotics), and LIT (lithium batteries). These ETFs concentrate on specific trends vs broad market exposure, resulting in higher volatility—ARKK's beta is ~1.5-2.0 vs S&P 500. Expense ratios are higher (0.75% for ARKK vs 0.03% for SPY) due to active management.\nARKK（ARK 创新 ETF）是由 Cathie Wood 管理的主题 ETF，专注于 DNA 测序、机器人、储能、AI 和区块链等颠覆性创新。2014 年推出，ARKK 在 2021 年 2 月达到 159 美元的峰值（2019 年以来 10 倍回报），持有特斯拉（10%）、Coinbase、Roku 和 Zoom。到 2023 年跌至 35 美元（较峰值下跌 78%），因为利率上升压垮了成长股。其他主题 ETF 包括 ICLN（清洁能源）、HACK（网络安全）、BOTZ（机器人）和 LIT（锂电池）。这些 ETF 集中于特定趋势而非广泛市场敞口，导致更高波动性——ARKK 的贝塔系数约为 1.5-2.0 vs 标普 500。由于主动管理，费用率更高（ARKK 为 0.75% vs SPY 为 0.03%）。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 22,
@@ -261,7 +261,7 @@
     ],
     "correctAnswerIndex": 1,
     "explanation": "Leveraged ETFs use derivatives (swaps, futures) and daily rebalancing to achieve 2x or 3x daily returns, but this creates volatility decay that destroys value over time in choppy markets. Example: If S&P 500 goes +10% then -9.09% (back to breakeven), a 3x leveraged ETF (UPRO) goes +30% then -27.3%, ending down 2.19%. The mathematical compounding effect means even if the index recovers, leveraged ETFs don't. In March 2020 volatility, TQQQ (3x Nasdaq) lost 70% in 3 weeks while QQQ lost 30%. SVXY (inverse volatility) collapsed 90% in 2018 \"Volmageddon\". Studies show 80% of leveraged ETF holders lose money holding >1 month. Daily reset means they're ONLY for intraday trading by professionals.\n杠杆ETF使用衍生品（互换、期货）和每日再平衡来实现2倍或3倍的每日回报，但这在震荡市场中会产生波动率损耗，随着时间推移破坏价值。例如：如果标普500上涨10%然后下跌9.09%（回到盈亏平衡），3倍杠杆ETF（UPRO）上涨30%然后下跌27.3%，最终下跌2.19%。数学复利效应意味着即使指数恢复，杠杆ETF也无法恢复。在2020年3月的波动中，TQQQ（3倍纳斯达克）在3周内损失70%，而QQQ损失30%。SVXY（反向波动率）在2018年\"波动率末日\"中崩溃90%。研究显示持有超过1个月的杠杆ETF持有者中80%亏损。每日重置意味着它们仅适用于专业人士的日内交易。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 23,
@@ -273,7 +273,7 @@
     ],
     "correctAnswerIndex": 0,
     "explanation": "The SEC (Securities and Exchange Commission) oversees ETFs in the U.S., requiring registration under the Investment Company Act of 1940 and compliance with disclosure rules. ETF sponsors must file prospectuses detailing investment strategy, fees, risks, and daily holdings transparency (vs mutual funds which disclose quarterly). The SEC approved the first ETF (SPDR S&P 500, ticker SPY) in 1993. In 2024, the SEC approved Bitcoin spot ETFs after 10 years of applications—IBIT (BlackRock) and FBTC (Fidelity) launched in January 2024, gathering $10 billion in first month. The SEC also monitors for market manipulation, requires 13F filings for institutional holders, and enforces rules against misleading marketing. ETF creation/redemption process is supervised to prevent NAV deviations >2%.\nSEC（美国证券交易委员会）监管美国的 ETF，要求根据 1940 年《投资公司法》注册并遵守披露规则。ETF 发起人必须提交招股说明书，详细说明投资策略、费用、风险和每日持仓透明度（vs 共同基金按季度披露）。SEC 于 1993 年批准了第一个 ETF（SPDR 标普 500，代码 SPY）。2024 年，SEC 在 10 年申请后批准了比特币现货 ETF——IBIT（贝莱德）和 FBTC（富达）于 2024 年 1 月推出，首月筹集 100 亿美元。SEC 还监控市场操纵，要求机构持有人提交 13F 文件，并执行禁止误导性营销的规则。ETF 创建/赎回过程受监督以防止 NAV 偏差>2%。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 24,
@@ -285,7 +285,7 @@
     ],
     "correctAnswerIndex": 0,
     "explanation": "The first step to invest in ETFs is opening a brokerage account with platforms like Fidelity, Charles Schwab, Interactive Brokers, or Robinhood. Requirements include: SSN or ITIN, government-issued ID, bank account linking, and personal information (address, employment, net worth, investment experience). Most accounts are free to open with $0 minimum, though margin accounts may require $2,000. Account types: individual taxable, IRA (Traditional/Roth with $7,000 annual limit in 2024), or 401(k) if employer-sponsored. Once funded, you can search ETF tickers (e.g., SPY, QQQ, VTI), place market/limit orders, and settle trades in T+2. Commission-free ETF trading is standard since 2019 (Schwab, Fidelity charge $0). Enable two-factor authentication for security.\n投资 ETF 的第一步是在 Fidelity、嘉信理财、盈透证券或 Robinhood 等平台开设经纪账户。要求包括：SSN 或 ITIN、政府颁发的 ID、银行账户关联以及个人信息（地址、就业、净资产、投资经验）。大多数账户免费开设，0 美元最低要求，尽管保证金账户可能需要 2000 美元。账户类型：个人应税账户、IRA（传统/罗斯，2024 年年度限额 7000 美元）或雇主赞助的 401(k)。一旦注资，你可以搜索 ETF 代码（如 SPY、QQQ、VTI），下达市价/限价订单，并在 T+2 结算交易。自 2019 年以来免佣金 ETF 交易是标准（嘉信理财、富达收取 0 美元）。启用双因素认证以确保安全。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 25,
@@ -297,7 +297,7 @@
     ],
     "correctAnswerIndex": 0,
     "explanation": "ETFs are more tax-efficient than mutual funds due to in-kind redemption mechanisms. When ETF shares are redeemed, Authorized Participants (APs) receive actual securities (stocks/bonds) instead of cash, avoiding capital gains realization. Mutual funds must sell holdings to meet redemptions, triggering taxable events for all shareholders. Example: In 2022, Vanguard Total Stock Market Mutual Fund (VTSMX) distributed $4.50/share in capital gains (8% of NAV), while equivalent ETF (VTI) distributed $0.87 (1.5% of NAV). Over 10 years, this difference compounds significantly—ETF investors defer taxes until they sell, while mutual fund holders pay annual capital gains. Only 5% of ETFs distribute capital gains vs 65% of mutual funds. This matters most in taxable accounts (not IRAs/401(k)s).\nETF由于实物赎回机制比共同基金更具税务效率。当ETF份额被赎回时，授权参与者（AP）收到实际证券（股票/债券）而非现金，避免资本利得实现。共同基金必须出售持仓以满足赎回，为所有股东触发应税事件。例如：2022年，先锋全市场股票共同基金（VTSMX）分配4.50美元/股的资本利得（NAV的8%），而等效ETF（VTI）分配0.87美元（NAV的1.5%）。10年后，这种差异会显著复利——ETF投资者推迟税收直到出售，而共同基金持有人每年支付资本利得税。仅5%的ETF分配资本利得 vs 65% 的共同基金。这在应税账户（而非 IRA/401(k)）中最重要。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 26,
@@ -309,7 +309,7 @@
     ],
     "correctAnswerIndex": 0,
     "explanation": "Leveraged ETFs are designed exclusively for short-term trading (days to weeks maximum), not long-term holding. Prospectuses explicitly warn: \"not suitable for periods longer than a single day.\" The daily rebalancing mechanism creates path dependency—returns deviate dramatically from 2x/3x the underlying index over multi-day periods. Example: From peak to trough in 2020 crash (Feb 19 - Mar 23), S&P 500 fell 34%, but UPRO (3x leveraged) fell 76% (not 102% as 3x would suggest), and took 15 months to recover vs S&P's 5 months. In 2022 bear market, TQQQ lost 80% while QQQ lost 33%. Even in bull markets, volatility drag erodes returns—TQQQ returned 5,000% 2010-2021 vs theoretical 27,000% (3x QQQ's 900%).\n杠杆ETF专为短期交易（最多几天到几周）而设计，不适合长期持有。招股说明书明确警告：\"不适合超过单日的持有期。\"每日再平衡机制产生路径依赖——回报在多日期间与基础指数的2倍/3倍严重偏离。例如：在2020年崩盘的高峰到低谷期间（2月19日 - 3月23日），标普500下跌34%，但UPRO（3倍杠杆）下跌76%（而非3倍所暗示的102%），花了15个月恢复 vs 标普的5个月。2022年熊市中，TQQQ损失80%而QQQ损失33%。即使在牛市中，波动率拖累也会侵蚀回报——TQQQ在2010-2021年回报5000% vs 理论上的27000%（3倍QQQ的900%）。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 27,
@@ -321,7 +321,7 @@
     ],
     "correctAnswerIndex": 0,
     "explanation": "Volatility decay (also called beta slippage) is most severe in highly volatile or sideways/choppy markets where prices oscillate without clear trend. The mathematical mechanism: daily compounding of leveraged returns creates geometric decay. In a volatile market with daily moves of ±3%, a 3x ETF experiences ±9% swings. After 20 days of random ±3% moves that net to zero for the index, the 3x ETF will be down 8-12% due to compounding. Real example: In Q1 2018, S&P 500 was roughly flat (+0.5%) but experienced 10+ days with ±2% moves—UPRO (3x bull) lost 4% while SPXU (3x bear) also lost 6%. Both directions lost! In trending markets (2017: S&P +21%), decay is minimal—UPRO returned 68% (slightly below 3x due to fees). VIX above 25 signals high decay risk.\n波动率损耗（也称为贝塔滑点）在高度波动或横盘/震荡市场中最严重，价格震荡但无明确趋势。数学机制：杠杆回报的每日复利产生几何衰减。在日波动±3% 的波动市场中，3 倍 ETF 经历±9% 的波动。经过 20 天的随机±3% 波动，指数净值为零，3 倍 ETF 将由于复利下跌 8-12%。实际例子：2018 年 Q1，标普 500 基本持平（+0.5%）但经历了 10 天以上±2% 的波动——UPRO（3 倍多头）损失 4%，而 SPXU（3 倍空头）也损失 6%。两个方向都亏损！在趋势市场（2017 年：标普 +21%），衰减最小——UPRO 回报 68%（由于费用略低于 3 倍）。VIX 超过 25 表示高衰减风险。",
-    "category": "3. ETF / 交易所交易基金"
+    "category": "3. ETFs / 交易所交易基金"
   },
   {
     "id": 28,
@@ -813,7 +813,7 @@
     ],
     "correctAnswerIndex": 1,
     "explanation": "Sell-side research reports (produced by investment banks like Goldman Sachs, Morgan Stanley, JPMorgan) aim to guide institutional and retail clients' investment decisions through stock recommendations, earnings models, and target prices. Reports include: (1) Rating—Buy/Hold/Sell or equivalent (Overweight/Neutral/Underweight), (2) 12-Month Price Target based on DCF/multiples valuation, (3) Investment Thesis outlining catalysts and risks, (4) Financial Models projecting 3-5 year revenue/EPS. Example: Goldman upgrades Nvidia from Neutral to Buy with $800 target (from $650), citing AI demand surge—this triggers institutional buying. Analysts cover 15-30 stocks in sectors (tech, healthcare, financials). Conflicts exist—sell-side banks want investment banking fees from covered companies, creating positive bias (70% Buy vs 5% Sell ratings). Regulation FD requires simultaneous public disclosure. Contrast with buy-side research (private, used by hedge funds/mutual funds internally).\n卖方研究报告（由高盛、摩根士丹利、摩根大通等投资银行制作）旨在通过股票推荐、盈利模型和目标价指导机构和散户客户的投资决策。报告包括：(1) 评级——买入/持有/卖出或等效（增持/中性/减持），(2) 基于DCF/估值倍数的12个月目标价，(3) 投资论点概述催化剂和风险，(4) 预测3-5年收入/EPS的财务模型。例如：高盛将英伟达从中性升级至买入，目标价800美元（从650美元），理由是AI需求激增——这触发机构买入。分析师覆盖行业（科技、医疗、金融）中的15-30只股票。存在利益冲突——卖方银行希望从被覆盖公司获得投资银行费用，产生正面偏见（70%买入 vs 5% 卖出评级）。FD 法规要求同步公开披露。与买方研究（私人，对冲基金/共同基金内部使用）对比。",
-    "category": "8. Revenue & Industry / 营收与行业分析"
+    "category": "8. Revenue & Industry / 行业分析"
   },
   {
     "id": 69,
@@ -825,7 +825,7 @@
     ],
     "correctAnswerIndex": 1,
     "explanation": "A Buy recommendation (also called Strong Buy, Overweight, or Outperform depending on firm) indicates the analyst expects the stock to significantly outperform the market or sector benchmark over the next 12 months, typically by 10-20% or more above index returns. Example: Analyst rates Tesla \"Buy\" with $350 target when stock trades at $250 (+40% upside), forecasting 25% return vs S&P 500's expected 8% (+17% relative outperformance). Rating scales vary: Goldman Sachs uses Buy/Neutral/Sell; Morgan Stanley uses Overweight/Equal-weight/Underweight; JPMorgan uses Overweight/Neutral/Underweight. Institutional investors track rating changes—upgrades to Buy trigger algorithm buying and options activity. However, sell-side ratings are inflated—across Wall Street, 55% of ratings are Buy/Strong Buy, 40% Hold/Neutral, only 5% Sell, creating positive bias. Independent research (Morningstar) and short-seller reports (Citron, Hindenburg) provide counterbalance.\n买入评级（也称为强烈买入、增持或跑赢，取决于公司）表明分析师预期该股票在未来12个月内将显著跑赢市场或行业基准，通常比指数回报高10-20%或更多。例如：分析师在股票交易价格为250美元时对特斯拉评级\"买入\"，目标价350美元（+40%上涨空间），预测25%回报 vs 标普500预期8%（+17%相对跑赢）。评级量表各异：高盛使用买入/中性/卖出；摩根士丹利使用增持/等权重/减持；摩根大通使用增持/中性/减持。机构投资者追踪评级变化——升级至买入触发算法买入和期权活动。然而，卖方评级被夸大——整个华尔街，55%的评级是买入/强烈买入，40%持有/中性，仅5%卖出，产生正面偏见。独立研究（晨星）和做空者报告（Citron、Hindenburg）提供平衡。",
-    "category": "8. Revenue & Industry / 营收与行业分析"
+    "category": "8. Revenue & Industry / 行业分析"
   },
   {
     "id": 70,
@@ -837,7 +837,7 @@
     ],
     "correctAnswerIndex": 0,
     "explanation": "In MooMoo app, to access analyst ratings: (1) Open MooMoo and search for the company ticker (e.g., AAPL for Apple, TSLA for Tesla), (2) Tap on the stock to open company detail page, (3) Scroll down and select \"Analyst Ratings\" tab (usually between \"Financials\" and \"News\"), (4) View \"Target Price\" section showing consensus price target with high/low range (e.g., Apple target $215, range $180-$250), (5) Click \"Rating Details\" to see individual analyst reports from Goldman Sachs, Morgan Stanley, Citi, etc. with their specific ratings (Buy/Hold/Sell), target prices, and report dates. Alternative path: Market → US Stocks → Performance Expectations shows aggregated analyst consensus across stocks. MooMoo aggregates 30-50 analysts per major stock, updating within 24 hours of new reports. Displays rating distribution histogram (e.g., 28 Buy, 12 Hold, 2 Sell) and tracks rating changes over time.\n在MooMoo应用中访问分析师评级：(1) 打开MooMoo并搜索公司代码（例如苹果的AAPL、特斯拉的TSLA），(2) 点击股票打开公司详情页，(3) 向下滚动并选择\"分析师评级\"选项卡（通常在\"财务\"和\"新闻\"之间），(4) 查看\"目标价\"部分，显示共识目标价及高低范围（例如苹果目标215美元，范围180-250美元），(5) 点击\"评级明细\"查看高盛、摩根士丹利、花旗等个别分析师报告，包括其具体评级（买入/持有/卖出）、目标价和报告日期。替代路径：市场 → 美股 → 业绩预期显示各股票的汇总分析师共识。MooMoo汇总每个主要股票的30-50位分析师，在新报告发布后24小时内更新。显示评级分布直方图（例如28个买入、12个持有、2个卖出）并随时间追踪评级变化。",
-    "category": "8. Revenue & Industry / 营收与行业分析"
+    "category": "8. Revenue & Industry / 行业分析"
   },
   {
     "id": 71,
@@ -849,7 +849,7 @@
     ],
     "correctAnswerIndex": 1,
     "explanation": "Bottom-up revenue analysis decomposes total revenues into underlying operational drivers (volume × price) at granular business unit or product level, then aggregates upward. Process: (1) Identify revenue streams—Apple: iPhone (52%), Services (22%), Mac (8%), iPad (8%), Wearables (10%). (2) Decompose each: iPhone Revenue = Units Sold × ASP (Average Selling Price). 2023: 235M iPhones × $900 ASP = $211B. (3) Forecast drivers independently—unit growth +3% (market share gains in India), ASP +5% (Pro Max mix shift), yielding 8.2% revenue growth. (4) Aggregate across segments for total company forecast. Example: Tesla 2024 forecast—Model 3/Y: 1.8M units × $45K = $81B; Model S/X: 80K × $95K = $7.6B; Energy: $6B; Services: $7B → Total $101.6B (+15% YoY). Contrast with top-down (TAM × market share assumptions). Bottom-up is more accurate but labor-intensive, requiring deep operational knowledge.\n自下而上收入分析将总收入分解为细粒度业务单元或产品层面的基础运营驱动因素（销量 × 价格），然后向上汇总。流程：(1) 识别收入流——苹果：iPhone（52%），服务（22%），Mac（8%），iPad（8%），可穿戴设备（10%）。(2) 分解每个：iPhone 收入 = 售出单位 × ASP（平均售价）。2023 年：2.35 亿部 iPhone × 900 美元 ASP = 2110 亿美元。(3) 独立预测驱动因素——单位增长 +3%（印度市场份额增长），ASP +5%（Pro Max 组合转变），产生 8.2% 收入增长。(4) 跨细分市场汇总以获得公司总预测。例如：特斯拉 2024 年预测——Model 3/Y：180万辆 × 4.5 万美元 = 810 亿美元；Model S/X：8万辆 × 9.5 万美元 = 76 亿美元；能源：60 亿美元；服务：70 亿美元 → 总计 1016 亿美元（同比 +15%）。与自上而下（TAM × 市场份额假设）对比。自下而上更准确但劳动密集，需要深入的运营知识。",
-    "category": "8. Revenue & Industry / 营收与行业分析"
+    "category": "8. Revenue & Industry / 行业分析"
   },
   {
     "id": 72,
@@ -861,7 +861,7 @@
     ],
     "correctAnswerIndex": 1,
     "explanation": "In Porter's Five Forces framework, high buyer power means customers have strong negotiating leverage to demand lower prices, better quality, or more services, squeezing company margins. Factors creating high buyer power: (1) Many substitute options—smartphone buyers choose Apple, Samsung, Google, OnePlus, Xiaomi, forcing competitive pricing. (2) Low switching costs—consumers easily switch cloud storage from Dropbox to Google Drive ($0 cost). (3) Price sensitivity—grocery shoppers compare Walmart, Target, Costco, Amazon for lowest prices. (4) Bulk purchasing—enterprise software buyers (Fortune 500) negotiate 30-50% discounts from Salesforce due to volume. Example: Airlines face high buyer power—customers use Kayak, Google Flights to compare dozens of options instantly, choosing purely on price (commoditized service), forcing margins to 2-5%. Contrast: Pharmaceutical companies have low buyer power when treating rare diseases—patients lack alternatives, enabling 80%+ margins. Companies reduce buyer power through differentiation (Apple ecosystem lock-in), switching costs (ERP migrations), or network effects.\n在波特五力框架中，高买家力量意味着客户拥有强大的谈判杠杆来要求更低价格、更好质量或更多服务，压缩公司利润率。创造高买家力量的因素：(1) 许多替代选项——智能手机买家选择苹果、三星、谷歌、一加、小米，迫使竞争性定价。(2) 低转换成本——消费者轻松从 Dropbox 切换到 Google Drive 云存储（0 美元成本）。(3) 价格敏感性——杂货购物者比较沃尔玛、塔吉特、好市多、亚马逊以获得最低价格。(4) 批量采购——企业软件买家（财富 500 强）因数量从 Salesforce 谈判 30-50% 折扣。例如：航空公司面临高买家力量——客户使用 Kayak、Google Flights 即时比较数十个选项，纯粹根据价格选择（商品化服务），迫使利润率降至 2-5%。对比：制药公司在治疗罕见疾病时买家力量低——患者缺乏替代品，使利润率达 80% 以上。公司通过差异化（苹果生态系统锁定）、转换成本（ERP 迁移）或网络效应来降低买家力量。",
-    "category": "8. Revenue & Industry / 营收与行业分析"
+    "category": "8. Revenue & Industry / 行业分析"
   },
   {
     "id": 73,
@@ -886,5 +886,2146 @@
     "correctAnswerIndex": 0,
     "explanation": "Under the Insider Trading Sanctions Act of 1984 and subsequent amendments, individuals convicted of insider trading face criminal penalties up to 20 years imprisonment and civil/criminal fines up to $5 million per violation (or 3x profits gained/losses avoided, whichever is greater). Corporate entities face fines up to $25 million. Famous cases: (1) Raj Rajaratnam (Galleon Group founder)—convicted 2011 for $63M insider trading scheme, sentenced 11 years, fined $10M, plus $92.8M disgorgement. (2) Martha Stewart—served 5 months in 2004 for lying about ImClone stock sale (obstruction, not insider trading itself). (3) SAC Capital (Steve Cohen's firm)—paid $1.8B settlement in 2013, largest insider trading case. SEC also pursues civil penalties—permanent industry bans, disgorgement of profits. Tipping others is equally illegal—if you tip a friend who trades, both face penalties. Statute of limitations: 5 years for criminal, 5 years for civil from trade date or 2 years from discovery.\n根据 1984 年《内幕交易制裁法》及后续修订，被判内幕交易罪的个人面临最高 20 年监禁和每次违规最高 500 万美元的民事/刑事罚款（或获利/避免损失的 3 倍，以较高者为准）。公司实体面临最高 2500 万美元罚款。著名案例：(1) Raj Rajaratnam（Galleon Group 创始人）——2011 年因 6300 万美元内幕交易计划被定罪，判处 11 年，罚款 1000 万美元，外加 9280 万美元赔偿。(2) Martha Stewart——2004 年因就 ImClone 股票出售撒谎服刑 5 个月（妨碍司法，而非内幕交易本身）。(3) SAC Capital（Steve Cohen 的公司）——2013 年支付 18 亿美元和解，最大内幕交易案。SEC 还追求民事处罚——永久行业禁令、利润赔偿。向他人泄密同样违法——如果你向朋友泄密，朋友交易，两人都面临处罚。诉讼时效：刑事交易日起 5 年，民事发现后 2 年或交易日起 5 年。",
     "category": "9. Financial Ethics / 金融道德"
+  },
+  {
+    "content": "What is the primary definition of the business cycle?\n经济周期的主要定义是什么？",
+    "options": [
+      "Continuous linear growth of the economy\n经济的持续线性增长",
+      "Recurring, irregular fluctuations in aggregate economic activity around a long-term trend\n总体经济活动围绕长期趋势发生的周期性、不规则波动",
+      "Seasonal fluctuations in agricultural output\n农业产出的季节性波动"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The business cycle refers to the recurring, irregular fluctuations in aggregate economic activity around the economy’s long-term potential growth trend.\n经济周期是指总体经济活动围绕经济长期潜在增长趋势发生的周期性、不规则波动。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 75
+  },
+  {
+    "content": "Which organization officially determines the start and end dates of U.S. recessions?\n哪个组织正式确定美国经济衰退的开始和结束日期？",
+    "options": [
+      "Federal Reserve (Fed)\n美联储 (Fed)",
+      "National Bureau of Economic Research (NBER)\n美国国家经济研究局 (NBER)",
+      "Bureau of Labor Statistics (BLS)\n劳工统计局 (BLS)"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "NBER officially defines and dates recessions in the U.S.\nNBER 正式定义并确定美国经济衰退的日期。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 76
+  },
+  {
+    "content": "Which of the following is a core characteristic of the 'Expansion' phase of the business cycle?\n以下哪项是经济周期“扩张”阶段的核心特征？",
+    "options": [
+      "Real GDP declines and unemployment rises\n实际 GDP 下降且失业率上升",
+      "Real GDP grows steadily and unemployment falls below the natural rate\n实际 GDP 稳步增长且失业率降至自然失业率以下",
+      "Economic activity is at its lowest point\n经济活动处于最低点"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "During expansion, real GDP grows steadily, employment expands, and unemployment often falls below the natural rate.\n在扩张期间，实际 GDP 稳步增长，就业扩大，失业率通常降至自然失业率以下。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 77
+  },
+  {
+    "content": "Consumer spending accounts for approximately what percentage of U.S. GDP?\n消费支出约占美国 GDP 的百分之几？",
+    "options": [
+      "30% - 40%",
+      "50% - 55%",
+      "68% - 70%"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Consumer spending is the primary driver of aggregate demand, accounting for approximately 68%–70% of U.S. GDP.\n消费支出是总需求的主要驱动力，约占美国 GDP 的 68%–70%。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 78
+  },
+  {
+    "content": "Which economic indicator is considered a 'Leading Indicator'?\n哪个经济指标被认为是“先行指标”？",
+    "options": [
+      "Unemployment Rate\n失业率",
+      "ISM Manufacturing PMI\nISM 制造业 PMI",
+      "Consumer Price Index (CPI)\n消费者价格指数 (CPI)"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "ISM Manufacturing PMI is a leading indicator that changes ahead of the economic cycle. Unemployment and CPI are lagging indicators.\nISM 制造业 PMI 是一个先行指标，在经济周期之前发生变化。失业率和 CPI 是滞后指标。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 79
+  },
+  {
+    "content": "What does an inverted yield curve (10Y < 2Y) historically signal?\n收益率曲线倒挂（10 年期 < 2 年期）历史上预示着什么？",
+    "options": [
+      "Economic expansion\n经济扩张",
+      "Impending recession\n即将到来的衰退",
+      "Stable inflation\n通胀稳定"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "An inverted spread (10Y < 2Y) has preceded every U.S. recession since 1950.\n自 1950 年以来，利差倒挂（10Y < 2Y）先于每次美国经济衰退出现。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 80
+  },
+  {
+    "content": "Which indicator is classified as a 'Lagging Indicator'?\n哪个指标被归类为“滞后指标”？",
+    "options": [
+      "Stock Market Returns\n股票市场回报",
+      "New Housing Permits\n新房开工许可",
+      "Unemployment Rate\n失业率"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Unemployment Rate is a lagging indicator, confirming cycle trends after they occur.\n失业率是一个滞后指标，用于在周期趋势发生后进行确认。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 81
+  },
+  {
+    "content": "What is the main difference between Real GDP and Nominal GDP?\n实际 GDP 和名义 GDP 的主要区别是什么？",
+    "options": [
+      "Real GDP includes exports, Nominal does not\n实际 GDP 包括出口，名义 GDP 不包括",
+      "Real GDP is adjusted for inflation, Nominal is not\n实际 GDP 经过通胀调整，名义 GDP 未调整",
+      "Nominal GDP is calculated monthly, Real is yearly\n名义 GDP 按月计算，实际 GDP 按年计算"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Real GDP is adjusted for inflation and is the key metric for cycle analysis.\n实际 GDP 经过通胀调整，是周期分析的关键指标。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 82
+  },
+  {
+    "content": "A 'Recession' is commonly identified by two consecutive quarters of negative growth in which indicator?\n通常哪个指标连续两个季度负增长会被视为“衰退”？",
+    "options": [
+      "Real GDP\n实际 GDP",
+      "CPI\nCPI",
+      "Retail Sales\n零售销售"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Negative Real GDP growth for ≥2 quarters is a common recession proxy.\n实际 GDP 连续 ≥2 个季度负增长是常见的衰退指标。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 83
+  },
+  {
+    "content": "Nonfarm Payrolls (NFP) measures employment changes in all sectors EXCEPT:\n非农就业数据 (NFP) 衡量除以下哪些行业外的所有行业的就业变化：",
+    "options": [
+      "Manufacturing and Technology\n制造业和科技业",
+      "Agriculture, private households, and non-profits\n农业、私人家庭和非营利组织",
+      "Government and Construction\n政府和建筑业"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "NFP excludes agriculture, private households, and non-profits.\nNFP 不包括农业、私人家庭和非营利组织。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 84
+  },
+  {
+    "content": "What is the U.S. natural rate of unemployment (full employment) range?\n美国的自然失业率（充分就业）范围是多少？",
+    "options": [
+      "0% - 1%",
+      "4% - 4.5%",
+      "8% - 10%"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The U.S. natural rate of unemployment is considered to be 4%–4.5%.\n美国的自然失业率被认为是 4%–4.5%。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 85
+  },
+  {
+    "content": "Core CPI excludes which volatile categories?\n核心 CPI 排除了哪些波动较大的类别？",
+    "options": [
+      "Housing and Medical Care\n住房和医疗",
+      "Food and Energy\n食品和能源",
+      "Education and Transportation\n教育和交通"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Core CPI excludes food and energy prices due to their volatility.\n由于波动性，核心 CPI 不包括食品和能源价格。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 86
+  },
+  {
+    "content": "Which inflation gauge is the Federal Reserve's preferred measure?\n美联储首选的通胀衡量指标是哪个？",
+    "options": [
+      "Core CPI\n核心 CPI",
+      "Core PCE Price Index\n核心 PCE 价格指数",
+      "Producer Price Index (PPI)\n生产者价格指数 (PPI)"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Core PCE is the Fed’s preferred inflation gauge.\n核心 PCE 是美联储首选的通胀指标。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 87
+  },
+  {
+    "content": "What ISM Manufacturing PMI reading indicates economic expansion?\nISM 制造业 PMI 读数多少表示经济扩张？",
+    "options": [
+      "> 50",
+      "< 50",
+      "= 100"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "A reading >50 indicates expansion; <50 indicates contraction.\n读数 >50 表示扩张；<50 表示收缩。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 88
+  },
+  {
+    "content": "What are the Federal Reserve's dual mandates?\n美联储的双重使命是什么？",
+    "options": [
+      "Maximize bank profits and regulate crypto\n最大化银行利润和监管加密货币",
+      "Maximum employment and stable prices\n最大化就业和价格稳定",
+      "Balance the federal budget and reduce debt\n平衡联邦预算和减少债务"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Fed's dual mandate is to promote maximum employment and stable prices (targeting 2% inflation).\n美联储的双重使命是促进最大化就业和价格稳定（目标是 2% 的通胀率）。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 89
+  },
+  {
+    "content": "Which body sets the target range for the federal funds rate?\n哪个机构设定联邦基金利率的目标范围？",
+    "options": [
+      "The U.S. Treasury\n美国财政部",
+      "The Federal Open Market Committee (FOMC)\n联邦公开市场委员会 (FOMC)",
+      "The Securities and Exchange Commission (SEC)\n美国证券交易委员会 (SEC)"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The FOMC sets the target range for the federal funds rate.\nFOMC 设定联邦基金利率的目标范围。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 90
+  },
+  {
+    "content": "What is the primary effect of the Fed buying securities (Expansionary OMO)?\n美联储购买证券（扩张性 OMO）的主要影响是什么？",
+    "options": [
+      "Reduces money supply and raises rates\n减少货币供应量并提高利率",
+      "Injects money into the economy and lowers interest rates\n向经济注入资金并降低利率",
+      "Has no effect on the economy\n对经济没有影响"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Buying securities injects reserves, increasing money supply and lowering interest rates.\n购买证券会注入准备金，增加货币供应量并降低利率。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 91
+  },
+  {
+    "content": "What acts as the 'floor' for short-term interest rates in the Fed's current framework?\n在美联储当前的框架中，什么充当短期利率的“下限”？",
+    "options": [
+      "Discount Rate\n贴现率",
+      "Interest On Reserve Balances (IORB) and ONRRP\n准备金余额利息 (IORB) 和 ONRRP",
+      "10-Year Treasury Yield\n10 年期国债收益率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "IORB and ONRRP rates act as the floor for short-term interest rates.\nIORB 和 ONRRP 利率充当短期利率的下限。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 92
+  },
+  {
+    "content": "The Discount Rate typically acts as what in the rate corridor?\n贴现率在利率走廊中通常充当什么角色？",
+    "options": [
+      "The ceiling\n上限",
+      "The floor\n下限",
+      "The average\n平均值"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The primary discount rate is typically set above the federal funds target, acting as a ceiling.\n一级贴现率通常设定在联邦基金目标之上，充当上限。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 93
+  },
+  {
+    "content": "Which of the following is a tool of Fiscal Policy?\n以下哪项是财政政策的工具？",
+    "options": [
+      "Open Market Operations\n公开市场操作",
+      "Government Spending and Taxation\n政府支出和税收",
+      "Reserve Requirements\n存款准备金率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Fiscal policy uses taxation and government spending as its main tools.\n财政政策使用税收和政府支出作为其主要工具。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 94
+  },
+  {
+    "content": "Who is primarily responsible for managing U.S. Fiscal Policy?\n谁主要负责管理美国财政政策？",
+    "options": [
+      "The Federal Reserve\n美联储",
+      "Congress and the President\n国会和总统",
+      "Wall Street Banks\n华尔街银行"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Fiscal policy is managed primarily by Congress and the President.\n财政政策主要由国会和总统管理。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 95
+  },
+  {
+    "content": "What is 'Expansionary Fiscal Policy'?\n什么是“扩张性财政政策”？",
+    "options": [
+      "Increasing taxes and cutting spending\n增加税收和削减支出",
+      "Increasing government spending or cutting taxes\n增加政府支出或减税",
+      "Raising interest rates\n提高利率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Expansionary fiscal policy involves increasing spending or cutting taxes to boost aggregate demand.\n扩张性财政政策涉及增加支出或减税以提振总需求。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 96
+  },
+  {
+    "content": "What does 'Countercyclical Fiscal Policy' mean?\n“逆周期财政政策”是什么意思？",
+    "options": [
+      "The government follows the market trend (spends more in booms)\n政府跟随市场趋势（繁荣时期支出更多）",
+      "The government acts in the opposite direction of the economic cycle to stabilize it\n政府采取与经济周期相反的行动来稳定经济",
+      "The government does not intervene in the economy\n政府不干预经济"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Countercyclical policy means acting opposite to the cycle: expansionary in recession, contractionary in boom.\n逆周期政策意味着采取与周期相反的行动：衰退时扩张，繁荣时紧缩。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 97
+  },
+  {
+    "content": "Unemployment benefits are an example of what?\n失业救济金是什么的一个例子？",
+    "options": [
+      "Discretionary Spending\n相机抉择支出",
+      "Automatic Stabilizers\n自动稳定器",
+      "Monetary Policy\n货币政策"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Unemployment benefits are automatic stabilizers that naturally increase during recessions to support spending.\n失业救济金是自动稳定器，在衰退期间自然增加以支持支出。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 98
+  },
+  {
+    "content": "Which asset class typically outperforms during the 'Expansion' stage?\n哪个资产类别通常在“扩张”阶段表现优异？",
+    "options": [
+      "Stocks (especially growth stocks)\n股票（尤其是成长型股票）",
+      "Long-term Government Bonds\n长期政府债券",
+      "Cash\n现金"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Stocks, particularly growth stocks, tend to lead as corporate profits rise during expansions.\n股票，尤其是成长型股票，随着企业利润在扩张期间上升，往往处于领先地位。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 99
+  },
+  {
+    "content": "During a recession, which sector is considered 'Defensive' and tends to outperform?\n在衰退期间，哪个板块被认为是“防御性”的并倾向于表现优异？",
+    "options": [
+      "Technology\n科技",
+      "Consumer Staples and Healthcare\n必需消费品和医疗保健",
+      "Industrials\n工业"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Defensive stocks like consumer staples and healthcare outperform as investors seek stability.\n防御性股票如必需消费品和医疗保健表现优异，因为投资者寻求稳定。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 100
+  },
+  {
+    "content": "How do bond prices react when interest rates rise?\n当利率上升时，债券价格如何反应？",
+    "options": [
+      "Prices rise\n价格上涨",
+      "Prices fall\n价格下跌",
+      "Prices remain unchanged\n价格保持不变"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Bond prices move inversely to yields; prices fall when rates rise.\n债券价格与收益率反向变动；利率上升时价格下跌。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 101
+  },
+  {
+    "content": "What usually happens to the 10-Year Treasury Yield during a recession?\n衰退期间 10 年期国债收益率通常会发生什么？",
+    "options": [
+      "It rises sharply\n急剧上升",
+      "It falls as investors seek safety and Fed cuts rates\n随着投资者寻求安全和美联储降息，它会下降",
+      "It becomes volatile but stays high\n变得波动但保持高位"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Long-term Treasury yields typically fall during recessions due to safe-haven demand and rate cuts.\n由于避险需求和降息，长期国债收益率通常在衰退期间下降。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 102
+  },
+  {
+    "content": "Which commodity typically performs well during economic expansion due to industrial demand?\n由于工业需求，哪种大宗商品通常在经济扩张期间表现良好？",
+    "options": [
+      "Gold\n黄金",
+      "Copper (Industrial Metals)\n铜（工业金属）",
+      "Agricultural products\n农产品"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Industrial metals like copper benefit from increased business investment and production during expansions.\n像铜这样的工业金属受益于扩张期间商业投资和生产的增加。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 103
+  },
+  {
+    "content": "What was the U.S. government's fiscal response to the 2008 Financial Crisis?\n美国政府对 2008 年金融危机的财政应对措施是什么？",
+    "options": [
+      "Austerity measures (Cutting spending)\n紧缩措施（削减支出）",
+      "American Recovery and Reinvestment Act (ARRA) - Expansionary\n美国复苏与再投资法案 (ARRA) - 扩张性",
+      "Raising taxes on all citizens\n对所有公民增税"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The ARRA was a major expansionary fiscal package to stimulate the economy.\nARRA 是刺激经济的主要扩张性财政计划。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 104
+  },
+  {
+    "content": "Quantitative Easing (QE) involves the Fed doing what?\n量化宽松 (QE) 涉及美联储做什么？",
+    "options": [
+      "Selling assets to banks\n向银行出售资产",
+      "Buying large-scale assets (bonds) to inject liquidity\n购买大规模资产（债券）以注入流动性",
+      "Printing physical cash and mailing it to people\n印制实物现金并寄给人们"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "QE involves large-scale asset purchases to lower long-term interest rates and support recovery.\nQE 涉及大规模资产购买，以降低长期利率并支持复苏。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 105
+  },
+  {
+    "content": "A 'Soft Landing' refers to what economic outcome?\n“软着陆”指的是什么经济结果？",
+    "options": [
+      "The economy crashes into a deep recession\n经济陷入严重衰退",
+      "Inflation is tamed without triggering a recession\n在不引发衰退的情况下控制通胀",
+      "Stock market prices fall slowly\n股市价格缓慢下跌"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A soft landing is when the Fed cools inflation without causing a recession.\n软着陆是指美联储在不引发衰退的情况下冷却通胀。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 106
+  },
+  {
+    "content": "Which indicator directly reflects consumer confidence?\n哪个指标直接反映消费者信心？",
+    "options": [
+      "PPI\nPPI",
+      "CCI (Consumer Confidence Index)\nCCI (消费者信心指数)",
+      "Industrial Production\n工业生产"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "CCI measures consumers’assessment of current conditions and future expectations.\nCCI 衡量消费者对当前状况和未来预期的评估。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 107
+  },
+  {
+    "content": "Durable goods are defined as goods with a useful life of at least how many years?\n耐用品被定义为使用寿命至少为多少年的商品？",
+    "options": [
+      "1 year\n1 年",
+      "3 years\n3 年",
+      "5 years\n5 年"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Durable goods are goods with a useful life >3 years (e.g., autos, machinery).\n耐用品是使用寿命 >3 年的商品（例如汽车、机械）。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 108
+  },
+  {
+    "content": "High inflation typically has what impact on equity margins?\n高通胀通常对股票利润率有什么影响？",
+    "options": [
+      "Expands margins\n扩大利润率",
+      "Compresses margins (increases costs)\n压缩利润率（增加成本）",
+      "No impact\n无影响"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "High inflation often compresses margins as input costs rise.\n随着投入成本上升，高通胀通常会压缩利润率。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 109
+  },
+  {
+    "content": "The 10-Year Treasury Yield serves as a benchmark for which consumer loan?\n10 年期国债收益率是哪种消费者贷款的基准？",
+    "options": [
+      "Credit Cards\n信用卡",
+      "Mortgages\n抵押贷款",
+      "Payday Loans\n发薪日贷款"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The 10-year yield benchmarks mortgages and corporate bonds.\n10 年期收益率是抵押贷款和公司债券的基准。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 110
+  },
+  {
+    "content": "Which agency releases the GDP data?\n哪个机构发布 GDP 数据？",
+    "options": [
+      "Bureau of Economic Analysis (BEA)\n经济分析局 (BEA)",
+      "Bureau of Labor Statistics (BLS)\n劳工统计局 (BLS)",
+      "Census Bureau\n人口普查局"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The BEA releases quarterly GDP data.\nBEA 每季度发布 GDP 数据。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 111
+  },
+  {
+    "content": "What is the primary risk of sustained Expansionary Fiscal Policy?\n持续扩张性财政政策的主要风险是什么？",
+    "options": [
+      "Too much deflation\n过多的通缩",
+      "Increased national debt and potential inflation\n国债增加和潜在的通胀",
+      "High unemployment\n高失业率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Expansionary policies often increase national debt and can lead to inflation.\n扩张性政策通常会增加国债并可能导致通胀。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 112
+  },
+  {
+    "content": "In the business cycle, what follows the 'Peak'?\n在经济周期中，“顶峰”之后是什么？",
+    "options": [
+      "Trough\n谷底",
+      "Expansion\n扩张",
+      "Contraction / Recession\n收缩 / 衰退"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "After the Peak, the economy enters the Contraction (Recession) phase.\n顶峰之后，经济进入收缩（衰退）阶段。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 113
+  },
+  {
+    "content": "Which sub-index of the PMI is a key predictor of future GDP?\nPMI 的哪个子指数是未来 GDP 的关键预测指标？",
+    "options": [
+      "Inventories\n库存",
+      "New Orders\n新订单",
+      "Supplier Deliveries\n供应商交货"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The new orders sub-index is a key predictor of future GDP growth.\n新订单子指数是未来 GDP 增长的关键预测指标。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 114
+  },
+  {
+    "content": "Retail Sales data reflects the health of which major GDP component?\n零售销售数据反映了 GDP 哪个主要组成部分的健康状况？",
+    "options": [
+      "Government Spending\n政府支出",
+      "Net Exports\n净出口",
+      "Consumer Spending\n消费支出"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Retail sales reflect consumer health, which drives consumer spending.\n零售销售反映了推动消费支出的消费者健康状况。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 115
+  },
+  {
+    "content": "What happens to the ONRRP rate when the Fed wants to absorb more liquidity?\n当美联储想要吸收更多流动性时，ONRRP 利率会发生什么变化？",
+    "options": [
+      "It is lowered\n降低",
+      "It is raised\n提高",
+      "It stays zero\n保持为零"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Increasing the ONRRP rate encourages participation, absorbing more liquidity.\n提高 ONRRP 利率会鼓励参与，从而吸收更多流动性。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 116
+  },
+  {
+    "content": "Which sector typically leads in the 'Early Expansion' (post-trough) phase?\n哪个板块通常在“早期扩张”（谷底后）阶段领涨？",
+    "options": [
+      "Utilities\n公用事业",
+      "Cyclical stocks (e.g., Financials, Industrials)\n周期性股票（如金融、工业）",
+      "Energy\n能源"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Cyclical stocks like industrials and financials lead as economic optimism returns.\n随着经济乐观情绪回归，工业和金融等周期性股票领涨。",
+    "category": "1.4 Market Performance / 市场表现",
+    "id": 117
+  },
+  {
+    "content": "What is the typical duration of a business cycle?\n经济周期的典型持续时间是多少？",
+    "options": [
+      "6 months\n6 个月",
+      "2 - 10 years\n2 - 10 年",
+      "50 years\n50 年"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The business cycle’s duration varies but is typically 2–10 years.\n经济周期的持续时间各不相同，但通常为 2-10 年。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 118
+  },
+  {
+    "content": "If the US Dollar strengthens significantly, what happens to Net Exports?\n如果美元大幅走强，净出口会发生什么？",
+    "options": [
+      "They increase\n增加",
+      "They decrease (exports become less competitive)\n减少（出口竞争力下降）",
+      "No change\n无变化"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A stronger USD reduces U.S. export competitiveness, weighing on export growth.\n美元走强会降低美国出口竞争力，从而拖累出口增长。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 119
+  },
+  {
+    "content": "The 'Dual Mandate' of the Fed does NOT include which of the following?\n美联储的“双重使命”不包括以下哪项？",
+    "options": [
+      "Stable Prices\n价格稳定",
+      "Maximum Employment\n最大化就业",
+      "Maximizing Stock Market Returns\n最大化股市回报"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Fed's mandate is employment and prices, not stock market returns.\n美联储的使命是就业和价格，而不是股市回报。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 120
+  },
+  {
+    "content": "Which indicator gives a reading of 0-100 based on a survey?\n哪个指标基于调查给出 0-100 的读数？",
+    "options": [
+      "NFP\nNFP",
+      "Consumer Confidence Index (CCI)\n消费者信心指数 (CCI)",
+      "GDP\nGDP"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "CCI is a survey measuring assessment on a 0–100 scale.\nCCI 是衡量 0-100 刻度评估的调查。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 121
+  },
+  {
+    "content": "Core Durable Goods Orders excludes which sector?\n核心耐用品订单排除了哪个行业？",
+    "options": [
+      "Transportation\n运输",
+      "Computers\n计算机",
+      "Machinery\n机械"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Core orders exclude transportation to reduce volatility and better proxy business investment.\n核心订单不包括运输，以减少波动并更好地代表商业投资。",
+    "category": "1. Macroeconomics / 宏观经济学",
+    "id": 122
+  },
+  {
+    "content": "What is the primary tool the Fed uses to control the Fed Funds Rate in the 'Ample Reserves' regime?\n在“充足准备金”制度下，美联储用来控制联邦基金利率的主要工具是什么？",
+    "options": [
+      "Required Reserves\n法定准备金",
+      "Interest On Reserve Balances (IORB)\n准备金余额利息 (IORB)",
+      "Gold Standard\n金本位"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "IORB is the primary tool for controlling the federal funds rate in the ample-reserves framework.\n在充足准备金框架下，IORB 是控制联邦基金利率的主要工具。",
+    "category": "1.2 Monetary Policy / 货币政策",
+    "id": 123
+  },
+  {
+    "content": "Fiscal Policy is rooted in which economic theory?\n财政政策植根于哪种经济理论？",
+    "options": [
+      "Keynesian Economics\n凯恩斯主义经济学",
+      "Classical Economics\n古典经济学",
+      "Austrian Economics\n奥地利学派经济学"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The policy logic is rooted in Keynesian economics, advocating government intervention.\n该政策逻辑植根于凯恩斯主义经济学，主张政府干预。",
+    "category": "1.3 Fiscal Policy / 财政政策",
+    "id": 124
+  },
+  {
+    "content": "What is the primary difference between Common Stock and Preferred Stock regarding voting rights?\n普通股和优先股在投票权方面的主要区别是什么？",
+    "options": [
+      "Preferred stockholders usually have voting rights, while common stockholders do not.\n优先股股东通常有投票权，而普通股股东没有。",
+      "Common stockholders usually have voting rights, while preferred stockholders do not.\n普通股股东通常有投票权，而优先股股东没有。",
+      "Both have equal voting rights.\n两者拥有同等的投票权。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Common stockholders typically have voting rights to elect the board of directors, while preferred stockholders usually do not have voting rights but have priority in dividends.\n普通股股东通常拥有选举董事会的投票权，而优先股股东通常没有投票权，但在股息分配上享有优先权。",
+    "category": "2. Stocks / 股票",
+    "id": 125
+  },
+  {
+    "content": "Which market is where securities are created and sold for the first time?\n证券首次发行和出售的市场是哪个？",
+    "options": [
+      "Secondary Market\n二级市场",
+      "Primary Market\n一级市场",
+      "Over-the-Counter Market\n场外交易市场"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Primary Market is where new securities are issued (e.g., IPOs). The Secondary Market is where existing securities are traded among investors.\n一级市场是新证券发行（如 IPO）的地方。二级市场是投资者之间交易现有证券的地方。",
+    "category": "2. Stocks / 股票",
+    "id": 126
+  },
+  {
+    "content": "What does an ADR (American Depositary Receipt) represent?\nADR（美国存托凭证）代表什么？",
+    "options": [
+      "A bond issued by the US government.\n美国政府发行的债券。",
+      "Shares of a non-US company that trade in the US financial markets.\n在美国金融市场上交易的非美国公司的股票。",
+      "A derivative contract based on the S&P 500.\n基于标普500的衍生品合约。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "ADRs allow US investors to buy shares in foreign companies without having to purchase shares on foreign exchanges.\nADR 允许美国投资者购买外国公司的股票，而无需在外国交易所购买股票。",
+    "category": "2. Stocks / 股票",
+    "id": 127
+  },
+  {
+    "content": "Which date determines which shareholders are entitled to receive a declared dividend?\n哪一天决定了哪些股东有权获得已宣告的股息？",
+    "options": [
+      "Declaration Date\n宣告日",
+      "Ex-Dividend Date\n除息日",
+      "Record Date\n股权登记日"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Record Date is the date established by the issuer. An investor must be a shareholder of record on this date to receive the dividend.\n股权登记日是发行人确定的日期。投资者必须在这一天成为登记在册的股东才能获得股息。",
+    "category": "2. Stocks / 股票",
+    "id": 128
+  },
+  {
+    "content": "What happens to the price of a stock on the Ex-Dividend Date?\n在除息日，股票价格会发生什么变化？",
+    "options": [
+      "It increases by the amount of the dividend.\n价格上涨，幅度为股息金额。",
+      "It decreases by the amount of the dividend.\n价格下跌，幅度为股息金额。",
+      "It remains unchanged.\n价格保持不变。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "On the ex-dividend date, the stock price is adjusted downward by the amount of the dividend because new buyers are not entitled to the payout.\n在除息日，股价会根据股息金额向下调整，因为新买家无权获得该股息。",
+    "category": "2. Stocks / 股票",
+    "id": 129
+  },
+  {
+    "content": "What is the primary purpose of a Forward Stock Split (e.g., 2-for-1)?\n正向股票拆股（如 2 拆 1）的主要目的是什么？",
+    "options": [
+      "To increase the market price per share.\n提高每股市场价格。",
+      "To decrease the number of outstanding shares.\n减少流通股数量。",
+      "To reduce the market price per share to make it more affordable.\n降低每股市场价格，使其更易于购买。"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "A forward split increases the number of shares and proportionally decreases the price, making the stock more accessible to retail investors.\n正向拆股增加股份数量并按比例降低价格，使散户投资者更容易购买股票。",
+    "category": "2. Stocks / 股票",
+    "id": 130
+  },
+  {
+    "content": "How does a Reverse Stock Split affect the number of shares and the price?\n反向股票拆股如何影响股份数量和价格？",
+    "options": [
+      "Increases shares, decreases price.\n增加股份，降低价格。",
+      "Decreases shares, increases price.\n减少股份，提高价格。",
+      "Increases shares, increases price.\n增加股份，提高价格。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A reverse split consolidates shares (fewer shares) and increases the price per share proportionally.\n反向拆股合并股份（股份减少），并按比例提高每股价格。",
+    "category": "2. Stocks / 股票",
+    "id": 131
+  },
+  {
+    "content": "What is a Stock Buyback (Share Repurchase)?\n什么是股票回购？",
+    "options": [
+      "When a company sells more shares to the public.\n当公司向公众出售更多股票时。",
+      "When a company buys its own outstanding shares from the market.\n当公司从市场上买回自己的流通股时。",
+      "When an investor buys shares from another investor.\n当投资者从另一位投资者手中购买股票时。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Buybacks reduce the number of outstanding shares, which often increases Earnings Per Share (EPS).\n回购减少了流通股的数量，通常会增加每股收益（EPS）。",
+    "category": "2. Stocks / 股票",
+    "id": 132
+  },
+  {
+    "content": "What does EPS stand for and how is it calculated?\nEPS 代表什么，它是如何计算的？",
+    "options": [
+      "Earnings Per Share = Net Income / Shares Outstanding\n每股收益 = 净利润 / 流通股数",
+      "Equity Per Share = Total Equity / Shares Outstanding\n每股权益 = 总权益 / 流通股数",
+      "Earnings Price Share = Price / Earnings\n收益价格比 = 价格 / 收益"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "EPS (Earnings Per Share) is a company's net profit divided by the number of common shares it has outstanding.\nEPS（每股收益）是公司的净利润除以其流通在外的普通股数量。",
+    "category": "2. Stocks / 股票",
+    "id": 133
+  },
+  {
+    "content": "What does the P/E Ratio (Price-to-Earnings) indicate?\n市盈率（P/E Ratio）表明什么？",
+    "options": [
+      "The company's debt level relative to its equity.\n公司的债务水平相对于其权益的比例。",
+      "How much investors are willing to pay per dollar of earnings.\n投资者愿意为每一美元的收益支付多少价格。",
+      "The dividend yield of the stock.\n股票的股息收益率。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The P/E ratio measures the current share price relative to its per-share earnings.\n市盈率衡量当前股价相对于每股收益的比例。",
+    "category": "2. Stocks / 股票",
+    "id": 134
+  },
+  {
+    "content": "Which type of stock typically has the highest priority in the event of liquidation?\n在清算时，哪种类型的股票通常具有最高的优先权？",
+    "options": [
+      "Common Stock\n普通股",
+      "Preferred Stock\n优先股",
+      "Penny Stock\n仙股"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Preferred stockholders have a higher claim on assets than common stockholders during liquidation (though lower than bondholders).\n在清算期间，优先股股东对资产的索取权高于普通股股东（但低于债券持有人）。",
+    "category": "2. Stocks / 股票",
+    "id": 135
+  },
+  {
+    "content": "What is the formula for Dividend Yield?\n股息收益率的公式是什么？",
+    "options": [
+      "Annual Dividend / Current Stock Price\n年度股息 / 当前股价",
+      "Current Stock Price / Annual Dividend\n当前股价 / 年度股息",
+      "Net Income / Annual Dividend\n净利润 / 年度股息"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Dividend Yield is calculated as the annual dividend payment divided by the current stock price.\n股息收益率的计算方法是年度股息支付额除以当前股价。",
+    "category": "2. Stocks / 股票",
+    "id": 136
+  },
+  {
+    "content": "What is a 'Blue Chip' stock?\n什么是“蓝筹”股？",
+    "options": [
+      "A high-risk, low-priced stock.\n高风险、低价格的股票。",
+      "Stock of a large, well-established, and financially sound company.\n大型、信誉良好且财务稳健的公司的股票。",
+      "A stock that only pays dividends in blue currency.\n只用蓝色货币支付股息的股票。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Blue Chip stocks are shares of huge, well-reputed companies with a history of reliable earnings and often dividends.\n蓝筹股是指那些规模巨大、声誉良好、盈利可靠且通常支付股息的公司的股票。",
+    "category": "2. Stocks / 股票",
+    "id": 137
+  },
+  {
+    "content": "What does ROE (Return on Equity) measure?\nROE（净资产收益率）衡量什么？",
+    "options": [
+      "How much profit a company generates with its shareholders' equity.\n公司利用股东权益产生了多少利润。",
+      "The total revenue of the company.\n公司的总收入。",
+      "The return on the company's debt investments.\n公司债务投资的回报。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "ROE measures financial performance by dividing net income by shareholders' equity.\nROE 通过将净利润除以股东权益来衡量财务绩效。",
+    "category": "2. Stocks / 股票",
+    "id": 138
+  },
+  {
+    "content": "What is a 'Growth Stock'?\n什么是“成长股”？",
+    "options": [
+      "A stock that pays high dividends.\n支付高股息的股票。",
+      "A stock expected to grow at an above-average rate compared to other stocks.\n预期增长率高于其他股票平均水平的股票。",
+      "A stock with a very low P/E ratio.\n市盈率非常低的股票。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Growth stocks are companies expected to increase revenue and earnings faster than the market average, often reinvesting earnings rather than paying dividends.\n成长股是指预期收入和收益增长快于市场平均水平的公司，通常会将收益再投资而不是支付股息。",
+    "category": "2. Stocks / 股票",
+    "id": 139
+  },
+  {
+    "content": "What is a 'Value Stock'?\n什么是“价值股”？",
+    "options": [
+      "A stock that trades at a lower price relative to its fundamentals (dividends, earnings, sales).\n相对于其基本面（股息、收益、销售额）交易价格较低的股票。",
+      "A stock with the highest market capitalization.\n市值最高的股票。",
+      "A stock in the technology sector.\n科技板块的股票。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Value stocks are considered undervalued by the market and often have lower P/E ratios and higher dividend yields.\n价值股被市场认为被低估，通常具有较低的市盈率和较高的股息收益率。",
+    "category": "2. Stocks / 股票",
+    "id": 140
+  },
+  {
+    "content": "What does Market Capitalization represent?\n市值代表什么？",
+    "options": [
+      "The total value of a company's assets.\n公司资产的总价值。",
+      "The total market value of a company's outstanding shares.\n公司流通股的总市场价值。",
+      "The price of a single share.\n单股的价格。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Market Cap = Current Share Price × Total Number of Outstanding Shares.\n市值 = 当前股价 × 流通股总数。",
+    "category": "2. Stocks / 股票",
+    "id": 141
+  },
+  {
+    "content": "What is 'Statutory Voting'?\n什么是“法定投票”？",
+    "options": [
+      "Shareholders can cast all their votes for one director candidate.\n股东可以将所有选票投给一名董事候选人。",
+      "Shareholders must divide their votes evenly among all candidates.\n股东必须将选票平均分配给所有候选人。",
+      "Shareholders can cast one vote per share for each director position open for election.\n股东可以为每个待选董事职位投每股一票。"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Under Statutory Voting, you have a set number of votes per share for each seat and cannot accumulate them for one candidate.\n在法定投票下，你拥有的每一股对每个席位都有固定的票数，不能累积投给一个候选人。",
+    "category": "2. Stocks / 股票",
+    "id": 142
+  },
+  {
+    "content": "What is 'Cumulative Voting'?\n什么是“累积投票”？",
+    "options": [
+      "Shareholders can pool their votes and cast them all for a single director candidate.\n股东可以汇集他们的选票，全部投给一名董事候选人。",
+      "Shareholders cannot vote for directors.\n股东不能投票选举董事。",
+      "Votes are only counted if the shareholder attends the meeting.\n只有股东出席会议时才计算选票。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Cumulative voting benefits minority shareholders by allowing them to concentrate their votes on one candidate.\n累积投票允许少数股东将选票集中投给一名候选人，从而有利于他们。",
+    "category": "2. Stocks / 股票",
+    "id": 143
+  },
+  {
+    "content": "What is a 'Defensive Stock'?\n什么是“防御型股票”？",
+    "options": [
+      "A stock that performs well during economic expansions but poorly in recessions.\n在经济扩张期表现良好但在衰退期表现不佳的股票。",
+      "A stock that provides consistent dividends and stable earnings regardless of the state of the stock market.\n无论股市状况如何，都能提供持续股息和稳定收益的股票。",
+      "A stock related to the defense industry.\n与国防工业相关的股票。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Defensive stocks (e.g., utilities, consumer staples) tend to remain stable during economic downturns.\n防御型股票（如公用事业、日用消费品）往往在经济低迷时期保持稳定。",
+    "category": "2. Stocks / 股票",
+    "id": 144
+  },
+  {
+    "content": "What is the P/B Ratio (Price-to-Book)?\n市净率（P/B Ratio）是什么？",
+    "options": [
+      "Market Price per Share / Book Value per Share\n每股市价 / 每股账面价值",
+      "Market Price per Share / Earnings per Share\n每股市价 / 每股收益",
+      "Book Value per Share / Market Price per Share\n每股账面价值 / 每股市价"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The P/B ratio compares a firm's market capitalization to its book value (net assets).\n市净率将公司的市值与其账面价值（净资产）进行比较。",
+    "category": "2. Stocks / 股票",
+    "id": 145
+  },
+  {
+    "content": "What are 'Outstanding Shares'?\n什么是“流通股”？",
+    "options": [
+      "Shares authorized but not yet issued.\n已授权但尚未发行的股票。",
+      "Shares held by investors, including restricted shares owned by company officers and insiders.\n投资者持有的股票，包括公司高管和内部人士持有的限制性股票。",
+      "Shares that the company has repurchased (Treasury Stock).\n公司已回购的股票（库存股）。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Outstanding shares are all shares currently held by all shareholders. Authorized shares minus Treasury shares equals Outstanding shares.\n流通股是目前所有股东持有的所有股票。授权股份减去库存股等于流通股。",
+    "category": "2. Stocks / 股票",
+    "id": 146
+  },
+  {
+    "content": "What is 'Treasury Stock'?\n什么是“库存股”？",
+    "options": [
+      "Stock issued by the US Treasury.\n美国财政部发行的股票。",
+      "Stock that a company has bought back from the open market.\n公司从公开市场回购的股票。",
+      "Stock held by the company's treasurer.\n公司财务主管持有的股票。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Treasury stock is previously outstanding stock that is bought back by the issuing company. It has no voting rights and receives no dividends.\n库存股是发行公司回购的以前流通的股票。它没有投票权，也不获得股息。",
+    "category": "2. Stocks / 股票",
+    "id": 147
+  },
+  {
+    "content": "What is the primary risk associated with ADRs specifically?\n与 ADR（美国存托凭证）特别相关的主要风险是什么？",
+    "options": [
+      "Interest Rate Risk\n利率风险",
+      "Currency/Exchange Rate Risk\n货币/汇率风险",
+      "Inflation Risk\n通货膨胀风险"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Since the underlying stock is valued in a foreign currency, changes in the exchange rate can affect the value of the ADR in US dollars.\n由于标的股票以主要外币计价，汇率变化会影响 ADR 的美元价值。",
+    "category": "2. Stocks / 股票",
+    "id": 148
+  },
+  {
+    "content": "Which term describes the last price at which a stock traded?\n哪个术语描述了股票交易的最新价格？",
+    "options": [
+      "Bid Price\n买入价",
+      "Ask Price\n卖出价",
+      "Market Price / Last Trade Price\n市场价 / 最新成交价"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The market price is the most recent price at which a trade was executed.\n市场价格是最近一次交易执行的价格。",
+    "category": "2. Stocks / 股票",
+    "id": 149
+  },
+  {
+    "content": "What does ETF stand for?\nETF 代表什么？",
+    "options": [
+      "Exchange Traded Fund\n交易所交易基金",
+      "Equity Transfer Fund\n股票转让基金",
+      "Electronic Trade Facility\n电子交易设施"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "An ETF is an investment fund traded on stock exchanges, much like stocks.\nETF 是一种在证券交易所交易的投资基金，就像股票一样。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 150
+  },
+  {
+    "content": "What is the primary mechanism that keeps an ETF's market price close to its Net Asset Value (NAV)?\n使 ETF 的市场价格接近其净资产价值（NAV）的主要机制是什么？",
+    "options": [
+      "The Federal Reserve's intervention.\n美联储的干预。",
+      "The Creation and Redemption mechanism.\n申购和赎回机制。",
+      "Fixed exchange rates.\n固定汇率。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Authorized Participants (APs) use the creation/redemption mechanism to arbitrage differences between price and NAV, keeping them aligned.\n授权参与者（AP）利用申购/赎回机制套利价格与 NAV 之间的差异，使其保持一致。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 151
+  },
+  {
+    "content": "Who are the only entities allowed to create or redeem ETF shares directly with the fund sponsor?\n谁是唯一被允许直接与基金发起人申购或赎回 ETF 份额的实体？",
+    "options": [
+      "Retail Investors\n散户投资者",
+      "Authorized Participants (APs)\n授权参与者 (AP)",
+      "Financial Advisors\n理财顾问"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Only Authorized Participants (usually large institutional investors) can deal directly with the ETF issuer to create or redeem shares in large blocks.\n只有授权参与者（通常是大型机构投资者）才能直接与 ETF 发行人进行大宗份额的申购或赎回。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 152
+  },
+  {
+    "content": "What is 'In-Kind' creation/redemption in ETFs?\nETF 中的“实物”申购/赎回是什么？",
+    "options": [
+      "Exchanging cash for ETF shares.\n用现金兑换ETF份额。",
+      "Exchanging a basket of underlying securities for ETF shares (or vice versa).\n用一篮子标的证券兑换ETF份额（或反之亦然）。",
+      "Exchanging gold for ETF shares.\n用黄金兑换ETF份额。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "In-kind transactions involve exchanging the actual securities held by the fund, which helps minimize tax implications.\n实物交易涉及交换基金持有的实际证券，这有助于最大限度地减少税务影响。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 153
+  },
+  {
+    "content": "Compared to Mutual Funds, what is a key trading advantage of ETFs?\n与共同基金相比，ETF 的主要交易优势是什么？",
+    "options": [
+      "They can be traded throughout the day like stocks.\n它们可以像股票一样全天交易。",
+      "They guarantee a higher return.\n它们保证更高的回报。",
+      "They have no management fees.\n它们没有管理费。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "ETFs trade on an exchange and can be bought/sold intraday, whereas mutual funds trade only once a day at the closing NAV.\nETF 在交易所交易，可以日内买卖，而共同基金每天仅按收盘 NAV 交易一次。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 154
+  },
+  {
+    "content": "What is the 'Expense Ratio' of an ETF?\nETF 的“费用比率”是什么？",
+    "options": [
+      "The commission paid to buy the ETF.\n购买ETF支付的佣金。",
+      "The annual fee charged by the fund to cover management and operating costs.\n基金收取的用于支付管理和运营成本的年费。",
+      "The ratio of winners to losers in the fund.\n基金中赢家与输家的比例。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The expense ratio is expressed as a percentage of assets deducted annually to pay for fund expenses.\n费用比率表示为每年扣除的用于支付基金费用的资产百分比。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 155
+  },
+  {
+    "content": "What does AUM stand for in the context of ETFs?\n在 ETF 背景下，AUM 代表什么？",
+    "options": [
+      "Assets Under Management\n管理资产规模",
+      "Average Unit Market\n平均单位市场",
+      "Annual Underlying Margin\n年度标的保证金"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "AUM (Assets Under Management) is the total market value of the investments that the ETF manages.\nAUM（管理资产规模）是 ETF 管理的投资总市值。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 156
+  },
+  {
+    "content": "What is an Inverse ETF designed to do?\n反向 ETF 的设计目的是什么？",
+    "options": [
+      "Amplify the returns of an index (e.g., 2x).\n放大指数的回报（如2倍）。",
+      "Deliver the opposite performance of the index it tracks.\n提供与其跟踪指数相反的表现。",
+      "Provide a guaranteed income stream.\n提供有保证的收入流。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Inverse ETFs use derivatives to profit from a decline in the value of an underlying benchmark.\n反向 ETF 利用衍生品从标的基准价值的下跌中获利。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 157
+  },
+  {
+    "content": "What is a Leveraged ETF?\n什么是杠杆 ETF？",
+    "options": [
+      "An ETF that uses debt or derivatives to amplify the returns of an index.\n使用债务或衍生品来放大指数回报的ETF。",
+      "An ETF that invests only in bank loans.\n只投资于银行贷款的ETF。",
+      "An ETF with very low fees.\n费用非常低的ETF。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Leveraged ETFs aim to return a multiple (e.g., 2x or 3x) of the underlying index's daily return.\n杠杆 ETF 旨在提供标的指数单日回报的倍数（如 2 倍或 3 倍）。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 158
+  },
+  {
+    "content": "What is 'Volatility Decay' (or Beta Slippage) in Leveraged/Inverse ETFs?\n杠杆/反向 ETF 中的“波动损耗”（或 Beta 滑点）是什么？",
+    "options": [
+      "The fees paid to the manager.\n支付给经理的费用。",
+      "The erosion of value over time due to daily rebalancing, especially in volatile markets.\n由于每日再平衡导致的价值随时间侵蚀，特别是在波动市场中。",
+      "The decay of the physical assets held.\n持有实物资产的腐烂。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Because leveraged ETFs reset daily, holding them for longer periods in a volatile market can result in returns significantly different from the expected multiple of the long-term index return.\n由于杠杆 ETF 每日重置，在波动市场中长期持有它们可能导致回报与预期的长期指数回报倍数存在显著差异。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 159
+  },
+  {
+    "content": "Why are Leveraged ETFs generally considered unsuitable for long-term buy-and-hold investors?\n为什么杠杆 ETF 通常被认为不适合长期买入持有投资者？",
+    "options": [
+      "They have high expense ratios and volatility decay.\n它们具有高费用比率和波动损耗。",
+      "They cannot be sold easily.\n它们不容易出售。",
+      "They do not track any index.\n它们不跟踪任何指数。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Due to the daily reset mechanism, long-term performance usually degrades, making them tactical trading tools rather than long-term investments.\n由于每日重置机制，长期表现通常会下降，使其成为战术交易工具而非长期投资。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 160
+  },
+  {
+    "content": "What implies high liquidity in an ETF?\n什么意味着 ETF 具有高流动性？",
+    "options": [
+      "Wide bid-ask spreads.\n宽的买卖价差。",
+      "Narrow bid-ask spreads and high trading volume.\n窄的买卖价差和高交易量。",
+      "Low assets under management.\n低管理资产规模。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "High liquidity allows investors to buy or sell shares quickly with minimal price impact, characterized by tight spreads and high volume.\n高流动性允许投资者以最小的价格影响快速买卖份额，其特征是价差小和交易量大。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 161
+  },
+  {
+    "content": "Can ETFs pay dividends?\nETF 可以支付股息吗？",
+    "options": [
+      "No, never.\n不，从来不。",
+      "Yes, if the underlying securities pay dividends, the ETF passes them to shareholders.\n是的，如果标的证券支付股息，ETF会将其传递给股东。",
+      "Only if the ETF is leveraged.\n只有当ETF是杠杆型时。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "ETFs collect dividends from the stocks they hold and distribute them to shareholders, typically quarterly.\nETF 收集其持有的股票的股息，并将其分发给股东，通常按季度分发。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 162
+  },
+  {
+    "content": "What is an 'Active ETF'?\n什么是“主动型 ETF”？",
+    "options": [
+      "An ETF that simply tracks an index like the S&P 500.\n简单跟踪标普500等指数的ETF。",
+      "An ETF where a portfolio manager actively selects securities to try to outperform the market.\n由投资组合经理主动选择证券以试图跑赢市场的ETF。",
+      "An ETF that trades 24 hours a day.\n全天24小时交易的ETF。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Active ETFs do not follow a passive index rule; managers make decisions on what to buy/sell to generate alpha.\n主动型 ETF 不遵循被动指数规则；经理决定买入/卖出什么以产生超额收益（Alpha）。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 163
+  },
+  {
+    "content": "What is the 'Spread' in ETF trading?\nETF 交易中的“价差”是什么？",
+    "options": [
+      "The difference between the Bid and Ask prices.\n买入价和卖出价之间的差额。",
+      "The difference between the high and low of the day.\n当天最高价和最低价的差额。",
+      "The fee paid to the broker.\n支付给经纪人的费用。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The Bid-Ask spread is the cost of trading and reflects liquidity. Tighter spreads are better for investors.\n买卖价差是交易成本，反映了流动性。价差越小对投资者越有利。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 164
+  },
+  {
+    "content": "What is 'Tracking Error' in an ETF?\nETF 中的“跟踪误差”是什么？",
+    "options": [
+      "A mistake by the broker.\n经纪人的错误。",
+      "The divergence between the ETF's performance and the performance of its underlying index.\nETF的表现与其标的指数表现之间的偏差。",
+      "When the ETF price goes down.\n当ETF价格下跌时。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Tracking error measures how consistently the ETF follows its benchmark. Lower tracking error is preferred for passive ETFs.\n跟踪误差衡量 ETF 跟随其基准的一致性。对于被动 ETF，跟踪误差越低越好。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 165
+  },
+  {
+    "content": "What is a 'Sector ETF'?\n什么是“板块 ETF”？",
+    "options": [
+      "An ETF that invests in the entire market.\n投资于整个市场的ETF。",
+      "An ETF that focuses on a specific industry or sector (e.g., Technology, Healthcare).\n专注于特定行业或板块（如科技、医疗）的ETF。",
+      "An ETF that holds only bonds.\n只持有债券的ETF。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Sector ETFs allow investors to gain exposure to specific parts of the economy.\n板块 ETF 允许投资者获得对经济特定部分的敞口。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 166
+  },
+  {
+    "content": "What is a 'Bond ETF'?\n什么是“债券 ETF”？",
+    "options": [
+      "An ETF that invests in fixed-income securities.\n投资于固定收益证券的ETF。",
+      "An ETF that is guaranteed by the government.\n由政府担保的ETF。",
+      "An ETF that has a maturity date like a bond.\n像债券一样有到期日的ETF。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Bond ETFs hold a portfolio of bonds. Unlike individual bonds, most bond ETFs do not have a maturity date and trade continuously.\n债券 ETF 持有债券组合。与个别债券不同，大多数债券 ETF 没有到期日，并且持续交易。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 167
+  },
+  {
+    "content": "What is the tax efficiency benefit of the ETF creation/redemption process?\nETF 申购/赎回过程的税收效率优势是什么？",
+    "options": [
+      "ETFs are tax-exempt.\nETF是免税的。",
+      "In-kind redemptions allow the fund to offload low-cost basis shares without triggering capital gains taxes for the fund.\n实物赎回允许基金剥离低成本基础的股票，而不会触发基金的资本利得税。",
+      "Dividends are not taxed.\n股息不征税。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "This mechanism minimizes capital gains distributions to shareholders, making ETFs generally more tax-efficient than mutual funds.\n这种机制最大限度地减少了向股东分配的资本利得，使 ETF 通常比共同基金更具税收效率。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 168
+  },
+  {
+    "content": "What is the 'Intraday Indicative Value' (IIV) of an ETF?\nETF 的“日内指示性价值”（IIV）是什么？",
+    "options": [
+      "The closing price.\n收盘价。",
+      "A real-time estimate of the ETF's fair value based on its underlying assets, updated every 15 seconds.\n基于其标的资产的ETF公允价值的实时估计，每15秒更新一次。",
+      "The maximum price of the day.\n当天的最高价。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "IIV helps investors see if the ETF is trading at a premium or discount to its NAV during the trading day.\nIIV 帮助投资者在交易日内查看 ETF 的交易价格是溢价还是折价于其 NAV。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 169
+  },
+  {
+    "content": "Can you buy an ETF on margin (borrowed money)?\n可以用保证金（借来的钱）购买 ETF 吗？",
+    "options": [
+      "Yes, because they trade like stocks.\n是的，因为它们像股票一样交易。",
+      "No, it is prohibited by the SEC.\n不，这是SEC禁止的。",
+      "Only if it is a bond ETF.\n只有当它是债券ETF时。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Since ETFs trade on exchanges like equities, they are marginable securities.\n由于 ETF 像股票一样在交易所交易，它们是可保证金交易的证券。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 170
+  },
+  {
+    "content": "What is a 'Commodity ETF'?\n什么是“商品 ETF”？",
+    "options": [
+      "An ETF that invests in physical goods like gold, oil, or corn.\n投资于黄金、石油或玉米等实物商品的ETF。",
+      "An ETF that invests in commodity-producing companies only.\n只投资于商品生产公司的ETF。",
+      "An ETF that is used to buy groceries.\n用于购买杂货的ETF。"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Commodity ETFs track the price of a commodity, either by holding the physical asset or through futures contracts.\n商品 ETF 通过持有实物资产或期货合约来跟踪商品的价格。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 171
+  },
+  {
+    "content": "What risk is introduced when an ETF uses futures contracts (contango)?\n当 ETF 使用期货合约（升水）时会引入什么风险？",
+    "options": [
+      "Roll Yield Risk / Contango\n展期收益风险 / 升水",
+      "Credit Risk\n信用风险",
+      "Interest Rate Risk\n利率风险"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "If futures prices are higher than spot prices (contango), the ETF loses money when rolling over expiring contracts to more expensive new ones.\n如果期货价格高于现货价格（升水），ETF 在将到期合约展期为更昂贵的新合约时会亏损。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 172
+  },
+  {
+    "content": "What is a 'Synthetic ETF'?\n什么是“合成 ETF”？",
+    "options": [
+      "An ETF that holds the actual physical securities.\n持有实际实物证券的ETF。",
+      "An ETF that uses derivatives (swaps) to track an index instead of holding the underlying assets.\n使用衍生品（互换）来跟踪指数而不是持有标的资产的ETF。",
+      "An ETF made of plastic.\n用塑料制成的ETF。"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Synthetic ETFs rely on counterparty promises (swaps) to deliver returns, introducing counterparty risk.\n合成 ETF 依赖交易对手的承诺（互换）来提供回报，从而引入了交易对手风险。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 173
+  },
+  {
+    "content": "Which of the following generally has lower expense ratios?\n以下哪种通常具有较低的费用比率？",
+    "options": [
+      "Active ETFs\n主动型ETF",
+      "Passive / Index ETFs\n被动/指数型ETF",
+      "Hedge Funds\n对冲基金"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Passive ETFs simply replicate an index and require less management, leading to lower fees.\n被动 ETF 只是复制指数，需要较少的管理，从而导致费用较低。",
+    "category": "3. ETFs / 交易所交易基金",
+    "id": 174
+  },
+  {
+    "content": "What is the primary right of a call option buyer?\n看涨期权买方的主要权利是什么？",
+    "options": [
+      "Right to sell at strike price\n按行权价卖出的权利",
+      "Right to buy at strike price\n按行权价买入的权利",
+      "Obligation to buy at strike price\n按行权价买入的义务"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A call option gives the buyer the right, but not the obligation, to buy the underlying asset at the strike price.\n看涨期权赋予买方以行权价购买标的资产的权利，但没有义务。",
+    "category": "4. Options / 期权",
+    "id": 175
+  },
+  {
+    "content": "What happens to the intrinsic value of a put option as the underlying price decreases?\n随着标的价格下跌，看跌期权的内在价值如何变化？",
+    "options": [
+      "Increases\n增加",
+      "Decreases\n减少",
+      "Remains constant\n保持不变"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Put intrinsic value = Strike Price - Underlying Price. As underlying price falls, intrinsic value rises.\n看跌期权内在价值 = 行权价 - 标的价格。标的价格下跌时，内在价值上升。",
+    "category": "4. Options / 期权",
+    "id": 176
+  },
+  {
+    "content": "Which Greek measures option sensitivity to time decay?\n哪个希腊字母衡量期权对时间衰减的敏感度？",
+    "options": [
+      "Delta\nDelta",
+      "Gamma\nGamma",
+      "Theta\nTheta"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Theta measures the rate of decline in the value of an option due to the passage of time.\nTheta 衡量期权价值随时间流逝而下降的速率。",
+    "category": "4. Options / 期权",
+    "id": 177
+  },
+  {
+    "content": "What is a covered call strategy?\n什么是备兑看涨期权策略？",
+    "options": [
+      "Buy stock + Buy put\n买入股票 + 买入看跌期权",
+      "Buy stock + Sell call\n买入股票 + 卖出看涨期权",
+      "Sell stock + Buy call\n卖出股票 + 买入看涨期权"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A covered call involves holding a long position in an asset and writing (selling) call options on that same asset.\n备兑看涨期权指持有标的资产多头头寸并卖出该资产的看涨期权。",
+    "category": "4. Options / 期权",
+    "id": 178
+  },
+  {
+    "content": "When is a call option 'in the money' (ITM)?\n看涨期权何时处于“实值”（ITM）状态？",
+    "options": [
+      "Strike Price > Market Price\n行权价 > 市场价",
+      "Strike Price < Market Price\n行权价 < 市场价",
+      "Strike Price = Market Price\n行权价 = 市场价"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A call option is ITM when the market price is higher than the strike price.\n当市场价格高于行权价时，看涨期权处于实值状态。",
+    "category": "4. Options / 期权",
+    "id": 179
+  },
+  {
+    "content": "Which option strategy limits both profit and loss?\n哪种期权策略既限制盈利又限制亏损？",
+    "options": [
+      "Long Straddle\n买入跨式组合",
+      "Bull Call Spread\n牛市看涨价差",
+      "Short Put\n卖出看跌期权"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Spreads (like Bull Call Spread) have defined maximum profit and maximum loss.\n价差策略（如牛市看涨价差）具有确定的最大盈利和最大亏损。",
+    "category": "4. Options / 期权",
+    "id": 180
+  },
+  {
+    "content": "What is the maximum loss for a long call option buyer?\n买入看涨期权的最大亏损是多少？",
+    "options": [
+      "Unlimited\n无限",
+      "Strike Price\n行权价",
+      "Premium Paid\n支付的权利金"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The maximum loss for an option buyer is limited to the premium paid.\n期权买方的最大亏损限于支付的权利金。",
+    "category": "4. Options / 期权",
+    "id": 181
+  },
+  {
+    "content": "Which factor does NOT affect option pricing in the Black-Scholes model?\nBlack-Scholes 模型中，哪个因素不影响期权定价？",
+    "options": [
+      "Volatility\n波动率",
+      "Dividends (in basic model)\n股息（基础模型中）",
+      "P/E Ratio\n市盈率"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "P/E Ratio is not an input in the Black-Scholes model. Inputs are price, strike, time, rate, and volatility.\n市盈率不是 Black-Scholes 模型的输入变量。输入包括价格、行权价、时间、利率和波动率。",
+    "category": "4. Options / 期权",
+    "id": 182
+  },
+  {
+    "content": "What is implied volatility?\n什么是隐含波动率？",
+    "options": [
+      "Historical price fluctuation\n历史价格波动",
+      "Market's forecast of future volatility\n市场对未来波动的预测",
+      "Risk-free rate volatility\n无风险利率波动"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Implied volatility represents the market's view of the likelihood of changes in a given security's price.\n隐含波动率代表市场对特定证券价格变动可能性的看法。",
+    "category": "4. Options / 期权",
+    "id": 183
+  },
+  {
+    "content": "What is the break-even point for a long put?\n买入看跌期权的盈亏平衡点是多少？",
+    "options": [
+      "Strike Price + Premium\n行权价 + 权利金",
+      "Strike Price - Premium\n行权价 - 权利金",
+      "Premium - Strike Price\n权利金 - 行权价"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "For a long put, break-even is Strike Price minus Premium paid.\n对于买入看跌期权，盈亏平衡点是行权价减去支付的权利金。",
+    "category": "4. Options / 期权",
+    "id": 184
+  },
+  {
+    "content": "What is the main characteristic of an open-end mutual fund?\n开放式共同基金的主要特征是什么？",
+    "options": [
+      "Fixed number of shares\n固定份额数量",
+      "Shares are issued and redeemed on demand\n按需发行和赎回份额",
+      "Traded on exchanges like stocks\n像股票一样在交易所交易"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Open-end funds issue and redeem shares daily at NAV based on investor demand.\n开放式基金根据投资者需求，每日按净值（NAV）发行和赎回份额。",
+    "category": "5. Funds / 基金",
+    "id": 185
+  },
+  {
+    "content": "How is the Net Asset Value (NAV) calculated?\n净资产价值（NAV）如何计算？",
+    "options": [
+      "(Assets - Liabilities) / Shares Outstanding\n(资产 - 负债) / 发行在外份额",
+      "Assets / Shares Outstanding\n资产 / 发行在外份额",
+      "(Assets + Income) / Shares Outstanding\n(资产 + 收入) / 发行在外份额"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "NAV = (Total Assets - Total Liabilities) / Number of Outstanding Shares.\nNAV = (总资产 - 总负债) / 发行在外的份额总数。",
+    "category": "5. Funds / 基金",
+    "id": 186
+  },
+  {
+    "content": "What is a load fund?\n什么是收费基金（Load Fund）？",
+    "options": [
+      "A fund with high management fees\n管理费高的基金",
+      "A fund that charges a sales commission\n收取销售佣金的基金",
+      "A fund that invests in debt\n投资于债务的基金"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A load fund charges a commission or sales charge, either at purchase (front-end) or sale (back-end).\n收费基金在购买（前端）或出售（后端）时收取佣金或销售费用。",
+    "category": "5. Funds / 基金",
+    "id": 187
+  },
+  {
+    "content": "Which type of fund aims to replicate a market index?\n哪种类型的基金旨在复制市场指数？",
+    "options": [
+      "Active Fund\n主动型基金",
+      "Index Fund\n指数基金",
+      "Hedge Fund\n对冲基金"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Index funds are passively managed to match the performance of a specific market index.\n指数基金是被动管理的，旨在匹配特定市场指数的表现。",
+    "category": "5. Funds / 基金",
+    "id": 188
+  },
+  {
+    "content": "What is a 12b-1 fee?\n什么是 12b-1 费用？",
+    "options": [
+      "Performance fee\n绩效费",
+      "Marketing and distribution fee\n营销和分销费",
+      "Early redemption fee\n提前赎回费"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "12b-1 fees are annual fees charged to cover marketing and distribution costs.\n12b-1 费用是每年收取的用于支付营销和分销成本的费用。",
+    "category": "5. Funds / 基金",
+    "id": 189
+  },
+  {
+    "content": "What distinguishes a closed-end fund from an open-end fund?\n封闭式基金与开放式基金的区别是什么？",
+    "options": [
+      "Fixed number of shares traded on exchange\n在交易所交易的固定份额",
+      "Redeemable at NAV daily\n每日按 NAV 赎回",
+      "No management fees\n无管理费"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Closed-end funds have a fixed number of shares raised through an IPO and trade on exchanges.\n封闭式基金通过 IPO 筹集固定数量的份额，并在交易所进行交易。",
+    "category": "5. Funds / 基金",
+    "id": 190
+  },
+  {
+    "content": "Which document contains key information about a mutual fund's objectives and risks?\n哪份文件包含共同基金目标和风险的关键信息？",
+    "options": [
+      "Annual Report\n年度报告",
+      "Prospectus\n招股说明书",
+      "Statement of Additional Information\n补充信息声明"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The prospectus provides essential details about investment objectives, risks, fees, and expenses.\n招股说明书提供有关投资目标、风险、费用和开支的基本细节。",
+    "category": "5. Funds / 基金",
+    "id": 191
+  },
+  {
+    "content": "What is a Money Market Fund?\n什么是货币市场基金？",
+    "options": [
+      "Invests in long-term bonds\n投资于长期债券",
+      "Invests in short-term, low-risk debt\n投资于短期、低风险债务",
+      "Invests in high-growth stocks\n投资于高增长股票"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Money market funds invest in high-quality, short-term debt instruments and aim to maintain a stable value.\n货币市场基金投资于高质量的短期债务工具，旨在保持稳定的价值。",
+    "category": "5. Funds / 基金",
+    "id": 192
+  },
+  {
+    "content": "What is the 'expense ratio' of a fund?\n基金的“费用比率”是什么？",
+    "options": [
+      "Percentage of assets used for administrative expenses\n用于管理费用的资产百分比",
+      "Ratio of profit to loss\n盈亏比率",
+      "Dividend payout ratio\n股息支付率"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The expense ratio measures the annual fund operating expenses as a percentage of its assets.\n费用比率衡量年度基金运营费用占其资产的百分比。",
+    "category": "5. Funds / 基金",
+    "id": 193
+  },
+  {
+    "content": "Are mutual fund dividends taxable?\n共同基金的股息需要纳税吗？",
+    "options": [
+      "No, never\n不，从不",
+      "Yes, generally in the year received\n是的，通常在收到当年",
+      "Only when shares are sold\n仅在出售份额时"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Dividends and capital gains distributions are generally taxable in the year they are received, unless in a tax-advantaged account.\n除非在税收优惠账户中，否则股息和资本收益分配通常在收到当年应纳税。",
+    "category": "5. Funds / 基金",
+    "id": 194
+  },
+  {
+    "content": "What is the S&P 500 index based on?\n标准普尔 500 指数基于什么？",
+    "options": [
+      "Price-weighted average of 500 stocks\n500 只股票的价格加权平均",
+      "Market capitalization-weighted of 500 large US companies\n500 家美国大公司的市值加权",
+      "Equal-weighted average of 500 stocks\n500 只股票的等权重平均"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The S&P 500 is a market-cap-weighted index of 500 leading publicly traded companies in the U.S.\n标普 500 是美国 500 家主要上市公司的市值加权指数。",
+    "category": "6. Indexes / 常见指数",
+    "id": 195
+  },
+  {
+    "content": "Which index is price-weighted?\n哪个指数是价格加权的？",
+    "options": [
+      "S&P 500\n标普 500",
+      "Dow Jones Industrial Average (DJIA)\n道琼斯工业平均指数",
+      "Nasdaq Composite\n纳斯达克综合指数"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The DJIA is a price-weighted index, meaning stocks with higher prices have more influence.\n道指是价格加权指数，意味着价格较高的股票具有更大的影响力。",
+    "category": "6. Indexes / 常见指数",
+    "id": 196
+  },
+  {
+    "content": "What does the Nasdaq Composite primarily represent?\n纳斯达克综合指数主要代表什么？",
+    "options": [
+      "Blue-chip industrial stocks\n蓝筹工业股",
+      "Technology and growth stocks\n科技和成长股",
+      "Small-cap stocks\n小盘股"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Nasdaq Composite is heavily weighted towards technology and growth companies.\n纳斯达克综合指数主要侧重于科技和成长型公司。",
+    "category": "6. Indexes / 常见指数",
+    "id": 197
+  },
+  {
+    "content": "What is the Russell 2000 index known for?\n罗素 2000 指数以什么闻名？",
+    "options": [
+      "Large-cap stocks\n大盘股",
+      "Small-cap stocks\n小盘股",
+      "International stocks\n国际股票"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Russell 2000 measures the performance of approximately 2,000 small-cap companies in the Russell 3000 Index.\n罗素 2000 衡量罗素 3000 指数中约 2,000 家小盘公司的表现。",
+    "category": "6. Indexes / 常见指数",
+    "id": 198
+  },
+  {
+    "content": "What is the VIX index?\n什么是 VIX 指数？",
+    "options": [
+      "Volatility Index based on S&P 500 options\n基于标普 500 期权的波动率指数",
+      "Volume Index of NYSE\n纽交所成交量指数",
+      "Value Investment Index\n价值投资指数"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The VIX measures market expectations of near-term volatility conveyed by S&P 500 stock index option prices.\nVIX 衡量标普 500 股指期权价格所传达的市场对近期波动率的预期。",
+    "category": "6. Indexes / 常见指数",
+    "id": 199
+  },
+  {
+    "content": "Which index tracks stocks outside the US?\n哪个指数追踪美国以外的股票？",
+    "options": [
+      "Wilshire 5000\nWilshire 5000",
+      "MSCI EAFE\nMSCI EAFE",
+      "Russell 1000\n罗素 1000"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "MSCI EAFE tracks developed markets in Europe, Australasia, and the Far East.\nMSCI EAFE 追踪欧洲、大洋洲和远东的发达市场。",
+    "category": "6. Indexes / 常见指数",
+    "id": 200
+  },
+  {
+    "content": "What does 'float-adjusted' mean in index calculation?\n指数计算中的“流通调整”是什么意思？",
+    "options": [
+      "Adjusts for inflation\n针对通胀进行调整",
+      "Counts only shares available to public investors\n仅计算公众投资者可获得的股份",
+      "Adjusts for dividend payments\n针对股息支付进行调整"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Float-adjusted capitalization counts only shares that are available to the public, excluding locked-in shares.\n流通调整市值仅计算公众可获得的股份，不包括锁定的股份。",
+    "category": "6. Indexes / 常见指数",
+    "id": 201
+  },
+  {
+    "content": "What is a 'Total Return' index?\n什么是“总回报”指数？",
+    "options": [
+      "Tracks only price changes\n仅追踪价格变化",
+      "Includes reinvestment of dividends and distributions\n包括股息和分配的再投资",
+      "Subtracts inflation from returns\n从回报中扣除通胀"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A total return index assumes all cash distributions (dividends) are reinvested back into the index.\n总回报指数假设所有现金分配（股息）都再投资回指数中。",
+    "category": "6. Indexes / 常见指数",
+    "id": 202
+  },
+  {
+    "content": "Which sector has the highest weight in the S&P 500 (historically recent)?\n哪个板块在标普 500 中权重最高（近期历史）？",
+    "options": [
+      "Energy\n能源",
+      "Information Technology\n信息技术",
+      "Utilities\n公用事业"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "In recent years, Information Technology has been the largest sector by weight in the S&P 500.\n近年来，信息技术一直是标普 500 中权重最大的板块。",
+    "category": "6. Indexes / 常见指数",
+    "id": 203
+  },
+  {
+    "content": "What happens when a stock is removed from an index?\n当股票被移出指数时会发生什么？",
+    "options": [
+      "Index funds must sell the stock\n指数基金必须出售该股票",
+      "Stock price usually increases\n股价通常会上涨",
+      "Company goes bankrupt\n公司破产"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Index funds tracking that index are forced to sell the stock, often leading to a short-term price drop.\n追踪该指数的指数基金被迫出售该股票，通常导致短期价格下跌。",
+    "category": "6. Indexes / 常见指数",
+    "id": 204
+  },
+  {
+    "content": "What does the P/E ratio measure?\n市盈率（P/E）衡量什么？",
+    "options": [
+      "Price relative to Sales\n价格相对于销售额",
+      "Price relative to Earnings Per Share (EPS)\n价格相对于每股收益（EPS）",
+      "Price relative to Book Value\n价格相对于账面价值"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "P/E Ratio = Market Price per Share / Earnings Per Share. It values a company relative to its earnings.\n市盈率 = 每股市价 / 每股收益。它相对于收益对公司进行估值。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 205
+  },
+  {
+    "content": "Which financial statement shows a company's financial position at a specific point in time?\n哪份财务报表显示公司在特定时间点的财务状况？",
+    "options": [
+      "Income Statement\n利润表",
+      "Balance Sheet\n资产负债表",
+      "Cash Flow Statement\n现金流量表"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Balance Sheet reports assets, liabilities, and equity at a specific date.\n资产负债表报告特定日期的资产、负债和权益。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 206
+  },
+  {
+    "content": "What is EBITDA?\n什么是 EBITDA？",
+    "options": [
+      "Earnings Before Interest, Taxes, Depreciation, and Amortization\n息税折旧摊销前利润",
+      "Earnings Before Income, Tax, and Assets\n收入、税收和资产前利润",
+      "Equity Before Interest and Tax Deductions\n利息和税收扣除前权益"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "EBITDA is a measure of a company's overall financial performance and is used as an alternative to net income.\nEBITDA 是衡量公司整体财务表现的指标，用作净收入的替代指标。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 207
+  },
+  {
+    "content": "What does a Current Ratio < 1 indicate?\n流动比率 < 1 表明什么？",
+    "options": [
+      "Good long-term solvency\n良好的长期偿债能力",
+      "Potential liquidity problems\n潜在的流动性问题",
+      "High profitability\n高盈利能力"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Current Ratio = Current Assets / Current Liabilities. A ratio < 1 suggests the company may struggle to pay short-term debts.\n流动比率 = 流动资产 / 流动负债。比率 < 1 表明公司可能难以偿还短期债务。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 208
+  },
+  {
+    "content": "What is Free Cash Flow (FCF)?\n什么是自由现金流（FCF）？",
+    "options": [
+      "Operating Cash Flow - Capital Expenditures\n经营现金流 - 资本支出",
+      "Net Income + Depreciation\n净收入 + 折旧",
+      "Revenue - Expenses\n收入 - 支出"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "FCF represents the cash a company generates after accounting for cash outflows to support operations and maintain its capital assets.\nFCF 代表公司在扣除支持运营和维护资本资产的现金流出后产生的现金。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 209
+  },
+  {
+    "content": "Which ratio measures profitability relative to shareholder equity?\n哪个比率衡量相对于股东权益的盈利能力？",
+    "options": [
+      "ROA (Return on Assets)\nROA（资产回报率）",
+      "ROE (Return on Equity)\nROE（净资产收益率）",
+      "ROI (Return on Investment)\nROI（投资回报率）"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "ROE = Net Income / Shareholders' Equity. It measures how effectively management is using a company's assets to create profits.\nROE = 净收入 / 股东权益。它衡量管理层利用公司资产创造利润的效率。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 210
+  },
+  {
+    "content": "What is the 'top line' of an income statement?\n利润表的“顶线”是什么？",
+    "options": [
+      "Net Income\n净收入",
+      "Revenue / Sales\n收入/销售额",
+      "Gross Profit\n毛利"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The top line refers to a company's gross revenue or sales.\n顶线指的是公司的总收入或销售额。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 211
+  },
+  {
+    "content": "What does a high Debt-to-Equity ratio imply?\n高债务权益比意味着什么？",
+    "options": [
+      "Low financial leverage\n低财务杠杆",
+      "High financial leverage and risk\n高财务杠杆和风险",
+      "High liquidity\n高流动性"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A high Debt-to-Equity ratio indicates that a company is primarily financing its growth with debt, implying higher risk.\n高债务权益比表明公司主要通过债务为其增长融资，意味着更高的风险。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 212
+  },
+  {
+    "content": "In cash flow analysis, where do dividend payments appear?\n在现金流分析中，股息支付出现在哪里？",
+    "options": [
+      "Operating Activities\n经营活动",
+      "Investing Activities\n投资活动",
+      "Financing Activities\n筹资活动"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Dividends paid to shareholders are reported under Cash Flow from Financing Activities.\n支付给股东的股息在筹资活动产生的现金流中报告。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 213
+  },
+  {
+    "content": "What is 'Gross Margin'?\n什么是“毛利率”？",
+    "options": [
+      "(Revenue - COGS) / Revenue\n(收入 - 销货成本) / 收入",
+      "Net Income / Revenue\n净收入 / 收入",
+      "Operating Income / Revenue\n营业收入 / 收入"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods.\n毛利率代表公司在扣除生产商品的直接成本后保留的总销售收入百分比。",
+    "category": "7. Financial Analysis / 财报分析",
+    "id": 214
+  },
+  {
+    "content": "Which stage of the industry life cycle is characterized by slowing growth and intense competition?\n行业生命周期的哪个阶段以增长放缓和竞争激烈为特征？",
+    "options": [
+      "Start-up\n初创期",
+      "Growth\n成长期",
+      "Shakeout / Maturity\n震荡/成熟期"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "In the shakeout/maturity phase, growth slows, weaker competitors exit, and competition becomes intense.\n在震荡/成熟阶段，增长放缓，较弱的竞争对手退出，竞争变得激烈。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 215
+  },
+  {
+    "content": "What is a cyclical industry?\n什么是周期性行业？",
+    "options": [
+      "Industry unaffected by economy\n不受经济影响的行业",
+      "Industry sensitive to business cycles\n对商业周期敏感的行业",
+      "Industry with constant growth\n持续增长的行业"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Cyclical industries (e.g., autos, housing) perform well in expansions and poorly in recessions.\n周期性行业（如汽车、住房）在扩张期表现良好，在衰退期表现不佳。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 216
+  },
+  {
+    "content": "Which of these is a defensive sector?\n以下哪个是防御性板块？",
+    "options": [
+      "Consumer Discretionary\n非必需消费品",
+      "Technology\n科技",
+      "Consumer Staples\n必需消费品"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Defensive sectors like Consumer Staples tend to remain stable regardless of the economic state.\n防御性板块（如必需消费品）往往无论经济状况如何都保持稳定。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 217
+  },
+  {
+    "content": "What is Porter's Five Forces model used for?\n波特五力模型用于什么？",
+    "options": [
+      "Analyzing macroeconomic trends\n分析宏观经济趋势",
+      "Analyzing industry competitive intensity\n分析行业竞争强度",
+      "Analyzing stock price patterns\n分析股价形态"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Porter's Five Forces identifies and analyzes five competitive forces that shape every industry.\n波特五力模型识别并分析塑造每个行业的五种竞争力量。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 218
+  },
+  {
+    "content": "What is 'Same-Store Sales' (SSS) growth?\n什么是“同店销售”（SSS）增长？",
+    "options": [
+      "Total sales growth\n总销售增长",
+      "Sales growth from stores open at least a year\n开业至少一年的店铺的销售增长",
+      "Sales from new stores only\n仅来自新店的销售"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "SSS growth measures revenue growth for retail locations that have been open for a year or more, excluding new store impact.\nSSS 增长衡量开业一年或更长时间的零售地点的收入增长，排除新店影响。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 219
+  },
+  {
+    "content": "What is a high barrier to entry?\n什么是高进入壁垒？",
+    "options": [
+      "Easy for new competitors to enter\n新竞争者容易进入",
+      "Difficult/Expensive for new competitors to enter\n新竞争者难以/昂贵进入",
+      "Low regulatory requirements\n低监管要求"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "High barriers to entry (e.g., patents, high capital costs) protect existing companies from new competition.\n高进入壁垒（如专利、高资本成本）保护现有公司免受新竞争。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 220
+  },
+  {
+    "content": "How is market share calculated?\n市场份额如何计算？",
+    "options": [
+      "Company Revenue / Total Industry Revenue\n公司收入 / 行业总收入",
+      "Company Profit / Total Industry Profit\n公司利润 / 行业总利润",
+      "Company Assets / Total Industry Assets\n公司资产 / 行业总资产"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Market share is the percentage of an industry's total sales that is earned by a particular company.\n市场份额是特定公司获得的行业总销售额的百分比。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 221
+  },
+  {
+    "content": "What characterizes a fragmented industry?\n分散行业的特征是什么？",
+    "options": [
+      "Dominated by one company\n由一家公司主导",
+      "Dominated by a few large companies\n由几家大公司主导",
+      "Many small competitors, none dominant\n许多小竞争者，无主导者"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "A fragmented industry has no single enterprise that has a large enough share of the market to influence the industry's direction.\n分散行业中没有一家企业拥有足够大的市场份额来影响行业方向。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 222
+  },
+  {
+    "content": "Which factor is LEAST likely to affect a utility company's revenue?\n哪个因素最不可能影响公用事业公司的收入？",
+    "options": [
+      "Regulatory rate changes\n监管费率变化",
+      "Fashion trends\n时尚趋势",
+      "Energy consumption patterns\n能源消费模式"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Utilities are regulated and demand-driven; fashion trends have little to no impact.\n公用事业受监管且受需求驱动；时尚趋势几乎没有影响。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 223
+  },
+  {
+    "content": "What is 'Churn Rate'?\n什么是“流失率”？",
+    "options": [
+      "Rate of new customer acquisition\n新客户获取率",
+      "Percentage of customers who stop using a service\n停止使用服务的客户百分比",
+      "Employee turnover rate\n员工流动率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Churn rate is the rate at which customers stop doing business with an entity, crucial in subscription models.\n流失率是客户停止与实体做生意的比率，在订阅模式中至关重要。",
+    "category": "8. Revenue & Industry / 行业分析",
+    "id": 224
+  },
+  {
+    "content": "What is insider trading?\n什么是内幕交易？",
+    "options": [
+      "Trading based on public information\n基于公开信息交易",
+      "Trading based on material non-public information\n基于重大非公开信息交易",
+      "Trading by company executives legally\n公司高管合法交易"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Insider trading involves trading a public company's stock by someone who has non-public, material information about that stock.\n内幕交易涉及拥有关于某上市公司股票的非公开重大信息的人进行交易。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 225
+  },
+  {
+    "content": "What is a 'fiduciary duty'?\n什么是“信托责任”？",
+    "options": [
+      "Duty to maximize commissions\n最大化佣金的责任",
+      "Legal obligation to act in the best interest of the client\n为客户最大利益行事的法律义务",
+      "Duty to follow market trends\n跟随市场趋势的责任"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Fiduciary duty requires a financial advisor to act solely in the best interest of their client.\n信托责任要求财务顾问完全为了客户的最大利益行事。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 226
+  },
+  {
+    "content": "What is 'front-running'?\n什么是“抢先交易”？",
+    "options": [
+      "Broker trading for own account before client order\n经纪人在客户订单前为自己账户交易",
+      "Running ahead of the market open\n在市场开盘前运行",
+      "Prioritizing large clients\n优先考虑大客户"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Front-running is the unethical practice of a broker trading an equity in their personal account based on advanced knowledge of pending orders from clients.\n抢先交易是经纪人基于对客户未决订单的预知，在个人账户中交易股票的不道德行为。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 227
+  },
+  {
+    "content": "What is 'churning' in an account context?\n账户背景下的“过度交易”是什么？",
+    "options": [
+      "Excessive trading to generate commissions\n为了产生佣金而过度交易",
+      "Mixing assets\n混合资产",
+      "Moving money between accounts\n在账户间转移资金"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Churning refers to a broker conducting excessive trading in a client's account mainly to generate commissions.\n过度交易是指经纪人在客户账户中进行过度交易，主要是为了产生佣金。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 228
+  },
+  {
+    "content": "What constitutes a 'conflict of interest'?\n什么构成“利益冲突”？",
+    "options": [
+      "When interests of agent and principal align\n代理人和委托人利益一致时",
+      "When personal interests compete with professional duties\n当个人利益与职业职责竞争时",
+      "When two clients have the same portfolio\n当两个客户拥有相同的投资组合时"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A conflict of interest occurs when an entity or individual becomes unreliable because of a clash between personal interests and professional duties.\n当个人利益与职业职责发生冲突导致实体或个人不可靠时，就会发生利益冲突。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 229
+  },
+  {
+    "content": "What is 'Money Laundering'?\n什么是“洗钱”？",
+    "options": [
+      "Cleaning dirty banknotes\n清洗脏钞票",
+      "Process of making illegally-gained proceeds appear legal\n使非法所得看起来合法的过程",
+      "Donating money to charity\n向慈善机构捐款"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Money laundering is the illegal process of concealing the origins of money obtained illegally.\n洗钱是隐瞒非法所得资金来源的非法过程。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 230
+  },
+  {
+    "content": "What is the purpose of 'KYC' (Know Your Client)?\n'KYC'（了解你的客户）的目的是什么？",
+    "options": [
+      "To send birthday cards\n发送生日贺卡",
+      "To verify identity and assess suitability/risk\n验证身份并评估适用性/风险",
+      "To increase advertising reach\n增加广告覆盖面"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "KYC rules ensure investment advisors know detailed information about their clients' risk tolerance, investment knowledge, and financial position.\nKYC 规则确保投资顾问了解有关其客户风险承受能力、投资知识和财务状况的详细信息。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 231
+  },
+  {
+    "content": "What is 'Market Manipulation'?\n什么是“市场操纵”？",
+    "options": [
+      "Natural price discovery\n自然价格发现",
+      "Artificially inflating or deflating prices\n人为抬高或压低价格",
+      "Hedging risk\n对冲风险"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Market manipulation involves deliberate interference with the free and fair operation of the market.\n市场操纵涉及对市场自由公平运作的蓄意干预。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 232
+  },
+  {
+    "content": "Can an analyst own stock in a company they cover?\n分析师可以持有他们所覆盖公司的股票吗？",
+    "options": [
+      "Yes, without disclosure\n可以，无需披露",
+      "Yes, with full disclosure and restrictions\n可以，需全面披露并受限制",
+      "No, never\n不，从不"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Generally, analysts can own stock but must disclose it, and there are strict rules against trading contrary to their recommendations or ahead of reports.\n通常，分析师可以持股但必须披露，并且有严格规则禁止与推荐相反的交易或在报告前交易。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 233
+  },
+  {
+    "content": "What is a 'Chinese Wall' (Information Barrier) in finance?\n金融中的“中国墙”（信息隔离墙）是什么？",
+    "options": [
+      "A physical wall in the office\n办公室里的实体墙",
+      "Barrier to prevent exchange of non-public information between departments\n防止部门间非公开信息交换的障碍",
+      "Trade barrier with China\n与中国的贸易壁垒"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Information barriers separate departments (e.g., investment banking and research) to prevent conflicts of interest and insider trading.\n信息隔离墙分隔部门（例如投资银行和研究部），以防止利益冲突和内幕交易。",
+    "category": "9. Financial Ethics / 金融道德",
+    "id": 234
+  },
+  {
+    "id": 235,
+    "content": "Which SEC filing is an annual report that provides a comprehensive summary of a company's financial performance?\n哪份 SEC 文件是年度报告，提供了公司财务业绩的全面总结？",
+    "options": [
+      "Form 10-Q\n表格 10-Q",
+      "Form 8-K\n表格 8-K",
+      "Form 10-K\n表格 10-K",
+      "Form S-1\n表格 S-1"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Form 10-K is an annual report required by the SEC, giving a comprehensive summary of a company's financial performance. Form 10-Q is quarterly.\n表格 10-K 是 SEC 要求的年度报告，提供公司财务业绩的全面总结。表格 10-Q 是季度报告。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 236,
+    "content": "Which SEC filing is required to be filed quarterly?\n哪份 SEC 文件要求每季度提交一次？",
+    "options": [
+      "Form 10-K\n表格 10-K",
+      "Form 10-Q\n表格 10-Q",
+      "Form 8-K\n表格 8-K",
+      "Form 13-F\n表格 13-F"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Form 10-Q is a comprehensive report of financial performance that must be submitted quarterly by all public companies.\n表格 10-Q 是所有上市公司必须每季度提交的财务业绩综合报告。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 237,
+    "content": "Which form must a company file to announce major events that shareholders should know about?\n公司必须提交哪种表格来宣布股东应该知道的重大事件？",
+    "options": [
+      "Form 10-K\n表格 10-K",
+      "Form 8-K\n表格 8-K",
+      "Form 10-Q\n表格 10-Q",
+      "Form 4\n表格 4"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Form 8-K is the 'current report' companies must file with the SEC to announce major events that shareholders should know about.\n表格 8-K 是公司必须向 SEC 提交的“当前报告”，用于宣布股东应该知道的重大事件。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 238,
+    "content": "Which of the following is excluded from the Quick Ratio calculation?\n以下哪项不包括在速动比率计算中？",
+    "options": [
+      "Cash\n现金",
+      "Accounts Receivable\n应收账款",
+      "Inventory\n库存",
+      "Marketable Securities\n有价证券"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Quick Ratio measures liquidity by excluding inventory, which is considered less liquid than cash or receivables. Formula: (Current Assets - Inventory) / Current Liabilities.\n速动比率通过排除库存来衡量流动性，库存被认为比现金或应收账款流动性更差。公式：（流动资产 - 库存）/ 流动负债。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 239,
+    "content": "What does Diluted EPS take into account that Basic EPS does not?\n稀释每股收益（Diluted EPS）考虑了基本每股收益（Basic EPS）没有考虑的什么因素？",
+    "options": [
+      "Preferred Dividends\n优先股股息",
+      "Convertible Securities\n可转换证券",
+      "Interest Expense\n利息支出",
+      "Tax Rates\n税率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Diluted EPS calculates earnings per share assuming all convertible securities (like options, warrants, convertible bonds) are exercised.\n稀释每股收益计算假设所有可转换证券（如期权、认股权证、可转换债券）都被行权后的每股收益。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 240,
+    "content": "A high P/E ratio usually implies that investors expect:\n高市盈率（P/E）通常意味着投资者预期：",
+    "options": [
+      "Lower future growth\n未来增长较低",
+      "Higher future growth\n未来增长较高",
+      "Bankruptcy\n破产",
+      "Stable dividends only\n仅有稳定的股息"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A high P/E ratio suggests that investors are willing to pay a higher price today because of growth expectations in the future.\n高市盈率表明，由于对未来的增长预期，投资者愿意在今天支付更高的价格。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 241,
+    "content": "How is Dividend Yield calculated?\n股息率（Dividend Yield）是如何计算的？",
+    "options": [
+      "Annual Dividend / Earnings Per Share\n年度股息 / 每股收益",
+      "Annual Dividend / Current Stock Price\n年度股息 / 当前股价",
+      "Net Income / Dividend Paid\n净利润 / 支付的股息",
+      "Stock Price / Annual Dividend\n股价 / 年度股息"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Dividend Yield is the financial ratio that shows how much a company pays out in dividends each year relative to its stock price.\n股息率是显示公司每年支付的股息相对于其股价的财务比率。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 242,
+    "content": "What is the formula for Working Capital?\n营运资金的公式是什么？",
+    "options": [
+      "Total Assets - Total Liabilities\n总资产 - 总负债",
+      "Current Assets - Current Liabilities\n流动资产 - 流动负债",
+      "Cash + Inventory\n现金 + 库存",
+      "Net Income + Depreciation\n净利润 + 折旧"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Working Capital is the difference between a company's current assets and current liabilities, measuring short-term financial health.\n营运资金是公司流动资产与流动负债之间的差额，衡量短期财务健康状况。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 243,
+    "content": "When is Goodwill recorded on a balance sheet?\n商誉何时记录在资产负债表上？",
+    "options": [
+      "When a company generates high profits\n当公司产生高额利润时",
+      "When a company acquires another company for more than the fair value of its net assets\n当一家公司以高于其净资产公允价值的价格收购另一家公司时",
+      "Annually based on brand value estimation\n每年根据品牌价值估算",
+      "When a patent is granted\n当专利获得批准时"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Goodwill is an intangible asset that arises when a buyer acquires an existing business for more than the fair value of its identifiable net assets.\n商誉是一种无形资产，当买方以高于其可识别净资产公允价值的价格收购现有业务时产生。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 244,
+    "content": "Which of the following is an example of a Cash Flow from Investing Activities?\n以下哪项是投资活动产生的现金流的例子？",
+    "options": [
+      "Paying dividends\n支付股息",
+      "Issuing common stock\n发行普通股",
+      "Purchase of property, plant, and equipment (PP&E)\n购买物业、厂房和设备 (PP&E)",
+      "Receipt of customer payments\n收到客户付款"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Investing activities involve the purchase and sale of long-term assets like PP&E. Dividends and stock issuance are financing; customer payments are operating.\n投资活动涉及购买和出售长期资产，如 PP&E。股息和股票发行是融资活动；客户付款是经营活动。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 245,
+    "content": "Which of the following is classified as a Cash Flow from Financing Activities?\n以下哪项被归类为筹资活动产生的现金流？",
+    "options": [
+      "Net Income\n净利润",
+      "Depreciation\n折旧",
+      "Repurchase of company stock (Treasury Stock)\n回购公司股票（库存股）",
+      "Sale of old equipment\n出售旧设备"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Financing activities include transactions involving debt, equity, and dividends. Buying back stock is a financing outflow.\n筹资活动包括涉及债务、股权和股息的交易。回购股票是筹资流出。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 246,
+    "content": "Which type of auditor opinion is considered the 'cleanest' and most favorable?\n哪种类型的审计意见被认为是“最干净”和最有利的？",
+    "options": [
+      "Qualified Opinion\n保留意见",
+      "Adverse Opinion\n否定意见",
+      "Disclaimer of Opinion\n无法表示意见",
+      "Unqualified Opinion\n无保留意见"
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "An Unqualified Opinion states that the financial statements present fairly, in all material respects, the financial position of the entity.\n无保留意见表明财务报表在所有重大方面公允地反映了实体的财务状况。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 247,
+    "content": "Under the Accrual Basis of accounting, when is revenue recognized?\n在权责发生制会计下，何时确认收入？",
+    "options": [
+      "When cash is received\n收到现金时",
+      "When the performance obligation is satisfied (earned)\n当履约义务得到满足（赚取）时",
+      "When the invoice is sent\n发送发票时",
+      "At the end of the year\n年底"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Accrual accounting recognizes revenue when it is earned and realizable, regardless of when cash changes hands.\n权责发生制会计在收入赚取并可实现时确认收入，无论现金何时易手。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 248,
+    "content": "What is Depreciation in accounting?\n会计中的折旧是什么？",
+    "options": [
+      "The decrease in market value of an asset\n资产市场价值的下降",
+      "The allocation of the cost of a tangible asset over its useful life\n有形资产成本在其使用寿命内的分摊",
+      "A cash expense paid annually\n每年支付的现金支出",
+      "The loss of inventory due to theft\n因盗窃造成的库存损失"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Depreciation is the systematic allocation of the cost of a tangible asset over its useful life. It is a non-cash expense.\n折旧是有形资产成本在其使用寿命内的系统分摊。它是一种非现金支出。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 249,
+    "content": "Which financial statement reports a company's assets, liabilities, and shareholders' equity at a specific point in time?\n哪份财务报表报告了公司在特定时间点的资产、负债和股东权益？",
+    "options": [
+      "Income Statement\n利润表",
+      "Statement of Cash Flows\n现金流量表",
+      "Balance Sheet\n资产负债表",
+      "Statement of Retained Earnings\n留存收益表"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Balance Sheet is a snapshot of the company's financial position at a single point in time.\n资产负债表是公司在单一时间点财务状况的快照。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 250,
+    "content": "Which financial statement shows the company's profitability over a period of time?\n哪份财务报表显示了公司在一段时间内的盈利能力？",
+    "options": [
+      "Balance Sheet\n资产负债表",
+      "Income Statement\n利润表",
+      "Statement of Cash Flows\n现金流量表",
+      "Shareholder Equity Statement\n股东权益表"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Income Statement reports revenues, expenses, and net income over a specific period (e.g., a quarter or year).\n利润表报告特定时期（例如季度或年度）的收入、支出和净利润。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 251,
+    "content": "Which section of the Cash Flow Statement starts with Net Income in the indirect method?\n在间接法中，现金流量表的哪个部分以净利润开始？",
+    "options": [
+      "Investing Activities\n投资活动",
+      "Financing Activities\n筹资活动",
+      "Operating Activities\n经营活动",
+      "Supplemental Activities\n补充活动"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Operating Activities section in the indirect method starts with Net Income and adjusts for non-cash items and working capital changes.\n间接法中的经营活动部分以净利润开始，并针对非现金项目和营运资金变化进行调整。",
+    "category": "7. Financial Analysis / 财报分析"
   }
 ]

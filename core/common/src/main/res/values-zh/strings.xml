@@ -18,7 +18,7 @@
 
     <!-- Home Screen -->
     <string name="home_title">主页</string>
-    <string name="home_welcome">欢迎来到金融初级考试备考</string>
+    <string name="home_welcome">欢迎来到金融初级考试</string>
     <string name="home_start_practice">🎯 开始练习</string>
     <string name="home_start_practice_subtitle">按主题学习题目</string>
     <string name="home_mock_exam">📝 模拟考试</string>
@@ -84,15 +84,15 @@
     <string name="stats_empty">暂无考试记录</string>
     <string name="stats_average_score">平均分</string>
     <string name="stats_recent_results">最近成绩</string>
-    <string name="stats_score_label">得分: %d%%</string>
+    <string name="stats_score_label">得分：%d%%</string>
 
     <!-- Exam History -->
     <string name="exam_history_title">考试历史</string>
     <string name="exam_history_empty">暂无考试记录</string>
     <string name="exam_history_view_all">查看全部历史</string>
-    <string name="exam_history_total_exams">考试次数: %d</string>
-    <string name="exam_history_best_score">最高分: %d%%</string>
-    <string name="exam_history_pass_rate">通过率: %d%%</string>
+    <string name="exam_history_total_exams">考试次数：%d</string>
+    <string name="exam_history_best_score">最高分：%d%%</string>
+    <string name="exam_history_pass_rate">通过率：%d%%</string>
     <string name="exam_detail_title">考试详情</string>
     <string name="exam_detail_filter_all">全部</string>
     <string name="exam_detail_filter_wrong">仅错题</string>
@@ -112,7 +112,7 @@
     <string name="settings_language_en">English</string>
     <string name="settings_language_zh">中文</string>
     <string name="settings_font_size">字体大小</string>
-    <string name="settings_font_size_current">当前比例: %d</string>
+    <string name="settings_font_size_current">当前比例：%d</string>
     <string name="settings_data_management">数据管理</string>
     <string name="settings_clear_study_history">清空学习记录</string>
     <string name="settings_clear_wrong_questions">清空错题记录</string>
@@ -182,6 +182,7 @@
     <string name="chapter_error">加载章节失败，请重试</string>
     <string name="chapter_retry">重试</string>
     <string name="chapter_select_hint">请至少选择一个章节</string>
-    <string name="chapter_progress_format">%1$d题 | 已学%2$d | 正确率%3$.0f%%</string>
+    <string name="chapter_progress_format">%1$d 题 (%4$.1f%%) | 已学 %2$d | 正确率 %3$.0f%%</string>
     <string name="chapter_not_studied">尚未学习</string>
+    <string name="chapter_not_studied_format">%1$d 题 (%2$.1f%%) • 尚未学习</string>
 </resources>
