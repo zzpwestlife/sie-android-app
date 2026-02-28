@@ -4,8 +4,10 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,6 +28,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.sie.core.designsystem.component.GlassCard
+import com.example.sie.core.designsystem.theme.PrimaryGradient
+import com.example.sie.core.designsystem.theme.SecondaryGradient
 import com.example.sie.core.model.ExamResult
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -70,23 +75,37 @@ internal fun StatsScreen(uiState: StatsUiState) {
                         color = Color.White
                     )
 
-                    Box(
-                        modifier = Modifier.fillMaxWidth().padding(32.dp),
-                        contentAlignment = Alignment.Center
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    GlassCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        gradient = PrimaryGradient
                     ) {
-                        ScoreChart(score = uiState.averageScore)
+                        Box(
+                            modifier = Modifier.fillMaxWidth().padding(16.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            ScoreChart(score = uiState.averageScore)
+                        }
                     }
+
+                    Spacer(modifier = Modifier.height(24.dp))
 
                     Text(
                         text = "Recent Results",
                         style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(vertical = 8.dp),
+                        modifier = Modifier.padding(bottom = 8.dp),
                         color = Color.White
                     )
 
                     LazyColumn {
                         items(uiState.recentResults) { result ->
-                            ExamResultItem(result)
+                            GlassCard(
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                                gradient = SecondaryGradient
+                            ) {
+                                ExamResultItemContent(result)
+                            }
                         }
                     }
                 }
@@ -123,30 +142,24 @@ fun ScoreChart(score: Float) {
 }
 
 @Composable
-fun ExamResultItem(result: ExamResult) {
+fun ExamResultItemContent(result: ExamResult) {
     val dateFormat = SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault())
-    ListItem(
-        headlineContent = {
-            Text(
-                text = "Score: ${result.score}%",
-                color = Color.White
-            )
-        },
-        supportingContent = {
-            Text(
-                text = dateFormat.format(Date(result.date)),
-                color = Color.White.copy(alpha = 0.7f)
-            )
-        },
-        trailingContent = {
-            Text(
-                text = "${result.correctCount}/${result.totalQuestions}",
-                style = MaterialTheme.typography.bodySmall,
-                color = Color.White.copy(alpha = 0.9f)
-            )
-        },
-        colors = ListItemDefaults.colors(
-            containerColor = Color.White.copy(alpha = 0.1f)
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            text = "Score: ${result.score}%",
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.White
         )
-    )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = dateFormat.format(Date(result.date)),
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color.White.copy(alpha = 0.7f)
+        )
+        Text(
+            text = "${result.correctCount}/${result.totalQuestions}",
+            style = MaterialTheme.typography.bodySmall,
+            color = Color.White.copy(alpha = 0.9f)
+        )
+    }
 }
