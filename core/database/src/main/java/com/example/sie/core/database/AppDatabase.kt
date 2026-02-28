@@ -19,7 +19,19 @@ val MIGRATION_9_10 = object : Migration(9, 10) {
     }
 }
 
-@Database(entities = [QuestionEntity::class, ExamResultEntity::class], version = 10, exportSchema = true)
+val MIGRATION_10_11 = object : Migration(10, 11) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        // Add indices for performance optimization
+        database.execSQL(
+            "CREATE INDEX IF NOT EXISTS index_bookmark_category ON questions(isBookmarked, category, id)"
+        )
+        database.execSQL(
+            "CREATE INDEX IF NOT EXISTS index_wrong_category ON questions(isWrong, wrongCount, category, id)"
+        )
+    }
+}
+
+@Database(entities = [QuestionEntity::class, ExamResultEntity::class], version = 11, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao

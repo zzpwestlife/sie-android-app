@@ -14,6 +14,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 @RunWith(AndroidJUnit4::class)
@@ -497,5 +498,40 @@ class QuestionDaoTest {
 
         // Then
         assertEquals(2, count)
+    }
+
+    @Test
+    fun getQuestionByIdFlow_nonExistentId_returnsNull() = runTest {
+        // Given: Database with question ID 10001
+        val question = QuestionEntity(
+            10001, "Q1", """["A", "B", "C", "D"]""", 0, "Explanation", "Math",
+            isBookmarked = false, isWrong = false, wrongCount = 0
+        )
+        questionDao.insertAll(listOf(question))
+
+        // When: Query non-existent ID
+        val result = questionDao.getQuestionByIdFlow(99999).first()
+
+        // Then: Should return null
+        assertNull(result)
+    }
+
+    @Test
+    fun markAsWrongBatch_emptyList_shouldNotFail() = runTest {
+        // Given: Database with 1 question
+        questionDao.insertAll(listOf(
+            QuestionEntity(11001, "Q1", """["A"]""", 0, "E", "Math", false, false, 0)
+        ))
+
+        // When: Call with empty list
+        // Then: Should not throw exception
+        questionDao.markAsWrongBatch(emptyList())
+    }
+
+    @Test
+    fun toggleBookmark_nonExistentId_shouldNotThrow() = runTest {
+        // When: Toggle non-existent ID
+        // Then: Should not throw exception
+        questionDao.toggleBookmark(99999)
     }
 }

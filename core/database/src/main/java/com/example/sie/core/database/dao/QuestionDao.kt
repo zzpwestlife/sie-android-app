@@ -16,7 +16,7 @@ interface QuestionDao {
     suspend fun getQuestionById(id: Int): QuestionEntity?
 
     @Query("SELECT * FROM questions WHERE id = :id")
-    fun getQuestionByIdFlow(id: Int): Flow<QuestionEntity>
+    fun getQuestionByIdFlow(id: Int): Flow<QuestionEntity?>
     
     @Query("SELECT * FROM questions ORDER BY RANDOM() LIMIT :limit")
     fun getRandomQuestions(limit: Int): Flow<List<QuestionEntity>>

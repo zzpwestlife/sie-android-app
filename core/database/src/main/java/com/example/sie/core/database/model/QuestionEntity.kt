@@ -1,12 +1,19 @@
 package com.example.sie.core.database.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.sie.core.model.Question
 import org.json.JSONArray
 import org.json.JSONException
 
-@Entity(tableName = "questions")
+@Entity(
+    tableName = "questions",
+    indices = [
+        Index(value = ["isBookmarked", "category", "id"], name = "index_bookmark_category"),
+        Index(value = ["isWrong", "wrongCount", "category", "id"], name = "index_wrong_category")
+    ]
+)
 data class QuestionEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
