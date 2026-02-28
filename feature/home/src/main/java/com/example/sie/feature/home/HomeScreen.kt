@@ -1,5 +1,9 @@
 package com.example.sie.feature.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +16,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -46,6 +55,12 @@ internal fun HomeScreen(
     onStatsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
+    var cardsVisible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        cardsVisible = true
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -67,92 +82,94 @@ internal fun HomeScreen(
                 )
             }
         ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
                 Text(
                     text = "Welcome to Entry Test Prep",
                     style = MaterialTheme.typography.headlineMedium,
                     color = Color.White
                 )
 
-                GlassCard(
-                    modifier = Modifier.fillMaxWidth(),
+                AnimatedGlassCard(
+                    visible = cardsVisible,
+                    delay = 0,
                     gradient = PrimaryGradient,
-                    onClick = onTopicSelectionClick
-                ) {
-                    Text(
-                        text = "🎯 Start Practice",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Study questions by topic",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.7f)
-                    )
-                }
+                    onClick = onTopicSelectionClick,
+                    title = "🎯 Start Practice",
+                    subtitle = "Study questions by topic"
+                )
 
-                GlassCard(
-                    modifier = Modifier.fillMaxWidth(),
+                AnimatedGlassCard(
+                    visible = cardsVisible,
+                    delay = 100,
                     gradient = SecondaryGradient,
-                    onClick = onMockExamClick
-                ) {
-                    Text(
-                        text = "📝 Mock Exam",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Take a full practice test",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.7f)
-                    )
-                }
+                    onClick = onMockExamClick,
+                    title = "📝 Mock Exam",
+                    subtitle = "Take a full practice test"
+                )
 
-                GlassCard(
-                    modifier = Modifier.fillMaxWidth(),
+                AnimatedGlassCard(
+                    visible = cardsVisible,
+                    delay = 200,
                     gradient = TertiaryGradient,
-                    onClick = onStatsClick
-                ) {
-                    Text(
-                        text = "📊 Statistics",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "View your performance",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.7f)
-                    )
-                }
+                    onClick = onStatsClick,
+                    title = "📊 Statistics",
+                    subtitle = "View your performance"
+                )
 
-                GlassCard(
-                    modifier = Modifier.fillMaxWidth(),
+                AnimatedGlassCard(
+                    visible = cardsVisible,
+                    delay = 300,
                     gradient = AccentGradient,
-                    onClick = onSettingsClick
-                ) {
-                    Text(
-                        text = "⚙️ Settings",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Configure app preferences",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.7f)
-                    )
-                }
+                    onClick = onSettingsClick,
+                    title = "⚙️ Settings",
+                    subtitle = "Configure app preferences"
+                )
             }
+        }
+    }
+}
+
+@Composable
+private fun AnimatedGlassCard(
+    visible: Boolean,
+    delay: Int,
+    gradient: Brush,
+    onClick: () -> Unit,
+    title: String,
+    subtitle: String
+) {
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn(
+            animationSpec = tween(durationMillis = 500, delayMillis = delay)
+        ) + slideInVertically(
+            animationSpec = tween(durationMillis = 500, delayMillis = delay),
+            initialOffsetY = { it / 4 }
+        )
+    ) {
+        GlassCard(
+            modifier = Modifier.fillMaxWidth(),
+            gradient = gradient,
+            onClick = onClick
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                color = Color.White,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.White.copy(alpha = 0.7f)
+            )
         }
     }
 }
