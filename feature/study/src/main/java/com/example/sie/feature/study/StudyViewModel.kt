@@ -33,7 +33,7 @@ sealed interface StudyUiState {
 }
 
 private data class StudyHistoryItem(
-    val question: Question,
+    var question: Question,
     var selectedOptionIndex: Int? = null,
     var isAnswerRevealed: Boolean = false,
     var isCorrect: Boolean = false
@@ -136,14 +136,42 @@ class StudyViewModel @Inject constructor(
                 totalAnswered = stats.totalAnswered + 1,
                 correctCount = if (isCorrect) stats.correctCount + 1 else stats.correctCount
             )
-            
+
+            // Mark wrong questions in database for review later
+            if (!isCorrect) {
+                viewModelScope.launch {
+                    try {
+                        questionRepository.markAsWrong(currentItem.question.id)
+                    } catch (_: Exception) {
+                        // Silently ignore — marking wrong questions is non-critical
+                    }
+                }
+            }
+
             updateUiState()
+        }
+    }
+
+    fun toggleBookmark(questionId: Int) {
+        viewModelScope.launch {
+            try {
+                questionRepository.toggleBookmark(questionId)
+                // Update the bookmark state in the current history item
+                val currentItem = history.getOrNull(currentIndex) ?: return@launch
+                val updatedQuestion = currentItem.question.copy(
+                    isBookmarked = !currentItem.question.isBookmarked
+                )
+                currentItem.question = updatedQuestion
+                updateUiState()
+            } catch (_: Exception) {
+                // Silently handle bookmark toggle failure
+            }
         }
     }
 
     private fun updateUiState() {
         val currentItem = history.getOrNull(currentIndex) ?: return
-        
+
         _uiState.value = StudyUiState.Success(
             currentQuestion = currentItem.question,
             selectedOptionIndex = currentItem.selectedOptionIndex,
