@@ -277,20 +277,32 @@ class ExamViewModel @Inject constructor(
     }
 
     private fun markWrongQuestions(questions: List<Question>, userAnswers: Map<Int, Int>) {
-        val wrongQuestionIds = questions
-            .filter { question ->
-                val userAnswer = userAnswers[question.id]
-                userAnswer == null || userAnswer != question.correctAnswerIndex
-            }
-            .map { it.id }
+        val wrongQuestionIds = mutableListOf<Int>()
+        val correctQuestionIds = mutableListOf<Int>()
 
-        if (wrongQuestionIds.isNotEmpty()) {
-            viewModelScope.launch {
-                try {
+        questions.forEach { question ->
+            val userAnswer = userAnswers[question.id]
+            if (userAnswer == null || userAnswer != question.correctAnswerIndex) {
+                wrongQuestionIds.add(question.id)
+            } else {
+                correctQuestionIds.add(question.id)
+            }
+        }
+
+        viewModelScope.launch {
+            try {
+                // Mark wrong questions
+                if (wrongQuestionIds.isNotEmpty()) {
                     questionRepository.markAsWrongBatch(wrongQuestionIds)
-                } catch (_: Exception) {
-                    // 静默处理
                 }
+                // Clear wrong flag for correct questions
+                if (correctQuestionIds.isNotEmpty()) {
+                    correctQuestionIds.forEach { id ->
+                        questionRepository.removeFromWrong(id)
+                    }
+                }
+            } catch (_: Exception) {
+                // 静默处理
             }
         }
     }

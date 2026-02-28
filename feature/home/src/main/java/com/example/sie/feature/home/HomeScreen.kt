@@ -163,7 +163,8 @@ internal fun HomeScreen(
                     ),
                     onClick = onFlashcardsClick,
                     title = stringResource(CommonR.string.home_flashcards),
-                    subtitle = stringResource(CommonR.string.home_flashcards_subtitle)
+                    subtitle = stringResource(CommonR.string.home_flashcards_subtitle),
+                    enabled = false
                 )
 
                 AnimatedGlassCard(
@@ -186,7 +187,8 @@ private fun AnimatedGlassCard(
     gradient: Brush,
     onClick: () -> Unit,
     title: String,
-    subtitle: String
+    subtitle: String,
+    enabled: Boolean = true
 ) {
     AnimatedVisibility(
         visible = visible,
@@ -197,21 +199,28 @@ private fun AnimatedGlassCard(
             initialOffsetY = { it / 4 }
         )
     ) {
+        val displayGradient = if (enabled) gradient else Brush.linearGradient(
+            colors = listOf(
+                Color.Gray,
+                Color.LightGray
+            )
+        )
+        
         GlassCard(
             modifier = Modifier.fillMaxWidth(),
-            gradient = gradient,
-            onClick = onClick
+            gradient = displayGradient,
+            onClick = if (enabled) onClick else null
         ) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
-                color = Color.White,
+                color = if (enabled) Color.White else Color.White.copy(alpha = 0.5f),
                 fontWeight = FontWeight.Bold
             )
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodySmall,
-                color = Color.White.copy(alpha = 0.7f)
+                color = if (enabled) Color.White.copy(alpha = 0.7f) else Color.White.copy(alpha = 0.3f)
             )
         }
     }

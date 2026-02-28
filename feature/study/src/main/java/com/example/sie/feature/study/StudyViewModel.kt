@@ -1,10 +1,12 @@
 package com.example.sie.feature.study
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sie.core.data.repository.QuestionRepository
 import com.example.sie.core.data.repository.UserDataRepository
 import com.example.sie.core.model.Question
+import com.example.sie.feature.study.navigation.StudyArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.CancellationException
@@ -44,8 +46,11 @@ private data class StudyHistoryItem(
 @HiltViewModel
 class StudyViewModel @Inject constructor(
     private val questionRepository: QuestionRepository,
-    private val userDataRepository: UserDataRepository
+    private val userDataRepository: UserDataRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    private val studyArgs = StudyArgs(savedStateHandle)
 
     private val _uiState = MutableStateFlow<StudyUiState>(StudyUiState.Loading)
     val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
@@ -72,7 +77,16 @@ class StudyViewModel @Inject constructor(
                 _language.value = userData.language
             }
         }
-        initializeQuestions()
+
+        val categories = studyArgs.categories.filter { it.isNotBlank() }
+        android.util.Log.d("StudyViewModel", "Init: categories from args = ${studyArgs.categories}, filtered = $categories")
+        if (categories.isNotEmpty() && categories.first() != "all") {
+            android.util.Log.d("StudyViewModel", "Starting chapter study with categories: $categories")
+            startChapterStudy(categories)
+        } else {
+            android.util.Log.d("StudyViewModel", "Starting all questions mode")
+            initializeQuestions()
+        }
     }
 
     fun startChapterStudy(categories: List<String>) {
@@ -206,14 +220,18 @@ class StudyViewModel @Inject constructor(
                 }
             }
 
-            // Mark wrong questions in database for review later
-            if (!isCorrect) {
-                viewModelScope.launch {
-                    try {
+            // Update wrong/correct status in database
+            viewModelScope.launch {
+                try {
+                    if (!isCorrect) {
+                        // Mark as wrong for review later
                         questionRepository.markAsWrong(currentItem.question.id)
-                    } catch (_: Exception) {
-                        // Silently ignore — marking wrong questions is non-critical
+                    } else {
+                        // Clear wrong flag if answered correctly
+                        questionRepository.removeFromWrong(currentItem.question.id)
                     }
+                } catch (_: Exception) {
+                    // Silently ignore — updating wrong status is non-critical
                 }
             }
 

@@ -21,4 +21,10 @@ interface QuestionRepository {
     fun getAllCategories(): Flow<List<String>>
     fun getQuestionsByCategories(categories: List<String>): Flow<List<Question>>
     suspend fun markQuestionAsStudied(questionId: Int)
+
+    // Data management
+    suspend fun clearStudyHistory()
+    suspend fun clearWrongQuestions()
+    suspend fun clearBookmarks()
+    suspend fun clearAllUserData()
 }

@@ -88,19 +88,24 @@ class ChapterSelectionViewModel @Inject constructor(
                 }
             }
             _uiState.value = currentState.copy(chapters = updatedChapters)
+            android.util.Log.d("ChapterViewModel", "Toggled $chapterName. Selected chapters: ${getSelectedChapters()}")
         }
     }
 
     fun getSelectedChapters(): List<String> {
         val currentState = _uiState.value
-        return if (currentState is ChapterSelectionUiState.Success) {
+        val selected = if (currentState is ChapterSelectionUiState.Success) {
             currentState.chapters.filter { it.isSelected }.map { it.name }
         } else {
             emptyList()
         }
+        android.util.Log.d("ChapterViewModel", "getSelectedChapters() returning: $selected")
+        return selected
     }
 
     fun hasSelectedChapters(): Boolean {
-        return getSelectedChapters().isNotEmpty()
+        val has = getSelectedChapters().isNotEmpty()
+        android.util.Log.d("ChapterViewModel", "hasSelectedChapters() = $has")
+        return has
     }
 }

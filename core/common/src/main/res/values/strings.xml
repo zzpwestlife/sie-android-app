@@ -50,10 +50,12 @@
     <string name="exam_intro_questions_subtitle">Selected high-frequency questions</string>
     <string name="exam_intro_time">30 Minutes</string>
     <string name="exam_intro_time_subtitle">Total 0.5 hours</string>
-    <string name="exam_intro_pass">70%% to Pass</string>
+    <string name="exam_intro_pass">70% to Pass</string>
     <string name="exam_intro_pass_subtitle">Based on 32 scored questions</string>
     <string name="exam_intro_flagging">Flagging</string>
     <string name="exam_intro_flagging_subtitle">Flag uncertain questions for review</string>
+    <string name="exam_flagged">Flagged for review</string>
+    <string name="exam_unflagged">Unflagged</string>
     <string name="exam_button_start">Start Exam</string>
     <string name="exam_button_prev">Prev</string>
     <string name="exam_button_next">Next</string>
@@ -76,7 +78,7 @@
     <string name="exam_score_passed">Passed!</string>
     <string name="exam_score_failed">Failed</string>
     <string name="exam_score_congrats">Congratulations! You are ready for the real exam.</string>
-    <string name="exam_score_keep_practicing">Keep practicing. You need 70%% to pass.</string>
+    <string name="exam_score_keep_practicing">Keep practicing. You need 70% to pass.</string>
 
     <!-- Stats Screen -->
     <string name="stats_empty">No exam results yet.</string>
@@ -111,6 +113,20 @@
     <string name="settings_language_zh">中文</string>
     <string name="settings_font_size">Font Size Scale</string>
     <string name="settings_font_size_current">Current Scale: %d</string>
+    <string name="settings_data_management">Data Management</string>
+    <string name="settings_clear_study_history">Clear Study History</string>
+    <string name="settings_clear_wrong_questions">Clear Wrong Questions</string>
+    <string name="settings_clear_bookmarks">Clear Bookmarks</string>
+    <string name="settings_clear_exam_history">Clear Exam History</string>
+    <string name="settings_clear_all_data">Clear All Data</string>
+    <string name="settings_clear_confirm_title">Confirm Clear</string>
+    <string name="settings_clear_confirm_message">This will clear %s. Continue?</string>
+    <string name="settings_clear_success">Cleared %s</string>
+    <string name="settings_data_study_history">study history</string>
+    <string name="settings_data_wrong_questions">wrong questions</string>
+    <string name="settings_data_bookmarks">bookmarks</string>
+    <string name="settings_data_exam_history">exam history</string>
+    <string name="settings_data_all_data">all data</string>
 
     <!-- Bookmarked Screen -->
     <string name="bookmarked_title">Bookmarked Questions</string>
@@ -166,6 +182,6 @@
     <string name="chapter_error">Failed to load chapters. Please try again.</string>
     <string name="chapter_retry">Retry</string>
     <string name="chapter_select_hint">Select at least one chapter</string>
-    <string name="chapter_progress_format">%1$d questions | Studied %2$d | %3$.0f%%</string>
+    <string name="chapter_progress_format">%1$d questions | Studied %2$d | Accuracy %3$.0f%%</string>
     <string name="chapter_not_studied">Not studied yet</string>
 </resources>

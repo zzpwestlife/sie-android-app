@@ -32,11 +32,25 @@ data class Question(
     }
 
     fun getExplanation(language: String): String {
+        if (!explanation.contains("\n")) return explanation
+        
         val parts = explanation.split("\n")
+        if (parts.size == 2) {
+             return if (language == "zh") parts[1] else parts[0]
+        }
+        
+        // Handle multi-line explanations by detecting Chinese characters
+        val firstChineseLineIndex = parts.indexOfFirst { it.any { char -> char.code in 0x4E00..0x9FFF } }
+        
+        if (firstChineseLineIndex == -1) {
+            // No Chinese characters found, return full text
+            return explanation
+        }
+        
         return if (language == "zh") {
-            parts.lastOrNull() ?: explanation
+            parts.subList(firstChineseLineIndex, parts.size).joinToString("\n")
         } else {
-            parts.firstOrNull() ?: explanation
+            parts.subList(0, firstChineseLineIndex).joinToString("\n")
         }
     }
 }

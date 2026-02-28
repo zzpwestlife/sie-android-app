@@ -38,4 +38,17 @@ abstract class ExamResultDao {
         insertExamAnswers(answers.map { it.copy(examResultId = resultId.toInt()) })
         return resultId
     }
+
+    // Data management operations
+    @Query("DELETE FROM exam_results")
+    abstract suspend fun clearExamResults()
+
+    @Query("DELETE FROM exam_answers")
+    abstract suspend fun clearExamAnswers()
+
+    @Transaction
+    open suspend fun clearAllExamHistory() {
+        clearExamAnswers()
+        clearExamResults()
+    }
 }

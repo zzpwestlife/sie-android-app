@@ -101,4 +101,20 @@ class OfflineQuestionRepository @Inject constructor(
     override suspend fun markQuestionAsStudied(questionId: Int) {
         questionDao.updateLastStudiedAt(questionId, System.currentTimeMillis())
     }
+
+    override suspend fun clearStudyHistory() {
+        questionDao.clearStudyHistory()
+    }
+
+    override suspend fun clearWrongQuestions() {
+        questionDao.clearWrongQuestions()
+    }
+
+    override suspend fun clearBookmarks() {
+        questionDao.clearBookmarks()
+    }
+
+    override suspend fun clearAllUserData() {
+        questionDao.clearAllUserData()
+    }
 }

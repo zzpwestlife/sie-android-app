@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.sie.core.designsystem.component.GlassCard
+import com.example.sie.core.designsystem.theme.PrimaryGradient
 import com.example.sie.core.model.Chapter
 import com.example.sie.core.common.R as CommonR
 
@@ -28,14 +30,7 @@ fun ChapterCard(
 ) {
     GlassCard(
         modifier = modifier.fillMaxWidth(),
-        gradient = if (chapter.isSelected) {
-            Brush.linearGradient(
-                colors = listOf(
-                    MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
-                    MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
-                )
-            )
-        } else null,
+        gradient = if (chapter.isSelected) PrimaryGradient else null,
         onClick = onToggleSelection
     ) {
         Row(
@@ -53,7 +48,8 @@ fun ChapterCard(
                 Text(
                     text = chapter.displayName,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
 
                 // Progress info
@@ -66,13 +62,13 @@ fun ChapterCard(
                             chapter.accuracyRate
                         ),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = Color.White.copy(alpha = 0.7f)
                     )
                 } else {
                     Text(
                         text = stringResource(CommonR.string.chapter_not_studied),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = Color.White.copy(alpha = 0.7f)
                     )
                 }
             }
@@ -80,7 +76,12 @@ fun ChapterCard(
             // Checkbox
             Checkbox(
                 checked = chapter.isSelected,
-                onCheckedChange = { onToggleSelection() }
+                onCheckedChange = { onToggleSelection() },
+                colors = CheckboxDefaults.colors(
+                    checkedColor = Color(0xFF667eea),
+                    uncheckedColor = Color.White.copy(alpha = 0.5f),
+                    checkmarkColor = Color.White
+                )
             )
         }
     }

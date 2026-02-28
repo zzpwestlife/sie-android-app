@@ -45,14 +45,6 @@ class DatabaseCallback(
             val database = databaseProvider.get()
             val dao = database.questionDao()
 
-            val count = dao.getQuestionCount()
-            Log.d("DatabaseCallback", "Current question count: $count")
-            
-            if (count > 0) {
-                Log.d("DatabaseCallback", "Questions already populated, skipping.")
-                return
-            }
-
             Log.d("DatabaseCallback", "Starting question population from assets...")
             val inputStream = context.assets.open("questions.json")
             val size = inputStream.available()
@@ -60,37 +52,68 @@ class DatabaseCallback(
             inputStream.read(buffer)
             inputStream.close()
             val jsonString = String(buffer, Charsets.UTF_8)
-            Log.d("DatabaseCallback", "JSON string length: ${jsonString.length}")
             
-            val questions = mutableListOf<QuestionEntity>()
             val jsonArray = JSONArray(jsonString)
             Log.d("DatabaseCallback", "JSONArray length: ${jsonArray.length()}")
             
+            // Get existing questions map to check for updates
+            val existingQuestions = dao.getAllQuestionsSync().associateBy { it.content }
+            val questionsToInsert = mutableListOf<QuestionEntity>()
+            var updatedCount = 0
+
             for (i in 0 until jsonArray.length()) {
                 try {
                     val obj = jsonArray.getJSONObject(i)
+                    val content = obj.getString("content")
                     val optionsArr = obj.getJSONArray("options")
-                    // options list logic removed as it was unused
+                    val correctAnswerIndex = obj.getInt("correctAnswerIndex")
+                    val explanation = obj.getString("explanation")
+                    val category = obj.getString("category")
                     
-                    questions.add(
-                        QuestionEntity(
-                            content = obj.getString("content"),
-                            options = optionsArr.toString(),
-                            correctAnswerIndex = obj.getInt("correctAnswerIndex"),
-                            explanation = obj.getString("explanation"),
-                            category = obj.getString("category")
+                    val existing = existingQuestions[content]
+                    
+                    if (existing != null) {
+                        // Check if update is needed (especially explanation)
+                        if (existing.explanation != explanation || 
+                            existing.options != optionsArr.toString() ||
+                            existing.correctAnswerIndex != correctAnswerIndex ||
+                            existing.category != category) {
+                                
+                            val updated = existing.copy(
+                                explanation = explanation,
+                                options = optionsArr.toString(),
+                                correctAnswerIndex = correctAnswerIndex,
+                                category = category
+                            )
+                            dao.update(updated)
+                            updatedCount++
+                        }
+                    } else {
+                        // Insert new
+                        questionsToInsert.add(
+                            QuestionEntity(
+                                content = content,
+                                options = optionsArr.toString(),
+                                correctAnswerIndex = correctAnswerIndex,
+                                explanation = explanation,
+                                category = category
+                            )
                         )
-                    )
+                    }
                 } catch (e: Exception) {
                     Log.e("DatabaseCallback", "Error parsing question at index $i", e)
                 }
             }
             
-            if (questions.isNotEmpty()) {
-                dao.insertAll(questions)
-                Log.d("DatabaseCallback", "Successfully inserted ${questions.size} questions.")
+            if (questionsToInsert.isNotEmpty()) {
+                dao.insertAll(questionsToInsert)
+                Log.d("DatabaseCallback", "Inserted ${questionsToInsert.size} new questions.")
+            }
+            
+            if (updatedCount > 0) {
+                Log.d("DatabaseCallback", "Updated $updatedCount existing questions.")
             } else {
-                Log.e("DatabaseCallback", "No questions parsed!")
+                Log.d("DatabaseCallback", "No questions needed update.")
             }
         } catch (e: Exception) {
             Log.e("DatabaseCallback", "Error populating questions", e)

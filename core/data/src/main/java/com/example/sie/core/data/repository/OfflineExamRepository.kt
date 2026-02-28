@@ -68,4 +68,8 @@ class OfflineExamRepository @Inject constructor(
         examResultDao.getExamResultById(id).map { entity ->
             entity?.asExternalModel()
         }
+
+    override suspend fun clearAllExamHistory() {
+        examResultDao.clearAllExamHistory()
+    }
 }

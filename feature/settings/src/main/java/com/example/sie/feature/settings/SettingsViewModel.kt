@@ -14,7 +14,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val userDataRepository: UserDataRepository
+    private val userDataRepository: UserDataRepository,
+    private val questionRepository: com.example.sie.core.data.repository.QuestionRepository,
+    private val examRepository: com.example.sie.core.data.repository.ExamRepository
 ) : ViewModel() {
 
     val uiState: StateFlow<SettingsUiState> = userDataRepository.userData
@@ -48,6 +50,37 @@ class SettingsViewModel @Inject constructor(
     fun updateLanguage(language: String) {
         viewModelScope.launch {
             userDataRepository.setLanguage(language)
+        }
+    }
+
+    fun clearStudyHistory() {
+        viewModelScope.launch {
+            questionRepository.clearStudyHistory()
+        }
+    }
+
+    fun clearWrongQuestions() {
+        viewModelScope.launch {
+            questionRepository.clearWrongQuestions()
+        }
+    }
+
+    fun clearBookmarks() {
+        viewModelScope.launch {
+            questionRepository.clearBookmarks()
+        }
+    }
+
+    fun clearExamHistory() {
+        viewModelScope.launch {
+            examRepository.clearAllExamHistory()
+        }
+    }
+
+    fun clearAllUserData() {
+        viewModelScope.launch {
+            questionRepository.clearAllUserData()
+            examRepository.clearAllExamHistory()
         }
     }
 }

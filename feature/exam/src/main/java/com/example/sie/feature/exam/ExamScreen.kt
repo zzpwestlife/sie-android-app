@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.CheckCircle
@@ -188,7 +189,7 @@ private fun ExamIntroContent(
                 navigationIcon = {
                     androidx.compose.material3.IconButton(onClick = onBackClick) {
                         androidx.compose.material3.Icon(
-                            imageVector = androidx.compose.material.icons.automirrored.filled.ArrowBack,
+                            imageVector = androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(CommonR.string.common_back),
                             tint = Color.White
                         )
@@ -225,7 +226,7 @@ private fun ExamIntroContent(
                     )
 
                     IntroItem(
-                        icon = androidx.compose.material.icons.automirrored.filled.List,
+                        icon = androidx.compose.material.icons.Icons.AutoMirrored.Filled.List,
                         title = stringResource(CommonR.string.exam_intro_questions),
                         subtitle = stringResource(CommonR.string.exam_intro_questions_subtitle)
                     )
@@ -313,6 +314,13 @@ private fun ExamInProgressContent(
     val scope = rememberCoroutineScope()
     var showReviewDialog by remember { mutableStateOf(false) }
     var showSubmitDialog by remember { mutableStateOf(false) }
+    val snackbarHostState = remember { androidx.compose.material3.SnackbarHostState() }
+
+    // Pre-fetch strings for use in coroutine scope
+    val flaggedText = stringResource(CommonR.string.exam_flagged)
+    val unflaggedText = stringResource(CommonR.string.exam_unflagged)
+    val bookmarkedText = stringResource(CommonR.string.study_bookmarked)
+    val bookmarkRemovedText = stringResource(CommonR.string.study_bookmark_removed)
 
     LaunchedEffect(state.currentQuestionIndex) {
         if (pagerState.currentPage != state.currentQuestionIndex) {
@@ -328,6 +336,7 @@ private fun ExamInProgressContent(
 
     Scaffold(
         containerColor = Color.Transparent,
+        snackbarHost = { androidx.compose.material3.SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -496,7 +505,16 @@ private fun ExamInProgressContent(
                         )
 
                             androidx.compose.material3.IconButton(
-                                onClick = { onFlagQuestion(question.id) }
+                                onClick = {
+                                    val isFlagged = state.flaggedQuestions.contains(question.id)
+                                    onFlagQuestion(question.id)
+                                    scope.launch {
+                                        snackbarHostState.currentSnackbarData?.dismiss()
+                                        snackbarHostState.showSnackbar(
+                                            if (isFlagged) unflaggedText else flaggedText
+                                        )
+                                    }
+                                }
                             ) {
                                 androidx.compose.material3.Icon(
                                     imageVector = if (state.flaggedQuestions.contains(question.id)) androidx.compose.material.icons.Icons.Filled.CheckCircle else androidx.compose.material.icons.Icons.Outlined.CheckCircle,
@@ -505,13 +523,18 @@ private fun ExamInProgressContent(
                                     modifier = Modifier.size(28.dp)
                                 )
                             }
-                        }
 
-                        androidx.compose.material3.IconButton(
-                            onClick = {
-                                onToggleBookmark(question.id)
-                            }
-                        ) {
+                            androidx.compose.material3.IconButton(
+                                onClick = {
+                                    onToggleBookmark(question.id)
+                                    scope.launch {
+                                        snackbarHostState.currentSnackbarData?.dismiss()
+                                        snackbarHostState.showSnackbar(
+                                            if (isBookmarked) bookmarkRemovedText else bookmarkedText
+                                        )
+                                    }
+                                }
+                            ) {
                             androidx.compose.material3.Icon(
                                 imageVector = if (isBookmarked) androidx.compose.material.icons.Icons.Filled.Star else androidx.compose.material.icons.Icons.Outlined.Star,
                                 contentDescription = stringResource(CommonR.string.common_bookmark),
@@ -709,7 +732,7 @@ private fun ExamResultContent(
                                 color = Color(0xFF4CAF50)
                             )
                             // Vertical Divider
-                            androidx.compose.material3.Divider(modifier = Modifier.height(40.dp).width(1.dp))
+                            androidx.compose.material3.VerticalDivider(modifier = Modifier.height(40.dp))
                             StatItem(
                                 label = stringResource(CommonR.string.exam_result_incorrect),
                                 value = "${state.totalQuestions - (state.score * state.totalQuestions) / 100}",

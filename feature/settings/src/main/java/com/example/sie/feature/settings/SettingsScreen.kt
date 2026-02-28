@@ -9,18 +9,31 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -29,6 +42,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.launch
 import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.GlassCard
 import com.example.sie.core.designsystem.theme.PrimaryGradient
@@ -43,18 +57,26 @@ fun SettingsRoute(
     val uiState by viewModel.uiState.collectAsState()
     SettingsScreen(
         uiState = uiState,
-        onChangeDarkThemeConfig = viewModel::updateDarkThemeConfig,
         onChangeFontSizeScale = viewModel::updateFontSizeScale,
-        onChangeLanguage = viewModel::updateLanguage
+        onChangeLanguage = viewModel::updateLanguage,
+        onClearStudyHistory = viewModel::clearStudyHistory,
+        onClearWrongQuestions = viewModel::clearWrongQuestions,
+        onClearBookmarks = viewModel::clearBookmarks,
+        onClearExamHistory = viewModel::clearExamHistory,
+        onClearAllData = viewModel::clearAllUserData
     )
 }
 
 @Composable
 internal fun SettingsScreen(
     uiState: SettingsUiState,
-    onChangeDarkThemeConfig: (DarkThemeConfig) -> Unit,
     onChangeFontSizeScale: (Int) -> Unit,
-    onChangeLanguage: (String) -> Unit
+    onChangeLanguage: (String) -> Unit,
+    onClearStudyHistory: () -> Unit,
+    onClearWrongQuestions: () -> Unit,
+    onClearBookmarks: () -> Unit,
+    onClearExamHistory: () -> Unit,
+    onClearAllData: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -79,7 +101,16 @@ internal fun SettingsScreen(
                 }
             }
             is SettingsUiState.Success -> {
-                Column(Modifier.padding(16.dp)) {
+                val scope = rememberCoroutineScope()
+                val snackbarHostState = remember { SnackbarHostState() }
+                var showClearDialog by remember { mutableStateOf<ClearDataType?>(null) }
+
+                Box(Modifier.fillMaxSize()) {
+                    Column(
+                        Modifier
+                            .padding(16.dp)
+                            .verticalScroll(rememberScrollState())
+                    ) {
                     Text(
                         text = stringResource(CommonR.string.settings_title),
                         style = MaterialTheme.typography.headlineMedium,
@@ -144,9 +175,125 @@ internal fun SettingsScreen(
                             )
                         )
                     }
+
+                    Spacer(Modifier.height(24.dp))
+
+                    // Data Management Section
+                    Text(
+                        text = stringResource(CommonR.string.settings_data_management),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    GlassCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        gradient = com.example.sie.core.designsystem.theme.ErrorGradient
+                    ) {
+                        Column {
+                            DataManagementButton(
+                                text = stringResource(CommonR.string.settings_clear_study_history),
+                                onClick = { showClearDialog = ClearDataType.StudyHistory }
+                            )
+                            DataManagementButton(
+                                text = stringResource(CommonR.string.settings_clear_wrong_questions),
+                                onClick = { showClearDialog = ClearDataType.WrongQuestions }
+                            )
+                            DataManagementButton(
+                                text = stringResource(CommonR.string.settings_clear_bookmarks),
+                                onClick = { showClearDialog = ClearDataType.Bookmarks }
+                            )
+                            DataManagementButton(
+                                text = stringResource(CommonR.string.settings_clear_exam_history),
+                                onClick = { showClearDialog = ClearDataType.ExamHistory }
+                            )
+                            DataManagementButton(
+                                text = stringResource(CommonR.string.settings_clear_all_data),
+                                onClick = { showClearDialog = ClearDataType.AllData }
+                            )
+                        }
+                    }
+                }
+
+                SnackbarHost(
+                    hostState = snackbarHostState,
+                    modifier = Modifier.align(Alignment.BottomCenter)
+                )
+            }
+
+                // Clear Confirmation Dialog
+                showClearDialog?.let { dataType ->
+                    val dataName = stringResource(dataType.getNameResId())
+                    val successMessage = stringResource(CommonR.string.settings_clear_success, dataName)
+                    AlertDialog(
+                        onDismissRequest = { showClearDialog = null },
+                        title = { Text(stringResource(CommonR.string.settings_clear_confirm_title)) },
+                        text = {
+                            Text(stringResource(CommonR.string.settings_clear_confirm_message, dataName))
+                        },
+                        confirmButton = {
+                            TextButton(
+                                onClick = {
+                                    when (dataType) {
+                                        ClearDataType.StudyHistory -> onClearStudyHistory()
+                                        ClearDataType.WrongQuestions -> onClearWrongQuestions()
+                                        ClearDataType.Bookmarks -> onClearBookmarks()
+                                        ClearDataType.ExamHistory -> onClearExamHistory()
+                                        ClearDataType.AllData -> onClearAllData()
+                                    }
+                                    showClearDialog = null
+                                    scope.launch {
+                                        snackbarHostState.showSnackbar(successMessage)
+                                    }
+                                }
+                            ) {
+                                Text(stringResource(CommonR.string.common_submit))
+                            }
+                        },
+                        dismissButton = {
+                            TextButton(onClick = { showClearDialog = null }) {
+                                Text(stringResource(CommonR.string.common_cancel))
+                            }
+                        }
+                    )
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun DataManagementButton(
+    text: String,
+    onClick: () -> Unit
+) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        colors = ButtonDefaults.outlinedButtonColors(
+            contentColor = Color.White
+        ),
+        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.5f))
+    ) {
+        Text(text)
+    }
+}
+
+private enum class ClearDataType {
+    StudyHistory,
+    WrongQuestions,
+    Bookmarks,
+    ExamHistory,
+    AllData;
+
+    fun getNameResId() = when (this) {
+        StudyHistory -> CommonR.string.settings_data_study_history
+        WrongQuestions -> CommonR.string.settings_data_wrong_questions
+        Bookmarks -> CommonR.string.settings_data_bookmarks
+        ExamHistory -> CommonR.string.settings_data_exam_history
+        AllData -> CommonR.string.settings_data_all_data
     }
 }
 
