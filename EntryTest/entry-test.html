@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entry Exam Study Guide | 入门考试学习指南</title>
+<style>
+:root {
+  --primary: #1a56db;
+  --primary-light: #e8eefb;
+  --bg: #f5f7fa;
+  --bg-card: #ffffff;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+  --sidebar-bg: #1e293b;
+  --sidebar-text: #e2e8f0;
+  --sidebar-hover: #334155;
+  --sidebar-active: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --accent1: #3b82f6;
+  --accent2: #8b5cf6;
+  --accent3: #06b6d4;
+  --accent4: #f97316;
+  --accent5: #ec4899;
+  --accent6: #14b8a6;
+  --accent7: #6366f1;
+  --accent8: #84cc16;
+  --accent9: #f43f5e;
+  --shadow: 0 1px 3px rgba(0,0,0,.1);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,.1);
+  --radius: 8px;
+  --sidebar-w: 260px;
+}
+.dark {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --text: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --border: #334155;
+  --primary-light: #1e3a5f;
+  --shadow: 0 1px 3px rgba(0,0,0,.3);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background .3s, color .3s;
+}
+/* Sidebar */
+.sidebar {
+  position: fixed; top:0; left:0; width: var(--sidebar-w); height:100vh;
+  background: var(--sidebar-bg); color: var(--sidebar-text);
+  overflow-y: auto; z-index: 100; transition: transform .3s;
+  display: flex; flex-direction: column;
+}
+.sidebar-header {
+  padding: 20px 16px; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; gap: 10px;
+}
+.sidebar-header h2 { font-size: 16px; font-weight: 600; }
+.sidebar-logo { font-size: 24px; }
+.sidebar nav { flex:1; padding: 8px 0; }
+.sidebar nav a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; color: var(--sidebar-text); text-decoration: none;
+  font-size: 14px; transition: background .2s; cursor: pointer;
+  border-left: 3px solid transparent;
+}
+.sidebar nav a:hover { background: var(--sidebar-hover); }
+.sidebar nav a.active { background: var(--sidebar-hover); border-left-color: var(--sidebar-active); color: #fff; }
+.sidebar nav a .badge {
+  margin-left: auto; font-size: 11px; padding: 2px 6px;
+  border-radius: 10px; background: rgba(255,255,255,.15);
+}
+.sidebar-footer {
+  padding: 12px 16px; border-top: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.sidebar-footer button {
+  padding: 6px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,.2);
+  background: transparent; color: var(--sidebar-text); cursor: pointer;
+  font-size: 12px; transition: background .2s;
+}
+.sidebar-footer button:hover { background: var(--sidebar-hover); }
+.sidebar-footer button.active-toggle { background: var(--sidebar-active); border-color: var(--sidebar-active); color: #fff; }
+/* Main */
+.main {
+  margin-left: var(--sidebar-w); padding: 24px 32px;
+  max-width: 960px; min-height: 100vh;
+}
+/* Hamburger */
+.hamburger {
+  display: none; position: fixed; top: 12px; left: 12px; z-index: 200;
+  background: var(--sidebar-bg); color: #fff; border: none;
+  width: 40px; height: 40px; border-radius: 8px; font-size: 20px; cursor: pointer;
+}
+.overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  z-index: 99;
+}
+/* Search */
+.search-bar {
+  position: sticky; top: 0; z-index: 50; padding: 12px 0;
+  background: var(--bg); margin-bottom: 16px;
+}
+.search-bar input {
+  width: 100%; padding: 10px 16px 10px 40px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--bg-card);
+  font-size: 14px; color: var(--text); outline: none;
+  transition: border-color .2s;
+}
+.search-bar input:focus { border-color: var(--primary); }
+.search-bar::before {
+  content: "🔍"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 16px;
+}
+.search-results {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  max-height: 400px; overflow-y: auto; display: none;
+}
+.search-results.show { display: block; }
+.search-result-item {
+  padding: 10px 16px; cursor: pointer; border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.search-result-item:hover { background: var(--primary-light); }
+.search-result-item mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
+/* Cards */
+.card {
+  background: var(--bg-card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 24px; margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+.card h2 { font-size: 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card h3 { font-size: 16px; margin: 16px 0 8px; color: var(--text); }
+.card p, .card li { font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; }
+.card ul { padding-left: 20px; }
+/* Chapter header */
+.chapter-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 20px 24px; border-radius: var(--radius);
+  margin-bottom: 16px; color: #fff; cursor: pointer;
+}
+.chapter-header h1 { font-size: 22px; }
+.chapter-header .weight {
+  margin-left: auto; font-size: 13px; background: rgba(255,255,255,.25);
+  padding: 4px 10px; border-radius: 12px;
+}
+.chapter-header .time {
+  font-size: 13px; background: rgba(255,255,255,.2);
+  padding: 4px 10px; border-radius: 12px;
+}
+/* Section toggles */
+.section-toggle {
+  display: flex; align-items: center; gap: 8px; padding: 12px 0;
+  cursor: pointer; font-size: 15px; font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+.section-toggle .arrow { transition: transform .2s; }
+.section-toggle.open .arrow { transform: rotate(90deg); }
+.section-content { display: none; padding: 12px 0; }
+.section-content.show { display: block; }
+/* Difficulty */
+.diff { font-size: 12px; }
+/* Key term */
+.key-term {
+  background: var(--primary-light); padding: 1px 4px; border-radius: 3px;
+  font-weight: 600; cursor: help; position: relative;
+}
+/* Formula */
+.formula {
+  background: var(--primary-light); padding: 12px 16px;
+  border-radius: var(--radius); font-family: monospace;
+  font-size: 14px; margin: 8px 0; border-left: 3px solid var(--primary);
+}
+/* Bookmark */
+.bookmark-btn {
+  background: none; border: none; cursor: pointer; font-size: 18px;
+  color: var(--text-secondary); transition: color .2s;
+}
+.bookmark-btn.active { color: var(--warning); }
+/* Quiz */
+.quiz-controls {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;
+}
+.quiz-controls button, .btn {
+  padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--text); cursor: pointer;
+  font-size: 13px; transition: all .2s;
+}
+.quiz-controls button:hover, .btn:hover { background: var(--primary-light); }
+.btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn-primary:hover { opacity: .9; }
+.btn-success { background: var(--success); color: #fff; border-color: var(--success); }
+.btn-danger { background: var(--danger); color: #fff; border-color: var(--danger); }
+.question-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+}
+.question-card h4 { font-size: 14px; margin-bottom: 12px; line-height: 1.5; }
+.option-btn {
+  display: block; width: 100%; text-align: left; padding: 10px 14px;
+  margin-bottom: 6px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--text); cursor: pointer;
+  font-size: 13px; transition: all .2s;
+}
+.option-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+.option-btn.correct { border-color: var(--success); background: #d1fae5; color: #065f46; }
+.option-btn.wrong { border-color: var(--danger); background: #fee2e2; color: #991b1b; }
+.option-btn.disabled { pointer-events: none; }
+.dark .option-btn.correct { background: #064e3b; color: #6ee7b7; }
+.dark .option-btn.wrong { background: #7f1d1d; color: #fca5a5; }
+.explanation {
+  margin-top: 10px; padding: 12px; background: var(--primary-light);
+  border-radius: 6px; font-size: 13px; display: none;
+}
+.explanation.show { display: block; }
+/* Progress bar */
+.progress-bar {
+  height: 6px; background: var(--border); border-radius: 3px; overflow: hidden;
+  margin: 8px 0;
+}
+.progress-bar .fill {
+  height: 100%; border-radius: 3px; transition: width .3s;
+  background: linear-gradient(90deg, var(--primary), var(--accent2));
+}
+/* Study plan */
+.day-card {
+  display: flex; gap: 12px; padding: 12px; border-radius: var(--radius);
+  border: 1px solid var(--border); margin-bottom: 8px; align-items: flex-start;
+  transition: background .2s;
+}
+.day-card:hover { background: var(--primary-light); }
+.day-card.completed { opacity: .7; }
+.day-checkbox {
+  width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer;
+  margin-top: 2px; flex-shrink: 0;
+}
+.day-info { flex: 1; }
+.day-label { font-weight: 600; font-size: 14px; }
+.day-detail { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+.day-topics { font-size: 13px; margin-top: 4px; }
+.milestone { background: linear-gradient(135deg, #fef3c7, #fde68a); border-color: var(--warning); }
+.dark .milestone { background: linear-gradient(135deg, #451a03, #78350f); }
+/* Checklist */
+.checklist-item {
+  display: flex; gap: 10px; padding: 8px 0;
+  border-bottom: 1px solid var(--border); align-items: flex-start;
+}
+.checklist-item label { flex: 1; font-size: 13px; cursor: pointer; }
+/* Tabs */
+.tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+.tab {
+  padding: 8px 16px; border-radius: 6px 6px 0 0; cursor: pointer;
+  font-size: 13px; border: 1px solid var(--border); border-bottom: none;
+  background: var(--bg); color: var(--text-secondary);
+}
+.tab.active { background: var(--bg-card); color: var(--primary); font-weight: 600; }
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat-box {
+  text-align: center; padding: 16px; border-radius: var(--radius);
+  background: var(--bg); border: 1px solid var(--border);
+}
+.stat-box .num { font-size: 28px; font-weight: 700; color: var(--primary); }
+.stat-box .label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+/* Timer */
+.timer {
+  font-size: 20px; font-weight: 700; color: var(--danger);
+  text-align: center; padding: 8px; display: none;
+}
+.timer.active { display: block; }
+/* Bookmarks panel */
+.bookmarks-panel { max-height: 300px; overflow-y: auto; }
+.bookmark-item {
+  padding: 8px 12px; cursor: pointer; font-size: 13px;
+  border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;
+}
+.bookmark-item:hover { background: var(--primary-light); }
+/* Section pages hide/show */
+.page { display: none; }
+.page.active { display: block; }
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .hamburger { display: flex; align-items: center; justify-content: center; }
+  .overlay.show { display: block; }
+  .main { margin-left: 0; padding: 60px 16px 24px; }
+  .chapter-header h1 { font-size: 18px; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root { --sidebar-w: 220px; }
+  .main { padding: 24px 20px; }
+}
+/* Scrollbar */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 2px; }
+/* Animations */
+@keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+.card { animation: fadeIn .3s ease; }
+.week-header { font-size: 18px; font-weight: 700; margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); }
+</style>
+</head>
+<body>
+<button class="hamburger" onclick="toggleSidebar()">☰</button>
+<div class="overlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">📚</span>
+    <h2 id="sidebarTitle">入门考试学习指南</h2>
+  </div>
+  <nav id="sidebarNav"></nav>
+  <div id="bookmarksSection" style="padding:8px 16px;display:none;">
+    <div style="font-size:12px;color:#94a3b8;margin-bottom:6px;" data-i18n="bookmarks">书签</div>
+    <div class="bookmarks-panel" id="bookmarksPanel"></div>
+  </div>
+  <div class="sidebar-footer">
+    <button onclick="toggleDark()" id="darkBtn">🌙</button>
+    <button onclick="toggleLang()" id="langBtn">EN</button>
+  </div>
+</aside>
+
+<main class="main" id="mainContent"></main>
+
+<script>
+// ===== DATA =====
+const LANG = { zh: 'zh', en: 'en' };
+let currentLang = localStorage.getItem('lang') || 'zh';
+let isDark = localStorage.getItem('dark') === 'true';
+let currentPage = localStorage.getItem('currentPage') || 'home';
+
+const chapterColors = ['#3b82f6','#8b5cf6','#06b6d4','#f97316','#ec4899','#14b8a6','#6366f1','#84cc16','#f43f5e'];
+
+const chapters = [
+  {
+    id:'ch1', icon:'📈',
+    title:{zh:'宏观经济学',en:'Macroeconomics'}, weight:'18-20%', studyTime:'3-4h',
+    sections:[
+      {id:'s1_1',title:{zh:'1.1 经济周期与常见经济指标',en:'1.1 Business Cycle & Economic Indicators'},diff:2,
+       content:{
+         zh:'<p><b>经济周期</b>是指总体经济活动围绕经济长期潜在增长趋势发生的周期性、不规则波动，包含<b>扩张、顶峰、收缩（衰退）、谷底</b>四个阶段。</p><h3>四个阶段</h3><ul><li><b>扩张期 (Expansion)</b>：GDP稳步增长，就业扩大，消费者信心增强。</li><li><b>顶峰期 (Peak)</b>：经济增长放缓至停滞，通胀压力达到顶峰。</li><li><b>收缩期/衰退期 (Contraction/Recession)</b>：GDP下降，企业削减投资，裁员增加。连续≥2个季度负增长。</li><li><b>谷底期 (Trough)</b>：经济下滑停止，产出触底，信心开始重建。</li></ul><h3>关键驱动因素</h3><ul><li><b>消费支出</b>：占美国GDP 68-70%，主要驱动力。</li><li><b>商业投资</b>：受利率和利润影响。</li><li><b>货币政策</b>：美联储通过利率调节借贷成本。</li><li><b>净出口</b>：受汇率和全球需求影响。</li></ul><h3>常用经济指标</h3><ul><li><b>先行指标 (Leading)</b>：ISM制造业PMI、耐用品订单、消费者信心指数(CCI)、10年-2年国债利差</li><li><b>同步指标 (Coincident)</b>：GDP、非农就业(NFP)、零售销售</li><li><b>滞后指标 (Lagging)</b>：失业率、CPI、PCE物价指数</li></ul>',
+         en:'<p><b>The business cycle</b> refers to recurring, irregular fluctuations in aggregate economic activity around the economy\'s long-term potential growth trend. It has <b>four phases: Expansion, Peak, Contraction (Recession), Trough</b>.</p><h3>Four Phases</h3><ul><li><b>Expansion</b>: Real GDP grows steadily; employment expands; consumer confidence strengthens.</li><li><b>Peak</b>: Growth slows to a halt; inflationary pressures peak.</li><li><b>Contraction/Recession</b>: Real GDP declines; businesses cut investment; layoffs increase. Negative growth for ≥2 quarters.</li><li><b>Trough</b>: Economic decline stops; output hits bottom; confidence begins to rebuild.</li></ul><h3>Key Drivers</h3><ul><li><b>Consumer Spending</b>: ~68-70% of U.S. GDP, primary driver.</li><li><b>Business Investment</b>: Sensitive to interest rates and profit margins.</li><li><b>Monetary Policy</b>: Fed adjusts rates to influence borrowing costs.</li><li><b>Net Exports</b>: Affected by USD exchange rate and global demand.</li></ul><h3>Common Economic Indicators</h3><ul><li><b>Leading</b>: ISM Manufacturing PMI, Durable Goods Orders, CCI, 10Y-2Y Spread</li><li><b>Coincident</b>: GDP, Nonfarm Payrolls (NFP), Retail Sales</li><li><b>Lagging</b>: Unemployment Rate, CPI, PCE Price Index</li></ul>'
+       }},
+      {id:'s1_2',title:{zh:'1.2 货币政策',en:'1.2 Monetary Policy'},diff:2,
+       content:{
+         zh:'<p><b>目标</b>：充分就业和物价稳定（2%通胀目标）。</p><h3>主要工具</h3><ul><li><b>公开市场操作 (OMO)</b>：买卖国债/MBS，调节准备金。</li><li><b>准备金余额利息 (IORB)</b>：利率下限，主要控制工具。</li><li><b>隔夜逆回购 (ONRRP)</b>：辅助下限，吸收过剩流动性。</li><li><b>贴现率 (Discount Rate)</b>：利率上限，紧急贷款窗口。</li></ul><p><b>加息</b>→借贷成本上升→消费投资减少→经济降温→抑制通胀<br><b>降息</b>→借贷成本下降→消费投资增加→经济刺激→促进就业</p>',
+         en:'<p><b>Objectives</b>: Full employment and price stability (2% inflation target).</p><h3>Key Tools</h3><ul><li><b>Open Market Operations (OMO)</b>: Buy/sell Treasuries & MBS to adjust reserves.</li><li><b>Interest On Reserve Balances (IORB)</b>: Rate floor, primary control tool.</li><li><b>Overnight Reverse Repo (ONRRP)</b>: Auxiliary floor, absorbs excess liquidity.</li><li><b>Discount Rate</b>: Rate ceiling, emergency lending window.</li></ul><p><b>Rate hikes</b> → higher borrowing costs → less spending/investment → cools economy → curbs inflation<br><b>Rate cuts</b> → lower borrowing costs → more spending/investment → stimulates economy → promotes employment</p>'
+       }},
+      {id:'s1_3',title:{zh:'1.3 财政政策',en:'1.3 Fiscal Policy'},diff:1,
+       content:{
+         zh:'<p><b>工具</b>：税收和政府支出。</p><ul><li><b>扩张性 (Expansionary)</b>：减税/增支，用于衰退期刺激需求。</li><li><b>收缩性 (Contractionary)</b>：加税/减支，用于过热期控制通胀。</li></ul><p><b>逆周期调节</b>：政策方向与经济周期相反，以平滑波动。</p>',
+         en:'<p><b>Tools</b>: Taxation and government spending.</p><ul><li><b>Expansionary</b>: Tax cuts / increased spending, used during recessions to boost demand.</li><li><b>Contractionary</b>: Tax hikes / reduced spending, used during overheating to control inflation.</li></ul><p><b>Countercyclical regulation</b>: Policy direction is opposite to the business cycle to smooth fluctuations.</p>'
+       }},
+      {id:'s1_4',title:{zh:'1.4 政策与资产表现',en:'1.4 Policy & Asset Performance'},diff:3,
+       content:{
+         zh:'<h3>资产表现</h3><ul><li><b>扩张期</b>：股票(成长型) > 商品 > 债券</li><li><b>衰退期</b>：债券(长债) > 股票(防御型)</li></ul><h3>利率影响</h3><ul><li><b>加息</b>：债券价格下跌（收益率上升），股市承压（估值回调）。</li><li><b>降息</b>：债券价格上涨，股市通常受益（软着陆时），但在衰退期可能下跌。</li></ul>',
+         en:'<h3>Asset Performance</h3><ul><li><b>Expansion</b>: Stocks (growth) > Commodities > Bonds</li><li><b>Recession</b>: Bonds (long-term) > Stocks (defensive)</li></ul><h3>Interest Rate Impact</h3><ul><li><b>Rate hikes</b>: Bond prices fall (yields rise), stocks under pressure (valuation correction).</li><li><b>Rate cuts</b>: Bond prices rise, stocks typically benefit (in soft landings), but may fall during recessions.</li></ul>'
+       }}
+    ]
+  },
+  {
+    id:'ch2', icon:'📊',
+    title:{zh:'股票',en:'Stocks'}, weight:'~15%', studyTime:'2-3h',
+    sections:[
+      {id:'s2_1',title:{zh:'2.1 市场与股票类型',en:'2.1 Markets & Stock Types'},diff:1,
+       content:{
+         zh:'<ul><li><b>一级市场 (Primary)</b>：IPO，公司发行新股融资。</li><li><b>二级市场 (Secondary)</b>：投资者之间交易已发行股票。</li><li><b>普通股</b>：有投票权，股息不固定，清偿顺位低。</li><li><b>优先股</b>：通常无投票权，股息固定，清偿顺位优先于普通股。</li><li><b>ADR</b>：在美国交易的外国公司股票凭证（如BABA）。</li></ul>',
+         en:'<ul><li><b>Primary Market</b>: IPOs, companies issue new shares to raise capital.</li><li><b>Secondary Market</b>: Investors trade existing shares among themselves.</li><li><b>Common Stock</b>: Voting rights, variable dividends, lower liquidation priority.</li><li><b>Preferred Stock</b>: Usually no voting rights, fixed dividends, higher liquidation priority.</li><li><b>ADR</b>: Foreign company stock certificates traded on U.S. exchanges (e.g., BABA).</li></ul>'
+       }},
+      {id:'s2_2',title:{zh:'2.2 公司行为',en:'2.2 Corporate Actions'},diff:2,
+       content:{
+         zh:'<ul><li><b>股息 (Dividends)</b>：利润分配。除息日(Ex-Dividend Date)前买入才享有股息。</li><li><b>股票分割 (Stock Splits)</b>：增加股数，降低股价，总价值不变。如苹果2020年4拆1。</li><li><b>股票回购 (Buybacks)</b>：公司买回自家股票，减少流通股，提升EPS。</li><li><b>并购 (M&A)</b>：合并或收购。</li></ul>',
+         en:'<ul><li><b>Dividends</b>: Profit distribution. Must own before ex-dividend date to receive.</li><li><b>Stock Splits</b>: Increase shares, reduce price, total value unchanged. E.g., Apple 2020 4-for-1.</li><li><b>Buybacks</b>: Company repurchases own shares, reduces outstanding shares, boosts EPS.</li><li><b>M&A</b>: Mergers and acquisitions.</li></ul>'
+       }},
+      {id:'s2_3',title:{zh:'2.3 核心估值指标',en:'2.3 Key Valuation Metrics'},diff:2,
+       content:{
+         zh:'<div class="formula">市值 (Market Cap) = 股价 × 流通股数</div><div class="formula">EPS = (净利润 - 优先股股息) / 平均流通股数</div><div class="formula">股息率 = 每股股息 / 股价</div><div class="formula">P/E = 股价 / EPS （高P/E→高增长预期）</div><div class="formula">P/B = 股价 / 每股净资产 （适用于重资产行业）</div><div class="formula">ROE = 净利润 / 股东权益 （衡量盈利效率）</div>',
+         en:'<div class="formula">Market Cap = Share Price × Shares Outstanding</div><div class="formula">EPS = (Net Income - Preferred Dividends) / Avg Shares Outstanding</div><div class="formula">Dividend Yield = Dividend per Share / Share Price</div><div class="formula">P/E = Share Price / EPS (High P/E → high growth expectations)</div><div class="formula">P/B = Share Price / Book Value per Share (useful for asset-heavy industries)</div><div class="formula">ROE = Net Income / Shareholders\' Equity (measures profitability efficiency)</div>'
+       }}
+    ]
+  },
+  {
+    id:'ch3', icon:'📦',
+    title:{zh:'ETF',en:'ETF'}, weight:'~10%', studyTime:'2h',
+    sections:[
+      {id:'s3_1',title:{zh:'3.1 ETF特征与原理',en:'3.1 ETF Features & Mechanics'},diff:1,
+       content:{
+         zh:'<p><b>ETF</b>是追踪指数、像股票一样在交易所交易的基金。</p><ul><li><b>机制</b>：申购/赎回机制(Creation/Redemption)保持价格紧贴NAV。</li><li><b>优势</b>：分散风险、低费率、高流动性、税务优势（实物赎回减少资本收益分配）。</li><li><b>风险</b>：市场风险、追踪误差。</li></ul>',
+         en:'<p><b>ETF</b> is a fund that tracks an index and trades on exchanges like individual stocks.</p><ul><li><b>Mechanism</b>: Creation/Redemption mechanism keeps price close to NAV.</li><li><b>Advantages</b>: Diversification, low fees, high liquidity, tax efficiency (in-kind redemptions reduce capital gains).</li><li><b>Risks</b>: Market risk, tracking error.</li></ul>'
+       }},
+      {id:'s3_2',title:{zh:'3.2 常见ETF类型',en:'3.2 Common ETF Types'},diff:1,
+       content:{
+         zh:'<ul><li><b>股票型</b>：SPY, QQQ</li><li><b>债券型</b>：TLT, AGG</li><li><b>商品型</b>：GLD</li><li><b>加密货币型</b>：IBIT</li><li><b>主题型</b>：ARKK</li></ul>',
+         en:'<ul><li><b>Equity</b>: SPY, QQQ</li><li><b>Bond</b>: TLT, AGG</li><li><b>Commodity</b>: GLD</li><li><b>Crypto</b>: IBIT</li><li><b>Thematic</b>: ARKK</li></ul>'
+       }},
+      {id:'s3_3',title:{zh:'3.3 杠杆与反向ETF',en:'3.3 Leveraged & Inverse ETFs'},diff:3,
+       content:{
+         zh:'<p><b>原理</b>：使用衍生品放大单日回报（如2x, 3x）。</p><p><b>核心风险 — 波动率损耗 (Volatility Decay)</b>：长期持有会因每日重置机制导致价值侵蚀。仅适合短期交易。</p><p>在<b>高度波动（起伏）的市场</b>中损耗最严重。</p>',
+         en:'<p><b>Mechanism</b>: Uses derivatives to amplify daily returns (e.g., 2x, 3x).</p><p><b>Core Risk — Volatility Decay</b>: Long-term holding erodes value due to daily reset mechanism. Only suitable for short-term trading.</p><p>Decay is most severe in <b>highly volatile (up-and-down) markets</b>.</p>'
+       }}
+    ]
+  },
+  {
+    id:'ch4', icon:'⚡',
+    title:{zh:'期权',en:'Options'}, weight:'~10%', studyTime:'3-4h',
+    sections:[
+      {id:'s4_1',title:{zh:'4.1 期权合约基础',en:'4.1 Option Contract Basics'},diff:1,
+       content:{
+         zh:'<ul><li><b>Call (看涨)</b>：买方有权以行权价<b>买入</b>，看涨后市。</li><li><b>Put (看跌)</b>：买方有权以行权价<b>卖出</b>，看跌后市。</li><li><b>美式</b>：可随时行权（美股期权主流）。</li><li><b>欧式</b>：仅到期日行权（指数期权主流）。</li></ul>',
+         en:'<ul><li><b>Call</b>: Buyer has the right to <b>buy</b> at strike price. Bullish.</li><li><b>Put</b>: Buyer has the right to <b>sell</b> at strike price. Bearish.</li><li><b>American</b>: Can be exercised anytime (dominant for U.S. stock options).</li><li><b>European</b>: Can only be exercised at expiration (dominant for index options).</li></ul>'
+       }},
+      {id:'s4_2',title:{zh:'4.2 盈亏计算',en:'4.2 Profit/Loss Calculations'},diff:2,
+       content:{
+         zh:'<div class="formula">Long Call 盈亏平衡点 = Strike + Premium | 最大损失 = Premium</div><div class="formula">Long Put 盈亏平衡点 = Strike - Premium | 最大损失 = Premium</div><div class="formula">Short Call/Put 最大收益 = Premium | Short Call 风险无限</div>',
+         en:'<div class="formula">Long Call Breakeven = Strike + Premium | Max Loss = Premium</div><div class="formula">Long Put Breakeven = Strike - Premium | Max Loss = Premium</div><div class="formula">Short Call/Put Max Gain = Premium | Short Call has unlimited risk</div>'
+       }},
+      {id:'s4_3',title:{zh:'4.3 价值状态与影响因素',en:'4.3 Moneyness & Pricing Factors'},diff:2,
+       content:{
+         zh:'<h3>价值状态 (Moneyness)</h3><ul><li><b>ITM (价内)</b>：Call（市价>行权价），Put（市价<行权价）。有内在价值。</li><li><b>ATM (平价)</b>：市价≈行权价。</li><li><b>OTM (价外)</b>：无内在价值，仅有时间价值。</li></ul><h3>影响因素</h3><ul><li><b>标的价格↑</b>：Call↑, Put↓</li><li><b>行权价↑</b>：Call↓, Put↑</li><li><b>时间↑</b>：Call/Put通常↑（时间价值）</li><li><b>波动率↑</b>：Call/Put均↑</li></ul>',
+         en:'<h3>Moneyness</h3><ul><li><b>ITM (In-the-Money)</b>: Call (S>X), Put (S<X). Has intrinsic value.</li><li><b>ATM (At-the-Money)</b>: S ≈ X.</li><li><b>OTM (Out-of-the-Money)</b>: No intrinsic value, only time value.</li></ul><h3>Pricing Factors</h3><ul><li><b>Stock price ↑</b>: Call↑, Put↓</li><li><b>Strike price ↑</b>: Call↓, Put↑</li><li><b>Time ↑</b>: Call/Put usually ↑ (time value)</li><li><b>Volatility ↑</b>: Both Call/Put ↑</li></ul>'
+       }}
+    ]
+  },
+  {
+    id:'ch5', icon:'💰',
+    title:{zh:'基金',en:'Funds'}, weight:'~10%', studyTime:'1.5-2h',
+    sections:[
+      {id:'s5_1',title:{zh:'5.1 基金类型',en:'5.1 Fund Types'},diff:1,
+       content:{
+         zh:'<ul><li><b>共同基金 (Mutual Funds)</b>：<ul><li>开放式：按NAV每日交易，份额可变。</li><li>封闭式：份额固定，交易所交易，可溢价/折价。</li></ul></li><li><b>货币市场基金 (MMF)</b>：投资短期国债/商票，低风险，类现金。</li><li><b>私募/对冲基金</b>：面向合格投资者（净资产>$1M或收入>$200K），高门槛，高费用（2/20结构），策略灵活。</li></ul>',
+         en:'<ul><li><b>Mutual Funds</b>:<ul><li>Open-end: Trade daily at NAV, variable shares.</li><li>Closed-end: Fixed shares, exchange-traded, may trade at premium/discount.</li></ul></li><li><b>Money Market Funds (MMF)</b>: Invest in short-term T-bills/commercial paper, low risk, cash-like.</li><li><b>Private/Hedge Funds</b>: For accredited investors (net worth >$1M or income >$200K), high minimums, high fees (2/20 structure), flexible strategies.</li></ul>'
+       }},
+      {id:'s5_2',title:{zh:'5.2 费用结构',en:'5.2 Fee Structure'},diff:2,
+       content:{
+         zh:'<ul><li><b>前端收费 (Class A)</b>：买入时付费。</li><li><b>后端收费 (Class B)</b>：卖出时付费，随持有时间递减。</li><li><b>管理费</b>：按AUM每年收取。</li><li><b>绩效费</b>：按利润收取（常见于对冲基金），通常为超过门槛利润的20%。</li></ul>',
+         en:'<ul><li><b>Front-end Load (Class A)</b>: Paid when buying.</li><li><b>Back-end Load (Class B)</b>: Paid when selling, decreases with holding time.</li><li><b>Management Fee</b>: Charged annually based on AUM.</li><li><b>Performance Fee</b>: Charged on profits (common in hedge funds), typically 20% of gains above hurdle rate.</li></ul>'
+       }}
+    ]
+  },
+  {
+    id:'ch6', icon:'📉',
+    title:{zh:'常见指数',en:'Common Indexes'}, weight:'6-8%', studyTime:'1h',
+    sections:[
+      {id:'s6_1',title:{zh:'6.1 收益与加权方法',en:'6.1 Returns & Weighting Methods'},diff:2,
+       content:{
+         zh:'<h3>收益类型</h3><ul><li><b>价格回报 (Price Return)</b>：仅看指数水平变化，不含股息。</li><li><b>总回报 (Total Return)</b>：包含价格变化+股息再投资。</li></ul><h3>加权方法</h3><ul><li><b>价格加权 (DJIA)</b>：高价股影响大。</li><li><b>市值加权 (S&P500)</b>：大市值公司影响大。</li><li><b>等权重</b>：所有成分股影响相同。</li></ul>',
+         en:'<h3>Return Types</h3><ul><li><b>Price Return</b>: Only index level changes, excludes dividends.</li><li><b>Total Return</b>: Includes price changes + reinvested dividends.</li></ul><h3>Weighting Methods</h3><ul><li><b>Price-weighted (DJIA)</b>: Higher-priced stocks have more impact.</li><li><b>Market-cap weighted (S&P 500)</b>: Larger companies have more impact.</li><li><b>Equal-weighted</b>: All stocks have equal impact.</li></ul>'
+       }},
+      {id:'s6_2',title:{zh:'6.2 主要市场指数',en:'6.2 Major Market Indexes'},diff:1,
+       content:{
+         zh:'<ul><li><b>美股</b>：标普500（大盘，市值加权）、纳斯达克100（科技/成长）、罗素2000（小盘）、DJIA（价格加权，30只股票）</li><li><b>国际</b>：MSCI EAFE（发达市场除美加）、MSCI Emerging Markets（新兴市场）</li></ul>',
+         en:'<ul><li><b>U.S.</b>: S&P 500 (large-cap, market-cap weighted), NASDAQ-100 (tech/growth), Russell 2000 (small-cap), DJIA (price-weighted, 30 stocks)</li><li><b>International</b>: MSCI EAFE (developed ex-US/Canada), MSCI Emerging Markets</li></ul>'
+       }}
+    ]
+  },
+  {
+    id:'ch7', icon:'📋',
+    title:{zh:'财报分析',en:'Financial Analysis'}, weight:'~15%', studyTime:'2-3h',
+    sections:[
+      {id:'s7_1',title:{zh:'7.1 财务报表基础',en:'7.1 Financial Statement Basics'},diff:1,
+       content:{
+         zh:'<p>财务报表是总结公司财务活动的正式记录。上市公司需向SEC提交季报(10-Q)和年报(10-K)。</p><ul><li><b>US GAAP</b>（FASB制定）：美国上市公司必须遵守，规则导向。</li><li><b>IFRS</b>（IASB制定）：140+国家使用，原则导向。</li></ul>',
+         en:'<p>Financial statements are formal records summarizing company financial activities. Public companies must file quarterly (10-Q) and annual (10-K) reports with the SEC.</p><ul><li><b>US GAAP</b> (by FASB): Mandatory for US public companies, rules-based.</li><li><b>IFRS</b> (by IASB): Used in 140+ countries, principles-based.</li></ul>'
+       }},
+      {id:'s7_2',title:{zh:'7.2 三大报表',en:'7.2 Three Financial Statements'},diff:2,
+       content:{
+         zh:'<h3>损益表 (Income Statement)</h3><div class="formula">收入 - COGS = 毛利；毛利 - 运营费用 = 营业利润 (EBIT)；EBIT - 利息/税 = 净利润</div><h3>资产负债表 (Balance Sheet)</h3><div class="formula">资产 (Assets) = 负债 (Liabilities) + 股东权益 (Equity)</div><p>反映特定时点的财务状况。</p><h3>现金流量表 (Cash Flow Statement)</h3><ul><li><b>经营 (CFO)</b>：核心业务运营的现金</li><li><b>投资 (CFI)</b>：购买/出售资产的现金</li><li><b>融资 (CFF)</b>：发行股票/债务/分红的现金</li></ul>',
+         en:'<h3>Income Statement</h3><div class="formula">Revenue - COGS = Gross Profit; Gross Profit - OpEx = Operating Income (EBIT); EBIT - Interest/Tax = Net Income</div><h3>Balance Sheet</h3><div class="formula">Assets = Liabilities + Shareholders\' Equity</div><p>Snapshot of financial position at a point in time.</p><h3>Cash Flow Statement</h3><ul><li><b>Operating (CFO)</b>: Cash from core business operations</li><li><b>Investing (CFI)</b>: Cash from buying/selling assets</li><li><b>Financing (CFF)</b>: Cash from issuing stock/debt/dividends</li></ul>'
+       }},
+      {id:'s7_3',title:{zh:'7.3 核心财务指标',en:'7.3 Key Financial Ratios'},diff:2,
+       content:{
+         zh:'<div class="formula">毛利率 = (收入 - COGS) / 收入</div><div class="formula">净利率 = 净利润 / 收入</div><div class="formula">ROE = 净利润 / 平均股东权益</div>',
+         en:'<div class="formula">Gross Margin = (Revenue - COGS) / Revenue</div><div class="formula">Net Profit Margin = Net Income / Revenue</div><div class="formula">ROE = Net Income / Average Shareholders\' Equity</div>'
+       }}
+    ]
+  },
+  {
+    id:'ch8', icon:'🔍',
+    title:{zh:'营收与行业分析',en:'Revenue & Industry Analysis'}, weight:'6-8%', studyTime:'1-2h',
+    sections:[
+      {id:'s8_1',title:{zh:'8.1 卖方研究与营收预测',en:'8.1 Research Reports & Revenue Forecasting'},diff:2,
+       content:{
+         zh:'<h3>卖方研究报告</h3><p>分析师提供Buy/Hold/Sell评级和目标价，帮助客户投资决策。</p><h3>营收预测方法</h3><ul><li><b>Bottom-Up</b>：从量、价、门店数等底层驱动因素推导。</li><li><b>Top-Down</b>：从宏观经济、市场规模、市场份额推导。</li></ul>',
+         en:'<h3>Sell-Side Research Reports</h3><p>Analysts provide Buy/Hold/Sell ratings and target prices to guide client investment decisions.</p><h3>Revenue Forecasting Methods</h3><ul><li><b>Bottom-Up</b>: Derived from granular drivers like volume, price, store count.</li><li><b>Top-Down</b>: Derived from macro economy, market size, market share.</li></ul>'
+       }},
+      {id:'s8_2',title:{zh:'8.2 波特五力模型',en:'8.2 Porter\'s Five Forces'},diff:3,
+       content:{
+         zh:'<ul><li>新进入者威胁</li><li>供应商议价能力</li><li>购买者议价能力</li><li>替代品威胁</li><li>同业竞争</li></ul>',
+         en:'<ul><li>Threat of New Entrants</li><li>Bargaining Power of Suppliers</li><li>Bargaining Power of Buyers</li><li>Threat of Substitutes</li><li>Industry Rivalry</li></ul>'
+       }}
+    ]
+  },
+  {
+    id:'ch9', icon:'⚖️',
+    title:{zh:'金融道德',en:'Financial Ethics'}, weight:'3-5%', studyTime:'1h',
+    sections:[
+      {id:'s9_1',title:{zh:'9.1 监管体系',en:'9.1 Regulatory Framework'},diff:1,
+       content:{
+         zh:'<ul><li><b>SEC</b>：最高监管机构（政府机构），保护投资者，要求经纪交易商注册。</li><li><b>FINRA</b>：自律组织(SRO)，监管券商和从业人员，管理SIE等考试。</li><li><b>MSRB</b>：制定市政证券规则，但不执行（由FINRA执行）。</li><li><b>NYSE / CBOE</b>：交易所，也是SRO。</li></ul>',
+         en:'<ul><li><b>SEC</b>: Top regulator (government agency), protects investors, requires broker-dealer registration.</li><li><b>FINRA</b>: Self-Regulatory Organization (SRO), regulates broker-dealers, administers SIE exam.</li><li><b>MSRB</b>: Creates municipal securities rules but does not enforce (FINRA enforces).</li><li><b>NYSE / CBOE</b>: Exchanges that are also SROs.</li></ul>'
+       }},
+      {id:'s9_2',title:{zh:'9.2 违规行为',en:'9.2 Violations'},diff:2,
+       content:{
+         zh:'<ul><li><b>内幕交易 (Insider Trading)</b>：利用非公开信息交易。最高20年监禁+$500万罚款。</li><li><b>抢跑 (Front Running)</b>：先于客户大单交易。严禁。</li><li><b>挪用资金 (Misappropriation)</b>：盗用客户资产。5-20年监禁。</li><li><b>虚假陈述 (Misrepresentation)</b>：误导性宣传。</li></ul>',
+         en:'<ul><li><b>Insider Trading</b>: Trading on non-public information. Up to 20 years prison + $5M fine.</li><li><b>Front Running</b>: Trading ahead of client large orders. Strictly prohibited.</li><li><b>Misappropriation</b>: Theft of client assets. 5-20 years prison.</li><li><b>Misrepresentation</b>: Misleading statements or omitting facts.</li></ul>'
+       }}
+    ]
+  }
+];
+
+// Questions data - all 74
+const questions = [
+  // Chapter 1
+  {ch:0,q:{zh:'哪个指标被归类为同步指标？',en:'Which indicator is classified as a coincident indicator?'},
+   opts:[{zh:'ISM制造业PMI',en:'ISM Manufacturing PMI'},{zh:'非农就业 (NFP)',en:'Nonfarm Payrolls (NFP)'},{zh:'失业率',en:'Unemployment Rate'}],
+   ans:1,exp:{zh:'同步指标与经济周期同步变化，直接反映当前活动。NFP是关键同步指标，ISM PMI是先行指标，失业率是滞后指标。',en:'Coincident indicators change with the economic cycle. NFP is a key coincident indicator, ISM PMI is leading, Unemployment Rate is lagging.'}},
+  {ch:0,q:{zh:'哪种市场参与者是美元相关外汇现货交易的主要做市商？',en:'Which market participant acts as a primary market maker in USD-related FX spot trading?'},
+   opts:[{zh:'机构投资者',en:'Institutional Investors'},{zh:'商业银行',en:'Commercial Banks'},{zh:'跨国公司',en:'Multinational Corporations'}],
+   ans:1,exp:{zh:'主要美国商业银行（如摩根大通）在美元相关现货交易中占主导地位，占全球USD外汇交易量的~40%。',en:'Major U.S. commercial banks (e.g., JPMorgan Chase) dominate USD-related spot trading, accounting for ~40% of global USD FX volume.'}},
+  {ch:0,q:{zh:'衰退期间扩张性财政政策的核心目标是什么？',en:'What is the core objective of expansionary fiscal policy during a recession?'},
+   opts:[{zh:'减少政府支出',en:'Reduce government spending'},{zh:'提振总需求',en:'Boost aggregate demand'},{zh:'提高税率',en:'Raise tax rates'}],
+   ans:1,exp:{zh:'扩张性财政政策通过减税或增加政府支出向经济注入资金，提振总需求以对抗衰退压力。',en:'Expansionary fiscal policy uses tax cuts or increased spending to inject money into the economy, raising aggregate demand.'}},
+  {ch:0,q:{zh:'如果美联储实施紧缩货币政策（加息），10年期国债收益率可能如何反应？',en:'If the Fed implements contractionary monetary policy (rate hikes), how is the 10-Year Treasury yield likely to respond?'},
+   opts:[{zh:'上升',en:'Rise'},{zh:'下降',en:'Fall'},{zh:'保持不变',en:'Remain unchanged'}],
+   ans:0,exp:{zh:'美联储加息时，短期利率上升，通过市场预期和通胀预期的变化传导到长期利率，推动10年期国债收益率走高。',en:'When the Fed raises rates, short-term rates increase, transmitting to longer-term rates through market expectations, pushing 10-Year yield higher.'}},
+  {ch:0,q:{zh:'在经济周期的顶峰到收缩（衰退）阶段，哪类资产通常表现最好？',en:'Which asset class typically outperforms during peak-to-contraction (recession)?'},
+   opts:[{zh:'成长股',en:'Growth stocks'},{zh:'长期美国国债',en:'Long-term U.S. Treasuries'},{zh:'工业大宗商品',en:'Industrial commodities'}],
+   ans:1,exp:{zh:'衰退期间，长期国债作为避险资产——收益率大幅下降（如2007-2008年10年期收益率下跌超过300个基点），推动债券价格上涨。',en:'During recessions, long-term Treasuries act as safe-havens—yields fall sharply, boosting bond prices.'}},
+  {ch:0,q:{zh:'美元走强如何影响美国净出口？',en:'How does a stronger U.S. dollar impact U.S. net exports?'},
+   opts:[{zh:'增强出口竞争力',en:'Increases export competitiveness'},{zh:'降低出口竞争力',en:'Reduces export competitiveness'},{zh:'没有影响',en:'Has no impact'}],
+   ans:1,exp:{zh:'美元走强使美国商品对外国买家更贵，降低了出口竞争力。',en:'A stronger USD makes U.S. goods more expensive for foreign buyers, reducing export competitiveness.'}},
+  {ch:0,q:{zh:'如果消费者信心指数(CCI)降至75，这对消费支出有何信号？',en:'If the CCI drops to 75, what does this signal for consumer spending?'},
+   opts:[{zh:'强烈的消费意愿',en:'Strong spending intent'},{zh:'谨慎和消费减弱',en:'Caution and weakened spending'},{zh:'消费模式不变',en:'No change in spending patterns'}],
+   ans:1,exp:{zh:'CCI低于80表明消费者谨慎，将削弱非必需消费支出，这是美国GDP（68-70%）的关键驱动力。',en:'CCI below 80 indicates consumer caution, weakening discretionary spending, a key driver of U.S. GDP (68-70%).'}},
+  {ch:0,q:{zh:'核心通胀率略低于市场预期时，哪种资产最可能上涨？',en:'When core inflation is slightly lower than expected, which asset most likely goes up?'},
+   opts:[{zh:'黄金',en:'Gold'},{zh:'10年期国债ETF',en:'10-year U.S. government bond ETF'},{zh:'恒生指数',en:'Hang Seng Index'}],
+   ans:1,exp:{zh:'当通胀低于预期时，债券最受益。',en:'Bonds benefit most when inflation is lower than expected.'}},
+  // Chapter 2
+  {ch:1,q:{zh:'股票交易中的一级市场是什么？',en:'What is the primary market in stock trading?'},
+   opts:[{zh:'投资者之间交易现有股票',en:'Where investors trade existing stocks among themselves'},{zh:'公司首次发行新股的地方，如IPO',en:'Where companies issue new stocks for the first time, like an IPO'},{zh:'只出售优先股的地方',en:'Where only preferred stocks are sold'}],
+   ans:1,exp:{zh:'一级市场用于新发行，例如Airbnb 2020年的IPO。',en:'The primary market is for new issuances, such as Airbnb\'s 2020 IPO.'}},
+  {ch:1,q:{zh:'在二级市场买苹果股票时，你从谁那里买？',en:'In the secondary market, when you buy Apple stock, who are you buying from?'},
+   opts:[{zh:'直接从苹果公司',en:'Directly from Apple'},{zh:'从另一位投资者',en:'From another investor'},{zh:'从外国银行',en:'From a foreign bank'}],
+   ans:1,exp:{zh:'二级市场是投资者之间交易现有股份。',en:'The secondary market involves trading existing shares between investors.'}},
+  {ch:1,q:{zh:'哪种股票通常拥有公司决策的投票权？',en:'Which stock type typically gives voting rights?'},
+   opts:[{zh:'优先股',en:'Preferred shares'},{zh:'普通股',en:'Common shares'},{zh:'ADRs',en:'ADRs'}],
+   ans:1,exp:{zh:'普通股允许投票，优先股的投票权有限或没有。',en:'Common shares allow voting; preferred shares have limited or no voting rights.'}},
+  {ch:1,q:{zh:'公司清算时，谁比普通股股东先获得赔偿？',en:'In liquidation, who gets paid before common shareholders?'},
+   opts:[{zh:'普通股股东',en:'Common shareholders'},{zh:'债权人和优先股股东',en:'Debt holders and preferred shareholders'},{zh:'仅外国投资者',en:'Only foreign investors'}],
+   ans:1,exp:{zh:'优先股具有较高的清算优先级，在债权人之后但在普通股股东之前获得赔偿。',en:'Preferred shares have higher liquidation priority, paid after debt holders but before common shareholders.'}},
+  {ch:1,q:{zh:'什么是ADR？',en:'What is ADR?'},
+   opts:[{zh:'一种优先股',en:'A type of preferred stock'},{zh:'在美国交易的外国股票凭证',en:'A proxy for foreign stocks traded on U.S. exchanges in USD'},{zh:'一种股票拆分机制',en:'A stock split mechanism'}],
+   ans:1,exp:{zh:'ADR允许美国投资者轻松购买外国股票，无需货币兑换。',en:'ADRs allow U.S. investors to buy foreign stocks easily without currency conversion.'}},
+  {ch:1,q:{zh:'什么是股息？',en:'What is a dividend?'},
+   opts:[{zh:'公司回购其股份',en:'A company buying back its shares'},{zh:'从利润中支付给股东的款项',en:'Payments from profits to shareholders'},{zh:'两家公司之间的合并',en:'A merger between two companies'}],
+   ans:1,exp:{zh:'股息是利润分配，通常由成熟公司按季度支付。',en:'Dividends are profit distributions, often cash, paid quarterly by mature companies.'}},
+  {ch:1,q:{zh:'什么是除息日？',en:'What is the ex-dividend date?'},
+   opts:[{zh:'支付股息的日期',en:'The date dividends are paid'},{zh:'获得股息资格的截止日期',en:'The cutoff date to qualify for the next dividend'},{zh:'股票拆分的公告日期',en:'The announcement date of a stock split'}],
+   ans:1,exp:{zh:'要获得股息，必须在除息日之前持有股票。',en:'You must own the stock before the ex-dividend date to receive the dividend.'}},
+  {ch:1,q:{zh:'2拆1的股票拆分中会发生什么？',en:'What happens in a 2-for-1 stock split?'},
+   opts:[{zh:'股份翻倍，价格减半，总价值不变',en:'Shares double, price halves, total value stays the same'},{zh:'公司支付额外股息',en:'Company pays extra dividends'},{zh:'股份被回购',en:'Shares are bought back'}],
+   ans:0,exp:{zh:'拆分使股票更实惠，增加流动性而不改变投资价值。',en:'Splits make shares more affordable, increasing liquidity without changing investment value.'}},
+  {ch:1,q:{zh:'什么是股票回购？',en:'What is a stock buyback?'},
+   opts:[{zh:'发行新股',en:'Issuing new shares'},{zh:'公司回购自己的股份以减少流通股',en:'Company repurchasing its own shares to reduce outstanding count'},{zh:'以股票支付股息',en:'Paying dividends in stock'}],
+   ans:1,exp:{zh:'公司回购自己的股份以减少流通股数量，提升EPS。',en:'Company repurchases its own shares to reduce outstanding count, boosting EPS.'}},
+  {ch:1,q:{zh:'EPS衡量什么？',en:'What does EPS measure?'},
+   opts:[{zh:'每股利润',en:'Profit per share'},{zh:'股息收益率',en:'Dividend yield'},{zh:'市值',en:'Market cap'}],
+   ans:0,exp:{zh:'EPS = (净利润 - 优先股股息) / 稀释股份，表示每股盈利能力。',en:'EPS = (Net Income - Preferred Dividends) / Diluted Shares, indicating profitability per share.'}},
+  {ch:1,q:{zh:'为什么有些公司P/B比率很高？',en:'Why do some companies have high P/B ratios?'},
+   opts:[{zh:'资产盈利能力低',en:'Low asset profitability'},{zh:'强劲的ROE和被低估的无形资产',en:'Strong ROE and undervalued intangibles'},{zh:'仅高股息',en:'High dividends only'}],
+   ans:1,exp:{zh:'高P/B反映高效资产和高ROE，如拥有专利等无形资产的科技公司。',en:'High P/B reflects efficient assets and high ROE, as in tech firms with intangibles like patents.'}},
+  // Chapter 3 - ETF
+  {ch:2,q:{zh:'哪一特征将ETF与共同基金区分开来？',en:'Which feature distinguishes ETFs from mutual funds?'},
+   opts:[{zh:'在整个交易日内交易',en:'Traded throughout the trading day'},{zh:'投资于多元化资产篮子',en:'Invest in a diversified basket of assets'},{zh:'汇集多位投资者的资金',en:'Pool money from multiple investors'}],
+   ans:0,exp:{zh:'ETF可以在日内以市场价格买卖，这是与共同基金的关键区别。',en:'ETFs can be bought/sold intraday at market prices, a key difference from mutual funds.'}},
+  {ch:2,q:{zh:'哪个ETF是主题ETF的例子？',en:'Which ETF is an example of a thematic ETF?'},
+   opts:[{zh:'GLD（黄金ETF）',en:'GLD (Gold ETF)'},{zh:'ARKK（ARK创新ETF）',en:'ARKK (ARK Innovation ETF)'},{zh:'SPY（标普500 ETF）',en:'SPY (S&P 500 ETF)'}],
+   ans:1,exp:{zh:'ARKK被明确列为专注于创新的主题ETF。',en:'ARKK is explicitly listed as a thematic ETF focusing on innovation.'}},
+  {ch:2,q:{zh:'为什么杠杆ETF不适合长期持有？',en:'Why are leveraged ETFs unsuitable for long-term holding?'},
+   opts:[{zh:'缺乏流动性',en:'Lack of liquidity'},{zh:'波动率损耗和每日再平衡',en:'Volatility decay and daily rebalancing'},{zh:'无法追踪任何基准',en:'Inability to track any benchmarks'}],
+   ans:1,exp:{zh:'杠杆ETF依赖每日再平衡和衍生品，导致波动率损耗。',en:'Leveraged ETFs rely on daily rebalancing and derivatives, leading to volatility decay.'}},
+  {ch:2,q:{zh:'哪个监管机构监管美国的ETF？',en:'Which regulatory body oversees ETFs in the U.S.?'},
+   opts:[{zh:'SEC',en:'SEC'},{zh:'FED',en:'FED'},{zh:'NYSE',en:'NYSE'}],
+   ans:0,exp:{zh:'ETF受SEC监管，确保透明度和投资者保护。',en:'ETFs are overseen by the SEC, ensuring transparency and investor protection.'}},
+  {ch:2,q:{zh:'投资ETF的第一步是什么？',en:'What is the first step to invest in ETFs?'},
+   opts:[{zh:'开设经纪账户',en:'Open a brokerage account'},{zh:'选择主题ETF',en:'Select a thematic ETF'},{zh:'监控投资组合表现',en:'Monitor portfolio performance'}],
+   ans:0,exp:{zh:'开设经纪账户是第一步。',en:'Opening a brokerage account is the first step.'}},
+  {ch:2,q:{zh:'为什么ETF通常比共同基金更具税务效率？',en:'Why are ETFs generally more tax-efficient than mutual funds?'},
+   opts:[{zh:'实物赎回',en:'In-kind redemptions'},{zh:'较低的费用率',en:'Lower expense ratios'},{zh:'较高的流动性',en:'Higher liquidity'}],
+   ans:0,exp:{zh:'实物赎回减少了资本收益分配。',en:'In-kind redemptions reduce capital gains distributions.'}},
+  {ch:2,q:{zh:'哪个投资期限最适合杠杆ETF？',en:'Which investment horizon is most suitable for leveraged ETFs?'},
+   opts:[{zh:'短期交易（数天至数周）',en:'Short-term trading (days to weeks)'},{zh:'长期持有（数年）',en:'Long-term holding (years)'},{zh:'无时间限制',en:'No time restriction'}],
+   ans:0,exp:{zh:'杠杆ETF专为短期使用而设计，材料明确指出不适合长期持有。',en:'Leveraged ETFs are designed for short-term use; explicitly unsuitable for long-term holding.'}},
+  {ch:2,q:{zh:'在哪种市场环境下波动率损耗最严重？',en:'In which market environment does volatility decay most severely erode leveraged ETF value?'},
+   opts:[{zh:'高度波动（起伏）的市场',en:'Highly volatile (ups and downs) markets'},{zh:'稳步上涨的市场',en:'Steadily rising markets'},{zh:'稳步下跌的市场',en:'Steadily falling markets'}],
+   ans:0,exp:{zh:'波动率损耗在波动或横盘整理的市场中最为严重。',en:'Volatility decay is worse in volatile or sideways markets.'}},
+  // Chapter 4 - Options
+  {ch:3,q:{zh:'如果标的价格S_T>行权价X，看涨期权买方到期收益是多少？',en:'What is the payoff for a long call at expiration if S_T > X?'},
+   opts:[{zh:'Max(0, X - S_T)',en:'Max(0, X - S_T)'},{zh:'Max(0, S_T - X)',en:'Max(0, S_T - X)'},{zh:'已付权利金',en:'Premium paid'}],
+   ans:1,exp:{zh:'看涨期权买方的收益是max(0, S_T - X)。',en:'The payoff for a long call is max(0, S_T - X).'}},
+  {ch:3,q:{zh:'对于看跌期权卖方，最大风险是多少？',en:'For a short put seller, what is the maximum risk?'},
+   opts:[{zh:'无限',en:'Unlimited'},{zh:'限于收到的权利金',en:'Limited to premium received'},{zh:'限于X-权利金（直至归零）',en:'Limited to X - premium (down to zero)'}],
+   ans:2,exp:{zh:'卖出看跌期权的风险限于X-权利金，标的资产可能归零。',en:'Short put risk is limited to X - premium, as the underlying can potentially go to zero.'}},
+  {ch:3,q:{zh:'如果看涨期权具有正的内在价值，它被分类为？',en:'If a call has positive intrinsic value, it is classified as:'},
+   opts:[{zh:'虚值 (OTM)',en:'Out-of-the-Money (OTM)'},{zh:'平值 (ATM)',en:'At-the-Money (ATM)'},{zh:'实值 (ITM)',en:'In-the-Money (ITM)'}],
+   ans:2,exp:{zh:'ITM意味着S > X，有正的内在价值。',en:'ITM for calls means S > X, with positive intrinsic value.'}},
+  {ch:3,q:{zh:'期权时间价值代表什么？',en:'What does option time value represent?'},
+   opts:[{zh:'立即行权价值',en:'The immediate exercise value'},{zh:'为到期前潜在有利变动支付的额外权利金',en:'Extra premium for potential favorable moves before expiration'},{zh:'无风险利率',en:'The risk-free interest rate'}],
+   ans:1,exp:{zh:'时间价值是超出内在价值的权利金，为价格变动机会付费。',en:'Time value is premium beyond intrinsic value, paying for the chance of price movement.'}},
+  {ch:3,q:{zh:'看涨期权赋予买方什么权利？',en:'What does a call option give the buyer the right to do?'},
+   opts:[{zh:'卖出标的资产',en:'Sell the underlying asset'},{zh:'买入标的资产',en:'Buy the underlying asset'},{zh:'持有标的资产',en:'Hold the underlying asset'}],
+   ans:1,exp:{zh:'看涨期权赋予买方以行权价买入标的资产的权利，但非义务。',en:'A call grants the right, but not obligation, to buy the underlying at the strike price.'}},
+  {ch:3,q:{zh:'美式期权可以在何时行权？',en:'American options can be exercised:'},
+   opts:[{zh:'仅在到期时',en:'Only at expiration'},{zh:'到期前或到期时的任何时间',en:'Anytime before or on expiration'},{zh:'仅在特定日期',en:'Only on specific dates'}],
+   ans:1,exp:{zh:'美式期权允许在到期前的任何时间行权。',en:'American options allow exercise at any time up to expiration.'}},
+  {ch:3,q:{zh:'看涨期权买方的盈亏平衡点是？',en:'For a long call, the breakeven point is:'},
+   opts:[{zh:'行权价 - 权利金',en:'Strike - Premium'},{zh:'行权价 + 权利金',en:'Strike + Premium'},{zh:'仅行权价',en:'Strike only'}],
+   ans:1,exp:{zh:'盈亏平衡点 = 行权价 + 已付权利金。',en:'Breakeven = strike price + premium paid.'}},
+  {ch:3,q:{zh:'看跌期权买方的损失限于？',en:'For a long put buyer, the loss is limited to:'},
+   opts:[{zh:'无限下行',en:'Unlimited downside'},{zh:'已付权利金',en:'The premium paid'},{zh:'X - S_T',en:'X - S_T'}],
+   ans:1,exp:{zh:'如果期权过期作废，最大损失是权利金。',en:'Maximum loss is the premium if the option expires worthless.'}},
+  {ch:3,q:{zh:'看涨期权的内在价值是什么？',en:'What is intrinsic value for a call option?'},
+   opts:[{zh:'行权价 - 股价（如果为正）',en:'Strike - Stock price (if positive)'},{zh:'股价 - 行权价（如果为正）',en:'Stock price - Strike (if positive)'},{zh:'仅时间价值',en:'Time value only'}],
+   ans:1,exp:{zh:'内在价值 = 当前股价 - 行权价（如果为正）。',en:'Intrinsic value = Stock price - Strike (if positive).'}},
+  {ch:3,q:{zh:'看跌期权是ITM的条件？',en:'A put is ITM if:'},
+   opts:[{zh:'股价 > 行权价',en:'Stock price > Strike'},{zh:'股价 < 行权价',en:'Stock price < Strike'},{zh:'股价 = 行权价',en:'Stock price = Strike'}],
+   ans:1,exp:{zh:'当股价低于行权价时，看跌期权为ITM。',en:'A put is ITM when the stock price is below the strike.'}},
+  {ch:3,q:{zh:'末日期权(0DTE)的到期时间是？',en:'What is the expiration time for 0DTE options?'},
+   opts:[{zh:'在交易周结束时',en:'At the end of the trading week'},{zh:'在同一交易日结束时',en:'At the end of the same trading day'},{zh:'购买后一个月',en:'One month after purchase'}],
+   ans:1,exp:{zh:'0DTE期权在买入或卖出的同一交易日结束时到期。',en:'0DTE options expire at the end of the same trading day.'}},
+  {ch:3,q:{zh:'0DTE看涨期权收盘时OTM会怎样？',en:'For a 0DTE call, what happens if OTM at close?'},
+   opts:[{zh:'有无限利润',en:'Unlimited profit'},{zh:'过期作废',en:'It expires worthless'},{zh:'被自动行权',en:'Automatically exercised'}],
+   ans:1,exp:{zh:'如果OTM，0DTE期权过期作废，损失全部权利金。',en:'If OTM at close, it expires worthless, full premium is lost.'}},
+  // Chapter 5 - Funds
+  {ch:4,q:{zh:'主动管理和被动管理的关键区别是什么？',en:'What is a key difference between active and passive management?'},
+   opts:[{zh:'主动管理选择证券以跑赢基准，被动追踪指数',en:'Active selects securities to outperform a benchmark, passive tracks an index'},{zh:'被动管理费用更高',en:'Passive management has higher fees'},{zh:'主动管理避免所有风险',en:'Active management avoids all risks'}],
+   ans:0,exp:{zh:'主动管理利用研究跑赢基准，被动管理以较低费用追踪指数。',en:'Active management uses research to outperform benchmarks; passive tracks indexes with lower fees.'}},
+  {ch:4,q:{zh:'为什么被动策略越来越受欢迎？',en:'Why have passive strategies grown in popularity?'},
+   opts:[{zh:'由于成本效益和较低的费用',en:'Due to cost efficiency and lower fees'},{zh:'因为总是跑赢主动策略',en:'Because they always outperform active strategies'},{zh:'需要更多研究',en:'They require more research'}],
+   ans:0,exp:{zh:'被动策略因成本效益而增长。',en:'Passive strategies have grown due to cost efficiency.'}},
+  {ch:4,q:{zh:'另类资产管理者主要处理什么？',en:'What do alternative asset managers primarily handle?'},
+   opts:[{zh:'对冲基金和私募股权等非传统资产',en:'Non-traditional assets like hedge funds and private equity'},{zh:'仅股票和债券',en:'Only stocks and bonds'},{zh:'仅短期现金',en:'Short-term cash only'}],
+   ans:0,exp:{zh:'另类管理者处理对冲基金、私募股权、房地产或大宗商品等非传统资产。',en:'Alternative managers handle hedge funds, PE, real estate, commodities.'}},
+  {ch:4,q:{zh:'开放式共同基金的主要特征是什么？',en:'What is the main feature of open-end mutual funds?'},
+   opts:[{zh:'投资者按NAV购买/赎回，基金可发行新份额',en:'Investors buy/redeem at NAV, funds can issue new shares'},{zh:'固定数量的份额在交易所交易',en:'Fixed number of shares traded on exchanges'},{zh:'投资者没有流动性',en:'No liquidity for investors'}],
+   ans:0,exp:{zh:'开放式基金允许按NAV购买/赎回，可通过发行新份额来增长。',en:'Open-end funds allow buying/redeeming at NAV and can grow by issuing new shares.'}},
+  {ch:4,q:{zh:'共同基金的NAV如何计算？',en:'How is NAV calculated for mutual funds?'},
+   opts:[{zh:'持仓收盘价减去负债，除以份额',en:'Closing prices of holdings minus liabilities, divided by shares'},{zh:'仅基于市场价格',en:'Based on market price only'},{zh:'始终固定在1美元',en:'Fixed at $1 always'}],
+   ans:0,exp:{zh:'NAV每日计算：持仓收盘价减去负债，除以份额。',en:'NAV is calculated daily: closing prices minus liabilities, divided by shares.'}},
+  {ch:4,q:{zh:'货币市场基金主要投资于什么？',en:'What do money market funds primarily invest in?'},
+   opts:[{zh:'短期低风险债务如国库券',en:'Short-term, low-risk debt like Treasury bills'},{zh:'高风险股票',en:'High-risk stocks'},{zh:'仅长期债券',en:'Long-term bonds only'}],
+   ans:0,exp:{zh:'货币市场基金投资于短期低风险债务。',en:'Money market funds invest in short-term, low-risk debt.'}},
+  {ch:4,q:{zh:'私募股权等私募市场适合谁？',en:'Who are private markets like PE suitable for?'},
+   opts:[{zh:'高净值的合格投资者',en:'Accredited investors with high net worth'},{zh:'低门槛的初学者',en:'Beginners with low minimums'},{zh:'短期投资者',en:'Short-term investors'}],
+   ans:0,exp:{zh:'私募市场面向合格投资者（净资产>$1M或收入>$200K）。',en:'Private markets are for accredited investors (net worth >$1M or income >$200K).'}},
+  {ch:4,q:{zh:'对冲基金的一个特征是什么？',en:'What is a characteristic of hedge funds?'},
+   opts:[{zh:'更激进灵活，使用保证金和期权',en:'More aggressive and flexible, using margin and options'},{zh:'仅限于传统资产',en:'Limited to traditional assets only'},{zh:'低风险和稳定的NAV',en:'Low risk and stable NAV'}],
+   ans:0,exp:{zh:'对冲基金使用保证金、卖空和期权等策略。',en:'Hedge funds use strategies like margin, short selling, and options.'}},
+  {ch:4,q:{zh:'什么是A类份额费用？',en:'What is a Class A share fee?'},
+   opts:[{zh:'购买时的前端费用',en:'Front-end load paid when buying shares'},{zh:'出售时的后端费用',en:'Back-end load when selling'},{zh:'年度定期费用',en:'Annual periodic fee'}],
+   ans:0,exp:{zh:'A类有前端费用，购买份额时的一次性销售费用。',en:'Class A has a front-end load when purchasing shares.'}},
+  {ch:4,q:{zh:'对冲基金的绩效费通常包括什么？',en:'What does a performance fee in hedge funds typically include?'},
+   opts:[{zh:'超过门槛率收益的20%',en:'20% of gains above a hurdle rate'},{zh:'仅固定年费',en:'Fixed annual fee only'},{zh:'没有基于利润的费用',en:'No fee based on profits'}],
+   ans:0,exp:{zh:'绩效费通常是超过门槛利润的20%。',en:'Performance fee is typically 20% of profits above a threshold.'}},
+  // Chapter 6 - Indexes
+  {ch:5,q:{zh:'指数的价格回报衡量什么？',en:'What does price return for an index measure?'},
+   opts:[{zh:'价格变化加再投资股息',en:'Price changes plus reinvested dividends'},{zh:'仅指数水平变化，忽略股息',en:'Only changes in index level, ignoring dividends'},{zh:'股票总市值',en:'Total market capitalization'}],
+   ans:1,exp:{zh:'价格回报仅关注指数的价格增值或贬值。',en:'Price return focuses solely on index price appreciation or depreciation.'}},
+  {ch:5,q:{zh:'总回报与价格回报有何不同？',en:'How is total return different from price return?'},
+   opts:[{zh:'排除价格变化',en:'It excludes price changes'},{zh:'包括价格变化和再投资股息',en:'It includes price changes and reinvested dividends'},{zh:'只考虑股票拆分',en:'It only considers stock splits'}],
+   ans:1,exp:{zh:'总回报提供投资者收益的完整图景。',en:'Total return provides a complete picture of investor earnings.'}},
+  {ch:5,q:{zh:'价格加权指数中什么决定股票影响力？',en:"In a price-weighted index, what determines a stock's influence?"},
+   opts:[{zh:'其市值',en:'Its market capitalization'},{zh:'其每股价格',en:'Its per-share price'},{zh:'所有股票权重相等',en:'Equal weight for all stocks'}],
+   ans:1,exp:{zh:'价格较高的股票影响更大。',en:'Higher-priced stocks have more impact.'}},
+  {ch:5,q:{zh:'哪个指数使用市值加权？',en:'Which index uses market-cap weighting?'},
+   opts:[{zh:'道琼斯工业平均指数',en:'Dow Jones Industrial Average'},{zh:'标准普尔500指数',en:'S&P 500'},{zh:'标普500等权重指数',en:'S&P 500 Equal Weight Index'}],
+   ans:1,exp:{zh:'S&P 500是衡量美国大盘股表现的关键市值加权指标。',en:'S&P 500 is a key market-cap weighted gauge of U.S. large-cap performance.'}},
+  {ch:5,q:{zh:'罗素2000指数关注什么？',en:'What does the Russell 2000 index focus on?'},
+   opts:[{zh:'美国大盘股',en:'Large-cap U.S. stocks'},{zh:'美国小盘股',en:'Small-cap U.S. equities'},{zh:'新兴市场股票',en:'Emerging market stocks'}],
+   ans:1,exp:{zh:'衡量约2000只美国小盘股。',en:'Measures ~2,000 small-cap U.S. stocks.'}},
+  // Chapter 7 - Financial Statements
+  {ch:6,q:{zh:'美国股票市场中财务报表的主要目的是什么？',en:'What is the primary purpose of financial statements in the US stock market?'},
+   opts:[{zh:'促进透明度并保护投资者',en:'To promote transparency and protect investors'},{zh:'宣传公司产品',en:'To advertise company products'},{zh:'追踪员工绩效',en:'To track employee performance'}],
+   ans:0,exp:{zh:'SEC要求上市公司提供财务报表以确保透明度。',en:'Required by SEC for public companies to ensure transparency.'}},
+  {ch:6,q:{zh:'美国上市公司必须遵守哪种会计准则？',en:'Which accounting standard is mandatory for US public companies?'},
+   opts:[{zh:'IFRS',en:'IFRS'},{zh:'US GAAP',en:'US GAAP'},{zh:'GAAP和IFRS',en:'Both GAAP and IFRS'}],
+   ans:1,exp:{zh:'US GAAP由FASB制定，SEC要求遵守。',en:'US GAAP is developed by FASB and required by SEC.'}},
+  {ch:6,q:{zh:'损益表上的收入/净销售额代表什么？',en:'What does Revenue/Net Sales represent on the income statement?'},
+   opts:[{zh:'生产成本',en:'Costs of production'},{zh:'主要业务活动收入减去退货和折扣',en:'Income from primary business minus returns and discounts'},{zh:'营业外费用',en:'Non-operating expenses'}],
+   ans:1,exp:{zh:'显示销售产品或服务的收入。',en:"It's the top line, showing income from selling products or services."}},
+  {ch:6,q:{zh:'毛利如何计算？',en:'How is Gross Profit calculated?'},
+   opts:[{zh:'收入减去营业费用',en:'Revenue minus operating expenses'},{zh:'收入减去COGS',en:'Revenue minus COGS'},{zh:'净利润加上税款',en:'Net income plus taxes'}],
+   ans:1,exp:{zh:'毛利 = 收入 - COGS。',en:'Gross Profit = Revenue - COGS.'}},
+  {ch:6,q:{zh:'营业利润(EBIT)排除什么？',en:'What does Operating Income (EBIT) exclude?'},
+   opts:[{zh:'收入和COGS',en:'Revenues and COGS'},{zh:'融资成本和税款',en:'Financing costs and taxes'},{zh:'研发费用',en:'R&D expenses'}],
+   ans:1,exp:{zh:'EBIT不含融资或税收影响。',en:'EBIT excludes financing and tax effects.'}},
+  {ch:6,q:{zh:'损益表上的净利润是什么？',en:'What is Net Income on the income statement?'},
+   opts:[{zh:'税前利润减去税款',en:'Pre-tax income minus taxes'},{zh:'毛利加营业外收入',en:'Gross profit plus non-operating income'},{zh:'总资产减负债',en:'Total assets minus liabilities'}],
+   ans:0,exp:{zh:'净利润是扣除所有费用、税款后的利润。',en:'Net income is profit after all expenses and taxes.'}},
+  {ch:6,q:{zh:'资产负债表代表什么？',en:'What does the balance sheet represent?'},
+   opts:[{zh:'一段时间内的现金流',en:'Cash flows over a period'},{zh:'特定时间点的资产、负债和权益快照',en:'A snapshot of assets, liabilities, and equity at a point in time'},{zh:'随时间推移的收入和费用',en:'Revenues and expenses over time'}],
+   ans:1,exp:{zh:'遵循等式：资产 = 负债 + 权益。',en:'Follows: Assets = Liabilities + Equity.'}},
+  {ch:6,q:{zh:'资产负债表上的资产是什么？',en:'What are assets on the balance sheet?'},
+   opts:[{zh:'支付义务',en:'Obligations to pay'},{zh:'预期提供未来经济利益的资源',en:'Resources expected to provide future economic benefits'},{zh:'股东股息',en:'Shareholder dividends'}],
+   ans:1,exp:{zh:'资产代表价值创造能力。',en:'Assets represent value-generating capacity.'}},
+  {ch:6,q:{zh:'流动负债和非流动负债的区别？',en:'Difference between current and non-current liabilities?'},
+   opts:[{zh:'流动是长期的',en:'Current is long-term'},{zh:'流动负债一年内结算，非流动超过一年',en:'Current settled within one year; non-current beyond one year'},{zh:'两者相同',en:'Both are the same'}],
+   ans:1,exp:{zh:'流动负债一年内结算；非流动负债超过一年。',en:'Current liabilities settle within one year; non-current beyond one year.'}},
+  {ch:6,q:{zh:'权益中的留存收益代表什么？',en:'What does Retained Earnings represent in equity?'},
+   opts:[{zh:'累计利润减去股息',en:'Cumulative profits minus dividends'},{zh:'股票面值',en:'Par value of shares'},{zh:'投资的未实现收益',en:'Unrealized gains from investments'}],
+   ans:0,exp:{zh:'留存收益是再投资于企业的收益。',en:'Retained earnings show earnings reinvested in the business.'}},
+  {ch:6,q:{zh:'什么是库存股？',en:'What is Treasury Stock?'},
+   opts:[{zh:'新发行的股票',en:'Newly issued shares'},{zh:'公司持有的回购股票，从权益中扣除',en:'Repurchased shares held by company, deducted from equity'},{zh:'支付的股息',en:'Dividends paid out'}],
+   ans:1,exp:{zh:'库存股是权益抵减账户。',en:"It's a contra-equity account, reducing shareholders' equity."}},
+  {ch:6,q:{zh:'经营活动产生的现金流量是什么？',en:'What is Cash Flows from Operating Activities?'},
+   opts:[{zh:'购买资产的现金',en:'Cash from buying assets'},{zh:'核心业务运营产生的净现金',en:'Net cash from core business operations'},{zh:'发行股票的现金',en:'Cash from issuing stock'}],
+   ans:1,exp:{zh:'代表经营利润的现金版本。',en:'Represents the cash version of operating profit.'}},
+  {ch:6,q:{zh:'什么是净资产收益率(ROE)？',en:'What is Return on Equity (ROE)?'},
+   opts:[{zh:'净利润/收入',en:'Net Income / Revenue'},{zh:'净利润/平均股东权益',en:"Net Income / Average Shareholders' Equity"},{zh:'收入-费用',en:'Revenue - Expenses'}],
+   ans:1,exp:{zh:'ROE衡量权益产生的利润。',en:'ROE measures profit generation from equity.'}},
+  // Chapter 8 - Revenue & Industry
+  {ch:7,q:{zh:'卖方研究报告的主要目的？',en:'Primary purpose of sell-side research reports?'},
+   opts:[{zh:'提供内部管理建议',en:'Internal management advice'},{zh:'通过建议和目标价指导客户投资决策',en:'Guide client investment decisions with recommendations and target prices'},{zh:'报告员工满意度',en:'Report on employee satisfaction'}],
+   ans:1,exp:{zh:'帮助客户做出投资决策。',en:'Help clients make investment decisions.'}},
+  {ch:7,q:{zh:'分析师买入评级表明什么？',en:'What does a Buy recommendation indicate?'},
+   opts:[{zh:'预计跑输市场',en:'Expected to underperform'},{zh:'预计显著跑赢市场',en:'Expected to significantly outperform the market'},{zh:'应持有不变',en:'Should be held without changes'}],
+   ans:1,exp:{zh:'预计总回报超过基准10-20%或更多。',en:'Expects total returns to exceed benchmark by 10-20%+.'}},
+  {ch:7,q:{zh:'如何在MooMoo中找到分析师评级？',en:'How to find analyst ratings in MooMoo?'},
+   opts:[{zh:'选择公司 > 分析师评级 > 目标价/评级明细',en:'Select company > Analyst Ratings > Target Price/Rating Details'},{zh:'市场 > 美股 > 业绩预期',en:'Market > US Stocks > Performance Expectations'},{zh:'直接搜索晨星报告',en:'Search Morningstar reports directly'}],
+   ans:0,exp:{zh:'文档指定了此路径。',en:'The document specifies this path.'}},
+  {ch:7,q:{zh:'自下而上收入分析的关键步骤？',en:'Key step in bottom-up revenue analysis?'},
+   opts:[{zh:'基于GDP增长预测市场规模',en:'Forecasting market size based on GDP growth'},{zh:'将收入分解为销量和价格等组成部分',en:'Decomposing revenues into components like volume and price'},{zh:'评估供应商议价能力',en:'Assessing supplier bargaining power'}],
+   ans:1,exp:{zh:'自下而上方法分解收入为细粒度驱动因素。',en:'Bottom-up breaks down revenues into granular drivers.'}},
+  {ch:7,q:{zh:'波特五力中高买家力量意味着什么？',en:"What does high buyer power mean in Porter's Five Forces?"},
+   opts:[{zh:'客户选择少，可定高价',en:'Few choices, allowing higher prices'},{zh:'客户可以要求更低的价格',en:'Customers can demand lower prices due to many options'},{zh:'替代品有限',en:'Substitutes are limited'}],
+   ans:1,exp:{zh:'消费者可以在不同选择间切换，迫使公司保持低价。',en:'Consumers can switch between options, forcing low prices.'}},
+  // Chapter 9 - Ethics
+  {ch:8,q:{zh:'以下所有都是SRO，除了？',en:'All of the following are SROs EXCEPT:'},
+   opts:[{zh:'FINRA',en:'FINRA'},{zh:'MSRB',en:'MSRB'},{zh:'SEC',en:'SEC'}],
+   ans:2,exp:{zh:'SEC是政府机构，不是SRO。',en:'SEC is a government agency, not an SRO.'}},
+  {ch:8,q:{zh:'内幕交易个人最高罚款金额？',en:'Maximum penalty for insider trading?'},
+   opts:[{zh:'500万美元',en:'$5 million'},{zh:'5万美元',en:'$50,000'},{zh:'100万美元',en:'$1 million'}],
+   ans:0,exp:{zh:'最高20年监禁+500万美元罚款。',en:'Up to 20 years prison + $5 million fine.'}}
+];
+
+// Study Plan Data
+const studyPlan = [
+  {day:1,week:1,time:'1.5h',modules:{zh:'1.1 经济周期; 1.2 货币政策',en:'1.1 Business Cycle; 1.2 Monetary Policy'},
+   tasks:{zh:'阅读1.1-1.2章节；重点记忆经济周期四阶段及美联储政策工具',en:'Read 1.1-1.2; focus on four business cycle phases and Fed policy tools'},quiz:5},
+  {day:2,week:1,time:'1h',modules:{zh:'1.3 财政政策; 1.4 政策与资产',en:'1.3 Fiscal Policy; 1.4 Policy & Assets'},
+   tasks:{zh:'阅读1.3-1.4；对比扩张/收缩政策对股债的影响',en:'Read 1.3-1.4; compare policy effects on stocks/bonds'},quiz:5},
+  {day:3,week:1,time:'1h',modules:{zh:'2.1 股票类型; 2.2 公司行为',en:'2.1 Stock Types; 2.2 Corporate Actions'},
+   tasks:{zh:'阅读2.1-2.2；区分普通股/优先股',en:'Read 2.1-2.2; distinguish Common/Preferred Stock'},quiz:5},
+  {day:4,week:1,time:'1.5h',modules:{zh:'2.3 估值指标',en:'2.3 Valuation Metrics'},
+   tasks:{zh:'掌握P/E, P/B, EPS, ROE计算公式',en:'Master P/E, P/B, EPS, ROE formulas'},quiz:8},
+  {day:5,week:1,time:'1h',modules:{zh:'3.1 ETF基础; 3.2 ETF类型',en:'3.1 ETF Basics; 3.2 ETF Types'},
+   tasks:{zh:'理解ETF申赎机制',en:'Understand creation/redemption mechanism'},quiz:5},
+  {day:6,week:1,time:'3h',modules:{zh:'3.3 杠杆ETF; 复习模块1-3',en:'3.3 Leveraged ETFs; Review Modules 1-3'},
+   tasks:{zh:'深入理解波动率损耗；复习笔记',en:'Understand volatility decay; review notes'},quiz:10},
+  {day:7,week:1,time:'2h',modules:{zh:'里程碑1：周测',en:'Milestone 1: Weekly Test'},milestone:true,
+   tasks:{zh:'30题英文选择题，限时45分钟，目标≥80%',en:'30 MCQs, 45-min limit, target >=80%'},quiz:30},
+  {day:8,week:2,time:'1.5h',modules:{zh:'4.1 期权基础; 4.2 价值状态',en:'4.1 Option Basics; 4.2 Moneyness'},
+   tasks:{zh:'区分Call/Put，理解ITM/ATM/OTM',en:'Distinguish Call/Put, understand ITM/ATM/OTM'},quiz:5},
+  {day:9,week:2,time:'1.5h',modules:{zh:'4.3 盈亏计算',en:'4.3 P&L Calculations'},
+   tasks:{zh:'练习盈亏平衡点计算',en:'Practice breakeven calculations'},quiz:8},
+  {day:10,week:2,time:'1h',modules:{zh:'4.4 价格因素; 4.5 策略',en:'4.4 Pricing Factors; 4.5 Strategies'},
+   tasks:{zh:'理解Theta Decay和IV',en:'Understand Theta Decay and IV'},quiz:5},
+  {day:11,week:2,time:'1h',modules:{zh:'5.1 基金类型',en:'5.1 Fund Types'},
+   tasks:{zh:'对比开放式/封闭式基金',en:'Compare Open-end/Closed-end funds'},quiz:5},
+  {day:12,week:2,time:'1h',modules:{zh:'5.2 基金费用',en:'5.2 Fund Fees'},
+   tasks:{zh:'区分前端/后端收费',en:'Distinguish Front-end/Back-end Load'},quiz:5},
+  {day:13,week:2,time:'3h',modules:{zh:'6.1-6.2 指数; 复习',en:'6.1-6.2 Indexes; Review'},
+   tasks:{zh:'理解加权方法；复习期权计算',en:'Understand weighting methods; review options'},quiz:10},
+  {day:14,week:2,time:'2h',modules:{zh:'里程碑2：周测',en:'Milestone 2: Weekly Test'},milestone:true,
+   tasks:{zh:'30题，限时45分钟，重点期权',en:'30 MCQs, 45-min, focus on options'},quiz:30},
+  {day:15,week:3,time:'1.5h',modules:{zh:'7.1-7.2 财报基础与损益表',en:'7.1-7.2 Basics & Income Statement'},
+   tasks:{zh:'掌握损益表结构',en:'Master income statement structure'},quiz:5},
+  {day:16,week:3,time:'1.5h',modules:{zh:'7.3-7.4 资产负债表与现金流',en:'7.3-7.4 Balance Sheet & Cash Flow'},
+   tasks:{zh:'理解Assets = Liabilities + Equity',en:'Understand Assets = Liabilities + Equity'},quiz:5},
+  {day:17,week:3,time:'1h',modules:{zh:'7.5 财务比率',en:'7.5 Financial Ratios'},
+   tasks:{zh:'计算Gross Margin, Net Margin, ROE',en:'Calculate Gross Margin, Net Margin, ROE'},quiz:8},
+  {day:18,week:3,time:'1h',modules:{zh:'8.1-8.2 营收与行业分析',en:'8.1-8.2 Revenue & Industry Analysis'},
+   tasks:{zh:'理解Bottom-up/Top-down和波特五力',en:"Understand Bottom-up/Top-down and Porter's Five Forces"},quiz:5},
+  {day:19,week:3,time:'1h',modules:{zh:'9.1-9.2 监管与违规',en:'9.1-9.2 Regulators & Violations'},
+   tasks:{zh:'记忆SEC/FINRA职能',en:'Memorize SEC/FINRA functions'},quiz:5},
+  {day:20,week:3,time:'3h',modules:{zh:'错题回炉; 重点强化',en:'Review Wrong Answers; Reinforce'},
+   tasks:{zh:'重做错题；复习期权、财务比率、宏观',en:'Redo wrong answers; review options, ratios, macro'},quiz:0},
+  {day:21,week:3,time:'2h',modules:{zh:'综合模拟考试',en:'Final Mock Exam'},milestone:true,
+   tasks:{zh:'60题英文真题，限时60分钟',en:'60 questions, 60-min limit'},quiz:60}
+];
+
+// ===== APP STATE =====
+let state = {
+  quizAnswers: JSON.parse(localStorage.getItem('quizAnswers') || '{}'),
+  studyDays: JSON.parse(localStorage.getItem('studyDays') || '{}'),
+  checklist: JSON.parse(localStorage.getItem('checklist') || '{}'),
+  bookmarks: JSON.parse(localStorage.getItem('bookmarks') || '[]')
+};
+function save(key, val) { state[key] = val; localStorage.setItem(key, JSON.stringify(val)); }
+
+// ===== RENDER HELPERS =====
+function t(obj) { return typeof obj === 'string' ? obj : (obj[currentLang] || obj.zh || ''); }
+function diffStars(n) { return '<span class="diff">' + '\u2B50'.repeat(n) + '</span>'; }
+
+function renderSidebar() {
+  const nav = document.getElementById('sidebarNav');
+  const isZh = currentLang === 'zh';
+  let html = '<a class="' + (currentPage==='home'?'active':'') + '" onclick="goTo(\'home\')">\uD83C\uDFE0 ' + (isZh?'\u9996\u9875':'Home') + '</a>';
+  chapters.forEach(function(ch, i) {
+    html += '<a class="' + (currentPage===ch.id?'active':'') + '" onclick="goTo(\'' + ch.id + '\')">' + ch.icon + ' ' + t(ch.title) + '<span class="badge">' + ch.weight + '</span></a>';
+  });
+  html += '<a class="' + (currentPage==='quiz'?'active':'') + '" onclick="goTo(\'quiz\')">\uD83D\uDCDD ' + (isZh?'\u7EC3\u4E60\u9898\u5E93':'Quiz Bank') + '<span class="badge">74</span></a>';
+  html += '<a class="' + (currentPage==='plan'?'active':'') + '" onclick="goTo(\'plan\')">\uD83D\uDCC5 ' + (isZh?'21\u5929\u5B66\u4E60\u8BA1\u5212':'21-Day Plan') + '</a>';
+  html += '<a class="' + (currentPage==='checklist'?'active':'') + '" onclick="goTo(\'checklist\')">\u2705 ' + (isZh?'\u77E5\u8BC6\u6E05\u5355':'Knowledge Checklist') + '</a>';
+  nav.innerHTML = html;
+  document.getElementById('sidebarTitle').textContent = isZh ? '\u5165\u95E8\u8003\u8BD5\u5B66\u4E60\u6307\u5357' : 'Entry Exam Guide';
+  var bp = document.getElementById('bookmarksPanel');
+  var bs = document.getElementById('bookmarksSection');
+  if (state.bookmarks.length > 0) {
+    bs.style.display = 'block';
+    bp.innerHTML = state.bookmarks.map(function(b) { return '<div class="bookmark-item" onclick="goTo(\'' + b.page + '\')">' + b.label + '<span onclick="event.stopPropagation();removeBookmark(\'' + b.page + '\')">\u2715</span></div>'; }).join('');
+  } else { bs.style.display = 'none'; }
+}
+
+function goTo(page) {
+  currentPage = page; localStorage.setItem('currentPage', page);
+  renderSidebar(); renderMain();
+  window.scrollTo(0, 0);
+  if (window.innerWidth < 769) { document.getElementById('sidebar').classList.remove('open'); document.querySelector('.overlay').classList.remove('show'); }
+}
+
+function renderMain() {
+  var m = document.getElementById('mainContent');
+  if (currentPage === 'home') m.innerHTML = renderHome();
+  else if (currentPage === 'quiz') m.innerHTML = renderQuizPage();
+  else if (currentPage === 'plan') m.innerHTML = renderPlanPage();
+  else if (currentPage === 'checklist') m.innerHTML = renderChecklistPage();
+  else {
+    var idx = chapters.findIndex(function(c) { return c.id === currentPage; });
+    if (idx >= 0) m.innerHTML = renderChapter(idx);
+  }
+}
+
+function renderHome() {
+  var isZh = currentLang === 'zh';
+  var totalQ = Object.keys(state.quizAnswers).length;
+  var correctQ = Object.values(state.quizAnswers).filter(function(a){return a.correct;}).length;
+  var daysComplete = Object.values(state.studyDays).filter(Boolean).length;
+  var checkDone = Object.values(state.checklist).filter(Boolean).length;
+  var html = '<div class="search-bar"><input type="text" placeholder="' + (isZh?'\u641C\u7D22\u5185\u5BB9...':'Search...') + '" oninput="doSearch(this.value)" id="searchInput"><div class="search-results" id="searchResults"></div></div>';
+  html += '<div class="card"><h2>' + (isZh?'\uD83D\uDCCA \u5B66\u4E60\u8FDB\u5EA6':'\uD83D\uDCCA Progress') + '</h2>';
+  html += '<div class="stat-grid">';
+  html += '<div class="stat-box"><div class="num">' + daysComplete + '/21</div><div class="label">' + (isZh?'\u5B66\u4E60\u5929\u6570':'Days') + '</div><div class="progress-bar"><div class="fill" style="width:' + Math.round(daysComplete/21*100) + '%"></div></div></div>';
+  html += '<div class="stat-box"><div class="num">' + totalQ + '/74</div><div class="label">' + (isZh?'\u5DF2\u505A\u9898\u6570':'Questions') + '</div><div class="progress-bar"><div class="fill" style="width:' + Math.round(totalQ/74*100) + '%"></div></div></div>';
+  html += '<div class="stat-box"><div class="num">' + (totalQ?Math.round(correctQ/totalQ*100):0) + '%</div><div class="label">' + (isZh?'\u6B63\u786E\u7387':'Accuracy') + '</div></div>';
+  html += '<div class="stat-box"><div class="num">' + checkDone + '</div><div class="label">' + (isZh?'\u5DF2\u638C\u63E1':'Checked') + '</div></div>';
+  html += '</div></div>';
+  html += '<div class="card"><h2>' + (isZh?'\uD83D\uDCDA \u7AE0\u8282\u5BFC\u822A':'\uD83D\uDCDA Chapters') + '</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">';
+  chapters.forEach(function(ch, i) {
+    var chQ = questions.filter(function(q){return q.ch===i;});
+    var chDone = chQ.filter(function(q){return state.quizAnswers['q'+questions.indexOf(q)];}).length;
+    html += '<div class="card" style="cursor:pointer;border-left:4px solid ' + chapterColors[i] + ';margin:0;padding:16px;" onclick="goTo(\'' + ch.id + '\')">';
+    html += '<div style="font-size:24px;margin-bottom:4px;">' + ch.icon + '</div>';
+    html += '<div style="font-weight:600;font-size:14px;">' + t(ch.title) + '</div>';
+    html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">' + ch.weight + ' | ' + ch.studyTime + '</div>';
+    html += '<div class="progress-bar" style="margin-top:8px;"><div class="fill" style="width:' + (chQ.length?Math.round(chDone/chQ.length*100):0) + '%"></div></div>';
+    html += '<div style="font-size:11px;color:var(--text-secondary);">' + chDone + '/' + chQ.length + ' ' + (isZh?'\u9898':'Q') + '</div></div>';
+  });
+  html += '</div></div>';
+  return html;
+}
+
+function renderChapter(idx) {
+  var ch = chapters[idx];
+  var isZh = currentLang === 'zh';
+  var chQ = questions.filter(function(q){return q.ch===idx;});
+  var bk = state.bookmarks.find(function(b){return b.page===ch.id;});
+  var html = '<div class="search-bar"><input type="text" placeholder="' + (isZh?'\u641C\u7D22...':'Search...') + '" oninput="doSearch(this.value)" id="searchInput"><div class="search-results" id="searchResults"></div></div>';
+  html += '<div class="chapter-header" style="background:' + chapterColors[idx] + '">';
+  html += '<span style="font-size:32px">' + ch.icon + '</span><div><h1>' + t(ch.title) + '</h1></div>';
+  html += '<span class="weight">' + ch.weight + '</span><span class="time">' + ch.studyTime + '</span>';
+  html += '<button class="bookmark-btn ' + (bk?'active':'') + '" onclick="toggleBookmark(\'' + ch.id + '\',\'' + t(ch.title).replace(/'/g,"\\'") + '\')" style="color:#fff">' + (bk?'\u2605':'\u2606') + '</button></div>';
+  ch.sections.forEach(function(sec) {
+    html += '<div class="card" id="' + sec.id + '"><div class="section-toggle" onclick="this.classList.toggle(\'open\');this.nextElementSibling.classList.toggle(\'show\')"><span class="arrow">\u25B6</span> ' + t(sec.title) + ' ' + diffStars(sec.diff) + '</div><div class="section-content">' + t(sec.content) + '</div></div>';
+  });
+  if (chQ.length > 0) {
+    html += '<div class="card"><h2>\uD83D\uDCDD ' + (isZh?'\u7AE0\u8282\u7EC3\u4E60':'Practice') + ' (' + chQ.length + (isZh?' \u9898':' Q') + ')</h2>';
+    chQ.forEach(function(q) { var gi = questions.indexOf(q); html += renderQuestion(q, gi, state.quizAnswers['q'+gi]); });
+    html += '</div>';
+  }
+  return html;
+}
+
+function renderQuestion(q, idx, userAns) {
+  var answered = userAns !== undefined;
+  var html = '<div class="question-card"><h4>Q' + (idx+1) + '. ' + t(q.q) + '</h4>';
+  q.opts.forEach(function(opt, oi) {
+    var cls = 'option-btn';
+    if (answered) { cls += ' disabled'; if (oi === q.ans) cls += ' correct'; else if (userAns && userAns.selected === oi) cls += ' wrong'; }
+    html += '<button class="' + cls + '" onclick="answerQ(' + idx + ',' + oi + ')">' + String.fromCharCode(65+oi) + ') ' + t(opt) + '</button>';
+  });
+  html += '<div class="explanation ' + (answered?'show':'') + '">' + t(q.exp) + '</div></div>';
+  return html;
+}
+
+function answerQ(idx, selected) {
+  var q = questions[idx];
+  var correct = selected === q.ans;
+  var a = Object.assign({}, state.quizAnswers);
+  a['q'+idx] = {selected:selected, correct:correct};
+  save('quizAnswers', a);
+  renderMain();
+}
+
+function renderQuizPage() {
+  var isZh = currentLang === 'zh';
+  var totalDone = Object.keys(state.quizAnswers).length;
+  var totalCorrect = Object.values(state.quizAnswers).filter(function(a){return a.correct;}).length;
+  var wrongCount = Object.values(state.quizAnswers).filter(function(a){return !a.correct;}).length;
+  var html = '<div class="card"><h2>\uD83D\uDCDD ' + (isZh?'\u7EC3\u4E60\u9898\u5E93':'Quiz Bank') + '</h2>';
+  html += '<div class="stat-grid"><div class="stat-box"><div class="num">' + totalDone + '/74</div><div class="label">' + (isZh?'\u5DF2\u5B8C\u6210':'Done') + '</div></div>';
+  html += '<div class="stat-box"><div class="num">' + (totalDone?Math.round(totalCorrect/totalDone*100):0) + '%</div><div class="label">' + (isZh?'\u6B63\u786E\u7387':'Accuracy') + '</div></div>';
+  html += '<div class="stat-box"><div class="num">' + wrongCount + '</div><div class="label">' + (isZh?'\u9519\u9898':'Wrong') + '</div></div></div>';
+  html += '<div class="quiz-controls"><button onclick="resetQuiz()" class="btn btn-danger">' + (isZh?'\u91CD\u7F6E':'Reset All') + '</button></div></div>';
+  html += '<div class="tabs" id="quizTabs"><div class="tab active" onclick="showQuizTab(-1)">' + (isZh?'\u5168\u90E8':'All') + ' (74)</div>';
+  chapters.forEach(function(ch,i) { html += '<div class="tab" onclick="showQuizTab(' + i + ')">' + ch.icon + ' (' + questions.filter(function(q){return q.ch===i;}).length + ')</div>'; });
+  html += '<div class="tab" onclick="showQuizTab(-2)" style="color:var(--danger);">' + (isZh?'\u9519\u9898':'Wrong') + '</div></div>';
+  html += '<div id="quizContent">';
+  questions.forEach(function(q, idx) {
+    var ua = state.quizAnswers['q'+idx];
+    var isWrong = ua && !ua.correct ? '1' : '0';
+    html += '<div class="quiz-q" data-ch="' + q.ch + '" data-wrong="' + isWrong + '">' + renderQuestion(q, idx, ua) + '</div>';
+  });
+  html += '</div>';
+  return html;
+}
+
+function showQuizTab(ch) {
+  document.querySelectorAll('#quizTabs .tab').forEach(function(t,i) { t.classList.toggle('active', ch===-1?i===0 : ch===-2?i===chapters.length+1 : i===ch+1); });
+  document.querySelectorAll('.quiz-q').forEach(function(el) {
+    if (ch === -1) el.style.display = '';
+    else if (ch === -2) el.style.display = el.dataset.wrong==='1' ? '' : 'none';
+    else el.style.display = el.dataset.ch == ch ? '' : 'none';
+  });
+}
+
+function resetQuiz() {
+  if (confirm(currentLang==='zh'?'\u786E\u5B9A\u91CD\u7F6E\u6240\u6709\u7EC3\u4E60\u8BB0\u5F55\uFF1F':'Reset all quiz answers?')) {
+    save('quizAnswers', {}); renderMain();
+  }
+}
+
+function renderPlanPage() {
+  var isZh = currentLang === 'zh';
+  var daysComplete = Object.values(state.studyDays).filter(Boolean).length;
+  var pct = Math.round(daysComplete / 21 * 100);
+  var html = '<div class="card"><h2>\uD83D\uDCC5 ' + (isZh?'21\u5929\u5B66\u4E60\u8BA1\u5212':'21-Day Study Plan') + '</h2>';
+  html += '<p>' + (isZh?'\u603B\u6295\u5165\u65F6\u95F4\u7EA625-30\u5C0F\u65F6':'Total ~25-30 hours') + '</p>';
+  html += '<div class="stat-grid"><div class="stat-box"><div class="num">' + daysComplete + '/21</div><div class="label">' + (isZh?'\u5929':'Days') + '</div></div>';
+  html += '<div class="stat-box"><div class="num">' + pct + '%</div><div class="label">' + (isZh?'\u8FDB\u5EA6':'Progress') + '</div></div></div>';
+  html += '<div class="progress-bar" style="height:10px;margin-bottom:16px;"><div class="fill" style="width:' + pct + '%"></div></div></div>';
+  var weekNames = [{zh:'\u7B2C\u4E00\u5468\uFF1A\u5B8F\u89C2\u57FA\u7840\u4E0E\u6743\u76CA\u5E02\u573A',en:'Week 1: Macro & Equities'},{zh:'\u7B2C\u4E8C\u5468\uFF1A\u884D\u751F\u54C1\u4E0E\u57FA\u91D1',en:'Week 2: Derivatives & Funds'},{zh:'\u7B2C\u4E09\u5468\uFF1A\u8D22\u52A1\u5206\u6790\u4E0E\u7EFC\u5408',en:'Week 3: Analysis & Review'}];
+  [1,2,3].forEach(function(week) {
+    var wd = studyPlan.filter(function(d){return d.week===week;});
+    html += '<div class="week-header">' + t(weekNames[week-1]) + '</div>';
+    wd.forEach(function(d) {
+      var done = state.studyDays['d'+d.day];
+      html += '<div class="day-card ' + (done?'completed':'') + ' ' + (d.milestone?'milestone':'') + '">';
+      html += '<input type="checkbox" class="day-checkbox" ' + (done?'checked':'') + ' onchange="toggleDay(' + d.day + ')">';
+      html += '<div class="day-info"><div class="day-label">' + (isZh?'\u7B2C':'Day ') + d.day + (isZh?'\u5929':'') + ' ' + (d.milestone?'\uD83C\uDFC6':'') + ' <span style="color:var(--text-secondary);font-weight:400;font-size:12px;">' + d.time + '</span></div>';
+      html += '<div class="day-topics"><b>' + t(d.modules) + '</b></div>';
+      html += '<div class="day-detail">' + t(d.tasks) + '</div>';
+      if (d.quiz) html += '<div style="font-size:11px;margin-top:4px;color:var(--primary);">' + (isZh?'\u81EA\u6D4B':'Practice') + ': ' + d.quiz + (isZh?' \u9898':' Q') + '</div>';
+      html += '</div></div>';
+    });
+  });
+  return html;
+}
+
+function toggleDay(day) {
+  var a = Object.assign({}, state.studyDays);
+  a['d'+day] = !a['d'+day];
+  save('studyDays', a); renderMain();
+}
+
+function renderChecklistPage() {
+  var isZh = currentLang === 'zh';
+  var items = [
+    {cat:{zh:'1. \u5B8F\u89C2\u7ECF\u6D4E\u5B66',en:'1. Macroeconomics'},items:[
+      {id:'k1',diff:1,t:{zh:'\u7ECF\u6D4E\u5468\u671F\u56DB\u9636\u6BB5\uFF1A\u6269\u5F20\u3001\u9876\u5CF0\u3001\u6536\u7F29\u3001\u8C37\u5E95',en:'Four phases: Expansion, Peak, Contraction, Trough'}},
+      {id:'k2',diff:2,t:{zh:'\u6D88\u8D39\u652F\u51FA\u5360\u7F8E\u56FDGDP 68-70%',en:'Consumer spending ~68-70% of U.S. GDP'}},
+      {id:'k3',diff:2,t:{zh:'\u5148\u884C\u6307\u6807\uFF1AISM PMI\u3001CCI\u300110Y-2Y\u5229\u5DEE',en:'Leading: ISM PMI, CCI, 10Y-2Y Spread'}},
+      {id:'k4',diff:2,t:{zh:'\u540C\u6B65\u6307\u6807\uFF1AGDP\u3001NFP\u3001\u96F6\u552E',en:'Coincident: GDP, NFP, Retail Sales'}},
+      {id:'k5',diff:2,t:{zh:'\u6EDE\u540E\u6307\u6807\uFF1A\u5931\u4E1A\u7387\u3001CPI\u3001PCE',en:'Lagging: Unemployment, CPI, PCE'}},
+      {id:'k6',diff:2,t:{zh:'\u56DB\u5927\u8D27\u5E01\u5DE5\u5177\uFF1AOMO, IORB, ONRRP, \u8D34\u73B0\u7387',en:'Four tools: OMO, IORB, ONRRP, Discount Rate'}},
+      {id:'k7',diff:3,t:{zh:'\u52A0\u606F\u2192\u503A\u5238\u4EF7\u683C\u2193\uFF0C\u964D\u606F\u2192\u503A\u5238\u4EF7\u683C\u2191',en:'Rate hikes: bond prices down; cuts: up'}}
+    ]},
+    {cat:{zh:'2. \u80A1\u7968',en:'2. Stocks'},items:[
+      {id:'k10',diff:1,t:{zh:'\u4E00\u7EA7\u5E02\u573A(IPO) vs \u4E8C\u7EA7\u5E02\u573A',en:'Primary (IPO) vs Secondary market'}},
+      {id:'k11',diff:1,t:{zh:'\u666E\u901A\u80A1\u6709\u6295\u7968\u6743\uFF0C\u4F18\u5148\u80A1\u80A1\u606F\u56FA\u5B9A',en:'Common: voting rights; Preferred: fixed dividends'}},
+      {id:'k12',diff:2,t:{zh:'EPS, P/E, P/B, ROE\u516C\u5F0F',en:'EPS, P/E, P/B, ROE formulas'}}
+    ]},
+    {cat:{zh:'3. ETF',en:'3. ETF'},items:[
+      {id:'k16',diff:2,t:{zh:'\u7533\u8D2D/\u8D4E\u56DE\u673A\u5236\u4FDD\u6301\u4EF7\u683C\u7D27\u8D34NAV',en:'Creation/redemption keeps price close to NAV'}},
+      {id:'k18',diff:3,t:{zh:'\u6760\u6746ETF\u6CE2\u52A8\u7387\u635F\u8017\uFF0C\u4EC5\u9002\u5408\u77ED\u671F',en:'Leveraged ETF volatility decay: short-term only'}}
+    ]},
+    {cat:{zh:'4. \u671F\u6743',en:'4. Options'},items:[
+      {id:'k19',diff:1,t:{zh:'Call=\u4E70\u5165\u6743; Put=\u5356\u51FA\u6743',en:'Call=buy right; Put=sell right'}},
+      {id:'k20',diff:2,t:{zh:'Long Call\u76C8\u4E8F\u5E73\u8861=Strike+Premium',en:'Long Call breakeven = Strike+Premium'}},
+      {id:'k21',diff:2,t:{zh:'ITM/ATM/OTM\u5206\u7C7B',en:'ITM/ATM/OTM classification'}}
+    ]},
+    {cat:{zh:'5. \u57FA\u91D1',en:'5. Funds'},items:[
+      {id:'k23',diff:1,t:{zh:'\u5F00\u653E\u5F0F\u6309NAV; \u5C01\u95ED\u5F0F\u5728\u4EA4\u6613\u6240',en:'Open-end at NAV; Closed-end on exchanges'}},
+      {id:'k25',diff:2,t:{zh:'\u5BF9\u51B2\u57FA\u91D12/20\u8D39\u7528\u7ED3\u6784',en:'Hedge funds: 2/20 fee structure'}}
+    ]},
+    {cat:{zh:'6. \u6307\u6570',en:'6. Indexes'},items:[
+      {id:'k26',diff:2,t:{zh:'DJIA\u4EF7\u683C\u52A0\u6743; S&P500\u5E02\u503C\u52A0\u6743',en:'DJIA price-weighted; S&P 500 market-cap weighted'}},
+    ]},
+    {cat:{zh:'7. \u8D22\u62A5',en:'7. Financial Statements'},items:[
+      {id:'k28',diff:2,t:{zh:'Revenue-COGS=\u6BDB\u5229; EBIT-\u7A0E=\u51C0\u5229\u6DA6',en:'Revenue-COGS=GP; EBIT-Tax=Net Income'}},
+      {id:'k29',diff:2,t:{zh:'Assets = Liabilities + Equity',en:'Assets = Liabilities + Equity'}},
+      {id:'k31',diff:1,t:{zh:'US GAAP\u662F\u7F8E\u56FD\u4E0A\u5E02\u516C\u53F8\u5FC5\u987B\u9075\u5B88\u7684',en:'US GAAP mandatory for US public companies'}}
+    ]},
+    {cat:{zh:'8. \u8425\u6536\u4E0E\u884C\u4E1A',en:'8. Revenue & Industry'},items:[
+      {id:'k32',diff:3,t:{zh:'Bottom-Up vs Top-Down\u9884\u6D4B\u65B9\u6CD5',en:'Bottom-Up vs Top-Down forecasting'}},
+      {id:'k33',diff:3,t:{zh:'\u6CE2\u7279\u4E94\u529B\u6A21\u578B',en:"Porter's Five Forces"}}
+    ]},
+    {cat:{zh:'9. \u91D1\u878D\u9053\u5FB7',en:'9. Ethics'},items:[
+      {id:'k34',diff:1,t:{zh:'SEC=\u653F\u5E9C\u76D1\u7BA1; FINRA=SRO',en:'SEC=gov regulator; FINRA=SRO'}},
+      {id:'k35',diff:2,t:{zh:'\u5185\u5E55\u4EA4\u6613\u6700\u9AD820\u5E74+$500\u4E07',en:'Insider trading: up to 20 years + $5M'}}
+    ]}
+  ];
+  var totalItems = items.reduce(function(s,c){return s+c.items.length;},0);
+  var checkedItems = Object.values(state.checklist).filter(Boolean).length;
+  var html = '<div class="card"><h2>\u2705 ' + (isZh?'\u7CBE\u70BC\u77E5\u8BC6\u6E05\u5355':'Knowledge Checklist') + '</h2>';
+  html += '<p>' + (isZh?'\u5DF2\u638C\u63E1':'Checked') + ': ' + checkedItems + '/' + totalItems + ' (' + Math.round(checkedItems/totalItems*100) + '%)</p>';
+  html += '<div class="progress-bar" style="height:10px;margin:12px 0;"><div class="fill" style="width:' + (checkedItems/totalItems*100) + '%"></div></div></div>';
+  items.forEach(function(cat) {
+    html += '<div class="card"><h3>' + t(cat.cat) + '</h3>';
+    cat.items.forEach(function(item) {
+      html += '<div class="checklist-item"><input type="checkbox" ' + (state.checklist[item.id]?'checked':'') + ' onchange="toggleCheck(\'' + item.id + '\')" style="accent-color:var(--primary);cursor:pointer;"><label onclick="this.previousElementSibling.click()">' + diffStars(item.diff) + ' ' + t(item.t) + '</label></div>';
+    });
+    html += '</div>';
+  });
+  return html;
+}
+
+function toggleCheck(id) {
+  var a = Object.assign({}, state.checklist);
+  a[id] = !a[id];
+  save('checklist', a); renderMain();
+}
+
+// ===== SEARCH =====
+function doSearch(query) {
+  var res = document.getElementById('searchResults');
+  if (!query || query.length < 2) { res.classList.remove('show'); return; }
+  var q = query.toLowerCase();
+  var results = [];
+  chapters.forEach(function(ch, ci) {
+    ch.sections.forEach(function(sec) {
+      var content = t(sec.content).replace(/<[^>]+>/g, '');
+      var title = t(sec.title);
+      if (content.toLowerCase().indexOf(q) >= 0 || title.toLowerCase().indexOf(q) >= 0) {
+        var idx = content.toLowerCase().indexOf(q);
+        var snippet = idx >= 0 ? '...' + content.slice(Math.max(0,idx-30), idx+50) + '...' : title;
+        results.push({page: ch.id, label: t(ch.title) + ' > ' + title, snippet: snippet});
+      }
+    });
+  });
+  if (results.length > 0) {
+    res.innerHTML = results.slice(0, 8).map(function(r) { return '<div class="search-result-item" onclick="goTo(\'' + r.page + '\')"><div style="font-weight:600;font-size:12px;">' + r.label + '</div><div>' + r.snippet + '</div></div>'; }).join('');
+    res.classList.add('show');
+  } else {
+    res.innerHTML = '<div class="search-result-item">' + (currentLang==='zh'?'\u672A\u627E\u5230':'No results') + '</div>';
+    res.classList.add('show');
+  }
+}
+
+// ===== BOOKMARKS =====
+function toggleBookmark(page, label) {
+  var bks = state.bookmarks.slice();
+  var idx = bks.findIndex(function(b){return b.page===page;});
+  if (idx >= 0) bks.splice(idx, 1);
+  else bks.push({page:page, label:label});
+  save('bookmarks', bks); renderSidebar(); renderMain();
+}
+function removeBookmark(page) {
+  save('bookmarks', state.bookmarks.filter(function(b){return b.page!==page;}));
+  renderSidebar();
+}
+
+// ===== TOGGLES =====
+function toggleDark() {
+  isDark = !isDark; localStorage.setItem('dark', isDark);
+  document.body.classList.toggle('dark', isDark);
+  document.getElementById('darkBtn').textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+}
+function toggleLang() {
+  currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  localStorage.setItem('lang', currentLang);
+  document.getElementById('langBtn').textContent = currentLang === 'zh' ? 'EN' : '\u4E2D';
+  document.getElementById('langBtn').classList.toggle('active-toggle', currentLang === 'en');
+  renderSidebar(); renderMain();
+}
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.querySelector('.overlay').classList.toggle('show');
+}
+
+// ===== INIT =====
+if (isDark) { document.body.classList.add('dark'); document.getElementById('darkBtn').textContent = '\u2600\uFE0F'; }
+if (currentLang === 'en') { document.getElementById('langBtn').textContent = '\u4E2D'; document.getElementById('langBtn').classList.add('active-toggle'); }
+renderSidebar(); renderMain();
+document.addEventListener('click', function(e) { if (!e.target.closest('.search-bar')) { var r = document.getElementById('searchResults'); if (r) r.classList.remove('show'); }});
+</script>
+</body>
+</html>

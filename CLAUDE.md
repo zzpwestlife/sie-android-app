@@ -1,11 +1,11 @@
-# React Native Profile Configuration
+# React Native Profile Configuration (Android App)
 
 <!--
 Purpose: React Native-specific overrides for this project.
 Note: Core configuration is loaded via CLAUDE.md → AGENTS.md
 -->
 
-# React Native Guidelines
+# React Native Guidelines (Android App)
 
 ## Commands
 
