@@ -2,8 +2,10 @@ package com.example.sie.feature.study
 
 import com.example.sie.core.data.repository.QuestionRepository
 import com.example.sie.core.model.Question
+import io.mockk.Runs
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
+import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -39,7 +41,7 @@ class StudyViewModelTest {
             explanation = "Paris is the capital.",
             category = "Geography"
         )
-        coEvery { questionRepository.getRandomQuestions(1) } returns flowOf(listOf(mockQuestion))
+        coEvery { questionRepository.getAllQuestions() } returns flowOf(listOf(mockQuestion))
 
         // Act
         viewModel = StudyViewModel(questionRepository)
@@ -47,7 +49,7 @@ class StudyViewModelTest {
 
         // Assert
         val state = viewModel.uiState.value
-        assertTrue("State should be Success", state is StudyUiState.Success)
+        assertTrue("State should be Success, but was $state", state is StudyUiState.Success)
         assertEquals(mockQuestion, (state as StudyUiState.Success).currentQuestion)
         assertEquals(null, state.selectedOptionIndex)
         assertEquals(false, state.isAnswerRevealed)
@@ -64,7 +66,7 @@ class StudyViewModelTest {
             explanation = "Basic math",
             category = "Math"
         )
-        coEvery { questionRepository.getRandomQuestions(1) } returns flowOf(listOf(mockQuestion))
+        coEvery { questionRepository.getAllQuestions() } returns flowOf(listOf(mockQuestion))
 
         // Act
         viewModel = StudyViewModel(questionRepository)
@@ -90,7 +92,8 @@ class StudyViewModelTest {
             explanation = "Tokyo is the capital of Japan.",
             category = "Geography"
         )
-        coEvery { questionRepository.getRandomQuestions(1) } returns flowOf(listOf(mockQuestion))
+        coEvery { questionRepository.getAllQuestions() } returns flowOf(listOf(mockQuestion))
+        coEvery { questionRepository.markAsWrong(any()) } just Runs
 
         // Act
         viewModel = StudyViewModel(questionRepository)
@@ -106,24 +109,24 @@ class StudyViewModelTest {
     }
 
     @Test
-    fun `loadNewQuestion with empty list emits Error state`() = runTest {
-        // Arrange
-        coEvery { questionRepository.getRandomQuestions(1) } returns flowOf(emptyList())
+    fun `loadNewQuestion with empty list stays in Loading state`() = runTest {
+        // Arrange - When getAllQuestions returns empty list, ViewModel stays in Loading
+        // waiting for database population (design change from original getRandomQuestions)
+        coEvery { questionRepository.getAllQuestions() } returns flowOf(emptyList())
 
         // Act
         viewModel = StudyViewModel(questionRepository)
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
 
-        // Assert
+        // Assert - Empty list means data not yet populated, so stays Loading
         val state = viewModel.uiState.value
-        assertTrue("State should be Error", state is StudyUiState.Error)
-        assertTrue((state as StudyUiState.Error).message.contains("No questions"))
+        assertTrue("State should be Loading when no questions available, but was $state", state is StudyUiState.Loading)
     }
 
     @Test
     fun `loadNewQuestion handles repository exception`() = runTest {
         // Arrange
-        coEvery { questionRepository.getRandomQuestions(1) } throws RuntimeException("Database error")
+        coEvery { questionRepository.getAllQuestions() } throws RuntimeException("Database error")
 
         // Act
         viewModel = StudyViewModel(questionRepository)
@@ -131,7 +134,7 @@ class StudyViewModelTest {
 
         // Assert
         val state = viewModel.uiState.value
-        assertTrue("State should be Error", state is StudyUiState.Error)
+        assertTrue("State should be Error, but was $state", state is StudyUiState.Error)
         assertTrue((state as StudyUiState.Error).message.contains("Database error"))
     }
 }
