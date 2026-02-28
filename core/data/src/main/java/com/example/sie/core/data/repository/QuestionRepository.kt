@@ -11,5 +11,9 @@ interface QuestionRepository {
     fun getBookmarkedQuestions(): Flow<List<Question>>
     fun getWrongQuestions(): Flow<List<Question>>
     suspend fun toggleBookmark(questionId: Int)
-    suspend fun markAsWrong(questionIds: List<Int>)
+    suspend fun markAsWrong(questionId: Int)
+    suspend fun markAsWrongBatch(questionIds: List<Int>)
+    suspend fun removeFromWrong(questionId: Int)
+    fun countBookmarked(): Flow<Int>
+    fun countWrong(): Flow<Int>
 }

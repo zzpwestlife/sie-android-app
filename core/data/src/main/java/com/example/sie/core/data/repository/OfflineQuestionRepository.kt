@@ -1,5 +1,7 @@
 package com.example.sie.core.data.repository
 
+import com.example.sie.core.data.exception.BookmarkException
+import com.example.sie.core.data.exception.WrongQuestionException
 import com.example.sie.core.database.dao.QuestionDao
 import com.example.sie.core.database.model.asExternalModel
 import com.example.sie.core.model.Question
@@ -38,10 +40,51 @@ class OfflineQuestionRepository @Inject constructor(
         }
 
     override suspend fun toggleBookmark(questionId: Int) {
-        questionDao.toggleBookmark(questionId)
+        try {
+            questionDao.toggleBookmark(questionId)
+        } catch (e: Exception) {
+            throw BookmarkException("Failed to toggle bookmark for question $questionId", e)
+        }
     }
 
-    override suspend fun markAsWrong(questionIds: List<Int>) {
-        questionDao.markAsWrong(questionIds)
+    override suspend fun markAsWrong(questionId: Int) {
+        try {
+            questionDao.markAsWrong(questionId)
+        } catch (e: Exception) {
+            throw WrongQuestionException("Failed to mark question $questionId as wrong", e)
+        }
+    }
+
+    override suspend fun markAsWrongBatch(questionIds: List<Int>) {
+        try {
+            questionDao.markAsWrongBatch(questionIds)
+        } catch (e: Exception) {
+            // Retry individually
+            val failures = mutableListOf<Int>()
+            questionIds.forEach { id ->
+                try {
+                    questionDao.markAsWrong(id)
+                } catch (ex: Exception) {
+                    failures.add(id)
+                }
+            }
+            if (failures.isNotEmpty()) {
+                throw WrongQuestionException(
+                    "Failed to mark ${failures.size} questions as wrong: $failures"
+                )
+            }
+        }
+    }
+
+    override suspend fun removeFromWrong(questionId: Int) {
+        questionDao.removeFromWrong(questionId)
+    }
+
+    override fun countBookmarked(): Flow<Int> {
+        return questionDao.countBookmarked()
+    }
+
+    override fun countWrong(): Flow<Int> {
+        return questionDao.countWrong()
     }
 }
