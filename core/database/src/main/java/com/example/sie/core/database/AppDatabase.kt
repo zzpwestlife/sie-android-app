@@ -54,7 +54,21 @@ val MIGRATION_11_12 = object : Migration(11, 12) {
     }
 }
 
-@Database(entities = [QuestionEntity::class, ExamResultEntity::class, CardEntity::class], version = 12, exportSchema = true)
+val MIGRATION_12_13 = object : Migration(12, 13) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        // Add lastStudiedAt column
+        database.execSQL(
+            "ALTER TABLE questions ADD COLUMN lastStudiedAt INTEGER"
+        )
+
+        // Add index for chapter-based queries
+        database.execSQL(
+            "CREATE INDEX IF NOT EXISTS index_category_studied ON questions(category, lastStudiedAt, id)"
+        )
+    }
+}
+
+@Database(entities = [QuestionEntity::class, ExamResultEntity::class, CardEntity::class], version = 13, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao

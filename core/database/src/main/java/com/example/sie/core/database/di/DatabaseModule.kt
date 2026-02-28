@@ -7,6 +7,7 @@ import com.example.sie.core.database.DatabaseCallback
 import com.example.sie.core.database.MIGRATION_9_10
 import com.example.sie.core.database.MIGRATION_10_11
 import com.example.sie.core.database.MIGRATION_11_12
+import com.example.sie.core.database.MIGRATION_12_13
 import com.example.sie.core.database.dao.CardDao
 import com.example.sie.core.database.dao.ExamResultDao
 import com.example.sie.core.database.dao.QuestionDao
@@ -41,7 +42,7 @@ object DatabaseModule {
             CoroutineScope(Dispatchers.IO + SupervisorJob())
         )
     )
-    .addMigrations(MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12)
+    .addMigrations(MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12, MIGRATION_12_13)
     .fallbackToDestructiveMigration()
     .build()
 
