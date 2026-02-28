@@ -87,4 +87,18 @@ class OfflineQuestionRepository @Inject constructor(
     override fun countWrong(): Flow<Int> {
         return questionDao.countWrong()
     }
+
+    override fun getAllCategories(): Flow<List<String>> {
+        return questionDao.getAllCategories()
+    }
+
+    override fun getQuestionsByCategories(categories: List<String>): Flow<List<Question>> {
+        return questionDao.getQuestionsByCategories(categories).map { entities ->
+            entities.map { it.asExternalModel() }
+        }
+    }
+
+    override suspend fun markQuestionAsStudied(questionId: Int) {
+        questionDao.updateLastStudiedAt(questionId, System.currentTimeMillis())
+    }
 }

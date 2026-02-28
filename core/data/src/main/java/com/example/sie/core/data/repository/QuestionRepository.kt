@@ -16,4 +16,9 @@ interface QuestionRepository {
     suspend fun removeFromWrong(questionId: Int)
     fun countBookmarked(): Flow<Int>
     fun countWrong(): Flow<Int>
+
+    // Chapter-based learning
+    fun getAllCategories(): Flow<List<String>>
+    fun getQuestionsByCategories(categories: List<String>): Flow<List<Question>>
+    suspend fun markQuestionAsStudied(questionId: Int)
 }
