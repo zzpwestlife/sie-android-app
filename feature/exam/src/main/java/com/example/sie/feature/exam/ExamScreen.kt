@@ -69,6 +69,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.designsystem.component.QuestionCard
+import com.example.sie.core.designsystem.component.GradientProgressIndicator
+import com.example.sie.core.designsystem.theme.SuccessGradient
+import com.example.sie.core.designsystem.theme.ErrorGradient
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -774,11 +777,12 @@ private fun ExamResultContent(
                                     color = if (percentage >= 70) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error
                                 )
                             }
-                            androidx.compose.material3.LinearProgressIndicator(
-                                progress = { correct.toFloat() / total },
-                                modifier = Modifier.fillMaxWidth().height(4.dp),
-                                color = if (percentage >= 70) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error,
-                                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                            GradientProgressIndicator(
+                                progress = correct.toFloat() / total,
+                                gradient = if (percentage >= 70) SuccessGradient else ErrorGradient,
+                                modifier = Modifier.fillMaxWidth(),
+                                backgroundColor = Color.White.copy(alpha = 0.2f),
+                                animate = true
                             )
                         }
                     }
