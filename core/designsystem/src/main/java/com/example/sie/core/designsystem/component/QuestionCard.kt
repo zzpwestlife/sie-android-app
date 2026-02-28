@@ -26,6 +26,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sie.core.model.Question
+import com.example.sie.core.designsystem.theme.*
 
 @Composable
 fun QuestionCard(
@@ -37,75 +38,75 @@ fun QuestionCard(
     showExplanation: Boolean = true,
     language: String = "en"
 ) {
-    Card(
+    val borderBrush = when {
+        showFeedback && selectedOptionIndex != null && selectedOptionIndex == question.correctAnswerIndex -> SuccessGradient
+        showFeedback && selectedOptionIndex != null && selectedOptionIndex != question.correctAnswerIndex -> ErrorGradient
+        else -> null
+    }
+
+    GlassCard(
         modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        gradient = borderBrush
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(
-                text = question.getLocalizedContent(language),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface
+        Text(
+            text = question.getLocalizedContent(language),
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.White
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        question.options.forEachIndexed { index, _ ->
+            val isSelected = selectedOptionIndex == index
+            val isCorrect = index == question.correctAnswerIndex
+
+            val (borderColor, containerColor, contentColor) = when {
+                showFeedback && isCorrect -> Triple(
+                    Color(0xFF4CAF50), // Green
+                    Color(0xFFE8F5E9), // Light Green
+                    Color(0xFF1B5E20)  // Dark Green
+                )
+                showFeedback && isSelected && !isCorrect -> Triple(
+                    Color(0xFFF44336), // Red
+                    Color(0xFFFFEBEE), // Light Red
+                    Color(0xFFC62828)  // Dark Red
+                )
+                isSelected -> Triple(
+                    Color(0xFF667eea), // Primary gradient start
+                    Color(0xFFE3E7FF), // Light purple
+                    Color(0xFF667eea)
+                )
+                else -> Triple(
+                    Color.White.copy(alpha = 0.3f),
+                    Color.White.copy(alpha = 0.1f),
+                    Color.White
+                )
+            }
+
+            OptionRow(
+                text = question.getOption(index, language),
+                isSelected = isSelected,
+                borderColor = borderColor,
+                containerColor = containerColor,
+                contentColor = contentColor,
+                onClick = { if (!showFeedback) onOptionSelected(index) }
             )
-            
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+
+        if (showFeedback && showExplanation) {
             Spacer(modifier = Modifier.height(16.dp))
-            
-            question.options.forEachIndexed { index, _ ->
-                val isSelected = selectedOptionIndex == index
-                val isCorrect = index == question.correctAnswerIndex
-                
-                val (borderColor, containerColor, contentColor) = when {
-                    showFeedback && isCorrect -> Triple(
-                        Color(0xFF4CAF50), // Green
-                        Color(0xFFE8F5E9), // Light Green
-                        Color(0xFF1B5E20)  // Dark Green
-                    )
-                    showFeedback && isSelected && !isCorrect -> Triple(
-                        MaterialTheme.colorScheme.error,
-                        MaterialTheme.colorScheme.errorContainer,
-                        MaterialTheme.colorScheme.onErrorContainer
-                    )
-                    isSelected -> Triple(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.primaryContainer,
-                        MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                    else -> Triple(
-                        MaterialTheme.colorScheme.outline,
-                        MaterialTheme.colorScheme.surface,
-                        MaterialTheme.colorScheme.onSurface
-                    )
-                }
-
-                OptionRow(
-                    text = question.getOption(index, language),
-                    isSelected = isSelected,
-                    borderColor = borderColor,
-                    containerColor = containerColor,
-                    contentColor = contentColor,
-                    onClick = { if (!showFeedback) onOptionSelected(index) }
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-            }
-
-            if (showFeedback && showExplanation) {
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "Explanation:",
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Text(
-                    text = question.getExplanation(language),
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-            }
+            Text(
+                text = "Explanation:",
+                style = MaterialTheme.typography.titleSmall,
+                color = Color(0xFF4facfe)
+            )
+            Text(
+                text = question.getExplanation(language),
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(top = 4.dp),
+                color = Color.White.copy(alpha = 0.9f)
+            )
         }
     }
 }
