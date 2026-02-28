@@ -52,4 +52,30 @@ class StudyViewModelTest {
         assertEquals(null, state.selectedOptionIndex)
         assertEquals(false, state.isAnswerRevealed)
     }
+
+    @Test
+    fun `selectOption with correct answer updates state and reveals answer`() = runTest {
+        // Arrange
+        val mockQuestion = Question(
+            id = 2,
+            content = "What is 2 + 2?",
+            options = listOf("3", "4", "5", "6"),
+            correctAnswerIndex = 1, // "4"
+            explanation = "Basic math",
+            category = "Math"
+        )
+        coEvery { questionRepository.getRandomQuestions(1) } returns flowOf(listOf(mockQuestion))
+
+        // Act
+        viewModel = StudyViewModel(questionRepository)
+        mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
+        viewModel.selectOption(1) // Select correct answer
+        mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
+
+        // Assert
+        val state = viewModel.uiState.value as StudyUiState.Success
+        assertEquals(1, state.selectedOptionIndex)
+        assertTrue(state.isAnswerRevealed)
+        assertTrue(state.isCorrect)
+    }
 }
