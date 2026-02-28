@@ -32,7 +32,9 @@ fun SieNavHost(
             onStatsClick = { navController.navigateToStats() },
             onSettingsClick = { navController.navigateToSettings() }
         )
-        studyScreen()
+        studyScreen(
+            onBackClick = { navController.popBackStack() }
+        )
         examScreen(
             onBackClick = { navController.popBackStack() }
         )

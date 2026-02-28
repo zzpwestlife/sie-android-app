@@ -12,8 +12,8 @@ fun NavController.navigateToStudy(navOptions: NavOptions? = null) {
     this.navigate(studyRoute, navOptions)
 }
 
-fun NavGraphBuilder.studyScreen() {
+fun NavGraphBuilder.studyScreen(onBackClick: () -> Unit) {
     composable(route = studyRoute) {
-        StudyRoute()
+        StudyRoute(onBackClick = onBackClick)
     }
 }

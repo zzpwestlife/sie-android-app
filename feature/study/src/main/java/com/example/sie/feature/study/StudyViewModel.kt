@@ -5,15 +5,19 @@ import androidx.lifecycle.viewModelScope
 import com.example.sie.core.data.repository.QuestionRepository
 import com.example.sie.core.model.Question
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.CancellationException
 import javax.inject.Inject
+
+data class StudyStats(
+    val totalAnswered: Int = 0,
+    val correctCount: Int = 0,
+    val startTime: Long = System.currentTimeMillis()
+)
 
 sealed interface StudyUiState {
     data object Loading : StudyUiState
@@ -21,10 +25,19 @@ sealed interface StudyUiState {
         val currentQuestion: Question,
         val selectedOptionIndex: Int? = null,
         val isAnswerRevealed: Boolean = false,
-        val isCorrect: Boolean = false
+        val isCorrect: Boolean = false,
+        val stats: StudyStats = StudyStats(),
+        val hasPrevious: Boolean = false
     ) : StudyUiState
     data class Error(val message: String) : StudyUiState
 }
+
+private data class StudyHistoryItem(
+    val question: Question,
+    var selectedOptionIndex: Int? = null,
+    var isAnswerRevealed: Boolean = false,
+    var isCorrect: Boolean = false
+)
 
 @HiltViewModel
 class StudyViewModel @Inject constructor(
@@ -34,22 +47,40 @@ class StudyViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<StudyUiState>(StudyUiState.Loading)
     val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
 
+    private val history = mutableListOf<StudyHistoryItem>()
+    // Cache all questions to avoid repeated DB calls and ensure no immediate repeats
+    private var allQuestionsCache: List<Question> = emptyList()
+    // Queue of shuffled questions to be served
+    private val availableQuestions = mutableListOf<Question>()
+    
+    private var currentIndex = -1
+    private var stats = StudyStats()
+
     init {
-        loadNewQuestion()
+        initializeQuestions()
     }
 
-    fun loadNewQuestion() {
+    private fun initializeQuestions() {
         viewModelScope.launch {
             _uiState.value = StudyUiState.Loading
             try {
-                // Fetch 1 random question
-                // We use collect instead of first() to handle the case where DB is initially empty but populating
-                questionRepository.getRandomQuestions(1).collect { questions ->
-                    if (questions.isNotEmpty()) {
-                        _uiState.value = StudyUiState.Success(currentQuestion = questions.first())
-                        this.cancel() // Stop collecting once we have a question
+                // Observe the database until questions are available
+                // This handles the race condition where DatabaseCallback is still populating data
+                questionRepository.getAllQuestions().collect { all ->
+                    if (all.isNotEmpty()) {
+                        allQuestionsCache = all
+                        
+                        // Only initialize if we haven't started yet
+                        if (history.isEmpty()) {
+                            availableQuestions.clear()
+                            availableQuestions.addAll(all.shuffled())
+                            loadNextQuestion()
+                        }
+                        
+                        // Once we have data, stop observing to avoid unexpected updates during practice
+                        this.cancel()
                     }
-                    // If empty, we stay in Loading state waiting for DB population
+                    // If list is empty, we stay in Loading state waiting for population
                 }
             } catch (e: Exception) {
                 if (e !is kotlinx.coroutines.CancellationException) {
@@ -59,18 +90,67 @@ class StudyViewModel @Inject constructor(
         }
     }
 
-    fun selectOption(index: Int) {
-        _uiState.update { currentState ->
-            if (currentState is StudyUiState.Success && !currentState.isAnswerRevealed) {
-                val isCorrect = index == currentState.currentQuestion.correctAnswerIndex
-                currentState.copy(
-                    selectedOptionIndex = index,
-                    isAnswerRevealed = true,
-                    isCorrect = isCorrect
-                )
-            } else {
-                currentState
+    fun loadNextQuestion() {
+        if (currentIndex < history.size - 1) {
+            // Load from history (moving forward)
+            currentIndex++
+            updateUiState()
+        } else {
+            // Load new question
+            if (availableQuestions.isEmpty()) {
+                // Reshuffle all questions if exhausted (Infinite mode)
+                if (allQuestionsCache.isNotEmpty()) {
+                    availableQuestions.addAll(allQuestionsCache.shuffled())
+                }
+            }
+            
+            if (availableQuestions.isNotEmpty()) {
+                val nextQuestion = availableQuestions.removeAt(0)
+                history.add(StudyHistoryItem(nextQuestion))
+                currentIndex++
+                updateUiState()
             }
         }
+    }
+
+    fun loadPreviousQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--
+            updateUiState()
+        }
+    }
+
+    fun selectOption(index: Int) {
+        val currentItem = history.getOrNull(currentIndex) ?: return
+        
+        if (!currentItem.isAnswerRevealed) {
+            val isCorrect = index == currentItem.question.correctAnswerIndex
+            
+            // Update history item
+            currentItem.selectedOptionIndex = index
+            currentItem.isAnswerRevealed = true
+            currentItem.isCorrect = isCorrect
+            
+            // Update stats
+            stats = stats.copy(
+                totalAnswered = stats.totalAnswered + 1,
+                correctCount = if (isCorrect) stats.correctCount + 1 else stats.correctCount
+            )
+            
+            updateUiState()
+        }
+    }
+
+    private fun updateUiState() {
+        val currentItem = history.getOrNull(currentIndex) ?: return
+        
+        _uiState.value = StudyUiState.Success(
+            currentQuestion = currentItem.question,
+            selectedOptionIndex = currentItem.selectedOptionIndex,
+            isAnswerRevealed = currentItem.isAnswerRevealed,
+            isCorrect = currentItem.isCorrect,
+            stats = stats,
+            hasPrevious = currentIndex > 0
+        )
     }
 }

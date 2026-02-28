@@ -613,7 +613,7 @@
   },
   {
     "id": 52,
-    "content": "Its market capitalization\n价格加权指数中什么决定股票影响力？',en:\"In a price-weighted index, what determines a stock's influence?\"},\n   opts:[{zh:'其市值",
+    "content": "In a price-weighted index, what determines a stock's influence?\n价格加权指数中什么决定股票影响力？",
     "options": [
       "Its market capitalization\n其市值",
       "Its per-share price\n其每股价格",
@@ -853,7 +853,7 @@
   },
   {
     "id": 72,
-    "content": "Few choices, allowing higher prices\n波特五力中高买家力量意味着什么？',en:\"What does high buyer power mean in Porter's Five Forces?\"},\n   opts:[{zh:'客户选择少，可定高价",
+    "content": "What does high buyer power mean in Porter's Five Forces?\n波特五力中高买家力量意味着什么？",
     "options": [
       "Few choices, allowing higher prices\n客户选择少，可定高价",
       "Customers can demand lower prices due to many options\n客户可以要求更低的价格",

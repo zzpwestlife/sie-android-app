@@ -34,6 +34,7 @@ fun QuestionCard(
     onOptionSelected: (Int) -> Unit,
     modifier: Modifier = Modifier,
     showFeedback: Boolean = false,
+    showExplanation: Boolean = true,
     language: String = "en"
 ) {
     Card(
@@ -92,7 +93,7 @@ fun QuestionCard(
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            if (showFeedback) {
+            if (showFeedback && showExplanation) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "Explanation:",

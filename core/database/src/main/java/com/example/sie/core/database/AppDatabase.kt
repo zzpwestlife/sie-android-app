@@ -9,7 +9,7 @@ import com.example.sie.core.database.dao.QuestionDao
 import com.example.sie.core.database.model.ExamResultEntity
 import com.example.sie.core.database.model.QuestionEntity
 
-@Database(entities = [QuestionEntity::class, ExamResultEntity::class], version = 8, exportSchema = false)
+@Database(entities = [QuestionEntity::class, ExamResultEntity::class], version = 9, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao
