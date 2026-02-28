@@ -89,6 +89,7 @@ fun SieTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
+    fontScale: Int = 0,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -108,9 +109,11 @@ fun SieTheme(
         }
     }
 
+    val scaledTypography = Typography.withFontScale(fontScale)
+
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = scaledTypography,
         content = content
     )
 }

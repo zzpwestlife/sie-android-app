@@ -1,0 +1,145 @@
+<resources>
+    <!-- Common -->
+    <string name="common_back">Back</string>
+    <string name="common_close">Close</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_submit">Submit</string>
+    <string name="common_next">Next</string>
+    <string name="common_previous">Previous</string>
+    <string name="common_remove">Remove</string>
+    <string name="common_error">Error</string>
+    <string name="common_filter_all">All</string>
+    <string name="common_explanation">Explanation:</string>
+    <string name="common_go_back">Go Back</string>
+    <string name="common_bookmark">Bookmark</string>
+    <string name="common_remove_bookmark">Remove bookmark</string>
+    <string name="common_add_bookmark">Add bookmark</string>
+    <string name="common_back_to_home">Back to Home</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Dashboard</string>
+    <string name="home_welcome">Welcome to Entry Test Prep</string>
+    <string name="home_start_practice">🎯 Start Practice</string>
+    <string name="home_start_practice_subtitle">Study questions by topic</string>
+    <string name="home_mock_exam">📝 Mock Exam</string>
+    <string name="home_mock_exam_subtitle">Take a full practice test</string>
+    <string name="home_statistics">📊 Statistics</string>
+    <string name="home_statistics_subtitle">View your performance</string>
+    <string name="home_bookmarked">⭐ Bookmarked</string>
+    <string name="home_bookmarked_subtitle">Review your saved questions</string>
+    <string name="home_wrong_questions">❌ Wrong Questions</string>
+    <string name="home_wrong_questions_subtitle">Practice questions you got wrong</string>
+    <string name="home_flashcards">⚡ Flashcards</string>
+    <string name="home_flashcards_subtitle">Review concepts with flashcards</string>
+    <string name="home_settings">⚙️ Settings</string>
+    <string name="home_settings_subtitle">Configure app preferences</string>
+
+    <!-- Study Screen -->
+    <string name="study_title">Practice Mode</string>
+    <string name="study_bookmark_removed">Bookmark removed</string>
+    <string name="study_bookmarked">Bookmarked</string>
+    <string name="study_stat_time">Time</string>
+    <string name="study_stat_count">Count</string>
+    <string name="study_stat_accuracy">Accuracy</string>
+    <string name="study_skip">Skip</string>
+
+    <!-- Exam Screen -->
+    <string name="exam_title">Mock Exam</string>
+    <string name="exam_rules_title">Exam Rules</string>
+    <string name="exam_intro_questions">32 Questions</string>
+    <string name="exam_intro_questions_subtitle">Selected high-frequency questions</string>
+    <string name="exam_intro_time">30 Minutes</string>
+    <string name="exam_intro_time_subtitle">Total 0.5 hours</string>
+    <string name="exam_intro_pass">70%% to Pass</string>
+    <string name="exam_intro_pass_subtitle">Based on 32 scored questions</string>
+    <string name="exam_intro_flagging">Flagging</string>
+    <string name="exam_intro_flagging_subtitle">Flag uncertain questions for review</string>
+    <string name="exam_button_start">Start Exam</string>
+    <string name="exam_button_prev">Prev</string>
+    <string name="exam_button_next">Next</string>
+    <string name="exam_button_submit">Submit</string>
+    <string name="exam_button_submit_exam">Submit Exam</string>
+    <string name="exam_button_next_question">Next Question</string>
+    <string name="exam_dialog_review_title">Review Answers</string>
+    <string name="exam_dialog_submit_title">Submit Exam?</string>
+    <string name="exam_dialog_submit_message">Are you sure you want to submit? You have %d unanswered questions.</string>
+    <string name="exam_dialog_all_questions">All Questions</string>
+    <string name="exam_result_title">Exam Result</string>
+    <string name="exam_result_passed">Passed!</string>
+    <string name="exam_result_failed">Keep Trying!</string>
+    <string name="exam_result_correct">Correct</string>
+    <string name="exam_result_incorrect">Incorrect</string>
+    <string name="exam_result_review">Review Answers</string>
+    <string name="exam_result_retake">Retake Exam</string>
+    <string name="exam_result_category_breakdown">Category Breakdown</string>
+    <string name="exam_review_title">Review</string>
+    <string name="exam_score_passed">Passed!</string>
+    <string name="exam_score_failed">Failed</string>
+    <string name="exam_score_congrats">Congratulations! You are ready for the real exam.</string>
+    <string name="exam_score_keep_practicing">Keep practicing. You need 70%% to pass.</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_empty">No exam results yet.</string>
+    <string name="stats_average_score">Average Score</string>
+    <string name="stats_recent_results">Recent Results</string>
+    <string name="stats_score_label">Score: %d%%</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_system">System Default</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_zh">中文</string>
+    <string name="settings_font_size">Font Size Scale</string>
+    <string name="settings_font_size_current">Current Scale: %d</string>
+
+    <!-- Bookmarked Screen -->
+    <string name="bookmarked_title">Bookmarked Questions</string>
+    <string name="bookmarked_empty">No bookmarked questions yet</string>
+
+    <!-- Wrong Questions Screen -->
+    <string name="wrong_questions_title">Wrong Questions</string>
+    <string name="wrong_questions_empty">No wrong questions yet</string>
+    <string name="wrong_questions_stats_title">Statistics</string>
+    <string name="wrong_questions_stat_total">Total</string>
+    <string name="wrong_questions_stat_wrong">Wrong</string>
+    <string name="wrong_questions_stat_avg">Avg</string>
+    <string name="wrong_questions_remove_title">Remove Question</string>
+    <string name="wrong_questions_remove_message">Are you sure you want to remove this question from the wrong list?</string>
+    <string name="wrong_questions_remove_from_list">Remove from wrong list</string>
+
+    <!-- Card Screen -->
+    <string name="card_title">Flashcard</string>
+    <string name="card_progress_title">Learning Progress</string>
+    <string name="card_stat_total">Total</string>
+    <string name="card_stat_learned">Learned</string>
+    <string name="card_stat_mastered">Mastered</string>
+    <string name="card_stat_review">Review</string>
+    <string name="card_start_learning">Start Learning</string>
+    <string name="card_cards_due">%d cards due</string>
+    <string name="card_create_button">Create Card</string>
+
+    <!-- Card Create Screen -->
+    <string name="card_create_title">Create Card</string>
+    <string name="card_create_success">Card Created Successfully!</string>
+    <string name="card_create_category">Category</string>
+    <string name="card_create_front">Front (Question)</string>
+    <string name="card_create_back">Back (Answer)</string>
+    <string name="card_create_save">Save Card</string>
+
+    <!-- Card Learning Screen -->
+    <string name="card_learning_title">Learning</string>
+    <string name="card_learning_front">Front</string>
+    <string name="card_learning_back">Back</string>
+    <string name="card_learning_flip_back">Tap to flip back</string>
+    <string name="card_learning_show_answer_hint">Tap to see answer</string>
+    <string name="card_learning_dont_know">Don\'t Know</string>
+    <string name="card_learning_know">Know</string>
+    <string name="card_learning_show_answer">Show Answer</string>
+    <string name="card_learning_finished_title">All caught up!</string>
+    <string name="card_learning_finished_message">You\'ve reviewed all scheduled cards for now.</string>
+    <string name="card_learning_back_to_dashboard">Back to Dashboard</string>
+</resources>

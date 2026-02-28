@@ -70,4 +70,14 @@ class WrongQuestionsViewModel @Inject constructor(
             }
         }
     }
+
+    fun toggleBookmark(questionId: Int) {
+        viewModelScope.launch {
+            try {
+                questionRepository.toggleBookmark(questionId)
+            } catch (e: Exception) {
+                _errorEvents.emit("Failed to toggle bookmark: ${e.message}")
+            }
+        }
+    }
 }

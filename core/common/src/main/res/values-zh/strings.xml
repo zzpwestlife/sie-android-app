@@ -1,0 +1,145 @@
+<resources>
+    <!-- Common -->
+    <string name="common_back">返回</string>
+    <string name="common_close">关闭</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_submit">提交</string>
+    <string name="common_next">下一个</string>
+    <string name="common_previous">上一个</string>
+    <string name="common_remove">移除</string>
+    <string name="common_error">错误</string>
+    <string name="common_filter_all">全部</string>
+    <string name="common_explanation">解析：</string>
+    <string name="common_go_back">返回</string>
+    <string name="common_bookmark">收藏</string>
+    <string name="common_remove_bookmark">取消收藏</string>
+    <string name="common_add_bookmark">添加收藏</string>
+    <string name="common_back_to_home">返回首页</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">主页</string>
+    <string name="home_welcome">欢迎来到入学考试备考</string>
+    <string name="home_start_practice">🎯 开始练习</string>
+    <string name="home_start_practice_subtitle">按主题学习题目</string>
+    <string name="home_mock_exam">📝 模拟考试</string>
+    <string name="home_mock_exam_subtitle">参加完整模拟考试</string>
+    <string name="home_statistics">📊 统计数据</string>
+    <string name="home_statistics_subtitle">查看你的表现</string>
+    <string name="home_bookmarked">⭐ 收藏题目</string>
+    <string name="home_bookmarked_subtitle">复习已保存的题目</string>
+    <string name="home_wrong_questions">❌ 错题本</string>
+    <string name="home_wrong_questions_subtitle">练习做错的题目</string>
+    <string name="home_flashcards">⚡ 闪卡</string>
+    <string name="home_flashcards_subtitle">用闪卡复习概念</string>
+    <string name="home_settings">⚙️ 设置</string>
+    <string name="home_settings_subtitle">配置应用偏好</string>
+
+    <!-- Study Screen -->
+    <string name="study_title">练习模式</string>
+    <string name="study_bookmark_removed">已取消收藏</string>
+    <string name="study_bookmarked">已收藏</string>
+    <string name="study_stat_time">时间</string>
+    <string name="study_stat_count">数量</string>
+    <string name="study_stat_accuracy">准确率</string>
+    <string name="study_skip">跳过</string>
+
+    <!-- Exam Screen -->
+    <string name="exam_title">模拟考试</string>
+    <string name="exam_rules_title">考试规则</string>
+    <string name="exam_intro_questions">32 道题</string>
+    <string name="exam_intro_questions_subtitle">精选高频考题</string>
+    <string name="exam_intro_time">30 分钟</string>
+    <string name="exam_intro_time_subtitle">共 0.5 小时</string>
+    <string name="exam_intro_pass">答对 70%% 及格</string>
+    <string name="exam_intro_pass_subtitle">基于 32 道计分题目</string>
+    <string name="exam_intro_flagging">标记功能</string>
+    <string name="exam_intro_flagging_subtitle">可标记不确定的题目，方便回顾检查</string>
+    <string name="exam_button_start">开始考试</string>
+    <string name="exam_button_prev">上一题</string>
+    <string name="exam_button_next">下一题</string>
+    <string name="exam_button_submit">提交</string>
+    <string name="exam_button_submit_exam">提交试卷</string>
+    <string name="exam_button_next_question">下一题</string>
+    <string name="exam_dialog_review_title">答题回顾</string>
+    <string name="exam_dialog_submit_title">提交试卷？</string>
+    <string name="exam_dialog_submit_message">确定要提交吗？还有 %d 题未作答。</string>
+    <string name="exam_dialog_all_questions">所有题目</string>
+    <string name="exam_result_title">考试结果</string>
+    <string name="exam_result_passed">恭喜通过！</string>
+    <string name="exam_result_failed">继续加油！</string>
+    <string name="exam_result_correct">正确</string>
+    <string name="exam_result_incorrect">错误</string>
+    <string name="exam_result_review">查看答案解析</string>
+    <string name="exam_result_retake">重新考试</string>
+    <string name="exam_result_category_breakdown">板块正确率</string>
+    <string name="exam_review_title">答案回顾</string>
+    <string name="exam_score_passed">通过！</string>
+    <string name="exam_score_failed">未通过</string>
+    <string name="exam_score_congrats">恭喜！你已为真正的考试做好了准备。</string>
+    <string name="exam_score_keep_practicing">继续练习，你需要达到 70%% 才能通过。</string>
+
+    <!-- Stats Screen -->
+    <string name="stats_empty">暂无考试记录</string>
+    <string name="stats_average_score">平均分</string>
+    <string name="stats_recent_results">最近成绩</string>
+    <string name="stats_score_label">得分: %d%%</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">设置</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_theme_system">跟随系统</string>
+    <string name="settings_theme_light">浅色</string>
+    <string name="settings_theme_dark">深色</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_zh">中文</string>
+    <string name="settings_font_size">字体大小</string>
+    <string name="settings_font_size_current">当前比例: %d</string>
+
+    <!-- Bookmarked Screen -->
+    <string name="bookmarked_title">收藏题目</string>
+    <string name="bookmarked_empty">暂无收藏题目</string>
+
+    <!-- Wrong Questions Screen -->
+    <string name="wrong_questions_title">错题本</string>
+    <string name="wrong_questions_empty">暂无错题</string>
+    <string name="wrong_questions_stats_title">统计</string>
+    <string name="wrong_questions_stat_total">总数</string>
+    <string name="wrong_questions_stat_wrong">错题</string>
+    <string name="wrong_questions_stat_avg">平均</string>
+    <string name="wrong_questions_remove_title">移除题目</string>
+    <string name="wrong_questions_remove_message">确定要从错题本中移除此题目吗？</string>
+    <string name="wrong_questions_remove_from_list">从错题本中移除</string>
+
+    <!-- Card Screen -->
+    <string name="card_title">闪卡</string>
+    <string name="card_progress_title">学习进度</string>
+    <string name="card_stat_total">总数</string>
+    <string name="card_stat_learned">已学</string>
+    <string name="card_stat_mastered">掌握</string>
+    <string name="card_stat_review">待复习</string>
+    <string name="card_start_learning">开始学习</string>
+    <string name="card_cards_due">%d 张待复习</string>
+    <string name="card_create_button">创建闪卡</string>
+
+    <!-- Card Create Screen -->
+    <string name="card_create_title">创建闪卡</string>
+    <string name="card_create_success">闪卡创建成功！</string>
+    <string name="card_create_category">分类</string>
+    <string name="card_create_front">正面（问题）</string>
+    <string name="card_create_back">背面（答案）</string>
+    <string name="card_create_save">保存闪卡</string>
+
+    <!-- Card Learning Screen -->
+    <string name="card_learning_title">学习中</string>
+    <string name="card_learning_front">正面</string>
+    <string name="card_learning_back">背面</string>
+    <string name="card_learning_flip_back">点击翻回正面</string>
+    <string name="card_learning_show_answer_hint">点击查看答案</string>
+    <string name="card_learning_dont_know">不会</string>
+    <string name="card_learning_know">会了</string>
+    <string name="card_learning_show_answer">显示答案</string>
+    <string name="card_learning_finished_title">全部完成！</string>
+    <string name="card_learning_finished_message">你已经复习了所有今日安排的闪卡。</string>
+    <string name="card_learning_back_to_dashboard">返回主页</string>
+</resources>

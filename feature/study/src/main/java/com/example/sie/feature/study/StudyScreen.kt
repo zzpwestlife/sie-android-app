@@ -41,9 +41,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.QuestionCard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -80,6 +82,10 @@ internal fun StudyScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
+    // Pre-fetch strings for use in coroutine scope
+    val bookmarkRemovedText = stringResource(CommonR.string.study_bookmark_removed)
+    val bookmarkedText = stringResource(CommonR.string.study_bookmarked)
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -98,12 +104,12 @@ internal fun StudyScreen(
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             topBar = {
                 TopAppBar(
-                    title = { Text("Practice Mode", color = Color.White) },
+                    title = { Text(stringResource(CommonR.string.study_title), color = Color.White) },
                     navigationIcon = {
                         IconButton(onClick = onBackClick) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Close",
+                                contentDescription = stringResource(CommonR.string.common_close),
                                 tint = Color.White
                             )
                         }
@@ -117,8 +123,8 @@ internal fun StudyScreen(
                                     scope.launch {
                                         snackbarHostState.currentSnackbarData?.dismiss()
                                         snackbarHostState.showSnackbar(
-                                            if (isBookmarked) "Bookmark removed"
-                                            else "Bookmarked"
+                                            if (isBookmarked) bookmarkRemovedText
+                                            else bookmarkedText
                                         )
                                     }
                                 }
@@ -126,8 +132,8 @@ internal fun StudyScreen(
                                 Icon(
                                     imageVector = if (isBookmarked) Icons.Filled.Star
                                         else Icons.Outlined.Star,
-                                    contentDescription = if (isBookmarked) "Remove bookmark"
-                                        else "Add bookmark",
+                                    contentDescription = if (isBookmarked) stringResource(CommonR.string.common_remove_bookmark)
+                                        else stringResource(CommonR.string.common_add_bookmark),
                                     tint = if (isBookmarked) Color(0xFFfee140)
                                         else Color.White.copy(alpha = 0.7f)
                                 )
@@ -159,7 +165,7 @@ internal fun StudyScreen(
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Button(onClick = onBackClick) {
-                                Text("Go Back")
+                                Text(stringResource(CommonR.string.common_go_back))
                             }
                         }
                     }
@@ -208,12 +214,12 @@ private fun StudyContent(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            StatItem(label = "Time", value = formatTime(elapsedTime))
-            StatItem(label = "Count", value = "${state.stats.totalAnswered}")
+            StatItem(label = stringResource(CommonR.string.study_stat_time), value = formatTime(elapsedTime))
+            StatItem(label = stringResource(CommonR.string.study_stat_count), value = "${state.stats.totalAnswered}")
             val accuracy = if (state.stats.totalAnswered > 0) {
                 (state.stats.correctCount.toFloat() / state.stats.totalAnswered * 100).toInt()
             } else 0
-            StatItem(label = "Accuracy", value = "$accuracy%")
+            StatItem(label = stringResource(CommonR.string.study_stat_accuracy), value = "$accuracy%")
         }
 
         // Question Card
@@ -241,7 +247,7 @@ private fun StudyContent(
                 ),
                 border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.5f))
             ) {
-                Text("Previous")
+                Text(stringResource(CommonR.string.common_previous))
             }
 
             Spacer(modifier = Modifier.width(8.dp))
@@ -254,7 +260,7 @@ private fun StudyContent(
                     contentColor = Color.White
                 )
             ) {
-                Text(if (state.isAnswerRevealed) "Next" else "Skip")
+                Text(if (state.isAnswerRevealed) stringResource(CommonR.string.common_next) else stringResource(CommonR.string.study_skip))
             }
         }
 
@@ -262,7 +268,7 @@ private fun StudyContent(
         if (state.isAnswerRevealed) {
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "Explanation:",
+                    text = stringResource(CommonR.string.common_explanation),
                     style = MaterialTheme.typography.titleSmall,
                     color = Color(0xFF4facfe),
                     fontWeight = FontWeight.Bold

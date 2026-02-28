@@ -34,4 +34,10 @@ class Converters {
         }
         return jsonArray.toString()
     }
+
+    @TypeConverter
+    fun toCardStatus(value: String) = enumValueOf<com.example.sie.core.model.CardStatus>(value)
+
+    @TypeConverter
+    fun fromCardStatus(value: com.example.sie.core.model.CardStatus) = value.name
 }

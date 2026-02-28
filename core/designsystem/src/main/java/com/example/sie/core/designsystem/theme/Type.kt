@@ -113,3 +113,41 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
 )
+
+/**
+ * Create a new Typography with font sizes scaled by the given factor.
+ * @param scale Font size scale (-2 to +2)
+ *   -2 = 80% size
+ *   -1 = 90% size
+ *    0 = 100% size (default)
+ *   +1 = 110% size
+ *   +2 = 120% size
+ */
+fun Typography.withFontScale(scale: Int): Typography {
+    val scaleFactor = when (scale) {
+        -2 -> 0.8f
+        -1 -> 0.9f
+        0 -> 1.0f
+        1 -> 1.1f
+        2 -> 1.2f
+        else -> 1.0f
+    }
+
+    return this.copy(
+        displayLarge = this.displayLarge.copy(fontSize = this.displayLarge.fontSize * scaleFactor),
+        displayMedium = this.displayMedium.copy(fontSize = this.displayMedium.fontSize * scaleFactor),
+        displaySmall = this.displaySmall.copy(fontSize = this.displaySmall.fontSize * scaleFactor),
+        headlineLarge = this.headlineLarge.copy(fontSize = this.headlineLarge.fontSize * scaleFactor),
+        headlineMedium = this.headlineMedium.copy(fontSize = this.headlineMedium.fontSize * scaleFactor),
+        headlineSmall = this.headlineSmall.copy(fontSize = this.headlineSmall.fontSize * scaleFactor),
+        titleLarge = this.titleLarge.copy(fontSize = this.titleLarge.fontSize * scaleFactor),
+        titleMedium = this.titleMedium.copy(fontSize = this.titleMedium.fontSize * scaleFactor),
+        titleSmall = this.titleSmall.copy(fontSize = this.titleSmall.fontSize * scaleFactor),
+        bodyLarge = this.bodyLarge.copy(fontSize = this.bodyLarge.fontSize * scaleFactor),
+        bodyMedium = this.bodyMedium.copy(fontSize = this.bodyMedium.fontSize * scaleFactor),
+        bodySmall = this.bodySmall.copy(fontSize = this.bodySmall.fontSize * scaleFactor),
+        labelLarge = this.labelLarge.copy(fontSize = this.labelLarge.fontSize * scaleFactor),
+        labelMedium = this.labelMedium.copy(fontSize = this.labelMedium.fontSize * scaleFactor),
+        labelSmall = this.labelSmall.copy(fontSize = this.labelSmall.fontSize * scaleFactor),
+    )
+}

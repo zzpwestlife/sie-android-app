@@ -25,8 +25,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
+import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.SieButton
 import com.example.sie.core.designsystem.component.SieTopAppBar
 import com.example.sie.core.designsystem.component.GlassCard
@@ -39,6 +41,7 @@ fun HomeRoute(
     onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
+    onFlashcardsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     HomeScreen(
@@ -47,6 +50,7 @@ fun HomeRoute(
         onStatsClick = onStatsClick,
         onBookmarkedClick = onBookmarkedClick,
         onWrongQuestionsClick = onWrongQuestionsClick,
+        onFlashcardsClick = onFlashcardsClick,
         onSettingsClick = onSettingsClick
     )
 }
@@ -59,6 +63,7 @@ internal fun HomeScreen(
     onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
+    onFlashcardsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     var cardsVisible by remember { mutableStateOf(false) }
@@ -84,7 +89,7 @@ internal fun HomeScreen(
             containerColor = Color.Transparent,
             topBar = {
                 SieTopAppBar(
-                    title = "Dashboard",
+                    title = stringResource(CommonR.string.home_title),
                 )
             }
         ) { paddingValues ->
@@ -97,7 +102,7 @@ internal fun HomeScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = "Welcome to Entry Test Prep",
+                    text = stringResource(CommonR.string.home_welcome),
                     style = MaterialTheme.typography.headlineMedium,
                     color = Color.White
                 )
@@ -107,8 +112,8 @@ internal fun HomeScreen(
                     delay = 0,
                     gradient = PrimaryGradient,
                     onClick = onTopicSelectionClick,
-                    title = "🎯 Start Practice",
-                    subtitle = "Study questions by topic"
+                    title = stringResource(CommonR.string.home_start_practice),
+                    subtitle = stringResource(CommonR.string.home_start_practice_subtitle)
                 )
 
                 AnimatedGlassCard(
@@ -116,8 +121,8 @@ internal fun HomeScreen(
                     delay = 100,
                     gradient = SecondaryGradient,
                     onClick = onMockExamClick,
-                    title = "📝 Mock Exam",
-                    subtitle = "Take a full practice test"
+                    title = stringResource(CommonR.string.home_mock_exam),
+                    subtitle = stringResource(CommonR.string.home_mock_exam_subtitle)
                 )
 
                 AnimatedGlassCard(
@@ -125,8 +130,8 @@ internal fun HomeScreen(
                     delay = 200,
                     gradient = TertiaryGradient,
                     onClick = onStatsClick,
-                    title = "📊 Statistics",
-                    subtitle = "View your performance"
+                    title = stringResource(CommonR.string.home_statistics),
+                    subtitle = stringResource(CommonR.string.home_statistics_subtitle)
                 )
 
                 AnimatedGlassCard(
@@ -134,8 +139,8 @@ internal fun HomeScreen(
                     delay = 300,
                     gradient = AccentGradient,
                     onClick = onBookmarkedClick,
-                    title = "⭐ Bookmarked",
-                    subtitle = "Review your saved questions"
+                    title = stringResource(CommonR.string.home_bookmarked),
+                    subtitle = stringResource(CommonR.string.home_bookmarked_subtitle)
                 )
 
                 AnimatedGlassCard(
@@ -143,17 +148,31 @@ internal fun HomeScreen(
                     delay = 400,
                     gradient = ErrorGradient,
                     onClick = onWrongQuestionsClick,
-                    title = "❌ Wrong Questions",
-                    subtitle = "Practice questions you got wrong"
+                    title = stringResource(CommonR.string.home_wrong_questions),
+                    subtitle = stringResource(CommonR.string.home_wrong_questions_subtitle)
                 )
 
                 AnimatedGlassCard(
                     visible = cardsVisible,
                     delay = 500,
+                    gradient = Brush.linearGradient(
+                        colors = listOf(
+                            Color(0xFF0984e3),
+                            Color(0xFF74b9ff)
+                        )
+                    ),
+                    onClick = onFlashcardsClick,
+                    title = stringResource(CommonR.string.home_flashcards),
+                    subtitle = stringResource(CommonR.string.home_flashcards_subtitle)
+                )
+
+                AnimatedGlassCard(
+                    visible = cardsVisible,
+                    delay = 600,
                     gradient = SuccessGradient,
                     onClick = onSettingsClick,
-                    title = "⚙️ Settings",
-                    subtitle = "Configure app preferences"
+                    title = stringResource(CommonR.string.home_settings),
+                    subtitle = stringResource(CommonR.string.home_settings_subtitle)
                 )
             }
         }

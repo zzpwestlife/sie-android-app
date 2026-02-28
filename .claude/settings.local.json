@@ -11,13 +11,14 @@
       "Bash(echo:*)",
       "Bash(rm:*)",
       "Bash(mv:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(./gradlew assembleDebug:*)",
+      "Bash(./gradlew:*)",
+      "Bash(java:*)",
+      "Bash(/usr/libexec/java_home:*)",
+      "Bash(grep:*)",
+      "Bash(make all:*)"
     ]
-  },
-  "commands": {
-    "android:run": "npx react-native run-android",
-    "android:build": "cd android && ./gradlew assembleRelease",
-    "android:log": "adb logcat | grep ReactNativeJS"
   },
   "hooks": {
     "PostToolUse": [
@@ -31,5 +32,10 @@
         ]
       }
     ]
+  },
+  "commands": {
+    "android:run": "npx react-native run-android",
+    "android:build": "cd android && ./gradlew assembleRelease",
+    "android:log": "adb logcat | grep ReactNativeJS"
   }
 }

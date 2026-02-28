@@ -25,9 +25,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.GlassCard
 import com.example.sie.core.designsystem.theme.PrimaryGradient
 import com.example.sie.core.designsystem.theme.SecondaryGradient
@@ -79,45 +81,14 @@ internal fun SettingsScreen(
             is SettingsUiState.Success -> {
                 Column(Modifier.padding(16.dp)) {
                     Text(
-                        text = "Settings",
+                        text = stringResource(CommonR.string.settings_title),
                         style = MaterialTheme.typography.headlineMedium,
                         color = Color.White
                     )
                     Spacer(Modifier.height(24.dp))
 
                     Text(
-                        text = "Theme",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        modifier = Modifier.padding(bottom = 8.dp)
-                    )
-                    GlassCard(
-                        modifier = Modifier.fillMaxWidth(),
-                        gradient = PrimaryGradient
-                    ) {
-                        Column(Modifier.selectableGroup()) {
-                            SettingsDialogThemeChooserRow(
-                                text = "System Default",
-                                selected = uiState.settings.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
-                                onClick = { onChangeDarkThemeConfig(DarkThemeConfig.FOLLOW_SYSTEM) }
-                            )
-                            SettingsDialogThemeChooserRow(
-                                text = "Light",
-                                selected = uiState.settings.darkThemeConfig == DarkThemeConfig.LIGHT,
-                                onClick = { onChangeDarkThemeConfig(DarkThemeConfig.LIGHT) }
-                            )
-                            SettingsDialogThemeChooserRow(
-                                text = "Dark",
-                                selected = uiState.settings.darkThemeConfig == DarkThemeConfig.DARK,
-                                onClick = { onChangeDarkThemeConfig(DarkThemeConfig.DARK) }
-                            )
-                        }
-                    }
-
-                    Spacer(Modifier.height(24.dp))
-
-                    Text(
-                        text = "Language",
+                        text = stringResource(CommonR.string.settings_language),
                         style = MaterialTheme.typography.titleMedium,
                         color = Color.White,
                         modifier = Modifier.padding(bottom = 8.dp)
@@ -128,12 +99,12 @@ internal fun SettingsScreen(
                     ) {
                         Column(Modifier.selectableGroup()) {
                             SettingsDialogThemeChooserRow(
-                                text = "English",
+                                text = stringResource(CommonR.string.settings_language_en),
                                 selected = uiState.settings.language == "en",
                                 onClick = { onChangeLanguage("en") }
                             )
                             SettingsDialogThemeChooserRow(
-                                text = "中文",
+                                text = stringResource(CommonR.string.settings_language_zh),
                                 selected = uiState.settings.language == "zh",
                                 onClick = { onChangeLanguage("zh") }
                             )
@@ -143,7 +114,7 @@ internal fun SettingsScreen(
                     Spacer(Modifier.height(24.dp))
 
                     Text(
-                        text = "Font Size Scale",
+                        text = stringResource(CommonR.string.settings_font_size),
                         style = MaterialTheme.typography.titleMedium,
                         color = Color.White,
                         modifier = Modifier.padding(bottom = 8.dp)
@@ -155,7 +126,7 @@ internal fun SettingsScreen(
                     ) {
                         val currentScale = uiState.settings.fontSizeScale
                         Text(
-                            text = "Current Scale: $currentScale",
+                            text = stringResource(CommonR.string.settings_font_size_current, currentScale),
                             color = Color.White.copy(alpha = 0.9f),
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(bottom = 8.dp)

@@ -1,5 +1,6 @@
 package com.example.sie.feature.exam
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,15 +17,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.filled.Menu
 
@@ -63,12 +65,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.designsystem.component.QuestionCard
+import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.GradientProgressIndicator
 import com.example.sie.core.designsystem.component.GradientButton
 import com.example.sie.core.designsystem.theme.SuccessGradient
@@ -177,15 +181,15 @@ private fun ExamIntroContent(
             TopAppBar(
                 title = {
                     Text(
-                        text = if (language == "zh") "模拟考试" else "Mock Exam",
+                        text = stringResource(CommonR.string.exam_title),
                         color = Color.White
                     )
                 },
                 navigationIcon = {
                     androidx.compose.material3.IconButton(onClick = onBackClick) {
                         androidx.compose.material3.Icon(
-                            imageVector = androidx.compose.material.icons.Icons.Default.ArrowBack,
-                            contentDescription = "Back",
+                            imageVector = androidx.compose.material.icons.automirrored.filled.ArrowBack,
+                            contentDescription = stringResource(CommonR.string.common_back),
                             tint = Color.White
                         )
                     }
@@ -214,31 +218,31 @@ private fun ExamIntroContent(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Text(
-                        text = if (language == "zh") "考试规则" else "Exam Rules",
+                        text = stringResource(CommonR.string.exam_rules_title),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
                     )
 
                     IntroItem(
-                        icon = androidx.compose.material.icons.Icons.Default.List,
-                        title = if (language == "zh") "32 道题" else "32 Questions",
-                        subtitle = if (language == "zh") "精选高频考题" else "Selected high-frequency questions"
+                        icon = androidx.compose.material.icons.automirrored.filled.List,
+                        title = stringResource(CommonR.string.exam_intro_questions),
+                        subtitle = stringResource(CommonR.string.exam_intro_questions_subtitle)
                     )
                     IntroItem(
                         icon = androidx.compose.material.icons.Icons.Default.Notifications,
-                        title = if (language == "zh") "30 分钟" else "30 Minutes",
-                        subtitle = if (language == "zh") "共 0.5 小时" else "Total 0.5 hours"
+                        title = stringResource(CommonR.string.exam_intro_time),
+                        subtitle = stringResource(CommonR.string.exam_intro_time_subtitle)
                     )
                     IntroItem(
                         icon = androidx.compose.material.icons.Icons.Default.CheckCircle,
-                        title = if (language == "zh") "答对 70% 及格" else "70% to Pass",
-                        subtitle = if (language == "zh") "基于 32 道计分题目" else "Based on 32 scored questions"
+                        title = stringResource(CommonR.string.exam_intro_pass),
+                        subtitle = stringResource(CommonR.string.exam_intro_pass_subtitle)
                     )
                     IntroItem(
                         icon = androidx.compose.material.icons.Icons.Default.Star,
-                        title = if (language == "zh") "标记功能" else "Flagging",
-                        subtitle = if (language == "zh") "可标记不确定的题目，方便回顾检查" else "Flag uncertain questions for review"
+                        title = stringResource(CommonR.string.exam_intro_flagging),
+                        subtitle = stringResource(CommonR.string.exam_intro_flagging_subtitle)
                     )
                 }
             }
@@ -253,7 +257,7 @@ private fun ExamIntroContent(
                 shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
             ) {
                 Text(
-                    text = if (language == "zh") "开始考试" else "Start Exam",
+                    text = stringResource(CommonR.string.exam_button_start),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -330,7 +334,7 @@ private fun ExamInProgressContent(
                     TextButton(onClick = { showReviewDialog = true }) {
                         androidx.compose.material3.Icon(
                             imageVector = androidx.compose.material.icons.Icons.Default.Menu,
-                            contentDescription = "Review",
+                            contentDescription = stringResource(CommonR.string.exam_dialog_review_title),
                             tint = Color.White
                         )
                     }
@@ -371,7 +375,7 @@ private fun ExamInProgressContent(
                         // Keeping Submit here for accessibility
                         TextButton(onClick = { showSubmitDialog = true }) {
                             Text(
-                                text = if (language == "zh") "提交" else "Submit",
+                                text = stringResource(CommonR.string.exam_button_submit),
                                 color = Color.White
                             )
                         }
@@ -405,7 +409,7 @@ private fun ExamInProgressContent(
                         },
                         enabled = pagerState.currentPage > 0
                     ) {
-                        Text("< " + (if (language == "zh") "上一题" else "Prev"))
+                        Text("< " + stringResource(CommonR.string.exam_button_prev))
                     }
 
                     Text(
@@ -425,7 +429,7 @@ private fun ExamInProgressContent(
                         },
                         enabled = pagerState.currentPage < state.questions.size - 1
                     ) {
-                        Text((if (language == "zh") "下一题" else "Next") + " >")
+                        Text(stringResource(CommonR.string.exam_button_next) + " >")
                     }
                 }
                 
@@ -450,7 +454,7 @@ private fun ExamInProgressContent(
                     shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
                 ) {
                     Text(
-                        text = if (isLastQuestion) (if (language == "zh") "提交试卷" else "Submit Exam") else (if (language == "zh") "下一题" else "Next Question"),
+                        text = if (isLastQuestion) stringResource(CommonR.string.exam_button_submit_exam) else stringResource(CommonR.string.exam_button_next_question),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
@@ -467,6 +471,7 @@ private fun ExamInProgressContent(
             // Use key to prevent recomposition issues if list changes (though it shouldn't in exam)
             // But importantly, pass language to QuestionCard
             val question = state.questions[page]
+            val isBookmarked = question.isBookmarked
             // Access the question by index from state to be safe
             
             Box(modifier = Modifier
@@ -474,16 +479,47 @@ private fun ExamInProgressContent(
                 .padding(16.dp)) {
                 
                 Column {
-                    // Category Tag
-                    androidx.compose.material3.SuggestionChip(
-                        onClick = {},
-                        label = { Text(question.category.substringBefore("/")) }, // Show English part mostly or simplify
-                        colors = androidx.compose.material3.SuggestionChipDefaults.suggestionChipColors(
-                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                            labelColor = MaterialTheme.colorScheme.onSecondaryContainer
-                        ),
-                        border = null
-                    )
+                    // Category Tag and Bookmark Button Row
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        androidx.compose.material3.SuggestionChip(
+                            onClick = {},
+                            label = { Text(question.category.substringBefore("/")) }, // Show English part mostly or simplify
+                            colors = androidx.compose.material3.SuggestionChipDefaults.suggestionChipColors(
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                labelColor = MaterialTheme.colorScheme.onSecondaryContainer
+                            ),
+                            border = null
+                        )
+
+                            androidx.compose.material3.IconButton(
+                                onClick = { onFlagQuestion(question.id) }
+                            ) {
+                                androidx.compose.material3.Icon(
+                                    imageVector = if (state.flaggedQuestions.contains(question.id)) androidx.compose.material.icons.Icons.Filled.CheckCircle else androidx.compose.material.icons.Icons.Outlined.CheckCircle,
+                                    contentDescription = stringResource(CommonR.string.exam_intro_flagging),
+                                    tint = if (state.flaggedQuestions.contains(question.id)) MaterialTheme.colorScheme.tertiary else Color.White.copy(alpha = 0.6f),
+                                    modifier = Modifier.size(28.dp)
+                                )
+                            }
+                        }
+
+                        androidx.compose.material3.IconButton(
+                            onClick = {
+                                onToggleBookmark(question.id)
+                            }
+                        ) {
+                            androidx.compose.material3.Icon(
+                                imageVector = if (isBookmarked) androidx.compose.material.icons.Icons.Filled.Star else androidx.compose.material.icons.Icons.Outlined.Star,
+                                contentDescription = stringResource(CommonR.string.common_bookmark),
+                                tint = if (isBookmarked) Color(0xFFFFD700) else Color.White.copy(alpha = 0.6f), // Gold for active, semi-transparent white for inactive
+                                modifier = Modifier.size(28.dp)
+                            )
+                        }
+                    }
                     
                     Spacer(modifier = Modifier.height(8.dp))
 
@@ -498,23 +534,6 @@ private fun ExamInProgressContent(
                         // Add flag button to card header if possible, or just overlay it
                     )
                 }
-                
-                // Overlay Bookmark button on top right of the card area
-                val isBookmarked = question.isBookmarked
-                androidx.compose.material3.IconButton(
-                    onClick = {
-                        onToggleBookmark(question.id)
-                    },
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(top = 48.dp, end = 24.dp) // Adjust based on layout
-                ) {
-                    androidx.compose.material3.Icon(
-                        imageVector = if (isBookmarked) androidx.compose.material.icons.Icons.Filled.Star else androidx.compose.material.icons.Icons.Outlined.Star,
-                        contentDescription = "Bookmark",
-                        tint = if (isBookmarked) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
             }
         }
     }
@@ -522,7 +541,7 @@ private fun ExamInProgressContent(
     if (showReviewDialog) {
         AlertDialog(
             onDismissRequest = { showReviewDialog = false },
-            title = { Text("Review Answers") },
+            title = { Text(stringResource(CommonR.string.exam_dialog_review_title)) },
             text = {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(minSize = 48.dp),
@@ -566,7 +585,7 @@ private fun ExamInProgressContent(
             },
             confirmButton = {
                 TextButton(onClick = { showReviewDialog = false }) {
-                    Text("Close")
+                    Text(stringResource(CommonR.string.common_close))
                 }
             }
         )
@@ -575,19 +594,19 @@ private fun ExamInProgressContent(
     if (showSubmitDialog) {
         AlertDialog(
             onDismissRequest = { showSubmitDialog = false },
-            title = { Text("Submit Exam?") },
-            text = { Text("Are you sure you want to submit? You have ${state.questions.size - state.userAnswers.size} unanswered questions.") },
+            title = { Text(stringResource(CommonR.string.exam_dialog_submit_title)) },
+            text = { Text(stringResource(CommonR.string.exam_dialog_submit_message, state.questions.size - state.userAnswers.size)) },
             confirmButton = {
                 Button(onClick = {
                     showSubmitDialog = false
                     onSubmitExam()
                 }) {
-                    Text("Submit")
+                    Text(stringResource(CommonR.string.common_submit))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showSubmitDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(CommonR.string.common_cancel))
                 }
             }
         )
@@ -609,6 +628,7 @@ private fun ExamResultContent(
         ExamReviewContent(
             state = state,
             onCloseReview = { isReviewing = false },
+            onToggleBookmark = onToggleBookmark,
             language = language
         )
     } else {
@@ -618,7 +638,7 @@ private fun ExamResultContent(
                 TopAppBar(
                     title = {
                         Text(
-                            text = if (language == "zh") "考试结果" else "Exam Result",
+                            text = stringResource(CommonR.string.exam_result_title),
                             color = Color.White
                         )
                     },
@@ -626,7 +646,7 @@ private fun ExamResultContent(
                         androidx.compose.material3.IconButton(onClick = onBackClick) {
                             androidx.compose.material3.Icon(
                                 imageVector = androidx.compose.material.icons.Icons.Default.Close,
-                                contentDescription = "Close",
+                                contentDescription = stringResource(CommonR.string.common_close),
                                 tint = Color.White
                             )
                         }
@@ -664,9 +684,9 @@ private fun ExamResultContent(
                             tint = if (state.passed) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error,
                             modifier = Modifier.size(48.dp)
                         )
-                        
+
                         Text(
-                            text = if (state.passed) (if (language == "zh") "恭喜通过！" else "Passed!") else (if (language == "zh") "继续加油！" else "Keep Trying!"),
+                            text = if (state.passed) stringResource(CommonR.string.exam_result_passed) else stringResource(CommonR.string.exam_result_failed),
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Bold,
                             color = if (state.passed) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error
@@ -684,14 +704,14 @@ private fun ExamResultContent(
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
                             StatItem(
-                                label = if (language == "zh") "正确" else "Correct",
+                                label = stringResource(CommonR.string.exam_result_correct),
                                 value = "${(state.score * state.totalQuestions) / 100}",
                                 color = Color(0xFF4CAF50)
                             )
                             // Vertical Divider
                             androidx.compose.material3.Divider(modifier = Modifier.height(40.dp).width(1.dp))
                             StatItem(
-                                label = if (language == "zh") "错误" else "Incorrect",
+                                label = stringResource(CommonR.string.exam_result_incorrect),
                                 value = "${state.totalQuestions - (state.score * state.totalQuestions) / 100}",
                                 color = MaterialTheme.colorScheme.error
                             )
@@ -705,14 +725,14 @@ private fun ExamResultContent(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     GradientButton(
-                        text = if (language == "zh") "查看答案解析" else "Review Answers",
+                        text = stringResource(CommonR.string.exam_result_review),
                         gradient = PrimaryGradient,
                         onClick = { isReviewing = true },
                         modifier = Modifier.fillMaxWidth()
                     )
 
                     GradientButton(
-                        text = if (language == "zh") "重新考试" else "Retake Exam",
+                        text = stringResource(CommonR.string.exam_result_retake),
                         gradient = SecondaryGradient,
                         onClick = onResetExam,
                         modifier = Modifier.fillMaxWidth()
@@ -723,7 +743,7 @@ private fun ExamResultContent(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = if (language == "zh") "返回首页" else "Back to Home",
+                            text = stringResource(CommonR.string.common_back_to_home),
                             color = Color.White
                         )
                     }
@@ -740,7 +760,7 @@ private fun ExamResultContent(
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         Text(
-                            text = if (language == "zh") "板块正确率" else "Category Breakdown",
+                            text = stringResource(CommonR.string.exam_result_category_breakdown),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )
@@ -848,6 +868,7 @@ private fun StatItem(
 private fun ExamReviewContent(
     state: ExamUiState.Finished,
     onCloseReview: () -> Unit,
+    onToggleBookmark: (Int) -> Unit,
     language: String
 ) {
     val pagerState = rememberPagerState(pageCount = { state.questions.size })
@@ -860,18 +881,23 @@ private fun ExamReviewContent(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Review: Question ${pagerState.currentPage + 1}/${state.questions.size}",
+                        text = stringResource(CommonR.string.exam_review_title),
                         color = Color.White
                     )
                 },
                 navigationIcon = {
                     TextButton(onClick = onCloseReview) {
-                        Text("Close", color = Color.White)
+                        Text(stringResource(CommonR.string.common_close), color = Color.White)
                     }
                 },
                 actions = {
+                    Text(
+                        text = "${pagerState.currentPage + 1}/${state.questions.size}",
+                        color = Color.White.copy(alpha = 0.8f),
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
                     TextButton(onClick = { showReviewDialog = true }) {
-                        Text("All Questions", color = Color.White)
+                        Text(stringResource(CommonR.string.exam_dialog_all_questions), color = Color.White)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -895,9 +921,17 @@ private fun ExamReviewContent(
                             }
                         }
                     },
-                    enabled = pagerState.currentPage > 0
+                    enabled = pagerState.currentPage > 0,
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = Color.White,
+                        disabledContentColor = Color.White.copy(alpha = 0.38f)
+                    ),
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = if (pagerState.currentPage > 0) Color.White else Color.White.copy(alpha = 0.12f)
+                    )
                 ) {
-                    Text("Previous")
+                    Text(stringResource(CommonR.string.common_previous))
                 }
 
                 Button(
@@ -911,7 +945,7 @@ private fun ExamReviewContent(
                     },
                     enabled = pagerState.currentPage < state.questions.size - 1
                 ) {
-                    Text("Next")
+                    Text(stringResource(CommonR.string.common_next))
                 }
             }
         }
@@ -923,16 +957,49 @@ private fun ExamReviewContent(
                 .padding(paddingValues)
         ) { page ->
             val question = state.questions[page]
+            val isBookmarked = question.isBookmarked
+
             Box(modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)) {
-                QuestionCard(
-                    question = question,
-                    selectedOptionIndex = state.userAnswers[question.id],
-                    onOptionSelected = {},
-                    showFeedback = true,
-                    language = language
-                )
+                Column {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        androidx.compose.material3.SuggestionChip(
+                            onClick = {},
+                            label = { Text(question.category.substringBefore("/")) },
+                            colors = androidx.compose.material3.SuggestionChipDefaults.suggestionChipColors(
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                labelColor = MaterialTheme.colorScheme.onSecondaryContainer
+                            ),
+                            border = null
+                        )
+
+                        androidx.compose.material3.IconButton(
+                            onClick = { onToggleBookmark(question.id) }
+                        ) {
+                            androidx.compose.material3.Icon(
+                                imageVector = if (isBookmarked) androidx.compose.material.icons.Icons.Filled.Star else androidx.compose.material.icons.Icons.Outlined.Star,
+                                tint = if (isBookmarked) Color(0xFFFFD700) else Color.White.copy(alpha = 0.6f),
+                                modifier = Modifier.size(28.dp),
+                                contentDescription = stringResource(CommonR.string.common_bookmark)
+                            )
+                        }
+                    }
+                    
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    QuestionCard(
+                        question = question,
+                        selectedOptionIndex = state.userAnswers[question.id],
+                        onOptionSelected = {},
+                        showFeedback = true,
+                        language = language
+                    )
+                }
             }
         }
     }
@@ -940,7 +1007,7 @@ private fun ExamReviewContent(
     if (showReviewDialog) {
         AlertDialog(
             onDismissRequest = { showReviewDialog = false },
-            title = { Text("All Questions") },
+            title = { Text(stringResource(CommonR.string.exam_dialog_all_questions)) },
             text = {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(minSize = 48.dp),
@@ -984,7 +1051,7 @@ private fun ExamReviewContent(
             },
             confirmButton = {
                 TextButton(onClick = { showReviewDialog = false }) {
-                    Text("Close")
+                    Text(stringResource(CommonR.string.common_close))
                 }
             }
         )
@@ -1007,13 +1074,13 @@ private fun ExamScoreContent(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 OutlinedButton(onClick = onBackClick) {
-                    Text("Back to Home")
+                    Text(stringResource(CommonR.string.common_back_to_home))
                 }
                 TextButton(onClick = onReviewClick) {
-                    Text("Review Answers")
+                    Text(stringResource(CommonR.string.exam_result_review))
                 }
                 Button(onClick = onResetExam) {
-                    Text("Retake Exam")
+                    Text(stringResource(CommonR.string.exam_result_retake))
                 }
             }
         }
@@ -1027,7 +1094,7 @@ private fun ExamScoreContent(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = if (state.passed) "Passed!" else "Failed",
+                text = if (state.passed) stringResource(CommonR.string.exam_score_passed) else stringResource(CommonR.string.exam_score_failed),
                 style = MaterialTheme.typography.displayMedium,
                 color = if (state.passed) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error
             )
@@ -1042,7 +1109,7 @@ private fun ExamScoreContent(
             )
             Spacer(modifier = Modifier.height(32.dp))
             Text(
-                text = if (state.passed) "Congratulations! You are ready for the real exam." else "Keep practicing. You need 70% to pass.",
+                text = if (state.passed) stringResource(CommonR.string.exam_score_congrats) else stringResource(CommonR.string.exam_score_keep_practicing),
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center
             )
@@ -1071,7 +1138,7 @@ private fun ExamReviewContent(
                 },
                 actions = {
                     TextButton(onClick = onCloseReview) {
-                        Text("Close", color = Color.White)
+                        Text(stringResource(CommonR.string.common_close), color = Color.White)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -1097,7 +1164,7 @@ private fun ExamReviewContent(
                     },
                     enabled = pagerState.currentPage > 0
                 ) {
-                    Text("Previous")
+                    Text(stringResource(CommonR.string.common_previous))
                 }
 
                 Button(
@@ -1111,7 +1178,7 @@ private fun ExamReviewContent(
                     },
                     enabled = pagerState.currentPage < state.questions.size - 1
                 ) {
-                    Text("Next")
+                    Text(stringResource(CommonR.string.common_next))
                 }
             }
         }

@@ -1,6 +1,8 @@
 package com.example.sie.feature.home
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +21,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -47,8 +51,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
+import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.GlassCard
 import com.example.sie.core.designsystem.component.SieTopAppBar
 import com.example.sie.core.designsystem.theme.ErrorGradient
@@ -74,7 +80,8 @@ fun WrongQuestionsRoute(
         snackbarHostState = snackbarHostState,
         onBackClick = onBackClick,
         onCategorySelected = viewModel::selectCategory,
-        onRemoveFromWrong = viewModel::removeFromWrong
+        onRemoveFromWrong = viewModel::removeFromWrong,
+        onToggleBookmark = viewModel::toggleBookmark
     )
 }
 
@@ -85,7 +92,8 @@ internal fun WrongQuestionsScreen(
     snackbarHostState: SnackbarHostState,
     onBackClick: () -> Unit,
     onCategorySelected: (String?) -> Unit,
-    onRemoveFromWrong: (Int) -> Unit
+    onRemoveFromWrong: (Int) -> Unit,
+    onToggleBookmark: (Int) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -105,9 +113,9 @@ internal fun WrongQuestionsScreen(
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             topBar = {
                 SieTopAppBar(
-                    title = "Wrong Questions",
+                    title = stringResource(CommonR.string.wrong_questions_title),
                     navigationIcon = Icons.Filled.ArrowBack,
-                    navigationIconContentDescription = "Back",
+                    navigationIconContentDescription = stringResource(CommonR.string.common_back),
                     onNavigationClick = onBackClick,
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
@@ -145,7 +153,7 @@ internal fun WrongQuestionsScreen(
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = "No wrong questions yet",
+                                text = stringResource(CommonR.string.wrong_questions_empty),
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = Color.White.copy(alpha = 0.7f)
                             )
@@ -158,7 +166,8 @@ internal fun WrongQuestionsScreen(
                         state = uiState,
                         modifier = Modifier.padding(paddingValues),
                         onCategorySelected = onCategorySelected,
-                        onRemoveFromWrong = onRemoveFromWrong
+                        onRemoveFromWrong = onRemoveFromWrong,
+                        onToggleBookmark = onToggleBookmark
                     )
                 }
             }
@@ -171,7 +180,8 @@ private fun WrongQuestionsContent(
     state: WrongQuestionsUiState.Success,
     modifier: Modifier = Modifier,
     onCategorySelected: (String?) -> Unit,
-    onRemoveFromWrong: (Int) -> Unit
+    onRemoveFromWrong: (Int) -> Unit,
+    onToggleBookmark: (Int) -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -198,7 +208,8 @@ private fun WrongQuestionsContent(
         ) { question ->
             WrongQuestionCard(
                 question = question,
-                onRemoveClick = { onRemoveFromWrong(question.id) }
+                onRemoveClick = { onRemoveFromWrong(question.id) },
+                onToggleBookmark = { onToggleBookmark(question.id) }
             )
         }
 
@@ -218,7 +229,7 @@ private fun WrongQuestionsStatsCard(
         gradient = SecondaryGradient
     ) {
         Text(
-            text = "Statistics",
+            text = stringResource(CommonR.string.wrong_questions_stats_title),
             style = MaterialTheme.typography.titleMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -230,15 +241,15 @@ private fun WrongQuestionsStatsCard(
         ) {
             StatItem(
                 value = stats.totalCount.toString(),
-                label = "Total"
+                label = stringResource(CommonR.string.wrong_questions_stat_total)
             )
             StatItem(
                 value = stats.totalWrongCount.toString(),
-                label = "Wrong"
+                label = stringResource(CommonR.string.wrong_questions_stat_wrong)
             )
             StatItem(
                 value = String.format("%.1f", stats.avgWrongCount),
-                label = "Avg"
+                label = stringResource(CommonR.string.wrong_questions_stat_avg)
             )
         }
     }
@@ -287,7 +298,7 @@ private fun CategoryFilterChips(
                 onClick = { onCategorySelected(null) },
                 label = {
                     Text(
-                        text = "All",
+                        text = stringResource(CommonR.string.common_filter_all),
                         color = Color.White
                     )
                 },
@@ -334,48 +345,104 @@ private fun CategoryFilterChips(
 private fun WrongQuestionCard(
     question: Question,
     onRemoveClick: () -> Unit,
+    onToggleBookmark: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var showRemoveDialog by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
 
     GlassCard(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable { expanded = !expanded }
+            .animateContentSize(),
         gradient = ErrorGradient
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = question.content,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = question.category,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = Color.White.copy(alpha = 0.7f)
+                        text = question.content,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.White,
+                        maxLines = if (expanded) Int.MAX_VALUE else 3,
+                        overflow = TextOverflow.Ellipsis
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "\u00d7${question.wrongCount}",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = Color(0xFFff6b6b),
-                        fontWeight = FontWeight.Bold
-                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = question.category,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Color.White.copy(alpha = 0.7f)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "\u00d7${question.wrongCount}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = Color(0xFFff6b6b),
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+                Row {
+                    IconButton(onClick = onToggleBookmark) {
+                        Icon(
+                            imageVector = if (question.isBookmarked) Icons.Filled.Star else Icons.Outlined.Star,
+                            contentDescription = stringResource(CommonR.string.common_bookmark),
+                            tint = if (question.isBookmarked) Color(0xFFFFD700) else Color.White.copy(alpha = 0.7f)
+                        )
+                    }
+                    IconButton(onClick = { showRemoveDialog = true }) {
+                        Icon(
+                            imageVector = Icons.Outlined.Delete,
+                            contentDescription = stringResource(CommonR.string.wrong_questions_remove_from_list),
+                            tint = Color.White.copy(alpha = 0.7f)
+                        )
+                    }
                 }
             }
-            IconButton(onClick = { showRemoveDialog = true }) {
-                Icon(
-                    imageVector = Icons.Outlined.Delete,
-                    contentDescription = "Remove from wrong list",
-                    tint = Color.White.copy(alpha = 0.7f)
+
+            if (expanded) {
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Options
+                question.options.forEachIndexed { index, option ->
+                    val isCorrect = index == question.correctAnswerIndex
+                    val backgroundColor = if (isCorrect) Color(0xFF4caf50).copy(alpha = 0.2f) else Color.Transparent
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
+                            .background(backgroundColor, RoundedCornerShape(8.dp))
+                            .padding(12.dp)
+                    ) {
+                        Text(
+                            text = "${(65 + index).toChar()}. $option",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = if (isCorrect) Color(0xFF4caf50) else Color.White.copy(alpha = 0.8f)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Explanation
+                Text(
+                    text = stringResource(CommonR.string.common_explanation),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = question.explanation,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.White.copy(alpha = 0.7f)
                 )
             }
         }
@@ -385,10 +452,10 @@ private fun WrongQuestionCard(
         AlertDialog(
             onDismissRequest = { showRemoveDialog = false },
             title = {
-                Text(text = "Remove Question")
+                Text(text = stringResource(CommonR.string.wrong_questions_remove_title))
             },
             text = {
-                Text(text = "Are you sure you want to remove this question from the wrong list?")
+                Text(text = stringResource(CommonR.string.wrong_questions_remove_message))
             },
             confirmButton = {
                 TextButton(
@@ -397,12 +464,12 @@ private fun WrongQuestionCard(
                         onRemoveClick()
                     }
                 ) {
-                    Text(text = "Remove")
+                    Text(text = stringResource(CommonR.string.common_remove))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showRemoveDialog = false }) {
-                    Text(text = "Cancel")
+                    Text(text = stringResource(CommonR.string.common_cancel))
                 }
             }
         )

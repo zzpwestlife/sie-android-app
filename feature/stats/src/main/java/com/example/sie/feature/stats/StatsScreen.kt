@@ -26,8 +26,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.GlassCard
 import com.example.sie.core.designsystem.theme.PrimaryGradient
 import com.example.sie.core.designsystem.theme.SecondaryGradient
@@ -63,14 +65,14 @@ internal fun StatsScreen(uiState: StatsUiState) {
         when (uiState) {
             StatsUiState.Loading -> CircularProgressIndicator(color = Color.White)
             StatsUiState.Empty -> Text(
-                text = "No exam results yet.",
+                text = stringResource(CommonR.string.stats_empty),
                 color = Color.White,
                 style = MaterialTheme.typography.bodyLarge
             )
             is StatsUiState.Success -> {
                 Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
                     Text(
-                        text = "Average Score",
+                        text = stringResource(CommonR.string.stats_average_score),
                         style = MaterialTheme.typography.titleLarge,
                         color = Color.White
                     )
@@ -92,7 +94,7 @@ internal fun StatsScreen(uiState: StatsUiState) {
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Text(
-                        text = "Recent Results",
+                        text = stringResource(CommonR.string.stats_recent_results),
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(bottom = 8.dp),
                         color = Color.White
@@ -146,7 +148,7 @@ fun ExamResultItemContent(result: ExamResult) {
     val dateFormat = SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault())
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "Score: ${result.score}%",
+            text = stringResource(CommonR.string.stats_score_label, result.score),
             style = MaterialTheme.typography.titleMedium,
             color = Color.White
         )

@@ -1,0 +1,890 @@
+[
+  {
+    "id": 1,
+    "content": "Which indicator is classified as a coincident indicator?\n哪个指标被归类为同步指标？",
+    "options": [
+      "ISM Manufacturing PMI\nISM制造业PMI",
+      "Nonfarm Payrolls (NFP)\n非农就业 (NFP)",
+      "Unemployment Rate\n失业率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Coincident indicators move in tandem with the economic cycle, directly reflecting current activity. NFP is the most impactful monthly coincident indicator—average monthly gains of 150k-200k signal stable employment, and it directly links to consumer spending (68-70% of GDP). ISM PMI is a leading indicator (>50 expansion, <50 contraction), while the Unemployment Rate is a lagging indicator that confirms cycle trends after they occur.\n同步指标与经济周期同步变动，直接反映当前经济活动。NFP是最具影响力的月度同步指标——月均增长15万-20万表明就业稳定，它直接关联消费支出（占GDP的68-70%）。ISM PMI是先行指标（>50为扩张，<50为收缩），而失业率是滞后指标，在周期转折发生后才确认趋势。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 2,
+    "content": "Which market participant acts as a primary market maker in USD-related FX spot trading?\n哪种市场参与者是美元相关外汇现货交易的主要做市商？",
+    "options": [
+      "Institutional Investors\n机构投资者",
+      "Commercial Banks\n商业银行",
+      "Multinational Corporations\n跨国公司"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Major U.S. commercial banks like JPMorgan Chase dominate USD-related FX spot trading as primary market makers, accounting for approximately 40% of global USD FX volume. Institutional investors and multinational corporations are participants but not primary market makers—banks provide continuous bid-ask quotes and liquidity.\n美国主要商业银行（如摩根大通）作为主要做市商主导美元相关外汇现货交易，约占全球美元外汇交易量的40%。机构投资者和跨国公司是市场参与者但非主要做市商——银行提供连续的买卖报价和流动性。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 3,
+    "content": "What is the core objective of expansionary fiscal policy during a recession?\n衰退期间扩张性财政政策的核心目标是什么？",
+    "options": [
+      "Reduce government spending\n减少政府支出",
+      "Boost aggregate demand\n提振总需求",
+      "Raise tax rates\n提高税率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Expansionary fiscal policy uses tax cuts or increased government spending to inject money into the economy, raising aggregate demand to counteract recessionary pressures. For example, the 2009 ARRA ($831B) and 2020 CARES Act ($2.2T) used stimulus during recessions to boost demand when private spending collapsed. This is rooted in Keynesian countercyclical logic—government acts opposite to the cycle to stabilize it.\n扩张性财政政策通过减税或增加政府支出向经济注入资金，提振总需求以对抗衰退压力。例如，2009年ARRA法案（8310亿美元）和2020年CARES法案（2.2万亿美元）在衰退期间刺激经济，当私人支出崩溃时提振需求。这基于凯恩斯主义逆周期逻辑——政府采取与经济周期相反的行动来稳定经济。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 4,
+    "content": "If the Fed implements contractionary monetary policy (rate hikes), how is the 10-Year Treasury yield likely to respond?\n如果美联储实施紧缩货币政策（加息），10年期国债收益率可能如何反应？",
+    "options": [
+      "Rise\n上升",
+      "Fall\n下降",
+      "Remain unchanged\n保持不变"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "When the Fed raises rates, short-term rates increase, transmitting to longer-term rates through shifts in market expectations and inflation outlooks, pushing the 10-Year Treasury yield higher. In the last four hike cycles, the 10-Year yield increased by an average of 53 basis points. For example, in 2022, yields surged from around 1.5% to over 4% during the 0.25%-to-5.5% hike cycle.\n美联储加息时，短期利率上升，通过市场预期和通胀前景的变化传导到长期利率，推动10年期国债收益率走高。在过去四个加息周期中，10年期收益率平均上升了53个基点。例如，2022年在0.25%-5.5%的加息周期中，收益率从约1.5%飙升至4%以上。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 5,
+    "content": "Which asset class typically outperforms during peak-to-contraction (recession)?\n在经济周期的顶峰到收缩（衰退）阶段，哪类资产通常表现最好？",
+    "options": [
+      "Growth stocks\n成长股",
+      "Long-term U.S. Treasuries\n长期美国国债",
+      "Industrial commodities\n工业大宗商品"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "During recessions, long-term Treasuries act as safe-haven assets—yields fall sharply as the Fed cuts rates, boosting bond prices. The S&P 500 averages -18% to -22% annual returns during recessions, while the 10-Year Treasury yield falls by 1.4-1.6 percentage points. In 2007-2008, yields dropped over 300 basis points while the S&P 500 fell ~50%.\n衰退期间，长期国债作为避险资产——随着美联储降息，收益率大幅下降，推动债券价格上涨。衰退期间标普500平均年回报率为-18%至-22%，而10年期国债收益率下降1.4-1.6个百分点。2007-2008年，收益率下降超过300个基点，同期标普500下跌约50%。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 6,
+    "content": "How does a stronger U.S. dollar impact U.S. net exports?\n美元走强如何影响美国净出口？",
+    "options": [
+      "Increases export competitiveness\n增强出口竞争力",
+      "Reduces export competitiveness\n降低出口竞争力",
+      "Has no impact\n没有影响"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A stronger USD makes U.S. goods more expensive for foreign buyers, reducing export competitiveness and worsening the trade balance. For example, when the USD appreciated 25% from 2014-2016, U.S. manufacturers like Caterpillar and Boeing reported significant headwinds in international sales. Every 10% USD appreciation typically reduces U.S. net exports by 0.5-0.7% of GDP. This is why the Fed monitors currency strength when setting policy—strong dollar acts as automatic monetary tightening.\n美元走强使美国商品对外国买家更贵，降低了出口竞争力并恶化贸易平衡。例如，2014-2016年美元升值25%时，卡特彼勒和波音等美国制造商报告海外销售遭遇重大阻力。美元每升值10%通常会使美国净出口减少GDP的0.5-0.7%。这就是为什么美联储在制定政策时监控货币强度——强美元起到自动货币紧缩作用。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 7,
+    "content": "If the CCI drops to 75, what does this signal for consumer spending?\n如果消费者信心指数(CCI)降至75，这对消费支出有何信号？",
+    "options": [
+      "Strong spending intent\n强烈的消费意愿",
+      "Caution and weakened spending\n谨慎和消费减弱",
+      "No change in spending patterns\n消费模式不变"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "CCI below 80 indicates consumer caution, weakening discretionary spending on items like dining, travel, and electronics—sectors that drive 68-70% of U.S. GDP. During COVID-19, CCI dropped to a record low of 85.7 in April 2020, corresponding with a 13.6% collapse in consumer spending. Retail stocks like Target and Home Depot are highly sensitive to CCI—when confidence drops below 90, these stocks historically underperform by 5-8%. The baseline CCI reading of 100 was set in 1985.\nCCI低于80表明消费者谨慎，将削弱餐饮、旅游和电子产品等非必需消费支出——这些行业驱动美国GDP的68-70%。在COVID-19期间，CCI在2020年4月降至创纪录低点85.7，对应消费支出暴跌13.6%。塔吉特和家得宝等零售股对CCI高度敏感——当信心指数降至90以下时，这些股票历史上跑输5-8%。CCI基准读数100设定于1985年。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 8,
+    "content": "When core inflation is slightly lower than expected, which asset most likely goes up?\n核心通胀率略低于市场预期时，哪种资产最可能上涨？",
+    "options": [
+      "Gold\n黄金",
+      "10-year U.S. government bond ETF\n10年期国债ETF",
+      "Hang Seng Index\n恒生指数"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "When core inflation comes in lower than expected, bond prices rise (yields fall) as markets price in potential Fed rate cuts. The 10-year Treasury ETF (IEF) typically rallies 0.5-1.0% on days when core CPI/PCE undershoots by 0.1-0.2 percentage points. For example, when core CPI printed 3.2% vs expected 3.4% in November 2023, TLT (20-year Treasury ETF) surged 2.3% in one session. Gold benefits but less than bonds because lower inflation reduces real yield pressure. Stocks may rise but are less directly sensitive than fixed-income.\n当核心通胀低于预期时，债券价格上涨（收益率下降），因为市场预期美联储可能降息。当核心CPI/PCE低于预期0.1-0.2个百分点时，10年期国债ETF（IEF）通常上涨0.5-1.0%。例如，2023年11月核心CPI为3.2%而预期3.4%时，TLT（20年期国债ETF）单日飙升2.3%。黄金受益但不如债券，因为较低通胀降低了实际收益率压力。股票可能上涨但不如固收资产直接敏感。",
+    "category": "1. Macroeconomics / 宏观经济学"
+  },
+  {
+    "id": 9,
+    "content": "What is the primary market in stock trading?\n股票交易中的一级市场是什么？",
+    "options": [
+      "Where investors trade existing stocks among themselves\n投资者之间交易现有股票",
+      "Where companies issue new stocks for the first time, like an IPO\n公司首次发行新股的地方，如IPO",
+      "Where only preferred stocks are sold\n只出售优先股的地方"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The primary market is where companies raise capital by issuing new securities for the first time. Examples include Airbnb's December 2020 IPO (priced at $68, raised $3.5B) and Rivian's November 2021 IPO ($78/share, $12B raised—largest since Alibaba 2014). In the primary market, proceeds go directly to the issuing company. Investment banks like Goldman Sachs and Morgan Stanley act as underwriters, helping price and distribute shares to institutional investors.\n一级市场是公司首次发行新证券以筹集资金的地方。例如Airbnb 2020年12月IPO（定价68美元，筹集35亿美元）和Rivian 2021年11月IPO（78美元/股，筹集120亿美元——自2014年阿里巴巴以来最大规模）。在一级市场，收益直接归发行公司。高盛和摩根士丹利等投资银行作为承销商，帮助定价并向机构投资者分销股票。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 10,
+    "content": "In the secondary market, when you buy Apple stock, who are you buying from?\n在二级市场买苹果股票时，你从谁那里买？",
+    "options": [
+      "Directly from Apple\n直接从苹果公司",
+      "From another investor\n从另一位投资者",
+      "From a foreign bank\n从外国银行"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The secondary market involves trading existing shares between investors; the company receives no proceeds from these transactions. When you buy Apple stock on NASDAQ, you're buying from another investor—not from Apple itself. The secondary market provides liquidity, allowing investors to enter and exit positions. Daily trading volume on U.S. secondary markets averages $400-600 billion. Brokers like Fidelity, Charles Schwab, and Robinhood facilitate these trades, earning commissions or payment for order flow (PFOF).\n二级市场是投资者之间交易现有股份的地方;公司不从这些交易中获得收益。当你在纳斯达克买苹果股票时,你是从另一位投资者那里买——而不是从苹果公司。二级市场提供流动性,允许投资者进出仓位。美国二级市场日均交易量为4000-6000亿美元。富达、嘉信理财和Robinhood等经纪商促成这些交易,通过佣金或订单流支付(PFOF)赚取收入。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 11,
+    "content": "Which stock type typically gives voting rights?\n哪种股票通常拥有公司决策的投票权？",
+    "options": [
+      "Preferred shares\n优先股",
+      "Common shares\n普通股",
+      "ADRs\nADRs"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Common shares give shareholders voting rights in corporate decisions like board elections and major transactions (e.g., 1 share = 1 vote). Google's dual-class structure illustrates this: Class A shares (GOOGL) have 1 vote, Class C (GOOG) have 0 votes, while founders hold Class B with 10 votes per share. Preferred shares typically have no voting rights but receive fixed dividends and liquidation priority. For example, Warren Buffett's 2008 investment in Goldman Sachs was $5B in preferred shares yielding 10% annually.\n普通股赋予股东在董事会选举和重大交易等公司决策中的投票权（例如1股=1票）。谷歌的双重股权结构说明了这一点：A类股（GOOGL）有1票，C类（GOOG）无投票权，而创始人持有的B类股每股10票。优先股通常无投票权但享有固定股息和清算优先权。例如，巴菲特2008年对高盛的50亿美元投资是优先股，年收益率10%。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 12,
+    "content": "In liquidation, who gets paid before common shareholders?\n公司清算时，谁比普通股股东先获得赔偿？",
+    "options": [
+      "Common shareholders\n普通股股东",
+      "Debt holders and preferred shareholders\n债权人和优先股股东",
+      "Only foreign investors\n仅外国投资者"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "In bankruptcy or liquidation, creditors and preferred shareholders are paid before common shareholders. The priority order is: 1) Secured debt (e.g., bonds backed by assets), 2) Unsecured debt, 3) Preferred stock (gets par value + accumulated dividends), 4) Common stock (residual claims). For example, when Lehman Brothers collapsed in 2008, bondholders recovered ~30-40 cents per dollar, while common shareholders received nothing. This is why preferred shares have lower yields than common dividends—they carry less risk.\n在破产或清算时，债权人和优先股股东在普通股股东之前获得赔偿。优先顺序是：1）有担保债务（如以资产担保的债券），2）无担保债务，3）优先股（获得面值+累积股息），4）普通股（剩余索赔权）。例如，雷曼兄弟2008年倒闭时，债券持有人每美元回收约30-40美分，而普通股股东一无所获。这就是为什么优先股收益率低于普通股股息——风险更小。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 13,
+    "content": "What is ADR?\n什么是ADR？",
+    "options": [
+      "A type of preferred stock\n一种优先股",
+      "A proxy for foreign stocks traded on U.S. exchanges in USD\n在美国交易的外国股票凭证",
+      "A stock split mechanism\n一种股票拆分机制"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "American Depositary Receipts (ADRs) represent shares of foreign companies traded on U.S. exchanges in USD, eliminating currency conversion hassles. Examples: Alibaba (BABA), Taiwan Semiconductor (TSM), and British Petroleum (BP). U.S. banks like JPMorgan deposit the foreign shares abroad and issue ADRs domestically. ADRs trade just like U.S. stocks and provide dividends in USD. There are sponsored ADRs (company-approved, with full disclosure) and unsponsored ADRs (created without company involvement, limited disclosure).\n美国存托凭证（ADR）代表在美国交易所以美元交易的外国公司股份，消除了货币兑换麻烦。例如：阿里巴巴（BABA）、台积电（TSM）和英国石油（BP）。摩根大通等美国银行将外国股票存放在海外并在国内发行ADR。ADR像美国股票一样交易并以美元支付股息。有受托ADR（公司批准，完全披露）和非受托ADR（未经公司参与创建，披露有限）。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 14,
+    "content": "What is a dividend?\n什么是股息？",
+    "options": [
+      "A company buying back its shares\n公司回购其股份",
+      "Payments from profits to shareholders\n从利润中支付给股东的款项",
+      "A merger between two companies\n两家公司之间的合并"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Dividends are cash or stock payments distributed from company earnings to shareholders, typically paid quarterly by mature, profitable companies. For example, Apple pays a quarterly dividend of $0.24/share ($0.96 annually), yielding ~0.5%. High-dividend stocks like AT&T and Verizon yield 5-7%. Dividend-paying companies tend to be stable blue-chips (e.g., Johnson & Johnson has increased dividends for 60+ consecutive years). Growth companies like Tesla and Amazon historically pay no dividends, preferring to reinvest profits.\n股息是从公司盈利中向股东分配的现金或股票支付，通常由成熟盈利公司按季度支付。例如，苹果每季度支付0.24美元/股的股息（年度0.96美元），收益率约0.5%。AT&T和Verizon等高股息股票收益率为5-7%。支付股息的公司往往是稳定的蓝筹股（例如，强生连续60多年增加股息）。特斯拉和亚马逊等成长型公司历史上不支付股息，宁愿再投资利润。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 15,
+    "content": "What is the ex-dividend date?\n什么是除息日？",
+    "options": [
+      "The date dividends are paid\n支付股息的日期",
+      "The cutoff date to qualify for the next dividend\n获得股息资格的截止日期",
+      "The announcement date of a stock split\n股票拆分的公告日期"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The ex-dividend date is the cutoff date—you must own shares before this date to receive the upcoming dividend. If you buy on or after the ex-dividend date, you won't get the dividend. Stocks typically drop by roughly the dividend amount on the ex-dividend date. Example: If Apple's ex-date is March 10 and it pays $0.24/share on March 15, you must own shares by market close on March 9. The sequence is: Declaration Date → Ex-Dividend Date → Record Date → Payment Date.\n除息日是截止日期——你必须在此日期之前持有股票才能获得即将到来的股息。如果你在除息日或之后买入，你将不会获得股息。股票通常在除息日下跌约等于股息金额。例如：如果苹果的除息日是3月10日，在3月15日支付0.24美元/股，你必须在3月9日收盘前持有股票。顺序是：公告日→除息日→记录日→支付日。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 16,
+    "content": "What happens in a 2-for-1 stock split?\n2拆1的股票拆分中会发生什么？",
+    "options": [
+      "Shares double, price halves, total value stays the same\n股份翻倍，价格减半，总价值不变",
+      "Company pays extra dividends\n公司支付额外股息",
+      "Shares are bought back\n股份被回购"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "In a 2-for-1 stock split, each share is divided into 2, doubling share count while halving price—total value remains unchanged. Example: If you own 100 shares of Tesla at $300/share ($30,000 total), after a 2-for-1 split you own 200 shares at $150/share (still $30,000). Companies split to make shares more affordable for retail investors. Recent examples: Amazon 20-for-1 split (June 2022, from $2,785 to $139.25), Google 20-for-1 split (July 2022), and Nvidia 10-for-1 split (June 2024). Splits are purely cosmetic but often boost liquidity and sentiment.\n在2拆1的股票拆分中，每股被分成2股，股份数量翻倍而价格减半——总价值保持不变。例如：如果你持有100股特斯拉，每股300美元（总计30,000美元），2拆1拆分后你持有200股，每股150美元（仍为30,000美元）。公司拆分股票使零售投资者更容易负担。最近的例子：亚马逊20拆1（2022年6月，从2,785美元降至139.25美元），谷歌20拆1（2022年7月），英伟达10拆1（2024年6月）。拆分纯粹是表面的，但通常会提高流动性和市场情绪。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 17,
+    "content": "What is a stock buyback?\n什么是股票回购？",
+    "options": [
+      "Issuing new shares\n发行新股",
+      "Company repurchasing its own shares to reduce outstanding count\n公司回购自己的股份以减少流通股",
+      "Paying dividends in stock\n以股票支付股息"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Stock buybacks occur when a company repurchases its own shares from the market, reducing outstanding share count and boosting EPS (all else equal). Apple has conducted the largest buyback program in history—over $704 billion since 2013, reducing shares outstanding by ~40%. Buybacks signal management confidence and return cash to shareholders without dividend tax. However, critics argue buybacks inflate EPS artificially and prioritize short-term stock price over long-term investment. In 2022, the U.S. introduced a 1% excise tax on buybacks to encourage dividends.\n股票回购是指公司从市场上回购自己的股票，减少流通股数量并提升EPS（其他条件不变）。苹果进行了史上最大的回购计划——自2013年以来超过7,040亿美元，将流通股减少约40%。回购表明管理层信心并在不征收股息税的情况下向股东返还现金。然而，批评者认为回购人为抬高EPS，优先考虑短期股价而非长期投资。2022年，美国对回购征收1%的消费税以鼓励股息。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 18,
+    "content": "What does EPS measure?\nEPS衡量什么？",
+    "options": [
+      "Profit per share\n每股利润",
+      "Dividend yield\n股息收益率",
+      "Market cap\n市值"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Earnings Per Share (EPS) measures how much profit a company generates per share: EPS = (Net Income - Preferred Dividends) / Weighted Average Diluted Shares Outstanding. Higher EPS indicates stronger profitability. For Q4 2023, Apple reported EPS of $2.18 (beating estimates of $2.10), driving the stock up 7% that day. Companies report both basic EPS (using basic shares) and diluted EPS (including options/convertibles). Diluted EPS is more conservative and widely used. EPS growth is a key valuation driver—the S&P 500's average EPS grows 6-8% annually.\nEPS（每股收益）衡量公司每股产生多少利润：EPS =（净利润 - 优先股股息）/ 加权平均稀释流通股。EPS越高表明盈利能力越强。2023年第四季度，苹果公布EPS为2.18美元（超过2.10美元的预期），推动股价当天上涨7%。公司报告基本EPS（使用基本股份）和稀释EPS（包括期权/可转换证券）。稀释EPS更保守且广泛使用。EPS增长是关键估值驱动因素——标普500的平均EPS年增长6-8%。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 19,
+    "content": "Why do some companies have high P/B ratios?\n为什么有些公司P/B比率很高？",
+    "options": [
+      "Low asset profitability\n资产盈利能力低",
+      "Strong ROE and undervalued intangibles\n强劲的ROE和被低估的无形资产",
+      "High dividends only\n仅高股息"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Price-to-Book (P/B) ratio = Market Cap / Book Value (shareholders' equity). High P/B ratios (>3) occur when companies generate strong ROE (Return on Equity), indicating efficient use of assets to generate profits. Tech companies like Apple (P/B ~50, ROE ~171%) have high P/B because book value understates intangible assets like brand, patents, and software. Banks typically have low P/B (~0.8-1.2) as their assets are mostly tangible. Warren Buffett favors companies with ROE >15% and reasonable P/B. High P/B without high ROE may signal overvaluation.\n市净率（P/B）= 市值 / 账面价值（股东权益）。高P/B比率（>3）发生在公司产生强劲ROE（净资产收益率）时，表明高效使用资产创造利润。苹果等科技公司（P/B约50，ROE约171%）拥有高P/B，因为账面价值低估了品牌、专利和软件等无形资产。银行通常拥有低P/B（约0.8-1.2），因为其资产大多是有形的。巴菲特青睐ROE >15%且P/B合理的公司。高P/B但没有高ROE可能表明估值过高。",
+    "category": "2. Stocks / 股票"
+  },
+  {
+    "id": 20,
+    "content": "Which feature distinguishes ETFs from mutual funds?\n哪一特征将ETF与共同基金区分开来？",
+    "options": [
+      "Traded throughout the trading day\n在整个交易日内交易",
+      "Invest in a diversified basket of assets\n投资于多元化资产篮子",
+      "Pool money from multiple investors\n汇集多位投资者的资金"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The key distinction is that ETFs trade on exchanges throughout the day at market prices (like stocks), while mutual funds trade only once daily at NAV (Net Asset Value) after market close. For example, you can buy SPY (S&P 500 ETF) at 11:30 AM for $450.23, but if you order VFIAX (Vanguard S&P 500 mutual fund) at 11:30 AM, you'll get the NAV calculated at 4 PM close. This intraday liquidity allows ETF investors to react to news instantly, use limit orders, and employ strategies like options. However, frequent intraday trading can increase costs.\n关键区别在于ETF全天在交易所以市场价格交易（像股票），而共同基金每天只在收盘后以NAV（净资产价值）交易一次。例如，你可以在上午11:30以450.23美元买入SPY（标普500 ETF），但如果你在上午11:30下单VFIAX（先锋标普500共同基金），你会获得下午4点收盘时计算的NAV。这种日内流动性允许ETF投资者立即对新闻作出反应，使用限价订单，并采用期权等策略。然而，频繁的日内交易会增加成本。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 21,
+    "content": "Which ETF is an example of a thematic ETF?\n哪个ETF是主题ETF的例子？",
+    "options": [
+      "GLD (Gold ETF)\nGLD（黄金ETF）",
+      "ARKK (ARK Innovation ETF)\nARKK（ARK创新ETF）",
+      "SPY (S&P 500 ETF)\nSPY（标普500 ETF）"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Thematic ETFs concentrate on specific investment themes or trends rather than broad market exposure. ARKK (ARK Innovation ETF), managed by Cathie Wood since 2014, focuses on disruptive innovation across sectors like genomics, fintech, and AI—holding companies like Tesla (9.8%), Coinbase, and Roku. At its peak in February 2021, ARKK reached $156/share with $28B AUM, but fell 75% by 2022 as tech valuations corrected. Unlike SPY (broad S&P 500) or GLD (single commodity), thematic ETFs carry high concentration risk but offer targeted exposure to emerging trends.\n主题ETF专注于特定投资主题或趋势，而非广泛市场敞口。ARKK（ARK创新ETF）由Cathie Wood自2014年管理，聚焦于基因组学、金融科技和AI等颠覆性创新——持有特斯拉（9.8%）、Coinbase和Roku等公司。2021年2月ARKK达到峰值156美元/股，管理资产280亿美元，但随着科技股估值修正，2022年下跌75%。与SPY（广泛的标普500）或GLD（单一大宗商品）不同，主题ETF具有高集中度风险，但提供对新兴趋势的精准敞口。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 22,
+    "content": "Why are leveraged ETFs unsuitable for long-term holding?\n为什么杠杆ETF不适合长期持有？",
+    "options": [
+      "Lack of liquidity\n缺乏流动性",
+      "Volatility decay and daily rebalancing\n波动率损耗和每日再平衡",
+      "Inability to track any benchmarks\n无法追踪任何基准"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Leveraged ETFs use derivatives (swaps, futures) and daily rebalancing to amplify returns—e.g., TQQQ seeks 3× daily Nasdaq-100 performance. However, this causes volatility decay in choppy markets: if an index drops 10% then rises 10%, you are down 1%, but a 3× leveraged ETF compounds losses to -9%. For example, in March 2020, TQQQ fell 72% in 30 days despite Nasdaq declining only 30%. Studies show holding leveraged ETFs beyond 1-3 days erodes returns by 15-40% annually in volatile periods. They are designed for intraday tactical trades, not long-term holding.\n杠杆ETF使用衍生品（掉期、期货）和每日再平衡来放大回报——例如TQQQ寻求纳斯达克100指数3倍日回报。然而，这在波动市场中导致波动率损耗：如果指数下跌10%再上涨10%，你净亏1%，但3倍杠杆ETF复合损失达-9%。例如，2020年3月TQQQ在30天内下跌72%，而纳斯达克仅下跌30%。研究显示，持有杠杆ETF超过1-3天在波动期会侵蚀15-40%的年回报。它们专为日内战术交易设计，不适合长期持有。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 23,
+    "content": "Which regulatory body oversees ETFs in the U.S.?\n哪个监管机构监管美国的ETF？",
+    "options": [
+      "SEC\nSEC",
+      "FED\nFED",
+      "NYSE\nNYSE"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The Securities and Exchange Commission (SEC), established in 1934 after the Great Depression, oversees all U.S. ETFs to protect investors and maintain fair markets. ETFs must register under the Investment Company Act of 1940 and file Form N-1A (prospectus) disclosing holdings, fees, and risks. The SEC reviews new ETF applications—for example, it took 10 years and multiple rejections before approving Bitcoin Spot ETFs in January 2024 (IBIT, FBTC). The SEC also monitors for market manipulation, front-running, and ensures daily NAV disclosure. The Federal Reserve (FED) controls monetary policy, not securities regulation; NYSE is an exchange, not a regulator.\n美国证券交易委员会（SEC）成立于1934年大萧条后，监管所有美国ETF以保护投资者和维护公平市场。ETF必须根据1940年《投资公司法》注册，并提交N-1A表格（招股说明书），披露持仓、费用和风险。SEC审查新ETF申请——例如，在2024年1月批准比特币现货ETF（IBIT、FBTC）之前，经历了10年和多次拒绝。SEC还监控市场操纵、抢先交易，并确保每日NAV披露。美联储（FED）控制货币政策而非证券监管；纽交所是交易所，不是监管机构。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 24,
+    "content": "What is the first step to invest in ETFs?\n投资ETF的第一步是什么？",
+    "options": [
+      "Open a brokerage account\n开设经纪账户",
+      "Select a thematic ETF\n选择主题ETF",
+      "Monitor portfolio performance\n监控投资组合表现"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "To invest in ETFs, you must first open a brokerage account with platforms like Fidelity, Charles Schwab, Interactive Brokers, or Robinhood. The process typically takes 10-15 minutes online: provide SSN, employment info, and link a bank account. Most brokers now offer commission-free ETF trading—Schwab eliminated commissions in 2019, saving investors an average of $7-10 per trade. After account approval (1-3 days), you can search for ETFs by ticker (e.g., SPY, QQQ), place market or limit orders, and monitor holdings via mobile apps. Selecting a thematic ETF comes after account setup, and monitoring performance is an ongoing task, not the first step.\n要投资ETF，你必须首先在富达、嘉信理财、盈透证券或Robinhood等平台开设经纪账户。在线流程通常需10-15分钟：提供社会安全号、就业信息并链接银行账户。大多数经纪商现在提供免佣金ETF交易——嘉信在2019年取消佣金，为投资者平均节省每笔交易7-10美元。账户批准后（1-3天），你可以按代码（如SPY、QQQ）搜索ETF，下市价或限价单，并通过移动应用监控持仓。选择主题ETF在账户设置之后，监控表现是持续任务而非第一步。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 25,
+    "content": "Why are ETFs generally more tax-efficient than mutual funds?\n为什么ETF通常比共同基金更具税务效率？",
+    "options": [
+      "In-kind redemptions\n实物赎回",
+      "Lower expense ratios\n较低的费用率",
+      "Higher liquidity\n较高的流动性"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "ETFs use in-kind redemption mechanisms, exchanging shares for underlying securities rather than cash, which avoids triggering taxable capital gains. When mutual funds redeem shares, they must sell holdings and realize gains (distributed to all shareholders). For example, actively managed mutual funds distribute average capital gains of 1.5-3% annually, while ETFs average <0.5%. This tax efficiency saved SPY investors an estimated 0.8-1.2% annually over 20 years compared to similar mutual funds. Vanguard study shows ETFs defer taxes until you sell, while mutual funds force annual tax events. Lower expense ratios (0.03% for SPY vs 0.5%+ for mutual funds) help returns, but in-kind redemptions are the key tax advantage.\nETF使用实物赎回机制，将份额交换为基础证券而非现金，避免触发应税资本收益。当共同基金赎回份额时，必须出售持仓并实现收益（分配给所有股东）。例如，主动管理的共同基金平均每年分配1.5-3%的资本收益，而ETF平均<0.5%。这种税务效率使SPY投资者在20年内相比类似共同基金每年节省约0.8-1.2%。先锋的研究显示ETF推迟税收直到你卖出，而共同基金强制年度税收事件。较低的费用率（SPY 0.03% vs 共同基金0.5%+）有助于回报，但实物赎回是关键税务优势。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 26,
+    "content": "Which investment horizon is most suitable for leveraged ETFs?\n哪个投资期限最适合杠杆ETF？",
+    "options": [
+      "Short-term trading (days to weeks)\n短期交易（数天至数周）",
+      "Long-term holding (years)\n长期持有（数年）",
+      "No time restriction\n无时间限制"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Leveraged ETFs are explicitly designed for short-term tactical trading (days to weeks), not long-term holding (years). Due to daily rebalancing and compounding effects, they deviate significantly from their target multiple over extended periods. For instance, TQQQ (3× Nasdaq-100) returned +175% in 2020 when Nasdaq gained 44%—underperforming its 132% theoretical target due to volatility decay. ProShares' prospectus warns: \"Not suitable for holding longer than a single day.\" In volatile 2022, SQQQ (3× inverse Nasdaq) lost 80% despite Nasdaq falling 33%. Leveraged ETFs work best for experienced traders making directional bets over 1-5 days, with tight stop-losses to manage risk.\n杠杆ETF明确设计用于短期战术交易（数天至数周），不适合长期持有（数年）。由于每日再平衡和复利效应，它们在较长时间内会显著偏离目标倍数。例如，TQQQ（3倍纳斯达克100）在2020年纳斯达克上涨44%时回报+175%——低于132%的理论目标，因波动率损耗。ProShares招股说明书警告："不适合持有超过一天。"在波动的2022年，SQQQ（3倍反向纳斯达克）损失80%，尽管纳斯达克下跌33%。杠杆ETF最适合有经验的交易者在1-5天内进行方向性押注，并设置严格止损以管理风险。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 27,
+    "content": "In which market environment does volatility decay most severely erode leveraged ETF value?\n在哪种市场环境下波动率损耗最严重？",
+    "options": [
+      "Highly volatile (ups and downs) markets\n高度波动（起伏）的市场",
+      "Steadily rising markets\n稳步上涨的市场",
+      "Steadily falling markets\n稳步下跌的市场"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Volatility decay (also called \"beta slippage\") erodes leveraged ETF value most severely in highly volatile, choppy markets with frequent reversals. The mathematical reason: daily rebalancing compounds losses asymmetrically. If an index oscillates +5%/-5% for 10 days, it ends flat, but a 3× leveraged ETF loses ~7.5% due to daily reset. During March 2020's extreme volatility (VIX >80), TQQQ lost 72% despite Nasdaq's 30% drop—2.4× decay. In steadily trending markets (up or down), leveraged ETFs track closer to their target multiple. For example, during Nasdaq's smooth 2023 rally (+43%), TQQQ gained 115% (2.7× multiple, closer to 3×). This is why leveraged products suit short-term directional bets in stable trends, not range-bound chop.\n波动率损耗（也称"贝塔滑点"）在高度波动、频繁反转的市场中最严重地侵蚀杠杆ETF价值。数学原因：每日再平衡不对称地复合损失。如果指数振荡+5%/-5%持续10天，最终持平，但3倍杠杆ETF会损失约7.5%，因为每日重置。在2020年3月极端波动期（VIX>80），TQQQ损失72%，而纳斯达克仅下跌30%——2.4倍衰减。在稳步趋势市场（上涨或下跌）中，杠杆ETF更接近目标倍数。例如，在纳斯达克2023年平稳上涨（+43%）期间，TQQQ上涨115%（2.7倍，接近3倍）。这就是为什么杠杆产品适合稳定趋势中的短期方向性押注，而非区间震荡。",
+    "category": "3. ETF / 交易所交易基金"
+  },
+  {
+    "id": 28,
+    "content": "What is the payoff for a long call at expiration if S_T > X?\n如果标的价格S_T>行权价X，看涨期权买方到期收益是多少？",
+    "options": [
+      "Max(0, X - S_T)\nMax(0, X - S_T)",
+      "Max(0, S_T - X)\nMax(0, S_T - X)",
+      "Premium paid\n已付权利金"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "At expiration, a long call option's payoff is max(0, S_T - X), where S_T is the stock price and X is the strike price. If the stock closes above the strike (S_T > X), you profit by the difference minus the premium paid. For example, if you buy an Apple $180 call for $5 and Apple closes at $190, your payoff is $10 per share ($190-$180), and net profit is $5 ($10-$5 premium). If Apple closes at or below $180, the option expires worthless and you lose the $5 premium. This asymmetric payoff structure—unlimited upside, limited downside (premium)—is why calls are popular for bullish bets. The breakeven point is Strike + Premium ($185 in this example).\n到期时，看涨期权买方的收益是max(0, S_T - X)，其中S_T是股价，X是行权价。如果股票收盘高于行权价（S_T > X），你获利差额减去已付权利金。例如，如果你以5美元买入苹果180美元看涨期权，苹果收于190美元，你的收益是每股10美元（190-180），净利润是5美元（10-5权利金）。如果苹果收于或低于180美元，期权过期作废，你损失5美元权利金。这种不对称收益结构——无限上行，有限下行（权利金）——是看涨期权受欢迎的原因。盈亏平衡点是行权价+权利金（本例中为185美元）。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 29,
+    "content": "For a short put seller, what is the maximum risk?\n对于看跌期权卖方，最大风险是多少？",
+    "options": [
+      "Unlimited\n无限",
+      "Limited to premium received\n限于收到的权利金",
+      "Limited to X - premium (down to zero)\n限于X-权利金（直至归零）"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "When you sell (write) a put option, you're obligated to buy the stock at strike price X if the buyer exercises. Maximum risk occurs if the stock plummets to zero—you must buy worthless shares at X, losing X minus the premium received. For example, selling a Tesla $200 put for $8 premium means: if Tesla drops to $50, you lose $142 per share ($200-$50-$8). If Tesla goes to $0, you lose $192 ($200-$8). Unlike short calls (unlimited risk as stock can rise infinitely), short puts have limited risk because stocks can't fall below zero. However, \"limited\" doesn't mean \"small\"—a $200 put has $192 downside per contract (100 shares = $19,200 risk). This is why put sellers should reserve capital to cover assignment.\n当你卖出（承做）看跌期权时，如果买方行权，你有义务以行权价X买入股票。最大风险发生在股票跌至零时——你必须以X买入无价值股票，损失X减去收到的权利金。例如，以8美元权利金卖出特斯拉200美元看跌期权意味着：如果特斯拉跌至50美元，你每股损失142美元（200-50-8）。如果特斯拉归零，你损失192美元（200-8）。与看涨期权卖方不同（无限风险，因股票可无限上涨），看跌期权卖方风险有限，因为股票不能跌破零。然而，"有限"并不意味着"小"——200美元看跌期权每份合约有192美元下行风险（100股=19,200美元风险）。这就是为什么看跌期权卖方应预留资金以应对被指派。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 30,
+    "content": "If a call has positive intrinsic value, it is classified as:\n如果看涨期权具有正的内在价值，它被分类为？",
+    "options": [
+      "Out-of-the-Money (OTM)\n虚值 (OTM)",
+      "At-the-Money (ATM)\n平值 (ATM)",
+      "In-the-Money (ITM)\n实值 (ITM)"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "A call option is In-The-Money (ITM) when the current stock price S exceeds the strike price X, giving it positive intrinsic value = S - X. For example, if Apple trades at $190 and you hold a $180 call, it's $10 ITM with $10 intrinsic value (plus any time value). ITM options have higher premiums due to intrinsic value and greater probability of profitable exercise—delta typically 0.6-0.9 (moves $60-$90 per $100 stock move). At-The-Money (ATM) options have S ≈ X with zero intrinsic value and maximum time value. Out-of-The-Money (OTM) options have S < X (for calls), zero intrinsic value, and trade purely on time value—cheaper but lower probability of profit. Deep ITM calls (delta ~0.9) behave like stock ownership.\n当当前股价S超过行权价X时，看涨期权为实值（ITM），具有正内在价值 = S - X。例如，如果苹果交易价190美元，你持有180美元看涨期权，它是10美元实值，有10美元内在价值（加上任何时间价值）。ITM期权因内在价值和更高盈利行权概率而溢价更高——delta通常为0.6-0.9（股票每涨100美元期权涨60-90美元）。平值（ATM）期权S ≈ X，无内在价值但时间价值最大。虚值（OTM）期权S < X（看涨期权），无内在价值，纯粹基于时间价值交易——更便宜但盈利概率更低。深度实值看涨期权（delta约0.9）表现类似股票所有权。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 31,
+    "content": "What does option time value represent?\n期权时间价值代表什么？",
+    "options": [
+      "The immediate exercise value\n立即行权价值",
+      "Extra premium for potential favorable moves before expiration\n为到期前潜在有利变动支付的额外权利金",
+      "The risk-free interest rate\n无风险利率"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Time value represents the extra premium above intrinsic value, reflecting the probability that the option will become more profitable before expiration. Formula: Time Value = Option Premium - Intrinsic Value. For example, if Tesla trades at $250 and a $240 call costs $18, intrinsic value is $10 ($250-$240) and time value is $8 ($18-$10). Time value peaks at At-The-Money (ATM) options and decays exponentially as expiration approaches (\"theta decay\"). A 30-day ATM option might lose 50% of its time value in the final 10 days. Longer-dated options have higher time value—a 1-year call may cost $40 vs $15 for a 1-month call with same strike. This is why sellers of near-expiration options profit from time decay, while buyers need fast price movement to overcome it.\n时间价值代表超出内在价值的额外权利金，反映期权在到期前变得更有利可图的概率。公式：时间价值 = 期权权利金 - 内在价值。例如，如果特斯拉交易价250美元，240美元看涨期权成本18美元，内在价值为10美元（250-240），时间价值为8美元（18-10）。时间价值在平值（ATM）期权达到峰值，并随着到期日临近呈指数衰减（"theta衰减"）。30天ATM期权可能在最后10天损失50%的时间价值。期限更长的期权有更高时间价值——1年期看涨期权可能成本40美元，而相同行权价的1个月期权为15美元。这就是为什么临近到期期权的卖方从时间衰减中获利，而买方需要快速价格变动来克服它。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 32,
+    "content": "What does a call option give the buyer the right to do?\n看涨期权赋予买方什么权利？",
+    "options": [
+      "Sell the underlying asset\n卖出标的资产",
+      "Buy the underlying asset\n买入标的资产",
+      "Hold the underlying asset\n持有标的资产"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A call option gives the buyer the contractual right—but not the obligation—to purchase the underlying asset (usually 100 shares per contract) at a predetermined strike price before or at expiration. For example, buying a Microsoft $400 call for $12 (total $1,200 for 100 shares) gives you the right to buy 100 MSFT shares at $400 anytime before expiration, regardless of market price. If MSFT rallies to $430, you can exercise and buy at $400, then sell at $430 for $18 profit per share ($1,800 net after $1,200 premium). If MSFT stays below $400, you let the option expire worthless and only lose the $1,200 premium. This limited-risk structure makes calls popular for bullish speculation and hedging.\n看涨期权赋予买方合同权利——但非义务——在到期前或到期时以预定的行权价购买标的资产（通常每份合约100股）。例如，以12美元买入微软400美元看涨期权（100股总计1,200美元）使你有权在到期前任何时候以400美元买入100股MSFT，无论市场价格如何。如果MSFT涨至430美元，你可以行权以400美元买入，然后以430美元卖出，每股获利18美元（扣除1,200美元权利金后净赚1,800美元）。如果MSFT保持在400美元以下，你让期权过期作废，只损失1,200美元权利金。这种有限风险结构使看涨期权成为看涨投机和对冲的流行工具。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 33,
+    "content": "American options can be exercised:\n美式期权可以在何时行权？",
+    "options": [
+      "Only at expiration\n仅在到期时",
+      "Anytime before or on expiration\n到期前或到期时的任何时间",
+      "Only on specific dates\n仅在特定日期"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "American-style options can be exercised at any time before or on the expiration date, providing maximum flexibility for the holder. For example, if you own an American call on Tesla and it spikes 30% due to earnings, you can immediately exercise and capture gains without waiting for expiration. In contrast, European-style options (common in indexes like SPX) can only be exercised at expiration. Most U.S. equity options (stocks, ETFs) are American-style, while index options are often European. American options trade at slight premiums (~2-5%) over European equivalents due to early exercise flexibility. However, early exercise is rarely optimal for calls (better to sell the option to capture time value), except in rare cases like capturing dividends before ex-date.\n美式期权可以在到期日前或到期日的任何时间行权，为持有人提供最大灵活性。例如，如果你持有特斯拉美式看涨期权且它因财报飙升30%，你可以立即行权并锁定收益，无需等待到期。相比之下，欧式期权（如SPX等指数期权常见）只能在到期时行权。大多数美国股票期权（股票、ETF）是美式，而指数期权通常是欧式。由于提前行权灵活性，美式期权交易价比等价欧式期权高约2-5%。然而，提前行权对看涨期权很少是最优的（最好卖出期权以捕获时间价值），除非在罕见情况下如在除息日前捕获股息。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 34,
+    "content": "For a long call, the breakeven point is:\n看涨期权买方的盈亏平衡点是？",
+    "options": [
+      "Strike - Premium\n行权价 - 权利金",
+      "Strike + Premium\n行权价 + 权利金",
+      "Strike only\n仅行权价"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "For a long call position, the breakeven point at expiration is Strike Price + Premium Paid. This is the stock price level where your total profit equals zero (ignoring commissions). For example, if you buy an Amazon $180 call for $7, your breakeven is $187. If Amazon closes at $187, the call's intrinsic value is $7 ($187-$180), exactly offsetting your $7 cost. Below $187, you lose money (max loss = $7 premium). Above $187, every dollar of stock gain becomes profit—e.g., at $200, you profit $13 per share ($200-$187). This formula helps traders quickly assess risk/reward: if you expect the stock to reach $195, the potential $8 profit ($195-$187) must justify the $7 downside risk.\n对于看涨期权多头头寸，到期时的盈亏平衡点是行权价+已付权利金。这是你的总利润等于零的股价水平（忽略佣金）。例如，如果你以7美元买入亚马逊180美元看涨期权，你的盈亏平衡点是187美元。如果亚马逊收于187美元，看涨期权的内在价值是7美元（187-180），恰好抵消你的7美元成本。低于187美元，你亏钱（最大损失=7美元权利金）。高于187美元，股票每涨一美元都成为利润——例如在200美元时，你每股获利13美元（200-187）。这个公式帮助交易者快速评估风险/回报：如果你预期股票达到195美元，8美元潜在利润（195-187）必须证明7美元下行风险是合理的。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 35,
+    "content": "For a long put buyer, the loss is limited to:\n看跌期权买方的损失限于？",
+    "options": [
+      "Unlimited downside\n无限下行",
+      "The premium paid\n已付权利金",
+      "X - S_T\nX - S_T"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "For a long put buyer, the maximum loss is strictly limited to the premium paid, which occurs if the stock price stays above the strike at expiration, rendering the option worthless. For example, if you buy a Netflix $450 put for $15 ($1,500 per contract for 100 shares) betting on a decline, but Netflix stays at $460 or rises, the put expires Out-of-The-Money (OTM) and you lose the full $1,500. This limited-risk structure contrasts with short selling stock, where losses are theoretically unlimited if the stock rises. The maximum profit for a long put is Strike - Premium (achieved if stock drops to $0). Breakeven point = Strike - Premium. For the Netflix example: breakeven at $435 ($450-$15), max profit $43,500 if Netflix drops to $0 ($450×100 - $1,500).\n对于看跌期权买方，最大损失严格限于已付权利金，当股票价格在到期时保持在行权价之上时发生，使期权变得毫无价值。例如，如果你以15美元买入Netflix 450美元看跌期权（每份合约100股计1,500美元）押注下跌，但Netflix保持460美元或上涨，看跌期权到期为虚值（OTM），你损失全部1,500美元。这种有限风险结构与卖空股票形成对比，后者如果股票上涨损失理论上是无限的。看跌期权买方的最大利润是行权价-权利金（如果股票跌至0美元实现）。盈亏平衡点=行权价-权利金。对于Netflix例子：盈亏平衡点为435美元（450-15），如果Netflix跌至0美元最大利润为43,500美元（450×100-1,500）。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 36,
+    "content": "What is intrinsic value for a call option?\n看涨期权的内在价值是什么？",
+    "options": [
+      "Strike - Stock price (if positive)\n行权价 - 股价（如果为正）",
+      "Stock price - Strike (if positive)\n股价 - 行权价（如果为正）",
+      "Time value only\n仅时间价值"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Intrinsic value for a call option is the amount by which the stock price exceeds the strike price, calculated as max(0, S - X), where S is current stock price and X is strike price. It represents the immediate profit if you exercised the option right now. For example, if Nvidia trades at $520 and you hold a $500 call, intrinsic value is $20 ($520-$500). If the call trades at $28, the remaining $8 is time value. Options that are Out-of-The-Money (OTM) or At-The-Money (ATM) have zero intrinsic value and trade purely on time value. As expiration approaches, time value erodes and option price converges to intrinsic value. Deep In-The-Money (ITM) calls with high intrinsic value (e.g., $100 ITM) behave almost like owning the stock, with delta near 1.0.\n看涨期权的内在价值是股价超过行权价的金额，计算为max(0, S - X)，其中S是当前股价，X是行权价。它代表如果你现在行权的即时利润。例如，如果英伟达交易价520美元，你持有500美元看涨期权，内在价值为20美元（520-500）。如果看涨期权交易价28美元，剩余8美元是时间价值。虚值（OTM）或平值（ATM）期权的内在价值为零，纯粹基于时间价值交易。随着到期日临近，时间价值侵蚀，期权价格趋向内在价值。具有高内在价值的深度实值（ITM）看涨期权（例如100美元实值）几乎像拥有股票，delta接近1.0。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 37,
+    "content": "A put is ITM if:\n看跌期权是ITM的条件？",
+    "options": [
+      "Stock price > Strike\n股价 > 行权价",
+      "Stock price < Strike\n股价 < 行权价",
+      "Stock price = Strike\n股价 = 行权价"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A put option is In-The-Money (ITM) when the current stock price S falls below the strike price X, giving it positive intrinsic value = X - S. For example, if Tesla trades at $230 and you hold a $250 put, it's $20 ITM with $20 intrinsic value. ITM puts have higher premiums and greater probability of profitable exercise—delta typically -0.6 to -0.9 (option gains $60-$90 per $100 stock decline). At-The-Money (ATM) puts have S ≈ X with maximum time value. Out-of-The-Money (OTM) puts have S > X, zero intrinsic value, and trade on time value alone—cheaper but require significant stock declines to profit. Deep ITM puts (delta ~-0.9) behave like short stock positions. Put buyers typically want stocks to crash quickly before theta decay erodes time value.\n当当前股价S低于行权价X时，看跌期权为实值（ITM），具有正内在价值 = X - S。例如，如果特斯拉交易价230美元，你持有250美元看跌期权，它是20美元实值，有20美元内在价值。ITM看跌期权溢价更高，盈利行权概率更大——delta通常为-0.6至-0.9（股票每跌100美元期权涨60-90美元）。平值（ATM）看跌期权S ≈ X，时间价值最大。虚值（OTM）看跌期权S > X，无内在价值，仅基于时间价值交易——更便宜但需要股票大幅下跌才能获利。深度实值看跌期权（delta约-0.9）表现类似空头股票头寸。看跌期权买方通常希望股票在theta衰减侵蚀时间价值前快速暴跌。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 38,
+    "content": "What is the expiration time for 0DTE options?\n末日期权(0DTE)的到期时间是？",
+    "options": [
+      "At the end of the trading week\n在交易周结束时",
+      "At the end of the same trading day\n在同一交易日结束时",
+      "One month after purchase\n购买后一个月"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "0DTE (Zero Days To Expiration) options expire at market close (4:00 PM ET) on the same trading day they are bought or sold, making them extremely short-term instruments. Introduced by CBOE in 2022 for SPX, 0DTE now accounts for 40-50% of S&P 500 options volume, with daily notional values exceeding $1 trillion. These options experience extreme theta decay—losing 50-80% of value in the final hours even without price movement. For example, an SPX 0DTE call bought at 10 AM for $5 might drop to $2 by 2 PM solely due to time decay. Traders use 0DTE for intraday directional bets on events like Fed announcements or earnings, but they're extremely risky—a wrong bet can lose 100% in hours.\n0DTE（零日到期）期权在买入或卖出的同一交易日收盘（美东时间下午4点）到期，使其成为极短期工具。由CBOE于2022年为SPX推出，0DTE现在占标普500期权交易量的40-50%，每日名义价值超过1万亿美元。这些期权经历极端theta衰减——即使没有价格变动，最后几小时也会损失50-80%的价值。例如，上午10点以5美元买入的SPX 0DTE看涨期权到下午2点可能仅因时间衰减跌至2美元。交易者使用0DTE对美联储公告或财报等事件进行日内方向性押注，但它们极具风险——押注错误可能在几小时内损失100%。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 39,
+    "content": "For a 0DTE call, what happens if OTM at close?\n0DTE看涨期权收盘时OTM会怎样？",
+    "options": [
+      "Unlimited profit\n有无限利润",
+      "It expires worthless\n过期作废",
+      "Automatically exercised\n被自动行权"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "If a 0DTE call option finishes Out-of-The-Money (OTM) at the 4:00 PM ET market close—meaning the stock price is below the strike—it expires worthless and the buyer loses 100% of the premium paid. For example, buying a $450 SPY 0DTE call for $2 ($200 per contract) when SPY is at $448, hoping for a rally to $455, will result in total loss if SPY closes at $449.99 or below. There's no time for recovery—unlike weekly or monthly options, 0DTE gives you only hours to be right. This binary outcome makes 0DTE attractive to sellers (capturing rapid theta decay) but extremely risky for buyers. In volatile markets, 0DTE options can swing 200-500% intraday before expiring worthless, tempting retail traders but often resulting in 100% losses.\n如果0DTE看涨期权在美东时间下午4点收盘时为虚值（OTM）——意味着股价低于行权价——它过期作废，买方损失100%的已付权利金。例如，当SPY为448美元时以2美元（每份合约200美元）买入450美元SPY 0DTE看涨期权，希望涨至455美元，如果SPY收于449.99美元或以下将导致全部损失。没有时间恢复——与每周或每月期权不同，0DTE只给你几小时时间押对。这种二元结果使0DTE对卖方有吸引力（捕获快速theta衰减），但对买方极具风险。在波动市场中，0DTE期权可以在日内波动200-500%后到期作废，诱惑散户交易者但通常导致100%损失。",
+    "category": "4. Options / 期权"
+  },
+  {
+    "id": 40,
+    "content": "What is a key difference between active and passive management?\n主动管理和被动管理的关键区别是什么？",
+    "options": [
+      "Active selects securities to outperform a benchmark, passive tracks an index\n主动管理选择证券以跑赢基准，被动追踪指数",
+      "Passive management has higher fees\n被动管理费用更高",
+      "Active management avoids all risks\n主动管理避免所有风险"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Active management involves portfolio managers conducting research and making buy/sell decisions to outperform a benchmark (e.g., S&P 500), charging higher fees (0.5-1.5% expense ratios). For example, Fidelity Contrafund (FCNTX) actively selects growth stocks aiming to beat the S&P 500. Passive management simply replicates an index through algorithms, with minimal trading and ultra-low fees (0.03-0.15%)—like Vanguard S&P 500 Index Fund (VFIAX) with 0.04% expense ratio. Studies show 85-90% of active managers underperform their benchmarks over 10-year periods after fees, driving $2+ trillion to shift from active to passive since 2010. However, active managers like Cathie Wood (ARKK) or Bill Ackman (Pershing Square) can deliver exceptional returns during specific cycles.\n主动管理涉及投资组合经理进行研究并做出买卖决策以跑赢基准（如标普500），收取较高费用（0.5-1.5%费用率）。例如，富达逆向基金（FCNTX）主动选择成长股以期击败标普500。被动管理仅通过算法复制指数，交易极少，费用超低（0.03-0.15%）——如先锋标普500指数基金（VFIAX）费用率0.04%。研究显示，扣除费用后，10年期内85-90%的主动管理者跑输其基准，推动2万亿美元自2010年以来从主动转向被动。然而，Cathie Wood（ARKK）或Bill Ackman（Pershing Square）等主动管理者在特定周期可以提供卓越回报。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 41,
+    "content": "Why have passive strategies grown in popularity?\n为什么被动策略越来越受欢迎？",
+    "options": [
+      "Due to cost efficiency and lower fees\n由于成本效益和较低的费用",
+      "Because they always outperform active strategies\n因为总是跑赢主动策略",
+      "They require more research\n需要更多研究"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Passive investment strategies have surged in popularity due to superior cost efficiency and consistent outperformance of most active managers. Since 2010, over $2.5 trillion has flowed from active to passive funds in the U.S. alone. The math is compelling: if the S&P 500 returns 10% annually, a passive fund with 0.04% fees nets 9.96%, while an active fund charging 1.2% nets only 8.8%—that 1.16% difference compounds to 32% more wealth over 30 years. Vanguard's founder John Bogle pioneered this model in 1976 with the first index fund. By 2023, passive funds held $13 trillion in U.S. equities vs $11 trillion for active. BlackRock's iShares and Vanguard dominate, offering rock-bottom fees and tax efficiency.\n被动投资策略因卓越的成本效益和持续跑赢大多数主动管理者而激增。自2010年以来，仅美国就有超过2.5万亿美元从主动基金流向被动基金。数学很有说服力：如果标普500年回报10%，费用0.04%的被动基金净回报9.96%，而收取1.2%的主动基金净回报仅8.8%——这1.16%的差异在30年复合成32%的财富差距。先锋创始人John Bogle于1976年用第一只指数基金开创了这一模式。到2023年，被动基金持有美国股票13万亿美元，而主动基金为11万亿美元。贝莱德的iShares和先锋占据主导地位，提供极低费用和税务效率。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 42,
+    "content": "What do alternative asset managers primarily handle?\n另类资产管理者主要处理什么？",
+    "options": [
+      "Non-traditional assets like hedge funds and private equity\n对冲基金和私募股权等非传统资产",
+      "Only stocks and bonds\n仅股票和债券",
+      "Short-term cash only\n仅短期现金"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Alternative asset managers specialize in non-traditional investments beyond stocks and bonds, including hedge funds (Bridgewater's $100B+ AUM using macro strategies), private equity (Blackstone, KKR buying private companies), real estate (commercial properties, REITs), commodities (oil, gold futures), and venture capital (Sequoia funding startups like Airbnb). These assets offer diversification benefits—low correlation to stock markets—but come with higher fees (2% management + 20% performance), longer lock-up periods (3-10 years for PE), and require accredited investor status ($1M+ net worth or $200K+ income). During 2022's stock crash, some hedge funds like Citadel gained 38% using multi-strategy approaches, demonstrating alternatives' value in downturns.\n另类资产管理者专注于股票和债券之外的非传统投资，包括对冲基金（桥水管理超过1000亿美元AUM，使用宏观策略）、私募股权（黑石、KKR收购私营公司）、房地产（商业地产、REITs）、大宗商品（石油、黄金期货）和风险投资（红杉资助Airbnb等初创公司）。这些资产提供分散化好处——与股市相关性低——但费用更高（2%管理费+20%业绩提成），锁定期更长（私募股权3-10年），并要求合格投资者身份（净资产100万美元以上或收入20万美元以上）。在2022年股市崩盘期间，Citadel等一些对冲基金使用多策略方法获得38%收益，展示了另类投资在低迷期的价值。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 43,
+    "content": "What is the main feature of open-end mutual funds?\n开放式共同基金的主要特征是什么？",
+    "options": [
+      "Investors buy/redeem at NAV, funds can issue new shares\n投资者按NAV购买/赎回，基金可发行新份额",
+      "Fixed number of shares traded on exchanges\n固定数量的份额在交易所交易",
+      "No liquidity for investors\n投资者没有流动性"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Open-end mutual funds continuously issue and redeem shares at the daily calculated Net Asset Value (NAV), allowing unlimited growth as investor demand increases. For example, Vanguard Total Stock Market Fund (VTSAX) has grown from $50B to $1.5T AUM by issuing new shares to incoming investors. When you invest $10,000, the fund creates new shares and uses your cash to buy proportional holdings. When you redeem, the fund sells assets and returns NAV to you. NAV is calculated once daily at 4 PM ET market close: (Total Assets - Liabilities) / Outstanding Shares. In contrast, closed-end funds (CEFs) issue a fixed number of shares in an IPO and trade on exchanges at market prices that can differ from NAV by ±10-20%.\n开放式共同基金持续按每日计算的资产净值（NAV）发行和赎回份额，随着投资者需求增加允许无限增长。例如，先锋全股票市场基金（VTSAX）通过向新投资者发行新份额，从500亿美元AUM增长到1.5万亿美元。当你投资10,000美元时，基金创建新份额并用你的现金按比例购买持仓。当你赎回时，基金出售资产并将NAV返还给你。NAV在美东时间下午4点市场收盘时每日计算一次：（总资产-负债）/流通份额。相比之下，封闭式基金（CEF）在IPO中发行固定数量的份额，并在交易所以市场价格交易，可能与NAV相差±10-20%。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 44,
+    "content": "How is NAV calculated for mutual funds?\n共同基金的NAV如何计算？",
+    "options": [
+      "Closing prices of holdings minus liabilities, divided by shares\n持仓收盘价减去负债，除以份额",
+      "Based on market price only\n仅基于市场价格",
+      "Fixed at $1 always\n始终固定在1美元"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Net Asset Value (NAV) for mutual funds is calculated once daily at 4:00 PM ET market close using the formula: NAV = (Total Market Value of Holdings - Liabilities) / Outstanding Shares. For example, if a fund holds $100M in stocks, $5M in cash, owes $2M in fees, and has 10M shares outstanding, NAV = ($105M - $2M) / 10M = $10.30 per share. All trades placed during the day—whether at 9:30 AM or 3:59 PM—execute at the same 4 PM NAV (forward pricing). This differs from ETFs, which trade intraday at fluctuating market prices. Liabilities include management fees, operating expenses, and pending redemptions. NAV changes daily based on portfolio performance and dividend/capital gain distributions.\nNAV（资产净值）对于共同基金在美东时间下午4点市场收盘时每日计算一次，使用公式：NAV =（持仓总市值-负债）/流通份额。例如，如果一个基金持有1亿美元股票、500万美元现金、欠200万美元费用，且有1000万份额流通，NAV =（1.05亿美元-200万美元）/1000万 = 每份额10.30美元。当天下单的所有交易——无论是上午9:30还是下午3:59——都以相同的下午4点NAV执行（前瞻定价）。这与ETF不同，ETF以波动的市场价格日内交易。负债包括管理费、运营费用和待处理赎回。NAV基于投资组合表现和股息/资本收益分配每日变化。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 45,
+    "content": "What do money market funds primarily invest in?\n货币市场基金主要投资于什么？",
+    "options": [
+      "Short-term, low-risk debt like Treasury bills\n短期低风险债务如国库券",
+      "High-risk stocks\n高风险股票",
+      "Long-term bonds only\n仅长期债券"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Money market funds invest in ultra-short-term, high-quality debt instruments with maturities under 13 months, including U.S. Treasury bills (1-12 month maturity, backed by government), commercial paper (unsecured corporate IOUs, typically 30-90 days), certificates of deposit (bank CDs), and repurchase agreements (repos). These funds aim to maintain a stable $1.00 NAV per share while yielding slightly more than savings accounts—currently 4.5-5.3% (as of 2024) vs 0.5% for typical savings. For example, Vanguard Prime Money Market Fund (VMMXX) yields 5.28% with ultra-low risk. However, they're not FDIC-insured, and during the 2008 crisis, Reserve Primary Fund \"broke the buck\" (NAV fell to $0.97) due to Lehman Brothers exposure, triggering industry reforms.\n货币市场基金投资于13个月以下到期的超短期、高质量债务工具，包括美国国库券（1-12个月到期，政府担保）、商业票据（无担保公司借据，通常30-90天）、存款证（银行CD）和回购协议（repos）。这些基金旨在维持稳定的每份额1.00美元NAV，同时收益略高于储蓄账户——目前为4.5-5.3%（截至2024年），而典型储蓄账户为0.5%。例如，先锋优质货币市场基金（VMMXX）收益率5.28%，风险超低。然而，它们没有FDIC保险，2008年危机期间，Reserve Primary Fund因雷曼兄弟敞口"跌破1美元"（NAV降至0.97美元），引发行业改革。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 46,
+    "content": "Who are private markets like PE suitable for?\n私募股权等私募市场适合谁？",
+    "options": [
+      "Accredited investors with high net worth\n高净值的合格投资者",
+      "Beginners with low minimums\n低门槛的初学者",
+      "Short-term investors\n短期投资者"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Private markets—including private equity (PE), venture capital (VC), and hedge funds—are restricted to accredited investors who meet SEC criteria: net worth >$1M (excluding primary residence) OR income >$200K individually ($300K jointly) for the past 2 years. These thresholds aim to protect less-sophisticated investors from illiquid, high-risk investments. For example, investing in Sequoia's VC fund (which backed Google, Apple, Airbnb) requires $250K-$10M minimums and 10-year lock-ups. Private markets offer higher return potential—top-quartile PE funds average 15-20% annual returns vs S&P 500's 10%—but carry liquidity risk, opacity, and concentration. The 2021 JOBS Act expanded access via crowdfunding platforms like AngelList, allowing non-accredited investors to participate with $100-$5K minimums, though liquidity remains limited.\n私募市场——包括私募股权（PE）、风险投资（VC）和对冲基金——仅限符合SEC标准的合格投资者：净资产>100万美元（不包括主要住宅）或过去2年收入>20万美元（个人）或30万美元（联合）。这些门槛旨在保护不够成熟的投资者免受非流动性、高风险投资的影响。例如，投资红杉的风投基金（支持过谷歌、苹果、Airbnb）需要25万-1000万美元的最低投资额和10年锁定期。私募市场提供更高回报潜力——顶级四分位PE基金平均年回报15-20%，而标普500为10%——但具有流动性风险、不透明性和集中度。2021年JOBS法案通过AngelList等众筹平台扩大准入，允许非合格投资者以100-5000美元的最低投资额参与，但流动性仍然有限。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 47,
+    "content": "What is a characteristic of hedge funds?\n对冲基金的一个特征是什么？",
+    "options": [
+      "More aggressive and flexible, using margin and options\n更激进灵活，使用保证金和期权",
+      "Limited to traditional assets only\n仅限于传统资产",
+      "Low risk and stable NAV\n低风险和稳定的NAV"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Hedge funds employ aggressive, flexible investment strategies unavailable to mutual funds, including leverage (borrowing 2-4× capital via margin), short selling (betting against overvalued stocks), derivatives (options, swaps, futures), and arbitrage (exploiting price discrepancies). For example, Bridgewater's Pure Alpha fund uses global macro strategies across currencies, bonds, and commodities with 150% gross exposure (50% net). Citadel's multi-strategy approach combines equity long-short, fixed income arbitrage, and quantitative trading, generating 38% returns in 2022 when the S&P 500 fell 18%. Hedge funds charge steep \"2 and 20\" fees (2% annual + 20% performance) and require $100K-$5M minimums with 1-3 year lock-ups. Unlike mutual funds' daily liquidity, hedge fund investors face quarterly redemption windows.\n对冲基金采用共同基金无法使用的激进、灵活投资策略，包括杠杆（通过保证金借入2-4倍资本）、卖空（押注高估股票下跌）、衍生品（期权、掉期、期货）和套利（利用价格差异）。例如，桥水的Pure Alpha基金使用跨货币、债券和大宗商品的全球宏观策略，总敞口150%（净敞口50%）。Citadel的多策略方法结合股票多空、固定收益套利和量化交易，在标普500下跌18%的2022年产生38%回报。对冲基金收取高额"2和20"费用（2%年费+20%业绩提成），要求10万-500万美元最低投资额和1-3年锁定期。与共同基金的每日流动性不同，对冲基金投资者面临季度赎回窗口。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 48,
+    "content": "What is a Class A share fee?\n什么是A类份额费用？",
+    "options": [
+      "Front-end load paid when buying shares\n购买时的前端费用",
+      "Back-end load when selling\n出售时的后端费用",
+      "Annual periodic fee\n年度定期费用"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Class A shares charge a front-end load (sales commission) deducted immediately when you purchase, typically 3-5.75% of your investment. For example, investing $10,000 in a fund with a 5% front-end load means $500 goes to the broker/advisor and only $9,500 is actually invested. However, Class A shares have lower ongoing expense ratios (0.5-1.0%) compared to Class B/C shares, making them cost-effective for long-term holders or large investments. Many funds offer breakpoints—reduced loads for investments over $50K, $100K, or $250K. For instance, American Funds Growth Fund of America (AGTHX) charges 5.75% for <$25K but drops to 3.5% for $100K+. Financial advisors often recommend Class A for buy-and-hold investors.\nA类份额收取前端费用（销售佣金），在你购买时立即扣除，通常为投资额的3-5.75%。例如，以5%前端费用投资10,000美元意味着500美元给经纪商/顾问，只有9,500美元实际投资。然而，A类份额的持续费用率（0.5-1.0%）低于B/C类份额，使其对长期持有者或大额投资具有成本效益。许多基金提供分档优惠——投资超过5万、10万或25万美元可降低费用。例如，美国基金成长型美国基金（AGTHX）对<2.5万美元收取5.75%，但对10万美元以上降至3.5%。财务顾问通常为买入持有投资者推荐A类。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 49,
+    "content": "What does a performance fee in hedge funds typically include?\n对冲基金的绩效费通常包括什么？",
+    "options": [
+      "20% of gains above a hurdle rate\n超过门槛率收益的20%",
+      "Fixed annual fee only\n仅固定年费",
+      "No fee based on profits\n没有基于利润的费用"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Hedge fund performance fees, part of the \"2 and 20\" fee structure, charge 20% of profits above a hurdle rate (often 5-8% annual return or SOFR + 2%). For example, if a fund with a 5% hurdle returns 15%, it charges 20% of the excess 10%, earning 2% in performance fees plus the 2% management fee = 4% total. Many funds include high-water mark provisions—no performance fees until prior losses are recovered. For instance, if your investment drops from $1M to $800K then rebounds to $950K, the fund earns no incentive until it exceeds $1M again. This aligns manager interests with investor returns. Renaissance Technologies' Medallion Fund famously charges 5% management + 44% performance yet delivers 66% average annual returns since 1988, making it history's most successful hedge fund.\n对冲基金绩效费是"2和20"费用结构的一部分，对超过门槛率（通常为5-8%年回报或SOFR+2%）的利润收取20%。例如，如果一个门槛率为5%的基金回报15%，它对超额10%收取20%，赚取2%的绩效费加上2%的管理费=总计4%。许多基金包括高水位线条款——在恢复之前的损失之前不收取绩效费。例如，如果你的投资从100万美元跌至80万美元然后反弹至95万美元，基金在超过100万美元之前不赚取激励费。这使管理者利益与投资者回报保持一致。文艺复兴科技的Medallion Fund以收取5%管理费+44%绩效费而闻名，但自1988年以来提供66%的平均年回报，使其成为历史上最成功的对冲基金。",
+    "category": "5. Funds / 基金"
+  },
+  {
+    "id": 50,
+    "content": "What does price return for an index measure?\n指数的价格回报衡量什么？",
+    "options": [
+      "Price changes plus reinvested dividends\n价格变化加再投资股息",
+      "Only changes in index level, ignoring dividends\n仅指数水平变化，忽略股息",
+      "Total market capitalization\n股票总市值"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Price return measures only the change in an index's level, completely ignoring dividend income distributed by constituent companies. For example, if the S&P 500 Price Index rises from 4,500 to 4,950 over one year, price return is 10% [(4,950-4,500)/4,500]. However, this excludes the ~1.5-2% annual dividend yield S&P 500 companies pay. The headline \"S&P 500\" you see on news tickers is typically the price return version. Over long periods, this creates significant discrepancies—from 1988 to 2023, S&P 500 Price Return was ~1,200% while Total Return (including reinvested dividends) was ~3,200%, nearly triple. Price return is useful for tracking pure market sentiment but understates true investor gains.\n价格回报仅衡量指数水平的变化，完全忽略成分公司分配的股息收入。例如，如果标普500价格指数在一年内从4,500涨至4,950，价格回报为10%[(4,950-4,500)/4,500]。然而，这排除了标普500公司支付的约1.5-2%年股息收益率。你在新闻股票行情中看到的"标普500"通常是价格回报版本。长期来看，这造成显著差异——从1988年到2023年，标普500价格回报约1,200%，而总回报（包括再投资股息）约3,200%，近乎三倍。价格回报对追踪纯市场情绪有用，但低估了真实投资者收益。",
+    "category": "6. Indexes / 常见指数"
+  },
+  {
+    "id": 51,
+    "content": "How is total return different from price return?\n总回报与价格回报有何不同？",
+    "options": [
+      "It excludes price changes\n排除价格变化",
+      "It includes price changes and reinvested dividends\n包括价格变化和再投资股息",
+      "It only considers stock splits\n只考虑股票拆分"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Total return includes both price appreciation and reinvested dividends/distributions, reflecting what an actual investor would earn if they reinvested all dividend income back into the index. Formula: Total Return = [(Ending Value + Dividends) / Beginning Value] - 1. For example, if the S&P 500 rises 8% in price and pays 2% in dividends, total return is approximately 10.16% (slightly higher due to compounding). Over 30 years (1993-2023), S&P 500 Total Return Index gained 1,600% vs Price Return of only 800%—the 800% gap represents reinvested dividends. Mutual funds and ETFs typically track total return indexes, while media headlines cite price return. When evaluating long-term performance, always use total return to avoid underestimating actual investor gains by 30-50%.\n总回报包括价格增值和再投资股息/分配，反映如果投资者将所有股息收入再投资回指数中实际会赚取的收益。公式：总回报=[(期末价值+股息)/期初价值]-1。例如，如果标普500价格上涨8%并支付2%股息，总回报约为10.16%（由于复利略高）。在30年间（1993-2023），标普500总回报指数上涨1,600%，而价格回报仅为800%——800%的差距代表再投资股息。共同基金和ETF通常追踪总回报指数，而媒体头条引用价格回报。评估长期表现时，始终使用总回报以避免低估实际投资者收益30-50%。",
+    "category": "6. Indexes / 常见指数"
+  },
+  {
+    "id": 52,
+    "content": "In a price-weighted index, what determines a stock's influence?\n价格加权指数中什么决定股票影响力？",
+    "options": [
+      "Its market capitalization\n其市值",
+      "Its per-share price\n其每股价格",
+      "Equal weight for all stocks\n所有股票权重相等"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "In price-weighted indexes like the Dow Jones Industrial Average (DJIA), stocks with higher per-share prices have disproportionately larger influence on index movement, regardless of company size. The index is calculated as the sum of component prices divided by a divisor (currently ~0.163 for DJIA). For example, UnitedHealth Group at $500/share has 10× the impact of Intel at $50/share, even if Intel has larger market cap. A 1% move in UnitedHealth ($5) moves the Dow ~31 points, while a 1% Intel move ($0.50) contributes only ~3 points. This creates distortions—in 2020, Apple's 4-for-1 stock split reduced its Dow weight from 12% to 3% overnight despite zero economic change. Price-weighting is considered outdated; most modern indexes use market-cap weighting (S&P 500) or equal weighting.\n在道琼斯工业平均指数（DJIA）等价格加权指数中，每股价格较高的股票对指数变动的影响不成比例地更大，无论公司规模如何。指数计算为成分股价格总和除以除数（DJIA当前约0.163）。例如，每股500美元的联合健康集团的影响力是每股50美元的英特尔的10倍，即使英特尔市值更大。联合健康1%的波动（5美元）使道指移动约31点，而英特尔1%的波动（0.50美元）仅贡献约3点。这造成扭曲——2020年，苹果4拆1股票拆分使其道指权重一夜之间从12%降至3%，尽管经济上没有变化。价格加权被认为过时；大多数现代指数使用市值加权（标普500）或等权重。",
+    "category": "6. Indexes / 常见指数"
+  },
+  {
+    "id": 53,
+    "content": "Which index uses market-cap weighting?\n哪个指数使用市值加权？",
+    "options": [
+      "Dow Jones Industrial Average\n道琼斯工业平均指数",
+      "S&P 500\n标准普尔500指数",
+      "S&P 500 Equal Weight Index\n标普500等权重指数"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The S&P 500 uses market-capitalization weighting, where each company's influence is proportional to its total market value (stock price × shares outstanding). For example, as of 2024, Apple at $3T market cap represents ~7% of the index, while smaller constituents like Macy's at $5B represent <0.01%. This means a 1% Apple move impacts the index 600× more than a 1% Macy's move. Market-cap weighting naturally reflects economic reality—larger companies drive more market activity—and requires minimal rebalancing (stocks self-adjust as prices change). However, it creates concentration risk: the top 10 stocks (Apple, Microsoft, Amazon, Nvidia, etc.) account for 30% of S&P 500 weight. This method is far superior to price-weighting (DJIA) and underlies 90% of index funds globally.\n标普500使用市值加权，每家公司的影响力与其总市值（股价×流通股）成正比。例如，截至2024年，市值3万亿美元的苹果代表指数约7%，而市值50亿美元的梅西百货等较小成分股代表<0.01%。这意味着苹果1%的波动对指数的影响是梅西百货1%波动的600倍。市值加权自然反映经济现实——较大公司驱动更多市场活动——并且需要最少的再平衡（股票随价格变化自动调整）。然而，它造成集中风险：前10只股票（苹果、微软、亚马逊、英伟达等）占标普500权重的30%。这种方法远优于价格加权（道指），并支撑全球90%的指数基金。",
+    "category": "6. Indexes / 常见指数"
+  },
+  {
+    "id": 54,
+    "content": "What does the Russell 2000 index focus on?\n罗素2000指数关注什么？",
+    "options": [
+      "Large-cap U.S. stocks\n美国大盘股",
+      "Small-cap U.S. equities\n美国小盘股",
+      "Emerging market stocks\n新兴市场股票"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Russell 2000 Index tracks approximately 2,000 U.S. small-cap companies with market capitalizations ranging from $250M to $4B, representing roughly 8% of total U.S. equity market value. It's a subset of the broader Russell 3000 Index (which covers 98% of U.S. investable equities). Small-caps in the Russell 2000 are typically domestically focused businesses with higher growth potential but greater volatility—average annual return of 11% vs S&P 500's 10%, but with 20% higher volatility. For example, during the 2020-2021 economic reopening, Russell 2000 surged 94% vs S&P 500's 40% as domestic recovery benefited smaller firms. However, in 2022's downturn, it fell 20% vs S&P's 18%. IWM (iShares Russell 2000 ETF) is the primary vehicle for tracking this index.\nRussell 2000指数追踪约2,000家美国小盘公司，市值范围从2.5亿美元到40亿美元，约占美国股票市场总价值的8%。它是更广泛的Russell 3000指数（覆盖美国可投资股票的98%）的子集。Russell 2000中的小盘股通常是专注于国内的企业，具有更高增长潜力但波动性更大——平均年回报11%，而标普500为10%，但波动性高20%。例如，在2020-2021年经济重启期间，Russell 2000飙升94%，而标普500为40%，因为国内复苏有利于较小公司。然而，在2022年的低迷期，它下跌20%，而标普下跌18%。IWM（iShares Russell 2000 ETF）是追踪该指数的主要工具。",
+    "category": "6. Indexes / 常见指数"
+  },
+  {
+    "id": 55,
+    "content": "What is the primary purpose of financial statements in the US stock market?\n美国股票市场中财务报表的主要目的是什么？",
+    "options": [
+      "To promote transparency and protect investors\n促进透明度并保护投资者",
+      "To advertise company products\n宣传公司产品",
+      "To track employee performance\n追踪员工绩效"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Financial statements are mandatory SEC filings that promote transparency and protect investors by providing standardized disclosure of company performance and financial health. All U.S. public companies must file quarterly (10-Q) and annual (10-K) reports within 40-45 days of period-end, audited by independent firms like Deloitte or PwC. For example, Apple's 10-K discloses $383B revenue, $97B net income, and detailed risk factors. The SEC enforces this through regulations like Sarbanes-Oxley Act (2002), which mandates CEO/CFO certification of accuracy and imposes criminal penalties for fraud—Enron's collapse led to these reforms. Without financial statements, investors would lack reliable data to value securities, leading to market failures like the 1929 crash.\n财务报表是强制性的SEC文件，通过提供公司业绩和财务健康状况的标准化披露来促进透明度并保护投资者。所有美国上市公司必须在期末后40-45天内提交季度（10-Q）和年度（10-K）报告，由德勤或普华永道等独立公司审计。例如，苹果的10-K披露3830亿美元收入、970亿美元净利润和详细风险因素。SEC通过《萨班斯-奥克斯利法案》（2002）等法规强制执行，要求CEO/CFO认证准确性并对欺诈施加刑事处罚——安然崩溃导致了这些改革。没有财务报表，投资者将缺乏可靠数据来评估证券价值，导致1929年崩盘等市场失灵。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 56,
+    "content": "Which accounting standard is mandatory for US public companies?\n美国上市公司必须遵守哪种会计准则？",
+    "options": [
+      "IFRS\nIFRS",
+      "US GAAP\nUS GAAP",
+      "Both GAAP and IFRS\nGAAP和IFRS"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "U.S. Generally Accepted Accounting Principles (GAAP) is the mandatory accounting framework for all U.S. public companies, developed by the Financial Accounting Standards Board (FASB) since 1973 and enforced by the SEC. GAAP emphasizes rules-based standards with detailed implementation guidance—for example, revenue recognition follows ASC 606 with specific criteria for when to record sales. In contrast, International Financial Reporting Standards (IFRS), used by 140+ countries, is principles-based and offers more flexibility. Key GAAP vs IFRS differences: GAAP uses LIFO inventory valuation (IFRS prohibits), requires R&D expensing (IFRS allows capitalization), and permits reversal of impairments only for financial assets. Foreign companies listing on U.S. exchanges (like Alibaba) must reconcile IFRS to GAAP in Form 20-F filings.\n美国公认会计原则（GAAP）是所有美国上市公司的强制性会计框架，由财务会计准则委员会（FASB）自1973年制定，由SEC强制执行。GAAP强调基于规则的标准，提供详细的实施指导——例如，收入确认遵循ASC 606，对何时记录销售有具体标准。相比之下，140多个国家使用的国际财务报告准则（IFRS）基于原则，提供更多灵活性。GAAP与IFRS的主要区别：GAAP使用后进先出（LIFO）库存估值（IFRS禁止），要求研发费用化（IFRS允许资本化），并仅允许金融资产减值转回。在美国交易所上市的外国公司（如阿里巴巴）必须在20-F表格申报中将IFRS与GAAP进行调节。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 57,
+    "content": "What does Revenue/Net Sales represent on the income statement?\n损益表上的收入/净销售额代表什么？",
+    "options": [
+      "Costs of production\n生产成本",
+      "Income from primary business minus returns and discounts\n主要业务活动收入减去退货和折扣",
+      "Non-operating expenses\n营业外费用"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Revenue (also called Net Sales or Top Line) represents total income from a company's primary business operations after deducting returns, discounts, and allowances. It's the starting point of the income statement. For example, Amazon's Q4 2023 revenue of $170B includes e-commerce sales ($100B), AWS cloud services ($24B), advertising ($14B), and subscription services ($10B), minus customer refunds and promotional discounts. Under GAAP's ASC 606 revenue recognition standard, revenue is recorded when control of goods/services transfers to customers—not necessarily when cash is received. For SaaS companies like Salesforce, multi-year subscriptions are recognized ratably over contract life, not upfront. Revenue growth is a key valuation driver—high-growth companies like Nvidia command P/S ratios of 20-30×.\n收入（也称净销售额或顶线）代表公司主要业务运营的总收入，扣除退货、折扣和折让后。它是损益表的起点。例如，亚马逊2023年第四季度1700亿美元收入包括电子商务销售（1000亿美元）、AWS云服务（240亿美元）、广告（140亿美元）和订阅服务（100亿美元），减去客户退款和促销折扣。根据GAAP的ASC 606收入确认标准，收入在商品/服务控制权转移给客户时记录——不一定是收到现金时。对于Salesforce等SaaS公司，多年订阅在合同期限内按比例确认，而非提前确认。收入增长是关键估值驱动因素——英伟达等高增长公司的市销率为20-30倍。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 58,
+    "content": "How is Gross Profit calculated?\n毛利如何计算？",
+    "options": [
+      "Revenue minus operating expenses\n收入减去营业费用",
+      "Revenue minus COGS\n收入减去COGS",
+      "Net income plus taxes\n净利润加上税款"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Gross Profit = Revenue - Cost of Goods Sold (COGS), measuring profit before operating expenses. COGS includes direct production costs: raw materials, factory labor, and manufacturing overhead. For example, if Apple sells $100B of iPhones with $60B COGS (components, assembly, shipping), Gross Profit is $40B (40% gross margin). Gross margin varies by industry: software companies like Microsoft achieve 68-70% (low COGS), while retailers like Walmart average 24-25% (thin margins). Rising COGS due to inflation or supply chain issues compresses margins—Tesla's gross margin fell from 27% (2022) to 18% (2023) due to price cuts and battery costs. Gross profit funds operating expenses (R&D, sales, admin) and determines operating leverage potential.\n毛利 = 收入 - 销售成本（COGS），衡量营业费用前的利润。COGS包括直接生产成本：原材料、工厂劳动力和制造费用。例如，如果苹果销售1000亿美元iPhone，COGS为600亿美元（组件、组装、运输），毛利为400亿美元（40%毛利率）。毛利率因行业而异：微软等软件公司达到68-70%（低COGS），而沃尔玛等零售商平均24-25%（薄利）。通胀或供应链问题导致的COGS上升压缩利润率——特斯拉毛利率因降价和电池成本从27%（2022）降至18%（2023）。毛利为营业费用（研发、销售、管理）提供资金，并决定营业杠杆潜力。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 59,
+    "content": "What does Operating Income (EBIT) exclude?\n营业利润(EBIT)排除什么？",
+    "options": [
+      "Revenues and COGS\n收入和COGS",
+      "Financing costs and taxes\n融资成本和税款",
+      "R&D expenses\n研发费用"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Operating Income (Earnings Before Interest and Taxes, EBIT) measures profit from core business operations, excluding financing costs (interest expense/income) and taxes. Formula: EBIT = Gross Profit - Operating Expenses (SG&A, R&D, depreciation). For example, if Microsoft has $100B gross profit, $25B R&D, $20B sales/marketing, and $5B admin costs, EBIT is $50B. EBIT enables comparison across companies with different capital structures (debt levels) and tax jurisdictions. Amazon's EBIT margin is 6-8% (capital-intensive logistics), while Meta's is 30-35% (asset-light software). EBIT is crucial for valuation—enterprise value (EV) is often divided by EBIT to calculate EV/EBIT multiples, normalizing for leverage differences.\n营业利润（息税前利润，EBIT）衡量核心业务运营的利润，不包括融资成本（利息支出/收入）和税收。公式：EBIT = 毛利 - 营业费用（销售管理费、研发、折旧）。例如，如果微软有1000亿美元毛利、250亿美元研发、200亿美元销售/营销和50亿美元管理费用，EBIT为500亿美元。EBIT使不同资本结构（债务水平）和税收管辖区的公司能够进行比较。亚马逊的EBIT利润率为6-8%（资本密集型物流），而Meta为30-35%（资产轻的软件）。EBIT对估值至关重要——企业价值（EV）通常除以EBIT以计算EV/EBIT倍数，标准化杠杆差异。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 60,
+    "content": "What is Net Income on the income statement?\n损益表上的净利润是什么？",
+    "options": [
+      "Pre-tax income minus taxes\n税前利润减去税款",
+      "Gross profit plus non-operating income\n毛利加营业外收入",
+      "Total assets minus liabilities\n总资产减负债"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Net Income (also called Net Profit or Bottom Line) is the final profit after deducting all expenses, interest, taxes, and non-operating items from revenue. Formula: Net Income = Revenue - COGS - Operating Expenses - Interest - Taxes ± Other Income/Losses. For example, Apple's FY2023: $383B revenue - $214B COGS - $55B operating expenses - $3B interest + $1B other income - $17B taxes = $97B net income. Net income determines EPS (Earnings Per Share = Net Income / Shares Outstanding) and is distributed as dividends or retained for reinvestment. However, net income can be manipulated through accounting choices (depreciation methods, revenue timing), so investors also examine EBITDA and Free Cash Flow for clearer profitability pictures.\n净利润（也称净收益或底线）是从收入中扣除所有费用、利息、税收和营业外项目后的最终利润。公式：净利润 = 收入 - COGS - 营业费用 - 利息 - 税收 ± 其他收入/损失。例如，苹果2023财年：3830亿美元收入 - 2140亿美元COGS - 550亿美元营业费用 - 30亿美元利息 + 10亿美元其他收入 - 170亿美元税收 = 970亿美元净利润。净利润决定EPS（每股收益 = 净利润/流通股），并作为股息分配或保留用于再投资。然而，净利润可以通过会计选择（折旧方法、收入确认时间）操纵，因此投资者还检查EBITDA和自由现金流以获得更清晰的盈利能力图景。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 61,
+    "content": "What does the balance sheet represent?\n资产负债表代表什么？",
+    "options": [
+      "Cash flows over a period\n一段时间内的现金流",
+      "A snapshot of assets, liabilities, and equity at a point in time\n特定时间点的资产、负债和权益快照",
+      "Revenues and expenses over time\n随时间推移的收入和费用"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The balance sheet provides a snapshot of a company's financial position at a specific point in time (e.g., December 31, 2023), following the fundamental accounting equation: Assets = Liabilities + Shareholders' Equity. It shows what the company owns (assets), owes (liabilities), and the residual ownership interest (equity). For example, Apple's Q4 2023 balance sheet: $353B total assets (including $62B cash, $120B receivables, $37B PP&E) = $290B liabilities (including $111B debt, $63B accounts payable) + $63B equity. Unlike the income statement (measures flows over a period), the balance sheet is a static snapshot. Analysts use balance sheet ratios like Debt-to-Equity (leverage), Current Ratio (liquidity), and ROE (profitability) to assess financial health.\n资产负债表提供公司在特定时间点（如2023年12月31日）的财务状况快照，遵循基本会计等式：资产 = 负债 + 股东权益。它显示公司拥有什么（资产）、欠什么（负债）以及剩余所有权权益（权益）。例如，苹果2023年第四季度资产负债表：3530亿美元总资产（包括620亿美元现金、1200亿美元应收账款、370亿美元固定资产）= 2900亿美元负债（包括1110亿美元债务、630亿美元应付账款）+ 630亿美元权益。与损益表（衡量一段时间内的流量）不同，资产负债表是静态快照。分析师使用资产负债表比率，如负债权益比（杠杆）、流动比率（流动性）和ROE（盈利能力）来评估财务健康。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 62,
+    "content": "What are assets on the balance sheet?\n资产负债表上的资产是什么？",
+    "options": [
+      "Obligations to pay\n支付义务",
+      "Resources expected to provide future economic benefits\n预期提供未来经济利益的资源",
+      "Shareholder dividends\n股东股息"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Assets are resources controlled by a company that are expected to provide future economic benefits through operations, sale, or conversion to cash. They're classified as current assets (convertible to cash within 12 months: cash, receivables, inventory) or non-current assets (long-term: PP&E, intangibles, goodwill). For example, Amazon's $462B total assets include: $86B cash/marketable securities, $64B receivables, $188B PP&E (warehouses, data centers), and $21B goodwill from acquisitions like Whole Foods. Asset quality matters—Tesla's $95B in PP&E (factories, equipment) generates revenue, while WeWork's $2B in leased office assets became stranded during bankruptcy. Intangible assets like patents (Pfizer's COVID vaccine IP) or brand value (Coca-Cola) don't appear on balance sheets unless acquired, understating true asset value.\n资产是公司控制的资源，预期通过运营、出售或转换为现金提供未来经济利益。它们分为流动资产（12个月内可转换为现金：现金、应收账款、库存）或非流动资产（长期：固定资产、无形资产、商誉）。例如，亚马逊4620亿美元总资产包括：860亿美元现金/有价证券、640亿美元应收账款、1880亿美元固定资产（仓库、数据中心）和210亿美元收购Whole Foods等的商誉。资产质量很重要——特斯拉950亿美元的固定资产（工厂、设备）产生收入，而WeWork 20亿美元的租赁办公资产在破产期间成为搁浅资产。辉瑞COVID疫苗知识产权或可口可乐品牌价值等无形资产除非收购否则不出现在资产负债表上，低估真实资产价值。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 63,
+    "content": "Difference between current and non-current liabilities?\n流动负债和非流动负债的区别？",
+    "options": [
+      "Current is long-term\n流动是长期的",
+      "Current settled within one year; non-current beyond one year\n流动负债一年内结算，非流动超过一年",
+      "Both are the same\n两者相同"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Current liabilities are obligations due within one year (accounts payable, short-term debt, accrued expenses, current portion of long-term debt, unearned revenue). Non-current liabilities are due beyond 12 months (long-term debt, bonds payable, pension obligations, deferred tax liabilities). For example, Tesla's Q4 2023: $29B current liabilities (including $15B accounts payable to suppliers, $3B accrued compensation, $2B deferred revenue from FSD pre-orders) vs $6B non-current liabilities (mostly long-term debt). The distinction matters for liquidity analysis—Current Ratio = Current Assets / Current Liabilities measures short-term solvency. A ratio <1.0 (current liabilities exceed assets) signals potential cash flow stress, as seen in startups like Rivian burning cash faster than revenue generation.\n流动负债是一年内到期的义务（应付账款、短期债务、应计费用、长期债务的当期部分、预收收入）。非流动负债是12个月以后到期的（长期债务、应付债券、养老金义务、递延税项负债）。例如，特斯拉2023年第四季度：290亿美元流动负债（包括150亿美元应付供应商账款、30亿美元应计薪酬、20亿美元FSD预订的递延收入）与60亿美元非流动负债（主要是长期债务）。这种区分对流动性分析很重要——流动比率 = 流动资产/流动负债衡量短期偿债能力。比率<1.0（流动负债超过资产）表明潜在现金流压力，如Rivian等初创公司烧钱速度快于收入产生。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 64,
+    "content": "What does Retained Earnings represent in equity?\n权益中的留存收益代表什么？",
+    "options": [
+      "Cumulative profits minus dividends\n累计利润减去股息",
+      "Par value of shares\n股票面值",
+      "Unrealized gains from investments\n投资的未实现收益"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Retained Earnings represent the cumulative net income a company has earned since inception, minus all dividends paid to shareholders—essentially profit reinvested into the business rather than distributed. Formula: Beginning Retained Earnings + Net Income - Dividends = Ending Retained Earnings. For example, Microsoft's $118B retained earnings (Q4 2023) reflects decades of profitable operations minus $74B in cumulative dividends since 2003. Negative retained earnings (accumulated deficit) indicate cumulative losses—Amazon had negative retained earnings until 2015 due to reinvestment strategy, while Tesla turned positive only in 2020. High retained earnings signal profitability but may suggest insufficient capital return to shareholders. Warren Buffett's Berkshire Hathaway retains $560B+ earnings, never paying dividends, preferring reinvestment for compounding growth.\n留存收益代表公司自成立以来赚取的累计净利润，减去向股东支付的所有股息——本质上是再投资于业务而非分配的利润。公式：期初留存收益 + 净利润 - 股息 = 期末留存收益。例如，微软1180亿美元的留存收益（2023年第四季度）反映了数十年的盈利运营减去自2003年以来740亿美元的累计股息。负留存收益（累计亏损）表明累计损失——亚马逊因再投资策略直到2015年才有负留存收益，而特斯拉仅在2020年转正。高留存收益表明盈利能力，但可能暗示向股东返还资本不足。巴菲特的伯克希尔·哈撒韦保留5600亿美元以上的收益，从不支付股息，宁愿再投资以实现复合增长。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 65,
+    "content": "What is Treasury Stock?\n什么是库存股？",
+    "options": [
+      "Newly issued shares\n新发行的股票",
+      "Repurchased shares held by company, deducted from equity\n公司持有的回购股票，从权益中扣除",
+      "Dividends paid out\n支付的股息"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Treasury Stock represents shares a company has repurchased from the open market and holds in its treasury, recorded as a contra-equity account (negative value) that reduces total shareholders' equity. For example, Apple's $656B in treasury stock (Q4 2023) reflects decades of massive buyback programs—it has retired ~40% of outstanding shares since 2012. Treasury shares have no voting rights, receive no dividends, and don't count toward EPS calculations (reducing denominator boosts EPS). Companies repurchase for multiple reasons: signal undervaluation (Berkshire buying back at <1.2× book value), offset dilution from stock-based compensation (tech companies), or return excess cash when dividends are tax-inefficient. Treasury stock can be reissued later (e.g., for M&A, employee stock plans) or formally retired.\n库存股代表公司从公开市场回购并持有在其金库中的股份，记录为权益抵减账户（负值），减少股东权益总额。例如，苹果6560亿美元的库存股（2023年第四季度）反映了数十年大规模回购计划——自2012年以来已注销约40%的流通股。库存股没有投票权，不获得股息，不计入EPS计算（减少分母提升EPS）。公司回购有多个原因：表明低估（伯克希尔以<1.2倍账面价值回购）、抵消股票薪酬稀释（科技公司）或在股息税收效率低时返还多余现金。库存股可以稍后重新发行（例如用于并购、员工股票计划）或正式注销。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 66,
+    "content": "What is Cash Flows from Operating Activities?\n经营活动产生的现金流量是什么？",
+    "options": [
+      "Cash from buying assets\n购买资产的现金",
+      "Net cash from core business operations\n核心业务运营产生的净现金",
+      "Cash from issuing stock\n发行股票的现金"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Cash Flows from Operating Activities (CFO) shows the net cash generated or consumed by a company's core business operations, serving as the \"cash version\" of net income by adding back non-cash expenses and adjusting for working capital changes. Formula: CFO = Net Income + Depreciation/Amortization ± Changes in Working Capital (receivables, inventory, payables). For example, Apple's FY2023 CFO of $110B starts with $97B net income, adds $11B depreciation, and adjusts for $2B working capital changes. Positive CFO indicates the business generates cash to fund growth, pay dividends, and reduce debt without external financing. Negative CFO (common in high-growth startups like Uber pre-profitability) signals cash burn requiring capital raises. CFO > Net Income suggests high-quality earnings; CFO < Net Income may indicate aggressive revenue recognition or rising receivables.\n经营活动产生的现金流量（CFO）显示公司核心业务运营产生或消耗的净现金，通过加回非现金费用并调整营运资本变动，作为净利润的"现金版本"。公式：CFO = 净利润 + 折旧/摊销 ± 营运资本变动（应收账款、库存、应付账款）。例如，苹果2023财年1100亿美元的CFO从970亿美元净利润开始，加上110亿美元折旧，并调整20亿美元营运资本变动。正CFO表明业务产生现金以资助增长、支付股息和减少债务，无需外部融资。负CFO（如Uber盈利前等高增长初创公司常见）表明烧钱需要融资。CFO > 净利润表明高质量盈利；CFO < 净利润可能表明激进的收入确认或应收账款上升。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 67,
+    "content": "What is Return on Equity (ROE)?\n什么是净资产收益率(ROE)？",
+    "options": [
+      "Net Income / Revenue\n净利润/收入",
+      "Net Income / Average Shareholders' Equity\n净利润/平均股东权益",
+      "Revenue - Expenses\n收入-费用"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Return on Equity (ROE) = Net Income / Average Shareholders' Equity measures how efficiently a company generates profit from shareholder investments. For example, Apple's FY2023: $97B net income / $63B average equity = 154% ROE, indicating exceptional capital efficiency. Warren Buffett considers ROE >15% consistently for 10+ years a sign of a \"great business\"—Coca-Cola averages 40-50% ROE. High ROE can stem from operational excellence (high margins) or leverage (debt amplifies returns). ROE >20% is excellent; 15-20% is good; <10% is poor. However, ROE can be artificially inflated by buybacks reducing equity or high leverage increasing risk. DuPont analysis decomposes ROE = (Net Margin) × (Asset Turnover) × (Equity Multiplier) to diagnose drivers. Negative equity (accumulated losses) makes ROE meaningless.\nROE（净资产收益率）= 净利润/平均股东权益，衡量公司从股东投资中产生利润的效率。例如，苹果2023财年：970亿美元净利润/630亿美元平均权益 = 154% ROE，表明卓越的资本效率。巴菲特认为10年以上持续ROE >15%是"伟大企业"的标志——可口可乐平均ROE为40-50%。高ROE可能源于卓越运营（高利润率）或杠杆（债务放大回报）。ROE >20%优秀；15-20%良好；<10%较差。然而，ROE可能被回购减少权益或高杠杆增加风险人为抬高。杜邦分析将ROE分解为（净利率）×（资产周转率）×（权益乘数）以诊断驱动因素。负权益（累计亏损）使ROE无意义。",
+    "category": "7. Financial Analysis / 财报分析"
+  },
+  {
+    "id": 68,
+    "content": "Primary purpose of sell-side research reports?\n卖方研究报告的主要目的？",
+    "options": [
+      "Internal management advice\n提供内部管理建议",
+      "Guide client investment decisions with recommendations and target prices\n通过建议和目标价指导客户投资决策",
+      "Report on employee satisfaction\n报告员工满意度"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Sell-side research reports, published by investment banks like Goldman Sachs, Morgan Stanley, and JPMorgan, provide detailed analysis of public companies to guide institutional and retail clients' investment decisions. Reports include: 1) Buy/Hold/Sell recommendations, 2) 12-month price targets (e.g., \"$200 target, 25% upside\"), 3) Financial models (revenue, EPS forecasts), 4) Industry comparisons, and 5) Risk assessments. For example, a Goldman analyst covering Nvidia might issue a \"Buy\" rating with $800 target based on AI chip demand projections. However, conflicts of interest exist—banks earn fees from companies they cover (IPOs, M&A advisory), creating pressure for positive ratings. Studies show 53% of sell-side ratings are \"Buy,\" 42% \"Hold,\" and only 5% \"Sell,\" despite 50% of stocks underperforming markets, revealing upward bias.\n卖方研究报告由高盛、摩根士丹利和摩根大通等投资银行发布，提供上市公司详细分析以指导机构和散户客户的投资决策。报告包括：1）买入/持有/卖出建议，2）12个月目标价（例如"200美元目标，25%上行空间"），3）财务模型（收入、EPS预测），4）行业比较，和5）风险评估。例如，高盛分析师覆盖英伟达可能基于AI芯片需求预测发布"买入"评级，目标价800美元。然而，存在利益冲突——银行从其覆盖的公司赚取费用（IPO、并购咨询），造成正面评级压力。研究显示53%的卖方评级为"买入"，42%为"持有"，仅5%为"卖出"，尽管50%的股票跑输市场，揭示向上偏见。",
+    "category": "8. Revenue & Industry / 营收与行业分析"
+  },
+  {
+    "id": 69,
+    "content": "What does a Buy recommendation indicate?\n分析师买入评级表明什么？",
+    "options": [
+      "Expected to underperform\n预计跑输市场",
+      "Expected to significantly outperform the market\n预计显著跑赢市场",
+      "Should be held without changes\n应持有不变"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A \"Buy\" (or \"Strong Buy\") recommendation indicates the analyst expects the stock to significantly outperform its benchmark index or peer group—typically 10-20%+ total return over the next 12 months. For example, if Nvidia trades at $500 with a $650 price target, that's 30% upside, justifying a \"Buy\" rating. Analysts base Buy ratings on catalysts like: accelerating revenue growth (Tesla's FSD adoption), margin expansion (cost-cutting), market share gains (Amazon AWS vs Azure), or valuation dislocation (trading at 15× P/E vs industry 20×). However, Buy ratings don't guarantee gains—Tesla had 25 \"Buy\" ratings in early 2022 at $350/share before falling to $100 by year-end. Always cross-reference multiple analyst views and understand assumptions behind price targets.\n"买入"（或"强烈买入"）建议表明分析师预期该股票将显著跑赢其基准指数或同行组——通常在未来12个月内总回报10-20%以上。例如，如果英伟达交易价500美元，目标价650美元，那是30%上行空间，证明"买入"评级合理。分析师基于催化剂给予买入评级，如：收入增长加速（特斯拉FSD采用）、利润率扩张（成本削减）、市场份额增长（亚马逊AWS vs Azure）或估值错位（以15倍市盈率交易而行业为20倍）。然而，买入评级不保证收益——特斯拉在2022年初每股350美元时有25个"买入"评级，但到年底跌至100美元。始终交叉参考多个分析师观点并理解目标价背后的假设。",
+    "category": "8. Revenue & Industry / 营收与行业分析"
+  },
+  {
+    "id": 70,
+    "content": "How to find analyst ratings in MooMoo?\n如何在MooMoo中找到分析师评级？",
+    "options": [
+      "Select company > Analyst Ratings > Target Price/Rating Details\n选择公司 > 分析师评级 > 目标价/评级明细",
+      "Market > US Stocks > Performance Expectations\n市场 > 美股 > 业绩预期",
+      "Search Morningstar reports directly\n直接搜索晨星报告"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "In MooMoo (富途牛牛) trading platform, you can access analyst ratings and price targets through a straightforward navigation path: 1) Select the company ticker (e.g., search \"AAPL\" for Apple), 2) Tap \"Analyst Ratings\" section (usually near \"Financials\" and \"News\"), 3) View \"Target Price\" showing consensus price targets from 20-40 analysts (e.g., \"Average: $195, High: $220, Low: $160\"), and 4) Check \"Rating Details\" showing distribution of Buy/Hold/Sell recommendations and individual analyst forecasts from firms like Goldman Sachs, Morgan Stanley, and JPMorgan. MooMoo aggregates data from major providers like FactSet and Bloomberg. This feature helps retail investors quickly gauge Wall Street's sentiment without paying for expensive research subscriptions ($20K-$50K annually for institutional access).\n在MooMoo（富途牛牛）交易平台，你可以通过简单的导航路径访问分析师评级和目标价：1）选择公司代码（例如搜索"AAPL"代表苹果），2）点击"分析师评级"部分（通常在"财务"和"新闻"附近），3）查看"目标价"显示来自20-40位分析师的共识目标价（例如"平均：195美元，最高：220美元，最低：160美元"），和4）查看"评级明细"显示买入/持有/卖出建议的分布以及高盛、摩根士丹利和摩根大通等公司个别分析师的预测。MooMoo聚合来自FactSet和彭博等主要提供商的数据。这个功能帮助散户投资者快速了解华尔街情绪，无需支付昂贵的研究订阅费（机构访问每年2万-5万美元）。",
+    "category": "8. Revenue & Industry / 营收与行业分析"
+  },
+  {
+    "id": 71,
+    "content": "Key step in bottom-up revenue analysis?\n自下而上收入分析的关键步骤？",
+    "options": [
+      "Forecasting market size based on GDP growth\n基于GDP增长预测市场规模",
+      "Decomposing revenues into components like volume and price\n将收入分解为销量和价格等组成部分",
+      "Assessing supplier bargaining power\n评估供应商议价能力"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Bottom-up revenue analysis decomposes a company's total revenue into granular components—unit volume, pricing, product mix, and geographic segments—to build forecasts from micro-level drivers. For example, Tesla's revenue forecast: (Units Sold per Model × ASP per Model) across Model 3/Y/S/X/Cybertruck + Energy (Powerwall/Megapack units × prices) + Services (FSD subscriptions × adoption rate). Analysts estimate: 2M vehicles × $45K ASP = $90B auto revenue + $6B energy + $8B services = $104B total (2024 projection). This contrasts with top-down analysis (starting with GDP growth → auto industry growth → Tesla's market share). Bottom-up provides precision for companies with transparent metrics (e.g., Netflix: subscribers × ARPU = revenue), but is harder for opaque businesses. Key benefit: identifies specific risks (e.g., ASP pressure from price cuts).\n自下而上收入分析将公司总收入分解为细粒度组成部分——单位销量、定价、产品组合和地理细分——从微观层面驱动因素构建预测。例如，特斯拉收入预测：（每个型号销售单位×每个型号平均售价）跨Model 3/Y/S/X/Cybertruck + 能源（Powerwall/Megapack单位×价格）+ 服务（FSD订阅×采用率）。分析师估计：200万辆汽车×4.5万美元平均售价 = 900亿美元汽车收入 + 60亿美元能源 + 80亿美元服务 = 1040亿美元总计（2024预测）。这与自上而下分析形成对比（从GDP增长→汽车行业增长→特斯拉市场份额开始）。自下而上为具有透明指标的公司提供精确性（例如Netflix：订户×ARPU = 收入），但对不透明业务更难。关键好处：识别特定风险（例如降价导致的平均售价压力）。",
+    "category": "8. Revenue & Industry / 营收与行业分析"
+  },
+  {
+    "id": 72,
+    "content": "What does high buyer power mean in Porter's Five Forces?\n波特五力中高买家力量意味着什么？",
+    "options": [
+      "Few choices, allowing higher prices\n客户选择少，可定高价",
+      "Customers can demand lower prices due to many options\n客户可以要求更低的价格",
+      "Substitutes are limited\n替代品有限"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "In Porter's Five Forces framework, high buyer power occurs when customers can easily switch suppliers, negotiate lower prices, or demand higher quality—compressing profit margins. For example, the airline industry faces extreme buyer power: passengers compare prices on Expedia/Kayak in seconds, have zero switching costs, and choose based purely on price for commodities like economy flights. This forces airlines to operate at 3-5% net margins. Similarly, Walmart exerts massive buyer power over suppliers—demanding price cuts, favorable terms, or shelf space fees—because losing Walmart's distribution means losing 15-20% of revenue for consumer goods companies. Low buyer power exists in industries with high switching costs (enterprise software like SAP), proprietary products (Nvidia GPUs for AI), or brand loyalty (luxury goods like Hermès). Buyer power directly impacts pricing leverage and profitability.\n在波特五力框架中，当客户可以轻松切换供应商、谈判更低价格或要求更高质量时，就会出现高买家力量——压缩利润率。例如，航空业面临极端买家力量：乘客在Expedia/Kayak上几秒钟内比较价格，零切换成本，纯粹基于价格选择经济舱等商品化航班。这迫使航空公司以3-5%的净利率运营。同样，沃尔玛对供应商施加巨大买家力量——要求降价、有利条款或货架费——因为失去沃尔玛的分销意味着消费品公司失去15-20%的收入。低买家力量存在于具有高切换成本（SAP等企业软件）、专有产品（英伟达AI GPU）或品牌忠诚度（爱马仕等奢侈品）的行业。买家力量直接影响定价杠杆和盈利能力。",
+    "category": "8. Revenue & Industry / 营收与行业分析"
+  },
+  {
+    "id": 73,
+    "content": "All of the following are SROs EXCEPT:\n以下所有都是SRO，除了？",
+    "options": [
+      "FINRA\nFINRA",
+      "MSRB\nMSRB",
+      "SEC\nSEC"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Self-Regulatory Organizations (SROs) are non-governmental entities authorized by the SEC to create and enforce industry rules for their members. Key SROs include: 1) FINRA (Financial Industry Regulatory Authority)—oversees 3,400+ broker-dealers and 600K+ registered representatives, enforcing trading rules and conducting exams; 2) MSRB (Municipal Securities Rulemaking Board)—regulates municipal bond dealers and advisors; 3) CBOE, NYSE, NASDAQ—exchanges that set listing standards and trading rules. In contrast, the SEC is a federal government agency established in 1934 that oversees SROs, enforces securities laws, and has legal authority to prosecute violations. SROs handle day-to-day compliance (e.g., FINRA's BrokerCheck database), while the SEC focuses on systemic enforcement (e.g., prosecuting insider trading, fraud). This two-tier system balances industry self-governance with government oversight.\n自律组织（SRO）是SEC授权的非政府实体，为其成员创建和执行行业规则。关键SRO包括：1）FINRA（金融业监管局）——监管3,400多家经纪交易商和60万以上注册代表，执行交易规则并进行考试；2）MSRB（市政证券规则制定委员会）——监管市政债券交易商和顾问；3）CBOE、纽交所、纳斯达克——设定上市标准和交易规则的交易所。相比之下，SEC是1934年成立的联邦政府机构，监督SRO，执行证券法，并具有起诉违规行为的法律权力。SRO处理日常合规（例如FINRA的BrokerCheck数据库），而SEC专注于系统性执法（例如起诉内幕交易、欺诈）。这种两级体系平衡行业自治与政府监督。",
+    "category": "9. Financial Ethics / 金融道德"
+  },
+  {
+    "id": 74,
+    "content": "Maximum penalty for insider trading?\n内幕交易个人最高罚款金额？",
+    "options": [
+      "$5 million\n500万美元",
+      "$50,000\n5万美元",
+      "$1 million\n100万美元"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Under the Insider Trading Sanctions Act (1984) and subsequent amendments, individuals convicted of insider trading face maximum civil penalties of 3× the profit gained or loss avoided, plus criminal penalties: up to 20 years imprisonment and $5 million in fines. For example, Raj Rajaratnam (Galleon Group hedge fund) was sentenced to 11 years in prison and fined $10 million in 2011 for making $63M in illegal profits. Martha Stewart served 5 months in prison for obstruction related to insider trading (not the trading itself). Companies can face $25 million fines. The SEC also pursues disgorgement (returning ill-gotten gains) and trading bans. Famous cases: Ivan Boesky paid $100M penalty in 1986; SAC Capital paid $1.8B in 2013. Insider trading undermines market integrity—using material non-public information (like merger news, earnings data) to trade gives unfair advantage, eroding investor confidence.\n根据《内幕交易制裁法》（1984）及后续修正案，内幕交易定罪个人面临最高民事处罚为获利或避免损失的3倍，加上刑事处罚：最高20年监禁和500万美元罚款。例如，Raj Rajaratnam（Galleon Group对冲基金）因非法获利6300万美元于2011年被判11年监禁并罚款1000万美元。玛莎·斯图尔特因与内幕交易相关的妨碍司法（而非交易本身）入狱5个月。公司可面临2500万美元罚款。SEC还追求收回非法所得和交易禁令。著名案例：Ivan Boesky 1986年支付1亿美元罚款；SAC Capital 2013年支付18亿美元。内幕交易破坏市场诚信——利用重大非公开信息（如并购新闻、财报数据）交易给予不公平优势，侵蚀投资者信心。",
+    "category": "9. Financial Ethics / 金融道德"
+  }
+]

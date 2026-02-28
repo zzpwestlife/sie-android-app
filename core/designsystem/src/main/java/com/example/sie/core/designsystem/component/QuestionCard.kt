@@ -22,11 +22,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sie.core.model.Question
 import com.example.sie.core.designsystem.theme.*
+import com.example.sie.core.common.R as CommonR
 
 @Composable
 fun QuestionCard(
@@ -77,8 +79,8 @@ fun QuestionCard(
                     Color(0xFF667eea)
                 )
                 else -> Triple(
-                    Color.White.copy(alpha = 0.3f),
-                    Color.White.copy(alpha = 0.1f),
+                    Color.White.copy(alpha = 0.5f),
+                    Color.White.copy(alpha = 0.15f),
                     Color.White
                 )
             }
@@ -97,7 +99,7 @@ fun QuestionCard(
         if (showFeedback && showExplanation) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Explanation:",
+                text = stringResource(CommonR.string.common_explanation),
                 style = MaterialTheme.typography.titleSmall,
                 color = Color(0xFF4facfe)
             )
@@ -142,7 +144,7 @@ fun OptionRow(
                 onClick = null, // Handled by Surface
                 colors = RadioButtonDefaults.colors(
                     selectedColor = contentColor,
-                    unselectedColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    unselectedColor = contentColor.copy(alpha = 0.7f)
                 )
             )
             Text(

@@ -2,6 +2,7 @@ package com.example.sie.feature.exam
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sie.core.common.AppConfig
 import com.example.sie.core.data.repository.ExamRepository
 import com.example.sie.core.data.repository.QuestionRepository
 import com.example.sie.core.data.repository.UserDataRepository
@@ -59,7 +60,7 @@ class ExamViewModel @Inject constructor(
                         questions = selectedQuestions,
                         currentQuestionIndex = 0,
                         userAnswers = emptyMap(),
-                        timeLeftMillis = 30 * 60 * 1000L // 30 minutes
+                        timeLeftMillis = AppConfig.EXAM_DURATION_MILLIS
                     )
                     startTimer()
                 } else {
@@ -162,7 +163,24 @@ class ExamViewModel @Inject constructor(
     fun toggleBookmark(questionId: Int) {
         viewModelScope.launch {
             questionRepository.toggleBookmark(questionId)
-            // The UI will be updated by the flow from the repository
+            // Update local state to reflect the change immediately
+            _uiState.update { state ->
+                when (state) {
+                    is ExamUiState.InProgress -> {
+                        val updatedQuestions = state.questions.map { 
+                            if (it.id == questionId) it.copy(isBookmarked = !it.isBookmarked) else it 
+                        }
+                        state.copy(questions = updatedQuestions)
+                    }
+                    is ExamUiState.Finished -> {
+                        val updatedQuestions = state.questions.map { 
+                            if (it.id == questionId) it.copy(isBookmarked = !it.isBookmarked) else it 
+                        }
+                        state.copy(questions = updatedQuestions)
+                    }
+                    else -> state
+                }
+            }
         }
     }
 

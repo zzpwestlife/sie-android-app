@@ -3,6 +3,7 @@ package com.example.sie.feature.study
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sie.core.data.repository.QuestionRepository
+import com.example.sie.core.data.repository.UserDataRepository
 import com.example.sie.core.model.Question
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -10,6 +11,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,11 +43,16 @@ private data class StudyHistoryItem(
 
 @HiltViewModel
 class StudyViewModel @Inject constructor(
-    private val questionRepository: QuestionRepository
+    private val questionRepository: QuestionRepository,
+    private val userDataRepository: UserDataRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<StudyUiState>(StudyUiState.Loading)
     val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
+    
+    // Language state
+    private val _language = MutableStateFlow("zh")
+    val language: StateFlow<String> = _language.asStateFlow()
 
     private val history = mutableListOf<StudyHistoryItem>()
     // Cache all questions to avoid repeated DB calls and ensure no immediate repeats
@@ -57,6 +64,11 @@ class StudyViewModel @Inject constructor(
     private var stats = StudyStats()
 
     init {
+        viewModelScope.launch {
+            userDataRepository.userData.collectLatest { userData ->
+                _language.value = userData.language
+            }
+        }
         initializeQuestions()
     }
 

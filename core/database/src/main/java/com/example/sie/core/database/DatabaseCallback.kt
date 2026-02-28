@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.sie.core.database.model.CardEntity
 import com.example.sie.core.database.model.QuestionEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,8 +35,13 @@ class DatabaseCallback(
     }
 
     private suspend fun populateDatabase() {
+        populateQuestions()
+        populateCards()
+    }
+
+    private suspend fun populateQuestions() {
         try {
-            Log.d("DatabaseCallback", "populateDatabase started")
+            Log.d("DatabaseCallback", "populateQuestions started")
             val database = databaseProvider.get()
             val dao = database.questionDao()
 
@@ -43,11 +49,11 @@ class DatabaseCallback(
             Log.d("DatabaseCallback", "Current question count: $count")
             
             if (count > 0) {
-                Log.d("DatabaseCallback", "Database already populated, skipping.")
+                Log.d("DatabaseCallback", "Questions already populated, skipping.")
                 return
             }
 
-            Log.d("DatabaseCallback", "Starting population from assets...")
+            Log.d("DatabaseCallback", "Starting question population from assets...")
             val inputStream = context.assets.open("questions.json")
             val size = inputStream.available()
             val buffer = ByteArray(size)
@@ -87,7 +93,65 @@ class DatabaseCallback(
                 Log.e("DatabaseCallback", "No questions parsed!")
             }
         } catch (e: Exception) {
-            Log.e("DatabaseCallback", "Error populating database", e)
+            Log.e("DatabaseCallback", "Error populating questions", e)
+            e.printStackTrace()
+        }
+    }
+
+    private suspend fun populateCards() {
+        try {
+            Log.d("DatabaseCallback", "populateCards started")
+            val database = databaseProvider.get()
+            val dao = database.cardDao()
+
+            val count = dao.getCardCount()
+            Log.d("DatabaseCallback", "Current card count: $count")
+
+            if (count > 0) {
+                Log.d("DatabaseCallback", "Cards already populated, skipping.")
+                return
+            }
+
+            Log.d("DatabaseCallback", "Starting card population from assets...")
+            val inputStream = context.assets.open("card.json")
+            val size = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            val jsonString = String(buffer, Charsets.UTF_8)
+            Log.d("DatabaseCallback", "JSON string length: ${jsonString.length}")
+
+            val cards = mutableListOf<CardEntity>()
+            val jsonArray = JSONArray(jsonString)
+            Log.d("DatabaseCallback", "JSONArray length: ${jsonArray.length()}")
+
+            for (i in 0 until jsonArray.length()) {
+                try {
+                    val obj = jsonArray.getJSONObject(i)
+                    val image = if (obj.has("image") && !obj.isNull("image")) obj.getString("image") else null
+
+                    cards.add(
+                        CardEntity(
+                            id = obj.getInt("id"),
+                            front = obj.getString("front"),
+                            back = obj.getString("back"),
+                            category = obj.getString("category"),
+                            image = image
+                        )
+                    )
+                } catch (e: Exception) {
+                    Log.e("DatabaseCallback", "Error parsing card at index $i", e)
+                }
+            }
+
+            if (cards.isNotEmpty()) {
+                dao.insertCards(cards)
+                Log.d("DatabaseCallback", "Successfully inserted ${cards.size} cards.")
+            } else {
+                Log.e("DatabaseCallback", "No cards parsed!")
+            }
+        } catch (e: Exception) {
+            Log.e("DatabaseCallback", "Error populating cards", e)
             e.printStackTrace()
         }
     }
