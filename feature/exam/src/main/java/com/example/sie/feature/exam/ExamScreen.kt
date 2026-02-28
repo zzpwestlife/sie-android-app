@@ -50,6 +50,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateIntAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -664,22 +666,11 @@ private fun ExamResultContent(
                             color = if (state.passed) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error
                         )
 
-                        // Score Circle (Simplified as Text for now, can be Canvas later)
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier
-                                .size(120.dp)
-                                .background(
-                                    color = MaterialTheme.colorScheme.surfaceVariant,
-                                    shape = androidx.compose.foundation.shape.CircleShape
-                                )
-                        ) {
-                            Text(
-                                text = "${state.score}%",
-                                style = MaterialTheme.typography.displayMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
+                        // Animated Score Circle
+                        AnimatedScoreCircle(
+                            score = state.score,
+                            passed = state.passed
+                        )
 
                         // Stats Row
                         Row(
@@ -794,6 +785,39 @@ private fun ExamResultContent(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun AnimatedScoreCircle(
+    score: Int,
+    passed: Boolean,
+    modifier: Modifier = Modifier
+) {
+    val animatedScore by animateIntAsState(
+        targetValue = score,
+        animationSpec = tween(
+            durationMillis = 700,
+            easing = FastOutSlowInEasing
+        ),
+        label = "score_animation"
+    )
+
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
+            .size(120.dp)
+            .background(
+                color = if (passed) Color(0xFF4CAF50).copy(alpha = 0.2f) else Color(0xFFF44336).copy(alpha = 0.2f),
+                shape = androidx.compose.foundation.shape.CircleShape
+            )
+    ) {
+        Text(
+            text = "$animatedScore%",
+            style = MaterialTheme.typography.displayMedium,
+            fontWeight = FontWeight.Bold,
+            color = if (passed) Color(0xFF4CAF50) else Color(0xFFF44336)
+        )
     }
 }
 
