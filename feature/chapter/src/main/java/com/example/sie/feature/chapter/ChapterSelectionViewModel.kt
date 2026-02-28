@@ -1,0 +1,101 @@
+package com.example.sie.feature.chapter
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.sie.core.data.repository.QuestionRepository
+import com.example.sie.core.model.Chapter
+import com.example.sie.core.model.extractLocalizedName
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+sealed interface ChapterSelectionUiState {
+    data object Loading : ChapterSelectionUiState
+    data class Success(val chapters: List<Chapter>) : ChapterSelectionUiState
+    data class Error(val message: String) : ChapterSelectionUiState
+}
+
+@HiltViewModel
+class ChapterSelectionViewModel @Inject constructor(
+    private val questionRepository: QuestionRepository
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow<ChapterSelectionUiState>(ChapterSelectionUiState.Loading)
+    val uiState: StateFlow<ChapterSelectionUiState> = _uiState.asStateFlow()
+
+    private val _language = MutableStateFlow("en")
+    val language: StateFlow<String> = _language.asStateFlow()
+
+    init {
+        loadChapters()
+    }
+
+    fun setLanguage(lang: String) {
+        _language.value = lang
+        // Reload chapters to update displayName
+        loadChapters()
+    }
+
+    private fun loadChapters() {
+        viewModelScope.launch {
+            try {
+                questionRepository.getAllCategories()
+                    .combine(questionRepository.getAllQuestions()) { categories, questions ->
+                        categories.map { category ->
+                            val chapterQuestions = questions.filter { it.category == category }
+                            val studiedQuestions = chapterQuestions.filter { it.lastStudiedAt != null }
+                            val correctCount = studiedQuestions.count { !it.isWrong }
+
+                            Chapter(
+                                name = category,
+                                displayName = category.extractLocalizedName(_language.value),
+                                totalQuestions = chapterQuestions.size,
+                                studiedQuestions = studiedQuestions.size,
+                                correctCount = correctCount,
+                                wrongCount = chapterQuestions.sumOf { it.wrongCount },
+                                accuracyRate = if (studiedQuestions.isEmpty()) 0f
+                                    else (correctCount.toFloat() / studiedQuestions.size) * 100f,
+                                lastStudiedAt = chapterQuestions.mapNotNull { it.lastStudiedAt }.maxOrNull()
+                            )
+                        }
+                    }
+                    .collect { chapters ->
+                        _uiState.value = ChapterSelectionUiState.Success(chapters)
+                    }
+            } catch (e: Exception) {
+                _uiState.value = ChapterSelectionUiState.Error(e.message ?: "Unknown error")
+            }
+        }
+    }
+
+    fun toggleChapterSelection(chapterName: String) {
+        val currentState = _uiState.value
+        if (currentState is ChapterSelectionUiState.Success) {
+            val updatedChapters = currentState.chapters.map { chapter ->
+                if (chapter.name == chapterName) {
+                    chapter.copy(isSelected = !chapter.isSelected)
+                } else {
+                    chapter
+                }
+            }
+            _uiState.value = currentState.copy(chapters = updatedChapters)
+        }
+    }
+
+    fun getSelectedChapters(): List<String> {
+        val currentState = _uiState.value
+        return if (currentState is ChapterSelectionUiState.Success) {
+            currentState.chapters.filter { it.isSelected }.map { it.name }
+        } else {
+            emptyList()
+        }
+    }
+
+    fun hasSelectedChapters(): Boolean {
+        return getSelectedChapters().isNotEmpty()
+    }
+}
