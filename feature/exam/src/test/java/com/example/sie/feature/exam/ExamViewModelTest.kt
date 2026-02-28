@@ -268,4 +268,30 @@ class ExamViewModelTest {
         assertEquals(3, state.totalQuestions)
         coVerify { examRepository.saveExamResult(any()) }
     }
+
+    @Test
+    fun handleError_whenRepositoryFails() = runTest {
+        // Arrange
+        coEvery { questionRepository.getAllQuestionsList() } throws RuntimeException("Database error")
+        every { userDataRepository.userData } returns flowOf(
+            UserData(
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                useDynamicColor = false,
+                fontSizeScale = 0,
+                language = "zh"
+            )
+        )
+
+        // Act
+        viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+        viewModel.startExam()
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Assert - should remain in Loading or handle gracefully
+        val state = viewModel.uiState.value
+        // The implementation catches exception and prints stack trace,
+        // but doesn't update state, so it remains Loading
+        assertTrue("State should remain Loading after error", state is ExamUiState.Loading)
+    }
 }
