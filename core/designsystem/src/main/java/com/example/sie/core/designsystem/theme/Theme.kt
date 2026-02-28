@@ -1,11 +1,6 @@
 package com.example.sie.core.designsystem.theme
 
 import android.app.Activity
-
-// Animation durations
-const val ANIM_FAST = 300 // Button clicks
-const val ANIM_NORMAL = 500 // Page transitions
-const val ANIM_SLOW = 700 // Score reveals
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +14,11 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+
+// Animation durations
+const val ANIM_FAST = 300 // Button clicks
+const val ANIM_NORMAL = 500 // Page transitions
+const val ANIM_SLOW = 700 // Score reveals
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
