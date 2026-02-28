@@ -59,9 +59,12 @@ class StudyViewModel @Inject constructor(
     private var allQuestionsCache: List<Question> = emptyList()
     // Queue of shuffled questions to be served
     private val availableQuestions = mutableListOf<Question>()
-    
+
     private var currentIndex = -1
     private var stats = StudyStats()
+
+    // Support for chapter-based learning
+    private var selectedCategories: List<String>? = null
 
     init {
         viewModelScope.launch {
@@ -70,6 +73,51 @@ class StudyViewModel @Inject constructor(
             }
         }
         initializeQuestions()
+    }
+
+    fun startChapterStudy(categories: List<String>) {
+        selectedCategories = categories
+        initializeChapterQuestions()
+    }
+
+    private fun initializeChapterQuestions() {
+        viewModelScope.launch {
+            _uiState.value = StudyUiState.Loading
+            try {
+                val categories = selectedCategories ?: run {
+                    // Fallback to all questions if no categories specified
+                    initializeQuestions()
+                    return@launch
+                }
+
+                questionRepository.getQuestionsByCategories(categories).collect { questions ->
+                    if (questions.isNotEmpty()) {
+                        allQuestionsCache = smartSortQuestions(questions)
+
+                        if (history.isEmpty()) {
+                            availableQuestions.clear()
+                            availableQuestions.addAll(allQuestionsCache)
+                            loadNextQuestion()
+                        }
+
+                        this.cancel()
+                    }
+                }
+            } catch (e: Exception) {
+                if (e !is kotlinx.coroutines.CancellationException) {
+                    _uiState.value = StudyUiState.Error(e.message ?: "Unknown error")
+                }
+            }
+        }
+    }
+
+    private fun smartSortQuestions(questions: List<Question>): List<Question> {
+        return questions.sortedWith(
+            compareByDescending<Question> { it.isWrong }           // 1. Wrong questions first
+                .thenByDescending { it.wrongCount }                // 2. Higher error count first
+                .thenBy { it.lastStudiedAt ?: 0L }                 // 3. Unstudied or oldest first
+                .thenBy { it.id }                                   // 4. Stable sort by ID
+        )
     }
 
     private fun initializeQuestions() {
@@ -134,20 +182,29 @@ class StudyViewModel @Inject constructor(
 
     fun selectOption(index: Int) {
         val currentItem = history.getOrNull(currentIndex) ?: return
-        
+
         if (!currentItem.isAnswerRevealed) {
             val isCorrect = index == currentItem.question.correctAnswerIndex
-            
+
             // Update history item
             currentItem.selectedOptionIndex = index
             currentItem.isAnswerRevealed = true
             currentItem.isCorrect = isCorrect
-            
+
             // Update stats
             stats = stats.copy(
                 totalAnswered = stats.totalAnswered + 1,
                 correctCount = if (isCorrect) stats.correctCount + 1 else stats.correctCount
             )
+
+            // Mark question as studied
+            viewModelScope.launch {
+                try {
+                    questionRepository.markQuestionAsStudied(currentItem.question.id)
+                } catch (_: Exception) {
+                    // Silently ignore
+                }
+            }
 
             // Mark wrong questions in database for review later
             if (!isCorrect) {

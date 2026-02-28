@@ -1,7 +1,10 @@
 package com.example.sie.feature.study
 
 import com.example.sie.core.data.repository.QuestionRepository
+import com.example.sie.core.data.repository.UserDataRepository
+import com.example.sie.core.model.DarkThemeConfig
 import com.example.sie.core.model.Question
+import com.example.sie.core.model.UserData
 import io.mockk.Runs
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
@@ -24,10 +27,20 @@ class StudyViewModelTest {
 
     private lateinit var viewModel: StudyViewModel
     private val questionRepository: QuestionRepository = mockk()
+    private val userDataRepository: UserDataRepository = mockk()
 
     @Before
     fun setup() {
         clearAllMocks()
+        // Mock UserDataRepository to return default UserData
+        coEvery { userDataRepository.userData } returns flowOf(
+            UserData(
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                useDynamicColor = false,
+                fontSizeScale = 0,
+                language = "en"
+            )
+        )
     }
 
     @Test
@@ -44,7 +57,7 @@ class StudyViewModelTest {
         coEvery { questionRepository.getAllQuestions() } returns flowOf(listOf(mockQuestion))
 
         // Act
-        viewModel = StudyViewModel(questionRepository)
+        viewModel = StudyViewModel(questionRepository, userDataRepository)
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
 
         // Assert
@@ -69,7 +82,7 @@ class StudyViewModelTest {
         coEvery { questionRepository.getAllQuestions() } returns flowOf(listOf(mockQuestion))
 
         // Act
-        viewModel = StudyViewModel(questionRepository)
+        viewModel = StudyViewModel(questionRepository, userDataRepository)
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
         viewModel.selectOption(1) // Select correct answer
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
@@ -94,9 +107,10 @@ class StudyViewModelTest {
         )
         coEvery { questionRepository.getAllQuestions() } returns flowOf(listOf(mockQuestion))
         coEvery { questionRepository.markAsWrong(any()) } just Runs
+        coEvery { questionRepository.markQuestionAsStudied(any()) } just Runs
 
         // Act
-        viewModel = StudyViewModel(questionRepository)
+        viewModel = StudyViewModel(questionRepository, userDataRepository)
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
         viewModel.selectOption(0) // Select wrong answer "Seoul"
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
@@ -115,7 +129,7 @@ class StudyViewModelTest {
         coEvery { questionRepository.getAllQuestions() } returns flowOf(emptyList())
 
         // Act
-        viewModel = StudyViewModel(questionRepository)
+        viewModel = StudyViewModel(questionRepository, userDataRepository)
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
 
         // Assert - Empty list means data not yet populated, so stays Loading
@@ -129,7 +143,7 @@ class StudyViewModelTest {
         coEvery { questionRepository.getAllQuestions() } throws RuntimeException("Database error")
 
         // Act
-        viewModel = StudyViewModel(questionRepository)
+        viewModel = StudyViewModel(questionRepository, userDataRepository)
         mainDispatcherRule.testDispatcher.scheduler.advanceUntilIdle()
 
         // Assert

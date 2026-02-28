@@ -45,6 +45,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.QuestionCard
 import kotlinx.coroutines.delay
@@ -57,7 +58,8 @@ fun StudyRoute(
     onBackClick: () -> Unit,
     viewModel: StudyViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val language by viewModel.language.collectAsStateWithLifecycle()
     
     StudyScreen(
         uiState = uiState,
@@ -65,7 +67,8 @@ fun StudyRoute(
         onNextQuestion = viewModel::loadNextQuestion,
         onPreviousQuestion = viewModel::loadPreviousQuestion,
         onToggleBookmark = viewModel::toggleBookmark,
-        onBackClick = onBackClick
+        onBackClick = onBackClick,
+        language = language
     )
 }
 
@@ -77,7 +80,8 @@ internal fun StudyScreen(
     onNextQuestion: () -> Unit,
     onPreviousQuestion: () -> Unit,
     onToggleBookmark: (Int) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    language: String
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -174,7 +178,8 @@ internal fun StudyScreen(
                             state = uiState,
                             onOptionSelected = onOptionSelected,
                             onNextQuestion = onNextQuestion,
-                            onPreviousQuestion = onPreviousQuestion
+                            onPreviousQuestion = onPreviousQuestion,
+                            language = language
                         )
                     }
                 }
@@ -188,7 +193,8 @@ private fun StudyContent(
     state: StudyUiState.Success,
     onOptionSelected: (Int) -> Unit,
     onNextQuestion: () -> Unit,
-    onPreviousQuestion: () -> Unit
+    onPreviousQuestion: () -> Unit,
+    language: String
 ) {
     var elapsedTime by remember { mutableLongStateOf(0L) }
 
@@ -229,7 +235,8 @@ private fun StudyContent(
             onOptionSelected = onOptionSelected,
             showFeedback = state.isAnswerRevealed,
             showExplanation = false,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            language = language
         )
 
         // Navigation Buttons
@@ -274,7 +281,7 @@ private fun StudyContent(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = state.currentQuestion.getExplanation("en"),
+                    text = state.currentQuestion.getExplanation(language),
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 4.dp),
                     color = Color.White.copy(alpha = 0.9f)
