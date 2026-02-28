@@ -6,9 +6,11 @@ data class Question(
     val options: List<String>,
     val correctAnswerIndex: Int,
     val explanation: String,
-    val category: String
+    val category: String,
+    val isBookmarked: Boolean = false,
+    val isWrong: Boolean = false
 ) {
-    fun getContent(language: String): String {
+    fun getLocalizedContent(language: String): String {
         val parts = content.split("\n")
         return if (language == "zh") {
             parts.lastOrNull() ?: content
@@ -36,3 +38,4 @@ data class Question(
         }
     }
 }
+

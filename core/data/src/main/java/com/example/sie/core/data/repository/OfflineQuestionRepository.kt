@@ -26,4 +26,22 @@ class OfflineQuestionRepository @Inject constructor(
         questionDao.getRandomQuestions(limit).map { entities ->
             entities.map { it.asExternalModel() }
         }
+
+    override fun getBookmarkedQuestions(): Flow<List<Question>> =
+        questionDao.getBookmarkedQuestions().map { entities ->
+            entities.map { it.asExternalModel() }
+        }
+
+    override fun getWrongQuestions(): Flow<List<Question>> =
+        questionDao.getWrongQuestions().map { entities ->
+            entities.map { it.asExternalModel() }
+        }
+
+    override suspend fun toggleBookmark(questionId: Int) {
+        questionDao.toggleBookmark(questionId)
+    }
+
+    override suspend fun markAsWrong(questionIds: List<Int>) {
+        questionDao.markAsWrong(questionIds)
+    }
 }

@@ -159,6 +159,14 @@ class ExamViewModel @Inject constructor(
         }
     }
 
+    fun toggleBookmark(questionId: Int) {
+        viewModelScope.launch {
+            questionRepository.toggleBookmark(questionId)
+            // The UI will be updated by the flow from the repository
+        }
+    }
+
+
     fun onNextQuestion() {
         _uiState.update { state ->
             if (state is ExamUiState.InProgress && state.currentQuestionIndex < state.questions.size - 1) {

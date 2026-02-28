@@ -35,6 +35,7 @@ class DatabaseCallback(
 
     private suspend fun populateDatabase() {
         try {
+            Log.d("DatabaseCallback", "populateDatabase started")
             val database = databaseProvider.get()
             val dao = database.questionDao()
 
@@ -53,31 +54,38 @@ class DatabaseCallback(
             inputStream.read(buffer)
             inputStream.close()
             val jsonString = String(buffer, Charsets.UTF_8)
+            Log.d("DatabaseCallback", "JSON string length: ${jsonString.length}")
             
             val questions = mutableListOf<QuestionEntity>()
             val jsonArray = JSONArray(jsonString)
+            Log.d("DatabaseCallback", "JSONArray length: ${jsonArray.length()}")
             
             for (i in 0 until jsonArray.length()) {
-                val obj = jsonArray.getJSONObject(i)
-                val optionsArr = obj.getJSONArray("options")
-                val options = mutableListOf<String>()
-                for (j in 0 until optionsArr.length()) {
-                    options.add(optionsArr.getString(j))
-                }
-                
-                questions.add(
-                    QuestionEntity(
-                        content = obj.getString("content"),
-                        options = options,
-                        correctAnswerIndex = obj.getInt("correctAnswerIndex"),
-                        explanation = obj.getString("explanation"),
-                        category = obj.getString("category")
+                try {
+                    val obj = jsonArray.getJSONObject(i)
+                    val optionsArr = obj.getJSONArray("options")
+                    // options list logic removed as it was unused
+                    
+                    questions.add(
+                        QuestionEntity(
+                            content = obj.getString("content"),
+                            options = optionsArr.toString(),
+                            correctAnswerIndex = obj.getInt("correctAnswerIndex"),
+                            explanation = obj.getString("explanation"),
+                            category = obj.getString("category")
+                        )
                     )
-                )
+                } catch (e: Exception) {
+                    Log.e("DatabaseCallback", "Error parsing question at index $i", e)
+                }
             }
             
-            dao.insertAll(questions)
-            Log.d("DatabaseCallback", "Successfully inserted ${questions.size} questions.")
+            if (questions.isNotEmpty()) {
+                dao.insertAll(questions)
+                Log.d("DatabaseCallback", "Successfully inserted ${questions.size} questions.")
+            } else {
+                Log.e("DatabaseCallback", "No questions parsed!")
+            }
         } catch (e: Exception) {
             Log.e("DatabaseCallback", "Error populating database", e)
             e.printStackTrace()

@@ -75,6 +75,7 @@ fun ExamRoute(
         onStartExam = viewModel::startExam,
         onAnswerSelected = viewModel::onAnswerSelected,
         onFlagQuestion = viewModel::onFlagQuestion,
+        onToggleBookmark = viewModel::toggleBookmark,
         onSubmitExam = viewModel::submitExam,
         onBackClick = onBackClick,
         onQuestionSelected = viewModel::onQuestionSelected,
@@ -90,6 +91,7 @@ internal fun ExamScreen(
     onStartExam: () -> Unit,
     onAnswerSelected: (Int, Int) -> Unit,
     onFlagQuestion: (Int) -> Unit,
+    onToggleBookmark: (Int) -> Unit,
     onSubmitExam: () -> Unit,
     onBackClick: () -> Unit,
     onQuestionSelected: (Int) -> Unit,
@@ -114,6 +116,7 @@ internal fun ExamScreen(
                 state = uiState,
                 onAnswerSelected = onAnswerSelected,
                 onFlagQuestion = onFlagQuestion,
+                onToggleBookmark = onToggleBookmark,
                 onSubmitExam = onSubmitExam,
                 onQuestionSelected = onQuestionSelected,
                 language = language
@@ -122,6 +125,7 @@ internal fun ExamScreen(
         is ExamUiState.Finished -> {
             ExamResultContent(
                 state = uiState,
+                onToggleBookmark = onToggleBookmark,
                 onBackClick = onBackClick,
                 onResetExam = onResetExam,
                 language = language
@@ -253,6 +257,7 @@ private fun ExamInProgressContent(
     state: ExamUiState.InProgress,
     onAnswerSelected: (Int, Int) -> Unit,
     onFlagQuestion: (Int) -> Unit,
+    onToggleBookmark: (Int) -> Unit,
     onSubmitExam: () -> Unit,
     onQuestionSelected: (Int) -> Unit,
     language: String
@@ -433,18 +438,20 @@ private fun ExamInProgressContent(
                     )
                 }
                 
-                // Overlay Flag button on top right of the card area (simplified approach)
-                val isFlagged = state.flaggedQuestions.contains(question.id)
+                // Overlay Bookmark button on top right of the card area
+                val isBookmarked = question.isBookmarked
                 androidx.compose.material3.IconButton(
-                    onClick = { onFlagQuestion(question.id) },
+                    onClick = {
+                        onToggleBookmark(question.id)
+                    },
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(top = 48.dp, end = 24.dp) // Adjust based on layout
                 ) {
                     androidx.compose.material3.Icon(
-                        imageVector = if (isFlagged) androidx.compose.material.icons.Icons.Filled.Star else androidx.compose.material.icons.Icons.Outlined.Star,
-                        contentDescription = "Flag",
-                        tint = if (isFlagged) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant
+                        imageVector = if (isBookmarked) androidx.compose.material.icons.Icons.Filled.Star else androidx.compose.material.icons.Icons.Outlined.Star,
+                        contentDescription = "Bookmark",
+                        tint = if (isBookmarked) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -530,6 +537,7 @@ private fun ExamInProgressContent(
 @Composable
 private fun ExamResultContent(
     state: ExamUiState.Finished,
+    onToggleBookmark: (Int) -> Unit,
     onBackClick: () -> Unit,
     onResetExam: () -> Unit,
     language: String

@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.CancellationException
 import javax.inject.Inject
 
 sealed interface StudyUiState {
@@ -41,14 +43,18 @@ class StudyViewModel @Inject constructor(
             _uiState.value = StudyUiState.Loading
             try {
                 // Fetch 1 random question
-                val questions = questionRepository.getRandomQuestions(1).first()
-                if (questions.isNotEmpty()) {
-                    _uiState.value = StudyUiState.Success(currentQuestion = questions.first())
-                } else {
-                    _uiState.value = StudyUiState.Error("No questions available")
+                // We use collect instead of first() to handle the case where DB is initially empty but populating
+                questionRepository.getRandomQuestions(1).collect { questions ->
+                    if (questions.isNotEmpty()) {
+                        _uiState.value = StudyUiState.Success(currentQuestion = questions.first())
+                        this.cancel() // Stop collecting once we have a question
+                    }
+                    // If empty, we stay in Loading state waiting for DB population
                 }
             } catch (e: Exception) {
-                _uiState.value = StudyUiState.Error(e.message ?: "Unknown error")
+                if (e !is kotlinx.coroutines.CancellationException) {
+                    _uiState.value = StudyUiState.Error(e.message ?: "Unknown error")
+                }
             }
         }
     }

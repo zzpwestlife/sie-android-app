@@ -18,6 +18,19 @@ interface QuestionDao {
     @Query("SELECT * FROM questions ORDER BY RANDOM() LIMIT :limit")
     fun getRandomQuestions(limit: Int): Flow<List<QuestionEntity>>
 
+    @Query("SELECT * FROM questions WHERE isBookmarked = 1")
+    fun getBookmarkedQuestions(): Flow<List<QuestionEntity>>
+
+    @Query("SELECT * FROM questions WHERE isWrong = 1")
+    fun getWrongQuestions(): Flow<List<QuestionEntity>>
+
+    @Query("UPDATE questions SET isBookmarked = NOT isBookmarked WHERE id = :questionId")
+    suspend fun toggleBookmark(questionId: Int)
+
+    @Query("UPDATE questions SET isWrong = 1 WHERE id IN (:questionIds)")
+    suspend fun markAsWrong(questionIds: List<Int>)
+
+
     @Query("SELECT * FROM questions")
     suspend fun getAllQuestionsList(): List<QuestionEntity>
 

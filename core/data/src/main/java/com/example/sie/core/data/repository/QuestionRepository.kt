@@ -8,4 +8,8 @@ interface QuestionRepository {
     suspend fun getAllQuestionsList(): List<Question>
     suspend fun getQuestion(id: Int): Question?
     fun getRandomQuestions(limit: Int): Flow<List<Question>>
+    fun getBookmarkedQuestions(): Flow<List<Question>>
+    fun getWrongQuestions(): Flow<List<Question>>
+    suspend fun toggleBookmark(questionId: Int)
+    suspend fun markAsWrong(questionIds: List<Int>)
 }

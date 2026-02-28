@@ -47,7 +47,7 @@ fun QuestionCard(
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = question.getContent(language),
+                text = question.getLocalizedContent(language),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
