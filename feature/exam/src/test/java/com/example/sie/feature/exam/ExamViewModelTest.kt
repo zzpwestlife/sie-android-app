@@ -100,7 +100,8 @@ class ExamViewModelTest {
 
         // Assert
         val uiState = viewModel.uiState.value
-        assertTrue("State should be Finished", uiState is ExamUiState.Finished)
+        println("DEBUG: uiState = $uiState")
+        assertTrue("State should be Finished but was $uiState", uiState is ExamUiState.Finished)
 
         val finishedState = uiState as ExamUiState.Finished
         assertEquals("User answers count should be 2", 2, finishedState.userAnswers.size)

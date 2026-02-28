@@ -1,0 +1,122 @@
+[
+  {
+    "content": "Which of the following is an example of an equity security?",
+    "options": [
+      "Preferred stock",
+      "Corporate bond",
+      "Mortgage-backed security",
+      "Treasury bill"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Equity securities represent ownership in a corporation. Common examples include common stock and preferred stock. Bonds and Treasury bills are debt securities.",
+    "category": "Knowledge of Capital Markets"
+  },
+  {
+    "content": "A call option gives the buyer the right to:",
+    "options": [
+      "Sell the underlying asset at a specified price",
+      "Buy the underlying asset at a specified price",
+      "Receive dividends from the underlying asset",
+      "Vote on corporate matters"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A call option gives the holder (buyer) the right to buy the underlying asset at a specific price (strike price) within a specific time period.",
+    "category": "Understanding Products and Their Risks"
+  },
+  {
+    "content": "Under FINRA rules, what is the maximum sales charge that can be imposed on a mutual fund purchase?",
+    "options": [
+      "3.0%",
+      "5.0%",
+      "8.5%",
+      "10.0%"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The maximum sales charge (load) allowed by FINRA on a mutual fund purchase is 8.5% of the offering price.",
+    "category": "Understanding Trading, Customer Accounts and Prohibited Activities"
+  },
+  {
+    "content": "Which organization is the primary regulator for the securities industry in the United States?",
+    "options": [
+      "FINRA",
+      "SEC",
+      "MSRB",
+      "CBOE"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Securities and Exchange Commission (SEC) is the primary federal regulator of the securities industry in the U.S.",
+    "category": "Overview of Regulatory Framework"
+  },
+  {
+    "content": "What is the settlement cycle for most corporate securities transactions?",
+    "options": [
+      "T+1",
+      "T+2",
+      "T+3",
+      "Same day"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "As of May 2024, the standard settlement cycle for most broker-dealer transactions in securities is T+1 (trade date plus one business day).",
+    "category": "Understanding Trading, Customer Accounts and Prohibited Activities"
+  },
+  {
+    "content": "Which of the following risks is most associated with long-term bonds?",
+    "options": [
+      "Credit risk",
+      "Interest rate risk",
+      "Liquidity risk",
+      "Political risk"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Long-term bonds are most sensitive to interest rate changes. When interest rates rise, bond prices fall, and long-term bonds fall more in value than short-term bonds.",
+    "category": "Understanding Products and Their Risks"
+  },
+  {
+    "content": "A preliminary prospectus is also known as a:",
+    "options": [
+      "Final prospectus",
+      "Red herring",
+      "Omitting prospectus",
+      "Summary prospectus"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A preliminary prospectus is often called a 'red herring' because of the red disclaimer printed on its cover page stating that the registration statement has been filed but is not yet effective.",
+    "category": "Knowledge of Capital Markets"
+  },
+  {
+    "content": "Money laundering involves three stages. Which of the following is NOT one of them?",
+    "options": [
+      "Placement",
+      "Layering",
+      "Integration",
+      "Structuring"
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "The three stages of money laundering are Placement, Layering, and Integration. Structuring is a technique used during the placement stage to avoid reporting requirements.",
+    "category": "Understanding Trading, Customer Accounts and Prohibited Activities"
+  },
+  {
+    "content": "Which of the following accounts allows for tax-free withdrawals for qualified education expenses?",
+    "options": [
+      "Traditional IRA",
+      "Roth IRA",
+      "529 Plan",
+      "401(k) Plan"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "A 529 Plan is a tax-advantaged savings plan designed to encourage saving for future education costs. Withdrawals for qualified education expenses are tax-free.",
+    "category": "Understanding Products and Their Risks"
+  },
+  {
+    "content": "The Securities Investor Protection Corporation (SIPC) protects customers against:",
+    "options": [
+      "Market loss",
+      "Broker-dealer bankruptcy",
+      "Fraud",
+      "Inflation"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "SIPC protects customers of SIPC-member broker-dealers if the firm fails financially. It does not protect against market losses or investment fraud per se.",
+    "category": "Overview of Regulatory Framework"
+  }
+]
