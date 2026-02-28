@@ -191,4 +191,41 @@ class ExamViewModelTest {
         assertEquals(0, state.userAnswers[1])
         assertEquals(1, state.userAnswers[2])
     }
+
+    @Test
+    fun submitExam_withTimeout_autoSubmitsExam() = runTest {
+        // Arrange
+        val questions = listOf(
+            Question(1, "Q1", listOf("A", "B"), 0, "Exp1", "Cat1"),
+            Question(2, "Q2", listOf("C", "D"), 1, "Exp2", "Cat2")
+        )
+        coEvery { questionRepository.getAllQuestionsList() } returns questions
+        every { userDataRepository.userData } returns flowOf(
+            UserData(
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                useDynamicColor = false,
+                fontSizeScale = 0,
+                language = "zh"
+            )
+        )
+
+        // Act
+        viewModel = ExamViewModel(questionRepository, examRepository, userDataRepository)
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+        viewModel.startExam()
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Verify exam started
+        val stateAfterStart = viewModel.uiState.value
+        assertTrue("State should be InProgress", stateAfterStart is ExamUiState.InProgress)
+
+        // Advance time by 30 minutes to trigger timeout
+        mainDispatcherRule.testDispatcher.scheduler.advanceTimeBy(30 * 60 * 1000L + 100)
+        mainDispatcherRule.testDispatcher.scheduler.runCurrent()
+
+        // Assert
+        val state = viewModel.uiState.value
+        assertTrue("State should be Finished after timeout", state is ExamUiState.Finished)
+        coVerify { examRepository.saveExamResult(any()) }
+    }
 }
