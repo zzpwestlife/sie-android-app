@@ -28,6 +28,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.sie.core.designsystem.component.GlassCard
+import com.example.sie.core.designsystem.theme.PrimaryGradient
+import com.example.sie.core.designsystem.theme.SecondaryGradient
+import com.example.sie.core.designsystem.theme.SuccessGradient
 import com.example.sie.core.model.DarkThemeConfig
 
 @Composable
@@ -79,76 +83,96 @@ internal fun SettingsScreen(
                         style = MaterialTheme.typography.headlineMedium,
                         color = Color.White
                     )
-                    Spacer(Modifier.height(32.dp))
+                    Spacer(Modifier.height(24.dp))
 
                     Text(
                         text = "Theme",
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.padding(bottom = 8.dp)
                     )
-                    Column(Modifier.selectableGroup()) {
-                        SettingsDialogThemeChooserRow(
-                            text = "System Default",
-                            selected = uiState.settings.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
-                            onClick = { onChangeDarkThemeConfig(DarkThemeConfig.FOLLOW_SYSTEM) }
-                        )
-                        SettingsDialogThemeChooserRow(
-                            text = "Light",
-                            selected = uiState.settings.darkThemeConfig == DarkThemeConfig.LIGHT,
-                            onClick = { onChangeDarkThemeConfig(DarkThemeConfig.LIGHT) }
-                        )
-                        SettingsDialogThemeChooserRow(
-                            text = "Dark",
-                            selected = uiState.settings.darkThemeConfig == DarkThemeConfig.DARK,
-                            onClick = { onChangeDarkThemeConfig(DarkThemeConfig.DARK) }
-                        )
+                    GlassCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        gradient = PrimaryGradient
+                    ) {
+                        Column(Modifier.selectableGroup()) {
+                            SettingsDialogThemeChooserRow(
+                                text = "System Default",
+                                selected = uiState.settings.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
+                                onClick = { onChangeDarkThemeConfig(DarkThemeConfig.FOLLOW_SYSTEM) }
+                            )
+                            SettingsDialogThemeChooserRow(
+                                text = "Light",
+                                selected = uiState.settings.darkThemeConfig == DarkThemeConfig.LIGHT,
+                                onClick = { onChangeDarkThemeConfig(DarkThemeConfig.LIGHT) }
+                            )
+                            SettingsDialogThemeChooserRow(
+                                text = "Dark",
+                                selected = uiState.settings.darkThemeConfig == DarkThemeConfig.DARK,
+                                onClick = { onChangeDarkThemeConfig(DarkThemeConfig.DARK) }
+                            )
+                        }
                     }
 
-                    Spacer(Modifier.height(32.dp))
+                    Spacer(Modifier.height(24.dp))
 
                     Text(
                         text = "Language",
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.padding(bottom = 8.dp)
                     )
-                    Column(Modifier.selectableGroup()) {
-                        SettingsDialogThemeChooserRow(
-                            text = "English",
-                            selected = uiState.settings.language == "en",
-                            onClick = { onChangeLanguage("en") }
-                        )
-                        SettingsDialogThemeChooserRow(
-                            text = "中文",
-                            selected = uiState.settings.language == "zh",
-                            onClick = { onChangeLanguage("zh") }
-                        )
+                    GlassCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        gradient = SecondaryGradient
+                    ) {
+                        Column(Modifier.selectableGroup()) {
+                            SettingsDialogThemeChooserRow(
+                                text = "English",
+                                selected = uiState.settings.language == "en",
+                                onClick = { onChangeLanguage("en") }
+                            )
+                            SettingsDialogThemeChooserRow(
+                                text = "中文",
+                                selected = uiState.settings.language == "zh",
+                                onClick = { onChangeLanguage("zh") }
+                            )
+                        }
                     }
 
-                    Spacer(Modifier.height(32.dp))
+                    Spacer(Modifier.height(24.dp))
 
                     Text(
                         text = "Font Size Scale",
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.padding(bottom = 8.dp)
                     )
 
-                    val currentScale = uiState.settings.fontSizeScale
-                    Text(
-                        text = "Current Scale: $currentScale",
-                        color = Color.White.copy(alpha = 0.9f)
-                    )
-
-                    Slider(
-                        value = currentScale.toFloat(),
-                        onValueChange = { onChangeFontSizeScale(it.toInt()) },
-                        valueRange = -2f..2f,
-                        steps = 3,
-                        colors = SliderDefaults.colors(
-                            thumbColor = Color(0xFF667eea),
-                            activeTrackColor = Color(0xFF667eea),
-                            inactiveTrackColor = Color.White.copy(alpha = 0.3f)
+                    GlassCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        gradient = SuccessGradient
+                    ) {
+                        val currentScale = uiState.settings.fontSizeScale
+                        Text(
+                            text = "Current Scale: $currentScale",
+                            color = Color.White.copy(alpha = 0.9f),
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.padding(bottom = 8.dp)
                         )
-                    )
+
+                        Slider(
+                            value = currentScale.toFloat(),
+                            onValueChange = { onChangeFontSizeScale(it.toInt()) },
+                            valueRange = -2f..2f,
+                            steps = 3,
+                            colors = SliderDefaults.colors(
+                                thumbColor = Color(0xFF667eea),
+                                activeTrackColor = Color(0xFF667eea),
+                                inactiveTrackColor = Color.White.copy(alpha = 0.3f)
+                            )
+                        )
+                    }
                 }
             }
         }
@@ -156,7 +180,7 @@ internal fun SettingsScreen(
 }
 
 @Composable
-fun SettingsDialogThemeChooserRow(
+private fun SettingsDialogThemeChooserRow(
     text: String,
     selected: Boolean,
     onClick: () -> Unit,
@@ -169,7 +193,7 @@ fun SettingsDialogThemeChooserRow(
                 role = Role.RadioButton,
                 onClick = onClick,
             )
-            .padding(12.dp),
+            .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         RadioButton(
