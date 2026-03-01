@@ -203,7 +203,7 @@ internal fun HomeScreen(
                 // Feature Buttons Grid
                 item {
                     Text(
-                        text = "Study Options",
+                        text = stringResource(CommonR.string.home_study_options),
                         style = MaterialTheme.typography.titleMedium,
                         color = OnBackground,
                         fontWeight = FontWeight.SemiBold,
@@ -216,48 +216,51 @@ internal fun HomeScreen(
                     Column(
                         verticalArrangement = Arrangement.spacedBy(SpacingMedium)
                     ) {
+                        // Row 1: Study Mode + Mock Exam
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
                         ) {
                             ModernGradientButton(
-                                text = "Study Mode",
+                                text = stringResource(CommonR.string.home_study_mode),
                                 onClick = onTopicSelectionClick,
                                 gradient = PrimaryGradient,
                                 modifier = Modifier.weight(1f)
                             )
                             ModernGradientButton(
-                                text = "Mock Exam",
+                                text = stringResource(CommonR.string.home_mock_exam),
                                 onClick = onMockExamClick,
                                 gradient = SecondaryGradient,
                                 modifier = Modifier.weight(1f)
                             )
                         }
 
-                        ModernGradientButton(
-                            text = "Bookmarks",
-                            onClick = onBookmarkedClick,
-                            gradient = TertiaryGradient,
-                            modifier = Modifier.fillMaxWidth()
-                        )
-
+                        // Row 2: Bookmarks + Wrong Questions
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
                         ) {
                             ModernGradientButton(
-                                text = "Wrong Questions",
+                                text = stringResource(CommonR.string.home_bookmarks),
+                                onClick = onBookmarkedClick,
+                                gradient = TertiaryGradient,
+                                modifier = Modifier.weight(1f)
+                            )
+                            ModernGradientButton(
+                                text = stringResource(CommonR.string.home_wrong_questions),
                                 onClick = onWrongQuestionsClick,
                                 gradient = WarningGradient,
                                 modifier = Modifier.weight(1f)
                             )
-                            ModernGradientButton(
-                                text = "Statistics",
-                                onClick = onStatsClick,
-                                gradient = AccentGradient,
-                                modifier = Modifier.weight(1f)
-                            )
                         }
+
+                        // Row 3: Statistics (独占一行)
+                        ModernGradientButton(
+                            text = stringResource(CommonR.string.home_statistics),
+                            onClick = onStatsClick,
+                            gradient = AccentGradient,
+                            modifier = Modifier.fillMaxWidth()
+                        )
                     }
                 }
             }
