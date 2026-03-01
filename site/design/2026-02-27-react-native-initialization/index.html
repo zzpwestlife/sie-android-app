@@ -1,0 +1,980 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the SIE Exam Prep Android App">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>React Native Project Initialization Design - SIE Exam Prep Android App</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#react-native-project-initialization-design" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SIE Exam Prep Android App" class="md-header__button md-logo" aria-label="SIE Exam Prep Android App" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SIE Exam Prep Android App
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              React Native Project Initialization Design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SIE Exam Prep Android App" class="md-nav__button md-logo" aria-label="SIE Exam Prep Android App" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SIE Exam Prep Android App
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Design Rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Design Rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-approach-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Approach Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-typescript-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 TypeScript Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-eslint-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 ESLint Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-runtime-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Runtime Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-component-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Component Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Component Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-appnavigator-srcnavigationappnavigatortsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 AppNavigator (src/navigation/AppNavigator.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-zustand-store-srcstoresusecounterstorets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Zustand Store (src/stores/useCounterStore.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-homescreen-srcscreenshomescreentsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 HomeScreen (src/screens/HomeScreen.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-type-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Type Safety
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-runtime-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Runtime Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-verification-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Verification Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-success-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Success Criteria
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-risk-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Risk Assessment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Risk Assessment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-potential-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Potential Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-implementation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Implementation Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Implementation Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-configuration-files-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Configuration Files Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-dependency-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Dependency Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-code-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Code Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-constitution-compliance-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Constitution Compliance Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="react-native-project-initialization-design">React Native Project Initialization Design</h1>
+<p><strong>Date:</strong> 2026-02-27
+<strong>Author:</strong> Claude Sonnet 4.5
+<strong>Status:</strong> Approved</p>
+<hr />
+<h2 id="1-overview">1. Overview</h2>
+<p>This document describes the design for initializing a React Native project with TypeScript, ESLint, Prettier, React Navigation, and Zustand state management. The approach is incremental configuration rather than full project regeneration.</p>
+<hr />
+<h2 id="2-design-rationale">2. Design Rationale</h2>
+<h3 id="21-approach-selection">2.1 Approach Selection</h3>
+<p><strong>Chosen Approach:</strong> Incremental Configuration (Approach A)</p>
+<p><strong>Reasons:</strong></p>
+<ol>
+<li><strong>Preserve existing structure</strong> — Current project has <code>.claude/</code> configuration and Git history.</li>
+<li><strong>Minimize dependencies</strong> — Aligns with Constitution Article 1.2 (Minimal Dependencies).</li>
+<li><strong>Avoid over-engineering</strong> — Native code can be auto-generated on first run (React Native CLI feature).</li>
+<li><strong>Minimal changes principle</strong> — Complies with Constitution Article 5.1 (Minimal Changes).</li>
+</ol>
+<p><strong>Rejected Approach:</strong> Full Reinitialization (Approach B)</p>
+<ul>
+<li>Violates Constitution Article 1.1 (YAGNI) — Current project doesn't need full rebuild.</li>
+<li>Requires manual migration of <code>.claude/</code> configuration.</li>
+</ul>
+<hr />
+<h2 id="3-architecture">3. Architecture</h2>
+<h3 id="31-typescript-configuration">3.1 TypeScript Configuration</h3>
+<p><strong>Goal:</strong> Enable Strict Mode for type safety (Constitution Article 3).</p>
+<p><strong>Key Settings:</strong></p>
+<pre><code class="language-json">{
+  &quot;strict&quot;: true,
+  &quot;noImplicitAny&quot;: true,
+  &quot;strictNullChecks&quot;: true,
+  &quot;noUnusedLocals&quot;: true,
+  &quot;noUnusedParameters&quot;: true,
+  &quot;noImplicitReturns&quot;: true,
+  &quot;paths&quot;: {
+    &quot;@/*&quot;: [&quot;src/*&quot;]
+  }
+}
+</code></pre>
+<p><strong>Impact:</strong></p>
+<ul>
+<li>All code must have explicit types.</li>
+<li>Existing <code>App.tsx</code> may require type fixes.</li>
+</ul>
+<hr />
+<h3 id="32-eslint-configuration">3.2 ESLint Configuration</h3>
+<p><strong>Goal:</strong> Enforce type safety and code standards.</p>
+<p><strong>Key Rules:</strong></p>
+<ul>
+<li><code>@typescript-eslint/no-explicit-any</code>: error (Constitution requirement)</li>
+<li><code>@typescript-eslint/no-unused-vars</code>: error (with <code>_</code> prefix exception)</li>
+<li><code>import/order</code>: error (auto-sort imports)</li>
+<li><code>no-console</code>: warn (allow <code>warn</code> and <code>error</code>)</li>
+</ul>
+<p><strong>Required Dependencies:</strong></p>
+<pre><code class="language-json">{
+  &quot;devDependencies&quot;: {
+    &quot;@typescript-eslint/eslint-plugin&quot;: &quot;^6.12.0&quot;,
+    &quot;@typescript-eslint/parser&quot;: &quot;^6.12.0&quot;,
+    &quot;eslint-plugin-import&quot;: &quot;^2.29.0&quot;,
+    &quot;eslint-import-resolver-typescript&quot;: &quot;^3.6.1&quot;
+  }
+}
+</code></pre>
+<hr />
+<h3 id="33-runtime-dependencies">3.3 Runtime Dependencies</h3>
+<p><strong>Goal:</strong> Add minimal dependencies for navigation and state management.</p>
+<p><strong>Dependencies:</strong></p>
+<pre><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;@react-navigation/native&quot;: &quot;^6.1.9&quot;,
+    &quot;@react-navigation/stack&quot;: &quot;^6.3.20&quot;,
+    &quot;react-native-screens&quot;: &quot;^3.27.0&quot;,
+    &quot;react-native-safe-area-context&quot;: &quot;^4.7.4&quot;,
+    &quot;react-native-gesture-handler&quot;: &quot;^2.13.4&quot;,
+    &quot;zustand&quot;: &quot;^4.4.7&quot;
+  }
+}
+</code></pre>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li><strong>React Navigation v6</strong>: Industry-standard navigation library.</li>
+<li><strong>Zustand</strong>: Lightweight state management (zero boilerplate, simple API).</li>
+</ul>
+<hr />
+<h3 id="34-directory-structure">3.4 Directory Structure</h3>
+<p><strong>Goal:</strong> Follow React Native best practices and Constitution Article 5.2 (file size control).</p>
+<pre><code>src/
+├── navigation/
+│   ├── AppNavigator.tsx        # Main navigator
+│   └── types.ts                # Navigation type definitions
+├── screens/
+│   ├── HomeScreen.tsx          # Example home screen
+│   └── index.ts                # Export all screens
+├── stores/
+│   ├── useCounterStore.ts      # Example Zustand store
+│   └── index.ts                # Export all stores
+├── types/
+│   └── index.ts                # Global type definitions
+└── utils/
+    └── index.ts                # Utility functions
+</code></pre>
+<p><strong>Root File Modifications:</strong></p>
+<ul>
+<li><code>App.tsx</code>: Update to use <code>AppNavigator</code></li>
+<li><code>babel.config.js</code>: Add <code>react-native-reanimated/plugin</code></li>
+<li><code>.gitignore</code>: Add <code>.claude/tmp/</code></li>
+</ul>
+<hr />
+<h2 id="4-component-design">4. Component Design</h2>
+<h3 id="41-appnavigator-srcnavigationappnavigatortsx">4.1 AppNavigator (<code>src/navigation/AppNavigator.tsx</code>)</h3>
+<p><strong>Purpose:</strong> Type-safe navigation container.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Uses <code>createStackNavigator&lt;RootStackParamList&gt;()</code></li>
+<li>Wraps with <code>&lt;NavigationContainer&gt;</code></li>
+<li>Initial route: <code>Home</code></li>
+</ul>
+<p><strong>Type Safety:</strong></p>
+<pre><code class="language-typescript">export type RootStackParamList = {
+  Home: undefined;
+  // Future screens...
+};
+</code></pre>
+<hr />
+<h3 id="42-zustand-store-srcstoresusecounterstorets">4.2 Zustand Store (<code>src/stores/useCounterStore.ts</code>)</h3>
+<p><strong>Purpose:</strong> Example state management with type safety.</p>
+<p><strong>Interface:</strong></p>
+<pre><code class="language-typescript">interface CounterState {
+  count: number;
+  increment: () =&gt; void;
+  decrement: () =&gt; void;
+  reset: () =&gt; void;
+}
+</code></pre>
+<p><strong>Implementation Pattern:</strong></p>
+<pre><code class="language-typescript">export const useCounterStore = create&lt;CounterState&gt;(set =&gt; ({
+  count: 0,
+  increment: () =&gt; set(state =&gt; ({count: state.count + 1})),
+  decrement: () =&gt; set(state =&gt; ({count: state.count - 1})),
+  reset: () =&gt; set({count: 0}),
+}));
+</code></pre>
+<hr />
+<h3 id="43-homescreen-srcscreenshomescreentsx">4.3 HomeScreen (<code>src/screens/HomeScreen.tsx</code>)</h3>
+<p><strong>Purpose:</strong> Demonstrate navigation and state integration.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Uses <code>useCounterStore</code> hook</li>
+<li>Displays current count</li>
+<li>Provides increment/decrement/reset buttons</li>
+</ul>
+<p><strong>File Header (Constitution Article 5.6):</strong></p>
+<pre><code class="language-typescript">// INPUT: React, react-native, useCounterStore
+// OUTPUT: Home screen component
+// POS: Main application interface
+</code></pre>
+<hr />
+<h2 id="5-data-flow">5. Data Flow</h2>
+<pre><code>User Action (Button Press)
+  ↓
+useCounterStore.increment()
+  ↓
+Zustand State Update
+  ↓
+HomeScreen Re-render
+  ↓
+Display Updated Count
+</code></pre>
+<hr />
+<h2 id="6-error-handling">6. Error Handling</h2>
+<h3 id="61-type-safety">6.1 Type Safety</h3>
+<ul>
+<li>All functions have explicit return types</li>
+<li>No <code>any</code> types allowed (ESLint enforced)</li>
+<li>Strict null checks enabled</li>
+</ul>
+<h3 id="62-runtime-errors">6.2 Runtime Errors</h3>
+<ul>
+<li>Native module linking failures handled in documentation</li>
+<li>Import errors prevented by TypeScript path resolution</li>
+</ul>
+<hr />
+<h2 id="7-testing-strategy">7. Testing Strategy</h2>
+<h3 id="71-verification-steps">7.1 Verification Steps</h3>
+<p><strong>Phase 4 Validation:</strong></p>
+<ol>
+<li>Run <code>npm run lint</code> → Verify ESLint configuration</li>
+<li>Run <code>npx tsc --noEmit</code> → Verify TypeScript configuration</li>
+<li>Run <code>npm run format</code> → Verify Prettier configuration</li>
+<li>Run <code>npm run android</code> → Verify native integration</li>
+</ol>
+<h3 id="72-success-criteria">7.2 Success Criteria</h3>
+<ul>
+<li>No ESLint errors</li>
+<li>No TypeScript errors</li>
+<li>App launches successfully</li>
+<li>Counter buttons work correctly</li>
+</ul>
+<hr />
+<h2 id="8-risk-assessment">8. Risk Assessment</h2>
+<h3 id="81-potential-issues">8.1 Potential Issues</h3>
+<p><strong>Risk 1: Native Dependency Auto-linking Failure</strong></p>
+<ul>
+<li><strong>Impact:</strong> <code>react-native-gesture-handler</code> may require manual configuration</li>
+<li><strong>Mitigation:</strong> Add manual Android configuration steps to documentation</li>
+</ul>
+<p><strong>Risk 2: Existing <code>App.tsx</code> Overwrite</strong></p>
+<ul>
+<li><strong>Impact:</strong> User's custom code may be lost</li>
+<li><strong>Mitigation:</strong> Read existing <code>App.tsx</code> and preserve useful code</li>
+</ul>
+<p><strong>Risk 3: TypeScript Strict Mode Errors</strong></p>
+<ul>
+<li><strong>Impact:</strong> Existing code may not pass strict type checks</li>
+<li><strong>Mitigation:</strong> Fix type errors in Phase 4 validation</li>
+</ul>
+<hr />
+<h2 id="9-implementation-plan">9. Implementation Plan</h2>
+<h3 id="phase-1-configuration-files-update">Phase 1: Configuration Files Update</h3>
+<ol>
+<li>Update <code>tsconfig.json</code> (enable Strict Mode)</li>
+<li>Update <code>.eslintrc.js</code> (add TypeScript rules)</li>
+<li>Update <code>babel.config.js</code> (add reanimated plugin)</li>
+<li>Update <code>.gitignore</code> (add <code>.claude/tmp/</code>)</li>
+</ol>
+<h3 id="phase-2-dependency-installation">Phase 2: Dependency Installation</h3>
+<ol>
+<li>Install runtime dependencies (<code>npm install react-navigation zustand ...</code>)</li>
+<li>Install dev dependencies (<code>npm install -D @typescript-eslint/...</code>)</li>
+</ol>
+<h3 id="phase-3-code-generation">Phase 3: Code Generation</h3>
+<ol>
+<li>Create <code>src/navigation/</code> directory and files</li>
+<li>Create <code>src/stores/</code> directory and files</li>
+<li>Create <code>src/screens/</code> directory and files</li>
+<li>Update <code>App.tsx</code> (integrate AppNavigator)</li>
+</ol>
+<h3 id="phase-4-validation">Phase 4: Validation</h3>
+<ol>
+<li>Run <code>npm run lint</code> (verify ESLint)</li>
+<li>Run <code>npm run format</code> (verify Prettier)</li>
+<li>Run <code>npx tsc --noEmit</code> (verify TypeScript)</li>
+<li>Run <code>npm run android</code> (verify native integration)</li>
+</ol>
+<hr />
+<h2 id="10-constitution-compliance-checklist">10. Constitution Compliance Checklist</h2>
+<ul>
+<li>[x] <strong>Article 1.1 (YAGNI):</strong> Only implementing explicitly requested features</li>
+<li>[x] <strong>Article 1.2 (Minimal Dependencies):</strong> Using mature libraries (React Navigation, Zustand)</li>
+<li>[x] <strong>Article 1.3 (Anti-over-engineering):</strong> Incremental approach, not full rebuild</li>
+<li>[x] <strong>Article 2.1 (Testing Strategy):</strong> Validation plan in Phase 4</li>
+<li>[x] <strong>Article 3.1 (Error Handling):</strong> TypeScript Strict Mode enforces explicit error handling</li>
+<li>[x] <strong>Article 3.2 (Explicit Dependencies):</strong> No global state, all dependencies passed explicitly</li>
+<li>[x] <strong>Article 5.1 (Minimal Changes):</strong> Preserving existing structure</li>
+<li>[x] <strong>Article 5.6 (Module Metadata):</strong> All files include INPUT/OUTPUT/POS headers</li>
+<li>[x] <strong>Article 10.3 (TUI Interaction):</strong> Used <code>AskUserQuestion</code> for all decision points</li>
+<li>[x] <strong>Article 11.1 (Completeness):</strong> No TODOs in deliverable code</li>
+</ul>
+<hr />
+<h2 id="11-next-steps">11. Next Steps</h2>
+<ol>
+<li>Generate implementation plan in <code>docs/plans/2026-02-27-react-native-initialization.md</code></li>
+<li>Execute plan using <code>/execute-plan</code> command</li>
+<li>Perform validation in Phase 4</li>
+<li>Generate changelog with <code>/changelog-generator</code></li>
+</ol>
+<hr />
+<h2 id="12-references">12. References</h2>
+<ul>
+<li><a href="https://reactnavigation.org/docs/getting-started">React Navigation Documentation</a></li>
+<li><a href="https://github.com/pmndrs/zustand">Zustand Documentation</a></li>
+<li><a href="https://www.typescriptlang.org/tsconfig#strict">TypeScript Strict Mode Guide</a></li>
+<li><a href="/.claude/constitution/constitution.md">Project Constitution</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

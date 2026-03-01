@@ -136,42 +136,6 @@ Run the following commands to execute tests:
     ```
     Report location: `app/build/reports/jacoco/test/html/index.html`
 
-## Packaging & Distribution (打包与分发)
-
-### 1. 快速分享 (Quick Share - Debug APK)
-最简单的分发方式，适合内部测试或发给朋友体验。
-- **优点**: 无需签名配置，开箱即用。
-- **缺点**: 性能稍低，无法上架应用商店，安装时需开启“未知来源”权限。
-
-**步骤**:
-1. 运行构建命令:
-   ```bash
-   ./gradlew assembleDebug
-   ```
-2. 找到生成的 APK 文件:
-   `app/build/outputs/apk/debug/app-debug.apk`
-3. 将该文件发送给对方即可安装。
-
-### 2. 正式发布 (Production Release - Signed APK)
-适合正式发布给用户，性能优化，且经过签名验证。
-- **优点**: 经过代码混淆和优化，体积更小，运行更快，更安全。
-- **缺点**: 需要生成密钥库 (Keystore) 并配置签名。
-
-**推荐步骤 (使用 Android Studio)**:
-1. 打开菜单栏: `Build` -> `Generate Signed Bundle / APK...`
-2. 选择 `APK` (如果直接发给用户) 或 `Android App Bundle` (如果上传 Google Play)。
-3. 点击 `Create new...` 创建一个新的密钥库 (Keystore)。
-   - 记住设置的路径、密码和别名 (Alias)。
-4. 填写密码，选择 `release` 构建变体。
-5. 点击 `Finish` 等待构建完成。
-6. 构建完成后，右下角会有提示，点击 `locate` 即可找到生成的 APK/AAB 文件。
-
-**命令行方式 (高级用户)**:
-需要在 `app/build.gradle.kts` 中配置 `signingConfigs`，然后运行:
-```bash
-./gradlew assembleRelease
-```
-
 ---
 
 ## ❓ Troubleshooting / 常见问题排障表

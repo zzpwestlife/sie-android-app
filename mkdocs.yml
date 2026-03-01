@@ -1,0 +1,8 @@
+site_name: SIE Exam Prep Android App
+site_description: Documentation for the SIE Exam Prep Android App
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Changelog: CHANGELOG.md

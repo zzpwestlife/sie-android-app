@@ -1,0 +1,937 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the SIE Exam Prep Android App">
+      
+      
+      
+      
+      
+        <link rel="next" href="CHANGELOG/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>SIE Exam Prep Android App</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sie-exam-prep-android-app" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="SIE Exam Prep Android App" class="md-header__button md-logo" aria-label="SIE Exam Prep Android App" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SIE Exam Prep Android App
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="SIE Exam Prep Android App" class="md-nav__button md-logo" aria-label="SIE Exam Prep Android App" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SIE Exam Prep Android App
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-background-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Project Background &amp; Objectives / 项目背景与目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗 System Architecture / 系统架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗 System Architecture / 系统架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram / 架构图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Modules / 核心模块说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠 Local Development Setup / 本地开发环境搭建
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠 Local Development Setup / 本地开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites / 前置要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Steps / 安装步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Versions / 依赖版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Testing / 测试
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing / 测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit &amp; Integration Tests / 单元与集成测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Requirements / 覆盖率要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Troubleshooting / 常见问题排障表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license-copyright" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📄 License &amp; Copyright / 许可证与版权信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📅 Changelog / 更新日志
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-background-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Project Background &amp; Objectives / 项目背景与目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗 System Architecture / 系统架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗 System Architecture / 系统架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram / 架构图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Modules / 核心模块说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠 Local Development Setup / 本地开发环境搭建
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠 Local Development Setup / 本地开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites / 前置要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Steps / 安装步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Versions / 依赖版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Testing / 测试
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing / 测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit &amp; Integration Tests / 单元与集成测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Requirements / 覆盖率要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Troubleshooting / 常见问题排障表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license-copyright" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📄 License &amp; Copyright / 许可证与版权信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📅 Changelog / 更新日志
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sie-exam-prep-android-app">SIE Exam Prep Android App</h1>
+<p><a href="https://kotlinlang.org"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-1.9.20-blue.svg" /></a>
+<a href="https://developer.android.com/jetpack/compose"><img alt="Compose" src="https://img.shields.io/badge/Jetpack%20Compose-1.6.0-green.svg" /></a>
+<a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a></p>
+<h2 id="project-background-objectives">📖 Project Background &amp; Objectives / 项目背景与目标</h2>
+<p><strong>English:</strong>
+The SIE Exam Prep Android App is a comprehensive mobile application designed to assist candidates in preparing for the Securities Industry Essentials (SIE) exam. The primary objective is to provide a focused, distraction-free study environment with realistic exam simulations.</p>
+<p><strong>Objectives:</strong>
+- <strong>Core Focus:</strong> Deliver essential study and exam simulation features without unnecessary social distractions.
+- <strong>Modern Tech:</strong> Built entirely with Native Android (Kotlin) and Jetpack Compose to ensure high performance and adherence to modern Android development standards.
+- <strong>Maintainability:</strong> utilize a multi-module architecture to support scalability and ease of maintenance.</p>
+<p><strong>中文:</strong>
+SIE Exam Prep Android App 是一款专为证券行业基础考试 (SIE) 考生设计的综合性移动应用。主要目标是提供一个专注、无干扰的学习环境和真实的模拟考试体验。</p>
+<p><strong>项目目标:</strong>
+- <strong>核心聚焦:</strong> 提供核心学习和模拟考试功能，摒弃不必要的社交干扰。
+- <strong>现代技术:</strong> 完全使用原生 Android (Kotlin) 和 Jetpack Compose 构建，确保高性能并符合现代 Android 开发标准。
+- <strong>可维护性:</strong> 采用多模块架构，支持扩展性和易于维护。</p>
+<hr />
+<h2 id="system-architecture">🏗 System Architecture / 系统架构</h2>
+<h3 id="architecture-diagram">Architecture Diagram / 架构图</h3>
+<pre><code class="language-mermaid">graph TD
+    App[:app] --&gt; FeatureHome[:feature:home]
+    App --&gt; FeatureStudy[:feature:study]
+    App --&gt; FeatureExam[:feature:exam]
+    App --&gt; FeatureStats[:feature:stats]
+    App --&gt; FeatureSettings[:feature:settings]
+
+    FeatureHome --&gt; CoreData[:core:data]
+    FeatureStudy --&gt; CoreData
+    FeatureExam --&gt; CoreData
+    FeatureStats --&gt; CoreData
+    FeatureSettings --&gt; CoreData
+
+    FeatureHome --&gt; CoreDesign[:core:designsystem]
+    FeatureStudy --&gt; CoreDesign
+    FeatureExam --&gt; CoreDesign
+    FeatureStats --&gt; CoreDesign
+    FeatureSettings --&gt; CoreDesign
+
+    CoreData --&gt; CoreDatabase[:core:database]
+    CoreData --&gt; CoreDatastore[:core:datastore]
+    CoreData --&gt; CoreModel[:core:model]
+
+    CoreDatabase --&gt; CoreModel
+    CoreDatastore --&gt; CoreModel
+</code></pre>
+<h3 id="core-modules">Core Modules / 核心模块说明</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Module / 模块</th>
+<th style="text-align: left;">Description / 说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>:app</strong></td>
+<td style="text-align: left;">The application entry point, dependency injection setup (Hilt), and navigation host. <br> 应用入口，依赖注入配置 (Hilt) 和导航宿主。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>:core:data</strong></td>
+<td style="text-align: left;">Repository layer handling data operations and business logic. <br> 处理数据操作和业务逻辑的仓库层。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>:core:database</strong></td>
+<td style="text-align: left;">Local database implementation using Room. Pre-populated with exam questions. <br> 使用 Room 的本地数据库实现。预置考试题目。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>:core:datastore</strong></td>
+<td style="text-align: left;">Lightweight data storage for user preferences (Proto DataStore). <br> 用于用户偏好设置的轻量级数据存储 (Proto DataStore)。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>:core:designsystem</strong></td>
+<td style="text-align: left;">Reusable UI components, themes, and icons based on Material Design 3. <br> 基于 Material Design 3 的可复用 UI 组件、主题和图标。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>:core:model</strong></td>
+<td style="text-align: left;">Domain models shared across the application. <br> 跨应用共享的领域模型。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>:feature:</strong>*</td>
+<td style="text-align: left;">Feature-specific modules containing UI screens and ViewModels (e.g., Exam, Study, Stats). <br> 包含 UI 界面和 ViewModel 的功能模块（如考试、学习、统计）。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="local-development-setup">🛠 Local Development Setup / 本地开发环境搭建</h2>
+<h3 id="prerequisites">Prerequisites / 前置要求</h3>
+<ul>
+<li><strong>JDK</strong>: Java 17 (Recommended for Android Gradle Plugin 8.2.0+)</li>
+<li><strong>Android Studio</strong>: Hedgehog (2023.1.1) or newer</li>
+<li><strong>Android SDK</strong>: API 34 (UpsideDownCake)</li>
+</ul>
+<h3 id="installation-steps">Installation Steps / 安装步骤</h3>
+<ol>
+<li>
+<p><strong>Clone the repository / 克隆仓库:</strong>
+    <code>bash
+    git clone https://github.com/your-username/sie-android-app.git
+    cd sie-android-app</code></p>
+</li>
+<li>
+<p><strong>Environment Variables / 环境变量:</strong></p>
+<ul>
+<li>Ensure <code>ANDROID_HOME</code> is set in your environment or <code>sdk.dir</code> is defined in <code>local.properties</code>.</li>
+<li>No API keys are required for the core functionality as it runs offline.</li>
+<li>确保 <code>ANDROID_HOME</code> 已设置，或在 <code>local.properties</code> 中定义了 <code>sdk.dir</code>。核心功能离线运行，无需 API 密钥。</li>
+</ul>
+</li>
+<li>
+<p><strong>Database Initialization / 数据库初始化:</strong></p>
+<ul>
+<li>The database is automatically populated from <code>core/database/src/main/assets/questions.json</code> on the first run. No manual script execution is required.</li>
+<li>数据库会在首次运行时自动从 <code>core/database/src/main/assets/questions.json</code> 填充。无需手动执行脚本。</li>
+</ul>
+</li>
+<li>
+<p><strong>Build the project / 构建项目:</strong>
+    <code>bash
+    ./gradlew assembleDebug</code></p>
+</li>
+</ol>
+<h3 id="dependency-versions">Dependency Versions / 依赖版本</h3>
+<ul>
+<li><strong>Kotlin</strong>: 1.9.20</li>
+<li><strong>Jetpack Compose</strong>: 1.6.0</li>
+<li><strong>Hilt</strong>: 2.50</li>
+<li><strong>Room</strong>: 2.6.1</li>
+</ul>
+<hr />
+<h2 id="testing">🧪 Testing / 测试</h2>
+<h3 id="unit-integration-tests">Unit &amp; Integration Tests / 单元与集成测试</h3>
+<p>Run the following commands to execute tests:
+运行以下命令执行测试：</p>
+<ul>
+<li><strong>Unit Tests (Local JVM) / 单元测试:</strong>
+    <code>bash
+    ./gradlew testDebugUnitTest</code></li>
+<li><strong>Integration Tests (Instrumented) / 集成测试:</strong>
+    <code>bash
+    ./gradlew connectedAndroidTest</code></li>
+</ul>
+<h3 id="coverage-requirements">Coverage Requirements / 覆盖率要求</h3>
+<ul>
+<li><strong>Target / 目标:</strong> ≥ 80% Code Coverage for business logic (Repositories, ViewModels, UseCases).</li>
+<li><strong>Report Generation / 生成报告:</strong>
+    To generate the coverage report (requires Jacoco configuration):
+    若要生成覆盖率报告（需配置 Jacoco）：
+    <code>bash
+    ./gradlew jacocoTestReport</code>
+    Report location: <code>app/build/reports/jacoco/test/html/index.html</code></li>
+</ul>
+<hr />
+<h2 id="troubleshooting">❓ Troubleshooting / 常见问题排障表</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Issue / 问题</th>
+<th style="text-align: left;">Possible Cause / 可能原因</th>
+<th style="text-align: left;">Solution / 解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Gradle Sync Failed</strong></td>
+<td style="text-align: left;">Incompatible JDK version. <br> JDK 版本不兼容。</td>
+<td style="text-align: left;">Ensure you are using JDK 17. Check Project Structure settings. <br> 确保使用 JDK 17。检查项目结构设置。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>"Compose Compiler" Error</strong></td>
+<td style="text-align: left;">Kotlin version mismatch. <br> Kotlin 版本不匹配。</td>
+<td style="text-align: left;">Verify <code>kotlinCompilerExtensionVersion</code> in <code>build.gradle.kts</code> matches your Kotlin version. <br> 验证 <code>build.gradle.kts</code> 中的 <code>kotlinCompilerExtensionVersion</code> 与 Kotlin 版本匹配。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Database Empty</strong></td>
+<td style="text-align: left;">Asset file missing or corrupted. <br> 资源文件丢失或损坏。</td>
+<td style="text-align: left;">Check <code>core/database/src/main/assets/questions.json</code> exists and is valid JSON. Clear app data to trigger re-population. <br> 检查 <code>questions.json</code> 是否存在且格式正确。清除应用数据以触发重新填充。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Emulator Performance</strong></td>
+<td style="text-align: left;">HAXM/AEHD not installed. <br> 未安装 HAXM/AEHD。</td>
+<td style="text-align: left;">Install Hardware Accelerator via Android SDK Manager. <br> 通过 Android SDK 管理器安装硬件加速器。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="license-copyright">📄 License &amp; Copyright / 许可证与版权信息</h2>
+<p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.
+本项目采用 MIT 许可证。详情请参阅 <a href="LICENSE">LICENSE</a> 文件。</p>
+<p>Copyright © 2026 SIE Exam Prep Team.</p>
+<hr />
+<h2 id="changelog">📅 Changelog / 更新日志</h2>
+<p>See <a href="CHANGELOG/">CHANGELOG.md</a> for the full history of changes.
+查看 <a href="CHANGELOG/">CHANGELOG.md</a> 获取完整变更历史。</p>
+<hr />
+<blockquote>
+<p><strong>Note</strong>: To generate the documentation site locally, run:
+<strong>注意</strong>: 要在本地生成文档站点，请运行：
+<code>bash
+make docs</code></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
