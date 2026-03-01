@@ -171,7 +171,7 @@ internal fun HomeScreen(
                                         fontWeight = FontWeight.Bold
                                     )
                                     Text(
-                                        text = "Questions\nStudied",
+                                        text = stringResource(CommonR.string.home_questions_studied),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = OnBackgroundSecondary,
                                         fontSize = 12.sp
@@ -189,7 +189,7 @@ internal fun HomeScreen(
                                         fontWeight = FontWeight.Bold
                                     )
                                     Text(
-                                        text = "Correct\nRate",
+                                        text = stringResource(CommonR.string.home_correct_rate),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = OnBackgroundSecondary,
                                         fontSize = 12.sp
