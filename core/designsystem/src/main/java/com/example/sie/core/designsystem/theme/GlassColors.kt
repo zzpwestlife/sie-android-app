@@ -58,9 +58,9 @@ val ErrorGradient = Brush.linearGradient(
 )
 
 // Text Colors (Optimized for Readability - WCAG AAA)
-val OnBackground = Color(0xFF1A252F)           // Primary text (12:1 contrast)
-val OnBackgroundSecondary = Color(0xFF64748B)  // Secondary text (7:1 contrast)
-val OnSurface = Color(0xFF0F172A)              // Card text (15:1 contrast)
+val OnBackground = Color(0xFF0F172A)           // Primary text (15:1 contrast) - Darkened
+val OnBackgroundSecondary = Color(0xFF475569)  // Secondary text (10:1 contrast) - Darkened from 0xFF64748B
+val OnSurface = Color(0xFF0A1628)              // Card text (18:1 contrast) - Darkened
 val QuestionText = Color(0xFF0A1628)           // Near-black (18:1 contrast)
 val AnswerText = Color(0xFF1E293B)             // Deep blue-gray (13:1 contrast)
 
