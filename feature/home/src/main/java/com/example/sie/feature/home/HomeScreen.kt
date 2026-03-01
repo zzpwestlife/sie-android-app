@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.designsystem.component.*
 import com.example.sie.core.designsystem.theme.*
 
@@ -22,8 +24,12 @@ fun HomeRoute(
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
     onSettingsClick: () -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     HomeScreen(
+        uiState = uiState,
         onTopicSelectionClick = onTopicSelectionClick,
         onMockExamClick = onMockExamClick,
         onStatsClick = onStatsClick,
@@ -36,6 +42,7 @@ fun HomeRoute(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun HomeScreen(
+    uiState: HomeUiState,
     onTopicSelectionClick: () -> Unit,
     onMockExamClick: () -> Unit,
     onStatsClick: () -> Unit,
@@ -98,54 +105,95 @@ internal fun HomeScreen(
                             fontWeight = FontWeight.Medium
                         )
                         Spacer(modifier = Modifier.height(SpacingSmall))
-                        ModernGradientProgressBar(
-                            progress = 0.45f,
-                            gradient = AccentGradient,
-                            showLabel = true
-                        )
+
+                        when (uiState) {
+                            is HomeUiState.Loading -> {
+                                ModernGradientProgressBar(
+                                    progress = 0f,
+                                    gradient = AccentGradient,
+                                    showLabel = true
+                                )
+                            }
+                            is HomeUiState.Success -> {
+                                ModernGradientProgressBar(
+                                    progress = uiState.studyProgress,
+                                    gradient = AccentGradient,
+                                    showLabel = true
+                                )
+                            }
+                        }
                     }
                 }
 
                 // Statistics Row
                 item {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
-                    ) {
-                        ModernGradientCard(
-                            modifier = Modifier.weight(1f),
-                            gradient = TertiaryGradient
-                        ) {
-                            Text(
-                                text = "245",
-                                style = MaterialTheme.typography.headlineMedium,
-                                color = OnSurface,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = "Questions\nStudied",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = OnBackgroundSecondary,
-                                fontSize = 12.sp
-                            )
+                    when (uiState) {
+                        is HomeUiState.Loading -> {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
+                            ) {
+                                ModernGradientCard(
+                                    modifier = Modifier.weight(1f),
+                                    gradient = TertiaryGradient
+                                ) {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.size(32.dp),
+                                        color = OnSurface
+                                    )
+                                }
+                                ModernGradientCard(
+                                    modifier = Modifier.weight(1f),
+                                    gradient = AccentGradient
+                                ) {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.size(32.dp),
+                                        color = OnSurface
+                                    )
+                                }
+                            }
                         }
+                        is HomeUiState.Success -> {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
+                            ) {
+                                ModernGradientCard(
+                                    modifier = Modifier.weight(1f),
+                                    gradient = TertiaryGradient
+                                ) {
+                                    Text(
+                                        text = "${uiState.questionsStudied}",
+                                        style = MaterialTheme.typography.headlineMedium,
+                                        color = OnSurface,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Text(
+                                        text = "Questions\nStudied",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = OnBackgroundSecondary,
+                                        fontSize = 12.sp
+                                    )
+                                }
 
-                        ModernGradientCard(
-                            modifier = Modifier.weight(1f),
-                            gradient = AccentGradient
-                        ) {
-                            Text(
-                                text = "78%",
-                                style = MaterialTheme.typography.headlineMedium,
-                                color = OnSurface,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = "Correct\nRate",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = OnBackgroundSecondary,
-                                fontSize = 12.sp
-                            )
+                                ModernGradientCard(
+                                    modifier = Modifier.weight(1f),
+                                    gradient = AccentGradient
+                                ) {
+                                    Text(
+                                        text = "${uiState.correctRate}%",
+                                        style = MaterialTheme.typography.headlineMedium,
+                                        color = OnSurface,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Text(
+                                        text = "Correct\nRate",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = OnBackgroundSecondary,
+                                        fontSize = 12.sp
+                                    )
+                                }
+                            }
                         }
                     }
                 }
