@@ -81,6 +81,7 @@
     <string name="exam_score_keep_practicing">Keep practicing. You need 70% to pass.</string>
 
     <!-- Stats Screen -->
+    <string name="stats_title">Statistics</string>
     <string name="stats_empty">No exam results yet.</string>
     <string name="stats_average_score">Average Score</string>
     <string name="stats_recent_results">Recent Results</string>

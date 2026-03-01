@@ -1,6 +1,5 @@
 package com.example.sie.feature.exam
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,23 +13,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,10 +32,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.common.R as CommonR
-import com.example.sie.core.designsystem.component.GlassCard
-import com.example.sie.core.designsystem.theme.PrimaryGradient
-import com.example.sie.core.designsystem.theme.SuccessGradient
-import com.example.sie.core.designsystem.theme.ErrorGradient
+import com.example.sie.core.designsystem.component.AppBackground
+import com.example.sie.core.designsystem.component.ModernGradientCard
+import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
+import com.example.sie.core.designsystem.theme.AccentGradient
+import com.example.sie.core.designsystem.theme.OnSurface
+import com.example.sie.core.designsystem.theme.SecondaryGradient
+import com.example.sie.core.designsystem.theme.WarningGradient
 import com.example.sie.core.model.ExamResult
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -68,39 +65,14 @@ internal fun ExamHistoryScreen(
     onBackClick: () -> Unit,
     onExamClick: (Int) -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1a1a2e),
-                        Color(0xFF16213e),
-                        Color(0xFF0f3460)
-                    )
-                )
-            )
-    ) {
+    AppBackground {
         Scaffold(
             containerColor = Color.Transparent,
             topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = stringResource(CommonR.string.exam_history_title),
-                            color = Color.White
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = onBackClick) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = stringResource(CommonR.string.common_back),
-                                tint = Color.White
-                            )
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                ModernGradientTopAppBar(
+                    title = stringResource(CommonR.string.exam_history_title),
+                    gradient = SecondaryGradient,
+                    onNavigationClick = onBackClick
                 )
             }
         ) { paddingValues ->
@@ -112,14 +84,14 @@ internal fun ExamHistoryScreen(
                 when (uiState) {
                     ExamHistoryUiState.Loading -> {
                         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                            CircularProgressIndicator(color = Color.White)
+                            CircularProgressIndicator()
                         }
                     }
                     ExamHistoryUiState.Empty -> {
                         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                             Text(
                                 text = stringResource(CommonR.string.exam_history_empty),
-                                color = Color.White,
+                                color = OnSurface,
                                 style = MaterialTheme.typography.bodyLarge
                             )
                         }
@@ -151,9 +123,9 @@ private fun ExamHistoryContent(
             val passCount = results.count { it.score >= 70 }
             val passRate = if (totalExams > 0) (passCount * 100) / totalExams else 0
 
-            GlassCard(
+            ModernGradientCard(
                 modifier = Modifier.fillMaxWidth(),
-                gradient = PrimaryGradient
+                gradient = SecondaryGradient
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -177,9 +149,9 @@ private fun ExamHistoryContent(
 
         items(results, key = { it.id }) { result ->
             val passed = result.score >= 70
-            GlassCard(
+            ModernGradientCard(
                 modifier = Modifier.fillMaxWidth(),
-                gradient = if (passed) SuccessGradient else ErrorGradient,
+                gradient = if (passed) AccentGradient else WarningGradient,
                 onClick = { onExamClick(result.id) }
             ) {
                 ExamHistoryItemContent(result = result, passed = passed)
@@ -195,12 +167,12 @@ private fun SummaryStatItem(value: String, label: String) {
             text = value,
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = OnSurface
         )
         Text(
             text = label,
             style = MaterialTheme.typography.bodySmall,
-            color = Color.White.copy(alpha = 0.7f)
+            color = OnSurface.copy(alpha = 0.7f)
         )
     }
 }
@@ -218,13 +190,13 @@ private fun ExamHistoryItemContent(result: ExamResult, passed: Boolean) {
             Text(
                 text = dateFormat.format(Date(result.date)),
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.White.copy(alpha = 0.8f)
+                color = OnSurface
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "${result.correctCount}/${result.totalQuestions}",
                 style = MaterialTheme.typography.bodySmall,
-                color = Color.White.copy(alpha = 0.6f)
+                color = OnSurface.copy(alpha = 0.7f)
             )
         }
 
@@ -236,7 +208,7 @@ private fun ExamHistoryItemContent(result: ExamResult, passed: Boolean) {
                 text = "${result.score}%",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = OnSurface
             )
             Icon(
                 imageVector = if (passed) Icons.Default.CheckCircle else Icons.Default.Close,
