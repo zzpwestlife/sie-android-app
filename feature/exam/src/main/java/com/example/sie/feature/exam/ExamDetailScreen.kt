@@ -68,6 +68,7 @@ import com.example.sie.core.designsystem.component.AppBackground
 import com.example.sie.core.designsystem.component.ModernGradientCard
 import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
 import com.example.sie.core.designsystem.theme.*
+import com.example.sie.core.model.ExamResult
 import com.example.sie.core.model.Question
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -128,6 +129,9 @@ internal fun ExamDetailScreen(
                             )
                         }
                     }
+                    is ExamDetailUiState.LegacyExam -> {
+                        LegacyExamContent(examResult = uiState.examResult)
+                    }
                     is ExamDetailUiState.Success -> {
                         ExamDetailContent(
                             state = uiState,
@@ -138,6 +142,70 @@ internal fun ExamDetailScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun LegacyExamContent(examResult: ExamResult) {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        ModernGradientCard(
+            modifier = Modifier.fillMaxWidth(),
+            gradient = SecondaryGradient
+        ) {
+            Text(
+                text = dateFormat.format(Date(examResult.date)),
+                style = MaterialTheme.typography.bodyMedium,
+                color = OnBackgroundSecondary
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "${examResult.score}%",
+                style = MaterialTheme.typography.displayMedium,
+                fontWeight = FontWeight.Bold,
+                color = OnSurface
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "${examResult.correctCount}/${examResult.totalQuestions}",
+                style = MaterialTheme.typography.titleLarge,
+                color = OnBackgroundSecondary
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Icon(
+            imageVector = Icons.Default.Info,
+            contentDescription = null,
+            modifier = Modifier.size(48.dp),
+            tint = OnBackgroundSecondary
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = stringResource(CommonR.string.exam_detail_legacy_exam),
+            style = MaterialTheme.typography.titleMedium,
+            color = OnBackground,
+            fontWeight = FontWeight.SemiBold
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = stringResource(CommonR.string.exam_detail_legacy_exam_desc),
+            style = MaterialTheme.typography.bodyMedium,
+            color = OnBackgroundSecondary,
+            modifier = Modifier.fillMaxWidth(0.8f)
+        )
     }
 }
 

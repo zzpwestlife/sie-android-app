@@ -49,11 +49,22 @@ class ExamDetailViewModel @Inject constructor(
     private fun loadExamDetail() {
         viewModelScope.launch {
             try {
+                Log.d(TAG, "Loading exam detail for examResultId: $examResultId")
                 val result = examRepository.getExamResultById(examResultId).first()
+                Log.d(TAG, "Exam result: $result")
                 val answers = examRepository.getExamAnswers(examResultId).first()
+                Log.d(TAG, "Exam answers count: ${answers.size}")
 
-                if (result == null || answers.isEmpty()) {
+                if (result == null) {
+                    Log.e(TAG, "Exam result is null for id: $examResultId")
                     _uiState.value = ExamDetailUiState.Error
+                    return@launch
+                }
+
+                if (answers.isEmpty()) {
+                    Log.w(TAG, "No answers found for exam result id: $examResultId (legacy exam without detailed answers)")
+                    // Show a message that this is a legacy exam without detailed answers
+                    _uiState.value = ExamDetailUiState.LegacyExam(examResult = result)
                     return@launch
                 }
 
@@ -80,6 +91,13 @@ class ExamDetailViewModel @Inject constructor(
                     Log.w(TAG, "Missing $missingCount questions from exam result $examResultId")
                 }
 
+                if (validAnswers.isEmpty() || validQuestions.isEmpty()) {
+                    Log.e(TAG, "No valid questions/answers after filtering for exam result id: $examResultId")
+                    _uiState.value = ExamDetailUiState.Error
+                    return@launch
+                }
+
+                Log.d(TAG, "Successfully loaded exam detail: ${validQuestions.size} questions, ${validAnswers.size} answers")
                 _uiState.value = ExamDetailUiState.Success(
                     examResult = result,
                     answers = validAnswers,
@@ -103,6 +121,7 @@ class ExamDetailViewModel @Inject constructor(
 sealed interface ExamDetailUiState {
     data object Loading : ExamDetailUiState
     data object Error : ExamDetailUiState
+    data class LegacyExam(val examResult: ExamResult) : ExamDetailUiState
     data class Success(
         val examResult: ExamResult,
         val answers: List<ExamAnswer>,
