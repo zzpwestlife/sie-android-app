@@ -34,6 +34,20 @@
     <string name="home_settings">⚙️ Settings</string>
     <string name="home_settings_subtitle">Configure app preferences</string>
 
+    <!-- Home Screen - Additional strings for i18n -->
+    <string name="home_app_title">SIE Exam Prep</string>
+    <string name="home_welcome_back">Welcome back!</string>
+    <string name="home_continue_prep">Continue your SIE exam preparation</string>
+    <string name="home_study_progress">Study Progress</string>
+    <string name="home_study_options">Study Options</string>
+    <string name="home_study_mode">Study Mode</string>
+    <string name="home_bookmarks">Bookmarks</string>
+    <string name="home_questions_studied">Questions\nStudied</string>
+    <string name="home_correct_rate">Correct\nRate</string>
+
+    <!-- Common - Additional -->
+    <string name="common_settings">Settings</string>
+
     <!-- Study Screen -->
     <string name="study_title">Practice Mode</string>
     <string name="study_bookmark_removed">Bookmark removed</string>

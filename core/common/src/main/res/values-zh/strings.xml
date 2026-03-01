@@ -34,6 +34,20 @@
     <string name="home_settings">⚙️ 设置</string>
     <string name="home_settings_subtitle">配置应用偏好</string>
 
+    <!-- Home Screen - Additional strings for i18n -->
+    <string name="home_app_title">SIE 考试准备</string>
+    <string name="home_welcome_back">欢迎回来！</string>
+    <string name="home_continue_prep">继续你的 SIE 考试准备</string>
+    <string name="home_study_progress">学习进度</string>
+    <string name="home_study_options">学习选项</string>
+    <string name="home_study_mode">学习模式</string>
+    <string name="home_bookmarks">收藏夹</string>
+    <string name="home_questions_studied">已学\n题目</string>
+    <string name="home_correct_rate">正确\n率</string>
+
+    <!-- Common - Additional -->
+    <string name="common_settings">设置</string>
+
     <!-- Study Screen -->
     <string name="study_title">练习模式</string>
     <string name="study_bookmark_removed">已取消收藏</string>
@@ -81,6 +95,7 @@
     <string name="exam_score_keep_practicing">继续练习，你需要达到 70% 才能通过。</string>
 
     <!-- Stats Screen -->
+    <string name="stats_title">统计</string>
     <string name="stats_empty">暂无考试记录</string>
     <string name="stats_average_score">平均分</string>
     <string name="stats_recent_results">最近成绩</string>
@@ -101,6 +116,8 @@
     <string name="exam_detail_correct_answer">正确答案</string>
     <string name="exam_detail_flagged">已标记</string>
     <string name="exam_detail_not_answered">未作答</string>
+    <string name="exam_detail_legacy_exam">历史考试结果</string>
+    <string name="exam_detail_legacy_exam_desc">此考试取自启用详细答案追踪之前。只有分数和日期可用。</string>
 
     <!-- Settings Screen -->
     <string name="settings_title">设置</string>
