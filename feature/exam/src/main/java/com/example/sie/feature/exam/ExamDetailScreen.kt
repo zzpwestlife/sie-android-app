@@ -80,10 +80,12 @@ fun ExamDetailRoute(
     viewModel: ExamDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val language by viewModel.language.collectAsStateWithLifecycle()
     ExamDetailScreen(
         uiState = uiState,
         onBackClick = onBackClick,
-        onToggleFilter = viewModel::toggleFilter
+        onToggleFilter = viewModel::toggleFilter,
+        language = language
     )
 }
 
@@ -92,7 +94,8 @@ fun ExamDetailRoute(
 internal fun ExamDetailScreen(
     uiState: ExamDetailUiState,
     onBackClick: () -> Unit,
-    onToggleFilter: () -> Unit
+    onToggleFilter: () -> Unit,
+    language: String
 ) {
     AppBackground {
         Scaffold(
@@ -128,7 +131,8 @@ internal fun ExamDetailScreen(
                     is ExamDetailUiState.Success -> {
                         ExamDetailContent(
                             state = uiState,
-                            onToggleFilter = onToggleFilter
+                            onToggleFilter = onToggleFilter,
+                            language = language
                         )
                     }
                 }
@@ -141,7 +145,8 @@ internal fun ExamDetailScreen(
 @Composable
 private fun ExamDetailContent(
     state: ExamDetailUiState.Success,
-    onToggleFilter: () -> Unit
+    onToggleFilter: () -> Unit,
+    language: String
 ) {
     val filteredQuestions = state.filteredQuestions
     val filteredAnswers = state.filteredAnswers
@@ -321,7 +326,8 @@ private fun ExamDetailContent(
                         question = question,
                         selectedOptionIndex = answer?.selectedOptionIndex,
                         isCorrect = answer?.isCorrect ?: false,
-                        isAnswered = answer?.isAnswered ?: false
+                        isAnswered = answer?.isAnswered ?: false,
+                        language = language
                     )
                 }
             }
@@ -373,6 +379,7 @@ private fun ModernGradientQuestionCard(
     selectedOptionIndex: Int?,
     isCorrect: Boolean,
     isAnswered: Boolean,
+    language: String,
     modifier: Modifier = Modifier
 ) {
     // Determine left gradient based on answer correctness
@@ -395,39 +402,41 @@ private fun ModernGradientQuestionCard(
         ) {
             // Question text
             Text(
-                text = question.content,
-                style = MaterialTheme.typography.titleMedium,
+                text = question.getLocalizedContent(language),
+                style = MaterialTheme.typography.bodyLarge,
                 color = QuestionText,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.Medium,
+                lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(SpacingMedium))
 
             // Options
-            question.options.forEachIndexed { index, optionText ->
+            question.options.forEachIndexed { index, _ ->
+                val optionText = question.getOption(index, language)
                 val isSelected = selectedOptionIndex == index
                 val isThisCorrect = index == question.correctAnswerIndex
 
                 val (borderColor, containerColor, textColor) = when {
                     isAnswered && isThisCorrect -> Triple(
-                        Color(0xFF00C9FF),
-                        Color(0xFFE0F7FA),
-                        Color(0xFF006064)
+                        Color(0xFF4CAF50),
+                        Color(0xFFE8F5E9),
+                        Color(0xFF1B5E20)
                     )
                     isAnswered && isSelected && !isThisCorrect -> Triple(
-                        Color(0xFFFF6B6B),
+                        Color(0xFFF44336),
                         Color(0xFFFFEBEE),
                         Color(0xFFC62828)
                     )
                     isSelected -> Triple(
-                        Color(0xFF1FA2FF),
-                        Color(0xFFE3F2FD),
-                        Color(0xFF0D47A1)
+                        Color(0xFF11998E),
+                        Color(0xFFE0F2F1),
+                        Color(0xFF0F172A)
                     )
                     else -> Triple(
-                        Color(0xFFE0E0E0),
+                        OnBackgroundSecondary.copy(alpha = 0.3f),
                         Color.White,
-                        AnswerText
+                        OnBackground
                     )
                 }
 
@@ -478,11 +487,11 @@ private fun ModernGradientQuestionCard(
                     exit = shrinkVertically()
                 ) {
                     Column {
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(SpacingSmall))
                         Text(
-                            text = question.explanation ?: "",
+                            text = question.getExplanation(language),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = AnswerText,
+                            color = OnBackground,
                             lineHeight = MaterialTheme.typography.bodyMedium.lineHeight
                         )
                     }
@@ -503,12 +512,15 @@ private fun ModernOptionRow(
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(1.5.dp, borderColor),
+        shape = RoundedCornerShape(CornerRadiusMedium),
+        border = BorderStroke(
+            width = if (isSelected) 2.dp else 1.dp,
+            color = borderColor
+        ),
         color = containerColor
     ) {
         Row(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(SpacingMedium),
             verticalAlignment = Alignment.CenterVertically
         ) {
             RadioButton(
@@ -522,8 +534,11 @@ private fun ModernOptionRow(
             Text(
                 text = text,
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(start = 8.dp),
-                color = textColor
+                modifier = Modifier
+                    .padding(start = SpacingSmall)
+                    .weight(1f),
+                color = textColor,
+                fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal
             )
         }
     }

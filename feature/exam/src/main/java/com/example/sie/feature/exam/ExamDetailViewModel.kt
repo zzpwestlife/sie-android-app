@@ -21,7 +21,8 @@ import javax.inject.Inject
 class ExamDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val examRepository: ExamRepository,
-    private val questionRepository: QuestionRepository
+    private val questionRepository: QuestionRepository,
+    private val userDataRepository: com.example.sie.core.data.repository.UserDataRepository
 ) : ViewModel() {
 
     private val examResultId: Int = checkNotNull(savedStateHandle["examResultId"])
@@ -33,7 +34,15 @@ class ExamDetailViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<ExamDetailUiState>(ExamDetailUiState.Loading)
     val uiState: StateFlow<ExamDetailUiState> = _uiState.asStateFlow()
 
+    private val _language = MutableStateFlow("zh")
+    val language: StateFlow<String> = _language.asStateFlow()
+
     init {
+        viewModelScope.launch {
+            userDataRepository.userData.collect { userData ->
+                _language.value = userData.language
+            }
+        }
         loadExamDetail()
     }
 
