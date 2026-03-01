@@ -8,10 +8,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
@@ -23,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sie.core.model.Question
@@ -40,75 +44,47 @@ fun QuestionCard(
     showExplanation: Boolean = true,
     language: String = "en"
 ) {
-    val borderBrush = when {
-        showFeedback && selectedOptionIndex != null && selectedOptionIndex == question.correctAnswerIndex -> SuccessGradient
-        showFeedback && selectedOptionIndex != null && selectedOptionIndex != question.correctAnswerIndex -> ErrorGradient
-        else -> null
-    }
-
-    GlassCard(
+    Card(
         modifier = modifier,
-        gradient = borderBrush
-    ) {
-        Text(
-            text = question.getLocalizedContent(language),
-            style = MaterialTheme.typography.titleMedium,
-            color = Color.White
+        shape = RoundedCornerShape(CornerRadiusLarge),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = ElevationLow
         )
+    ) {
+        Column(
+            modifier = Modifier.padding(SpacingMedium)
+        ) {
+            // Question Text
+            Text(
+                text = question.getLocalizedContent(language),
+                style = MaterialTheme.typography.bodyLarge,
+                color = QuestionText,
+                fontWeight = FontWeight.Medium,
+                lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
+            )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(SpacingMedium))
 
-        question.options.forEachIndexed { index, _ ->
-            val isSelected = selectedOptionIndex == index
-            val isCorrect = index == question.correctAnswerIndex
+            // Options
+            question.options.forEachIndexed { index, _ ->
+                val isSelected = selectedOptionIndex == index
+                val isCorrect = index == question.correctAnswerIndex
 
-            val (borderColor, containerColor, contentColor) = when {
-                showFeedback && isCorrect -> Triple(
-                    Color(0xFF4CAF50), // Green
-                    Color(0xFFE8F5E9), // Light Green
-                    Color(0xFF1B5E20)  // Dark Green
+                OptionRow(
+                    text = question.getOption(index, language),
+                    isSelected = isSelected,
+                    isCorrect = isCorrect,
+                    showFeedback = showFeedback,
+                    onClick = { if (!showFeedback) onOptionSelected(index) }
                 )
-                showFeedback && isSelected && !isCorrect -> Triple(
-                    Color(0xFFF44336), // Red
-                    Color(0xFFFFEBEE), // Light Red
-                    Color(0xFFC62828)  // Dark Red
-                )
-                isSelected -> Triple(
-                    Color(0xFF667eea), // Primary gradient start
-                    Color(0xFFE3E7FF), // Light purple
-                    Color(0xFF667eea)
-                )
-                else -> Triple(
-                    Color.White.copy(alpha = 0.5f),
-                    Color.White.copy(alpha = 0.15f),
-                    Color.White
-                )
+
+                if (index < question.options.size - 1) {
+                    Spacer(modifier = Modifier.height(SpacingSmall))
+                }
             }
-
-            OptionRow(
-                text = question.getOption(index, language),
-                isSelected = isSelected,
-                borderColor = borderColor,
-                containerColor = containerColor,
-                contentColor = contentColor,
-                onClick = { if (!showFeedback) onOptionSelected(index) }
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-        }
-
-        if (showFeedback && showExplanation) {
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = stringResource(CommonR.string.common_explanation),
-                style = MaterialTheme.typography.titleSmall,
-                color = Color(0xFF4facfe)
-            )
-            Text(
-                text = question.getExplanation(language),
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(top = 4.dp),
-                color = Color.White.copy(alpha = 0.9f)
-            )
         }
     }
 }
@@ -117,45 +93,108 @@ fun QuestionCard(
 fun OptionRow(
     text: String,
     isSelected: Boolean,
-    borderColor: Color,
-    containerColor: Color,
-    contentColor: Color,
+    isCorrect: Boolean,
+    showFeedback: Boolean,
     onClick: () -> Unit
 ) {
+    // Color logic based on state
+    val (borderColor, containerColor, contentColor, showIcon) = when {
+        // Feedback mode: Show correct answer in green
+        showFeedback && isCorrect -> {
+            Quadruple(
+                Color(0xFF4CAF50),      // Green border
+                Color(0xFFE8F5E9),      // Light green background
+                Color(0xFF1B5E20),      // Dark green text
+                Icons.Filled.CheckCircle
+            )
+        }
+        // Feedback mode: Show wrong selection in red
+        showFeedback && isSelected && !isCorrect -> {
+            Quadruple(
+                Color(0xFFF44336),      // Red border
+                Color(0xFFFFEBEE),      // Light red background
+                Color(0xFFC62828),      // Dark red text
+                Icons.Filled.Close
+            )
+        }
+        // Selected but no feedback yet: Use primary gradient color
+        isSelected -> {
+            Quadruple(
+                Color(0xFF11998E),      // Teal border (from PrimaryGradient)
+                Color(0xFFE0F2F1),      // Light teal background
+                Color(0xFF0F172A),      // OnBackground text
+                null
+            )
+        }
+        // Default unselected state
+        else -> {
+            Quadruple(
+                OnBackgroundSecondary.copy(alpha = 0.3f), // Light gray border
+                Color.White,                              // White background
+                OnBackground,                             // Dark text
+                null
+            )
+        }
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(CornerRadiusMedium))
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(CornerRadiusMedium),
         border = BorderStroke(
-            width = 1.dp,
+            width = if (isSelected || (showFeedback && isCorrect)) 2.dp else 1.dp,
             color = borderColor
         ),
         color = containerColor
     ) {
         Row(
-            modifier = Modifier
-                .padding(12.dp),
+            modifier = Modifier.padding(SpacingMedium),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            RadioButton(
-                selected = isSelected,
-                onClick = null, // Handled by Surface
-                colors = RadioButtonDefaults.colors(
-                    selectedColor = contentColor,
-                    unselectedColor = contentColor.copy(alpha = 0.7f)
+            if (showFeedback && showIcon != null) {
+                Icon(
+                    imageVector = showIcon,
+                    contentDescription = if (isCorrect) "Correct" else "Incorrect",
+                    tint = contentColor,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(end = SpacingSmall)
                 )
-            )
+            } else {
+                RadioButton(
+                    selected = isSelected,
+                    onClick = null, // Handled by Surface
+                    colors = RadioButtonDefaults.colors(
+                        selectedColor = contentColor,
+                        unselectedColor = contentColor.copy(alpha = 0.6f)
+                    )
+                )
+            }
             Text(
                 text = text,
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(start = 8.dp),
-                color = contentColor
+                modifier = Modifier
+                    .padding(start = SpacingSmall)
+                    .weight(1f),
+                color = contentColor,
+                fontWeight = if (isSelected || (showFeedback && isCorrect))
+                    FontWeight.Medium
+                else
+                    FontWeight.Normal
             )
         }
     }
 }
+
+// Helper class for 4-tuple (Kotlin doesn't have built-in Quadruple)
+private data class Quadruple<A, B, C, D>(
+    val first: A,
+    val second: B,
+    val third: C,
+    val fourth: D?
+)
 
 @Preview
 @Composable

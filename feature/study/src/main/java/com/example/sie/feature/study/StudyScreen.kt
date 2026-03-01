@@ -1,5 +1,6 @@
 package com.example.sie.feature.study
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,6 +53,7 @@ import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
 import com.example.sie.core.designsystem.component.QuestionCard
 import com.example.sie.core.designsystem.theme.AccentGradient
 import com.example.sie.core.designsystem.theme.OnBackground
+import com.example.sie.core.designsystem.theme.OnBackgroundSecondary
 import com.example.sie.core.designsystem.theme.PrimaryGradient
 import com.example.sie.core.designsystem.theme.SpacingMedium
 import com.example.sie.core.designsystem.theme.SpacingSmall
@@ -243,27 +245,44 @@ private fun StudyContent(
         // Navigation Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(SpacingSmall)
+            horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
         ) {
-            // Previous Button - outlined style
+            // Previous Button - outlined style with consistent height
             OutlinedButton(
                 onClick = onPreviousQuestion,
                 enabled = state.hasPrevious,
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(56.dp),
                 colors = ButtonDefaults.outlinedButtonColors(
                     contentColor = OnBackground,
                     disabledContentColor = OnBackground.copy(alpha = 0.38f)
+                ),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = if (state.hasPrevious)
+                        OnBackgroundSecondary.copy(alpha = 0.5f)
+                    else
+                        OnBackgroundSecondary.copy(alpha = 0.2f)
                 )
             ) {
-                Text(stringResource(CommonR.string.common_previous))
+                Text(
+                    text = stringResource(CommonR.string.common_previous),
+                    style = MaterialTheme.typography.labelLarge
+                )
             }
 
-            // Next/Skip Button - gradient style
+            // Next/Skip Button - gradient style with consistent height
             ModernGradientButton(
-                text = if (state.isAnswerRevealed) stringResource(CommonR.string.common_next) else stringResource(CommonR.string.study_skip),
+                text = if (state.isAnswerRevealed)
+                    stringResource(CommonR.string.common_next)
+                else
+                    stringResource(CommonR.string.study_skip),
                 onClick = onNextQuestion,
                 gradient = PrimaryGradient,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(56.dp)
             )
         }
 
