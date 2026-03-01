@@ -1,6 +1,5 @@
 package com.example.sie.feature.study
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +17,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,10 +28,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.remember
@@ -39,7 +37,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -47,7 +44,18 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.common.R as CommonR
+import com.example.sie.core.designsystem.component.AppBackground
+import com.example.sie.core.designsystem.component.ModernGradientButton
+import com.example.sie.core.designsystem.component.ModernGradientCard
+import com.example.sie.core.designsystem.component.ModernGradientProgressBar
+import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
 import com.example.sie.core.designsystem.component.QuestionCard
+import com.example.sie.core.designsystem.theme.AccentGradient
+import com.example.sie.core.designsystem.theme.OnBackground
+import com.example.sie.core.designsystem.theme.PrimaryGradient
+import com.example.sie.core.designsystem.theme.SpacingMedium
+import com.example.sie.core.designsystem.theme.SpacingSmall
+import com.example.sie.core.designsystem.theme.WarningGradient
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -90,34 +98,15 @@ internal fun StudyScreen(
     val bookmarkRemovedText = stringResource(CommonR.string.study_bookmark_removed)
     val bookmarkedText = stringResource(CommonR.string.study_bookmarked)
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1a1a2e),
-                        Color(0xFF16213e),
-                        Color(0xFF0f3460)
-                    )
-                )
-            )
-    ) {
+    AppBackground {
         Scaffold(
             containerColor = Color.Transparent,
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             topBar = {
-                TopAppBar(
-                    title = { Text(stringResource(CommonR.string.study_title), color = Color.White) },
-                    navigationIcon = {
-                        IconButton(onClick = onBackClick) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(CommonR.string.common_close),
-                                tint = Color.White
-                            )
-                        }
-                    },
+                ModernGradientTopAppBar(
+                    title = stringResource(CommonR.string.study_title),
+                    gradient = PrimaryGradient,
+                    onNavigationClick = onBackClick,
                     actions = {
                         if (uiState is StudyUiState.Success) {
                             val isBookmarked = uiState.currentQuestion.isBookmarked
@@ -143,10 +132,7 @@ internal fun StudyScreen(
                                 )
                             }
                         }
-                    },
-                    colors = androidx.compose.material3.TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent
-                    )
+                    }
                 )
             }
         ) { paddingValues ->
@@ -211,21 +197,36 @@ private fun StudyContent(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(SpacingMedium),
+        verticalArrangement = Arrangement.spacedBy(SpacingMedium)
     ) {
-        // Stats Header
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+        // Progress Bar at Top
+        val progress = if (state.stats.totalAnswered > 0) {
+            state.stats.correctCount.toFloat() / state.stats.totalAnswered
+        } else 0f
+        ModernGradientProgressBar(
+            progress = progress,
+            gradient = AccentGradient,
+            showLabel = false,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        // Stats Header in Card
+        ModernGradientCard(
+            gradient = PrimaryGradient,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            StatItem(label = stringResource(CommonR.string.study_stat_time), value = formatTime(elapsedTime))
-            StatItem(label = stringResource(CommonR.string.study_stat_count), value = "${state.stats.totalAnswered}")
-            val accuracy = if (state.stats.totalAnswered > 0) {
-                (state.stats.correctCount.toFloat() / state.stats.totalAnswered * 100).toInt()
-            } else 0
-            StatItem(label = stringResource(CommonR.string.study_stat_accuracy), value = "$accuracy%")
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                StatItem(label = stringResource(CommonR.string.study_stat_time), value = formatTime(elapsedTime))
+                StatItem(label = stringResource(CommonR.string.study_stat_count), value = "${state.stats.totalAnswered}")
+                val accuracy = if (state.stats.totalAnswered > 0) {
+                    (state.stats.correctCount.toFloat() / state.stats.totalAnswered * 100).toInt()
+                } else 0
+                StatItem(label = stringResource(CommonR.string.study_stat_accuracy), value = "$accuracy%")
+            }
         }
 
         // Question Card
@@ -242,49 +243,50 @@ private fun StudyContent(
         // Navigation Buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.spacedBy(SpacingSmall)
         ) {
+            // Previous Button - outlined style
             OutlinedButton(
                 onClick = onPreviousQuestion,
                 enabled = state.hasPrevious,
                 modifier = Modifier.weight(1f),
-                colors = androidx.compose.material3.ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color.White,
-                    disabledContentColor = Color.White.copy(alpha = 0.38f)
-                ),
-                border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.5f))
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = OnBackground,
+                    disabledContentColor = OnBackground.copy(alpha = 0.38f)
+                )
             ) {
                 Text(stringResource(CommonR.string.common_previous))
             }
 
-            Spacer(modifier = Modifier.width(8.dp))
-
-            Button(
+            // Next/Skip Button - gradient style
+            ModernGradientButton(
+                text = if (state.isAnswerRevealed) stringResource(CommonR.string.common_next) else stringResource(CommonR.string.study_skip),
                 onClick = onNextQuestion,
-                modifier = Modifier.weight(1f),
-                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF667eea),
-                    contentColor = Color.White
-                )
-            ) {
-                Text(if (state.isAnswerRevealed) stringResource(CommonR.string.common_next) else stringResource(CommonR.string.study_skip))
-            }
+                gradient = PrimaryGradient,
+                modifier = Modifier.weight(1f)
+            )
         }
 
-        // Explanation Section
+        // Explanation Section in Card
         if (state.isAnswerRevealed) {
-            Column(modifier = Modifier.fillMaxWidth()) {
+            ModernGradientCard(
+                gradient = if (state.selectedOptionIndex == state.currentQuestion.correctAnswerIndex)
+                    AccentGradient
+                else
+                    WarningGradient,
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text(
                     text = stringResource(CommonR.string.common_explanation),
                     style = MaterialTheme.typography.titleSmall,
-                    color = Color(0xFF4facfe),
+                    color = OnBackground,
                     fontWeight = FontWeight.Bold
                 )
+                Spacer(modifier = Modifier.height(SpacingSmall))
                 Text(
                     text = state.currentQuestion.getExplanation(language),
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(top = 4.dp),
-                    color = Color.White.copy(alpha = 0.9f)
+                    color = OnBackground.copy(alpha = 0.85f)
                 )
             }
         }
@@ -298,12 +300,12 @@ private fun StatItem(label: String, value: String) {
             text = value,
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = OnBackground
         )
         Text(
             text = label,
             style = MaterialTheme.typography.bodySmall,
-            color = Color.White.copy(alpha = 0.7f)
+            color = OnBackground.copy(alpha = 0.7f)
         )
     }
 }
