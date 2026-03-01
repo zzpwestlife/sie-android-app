@@ -1,8 +1,6 @@
 package com.example.sie.feature.home
 
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +17,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,8 +30,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -44,8 +39,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -53,8 +46,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.sie.core.common.R as CommonR
-import com.example.sie.core.designsystem.component.GlassCard
-import com.example.sie.core.designsystem.theme.PrimaryGradient
+import com.example.sie.core.designsystem.component.AppBackground
+import com.example.sie.core.designsystem.component.ModernGradientCard
+import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
+import com.example.sie.core.designsystem.component.ModernGradientButton
+import com.example.sie.core.designsystem.theme.AccentGradient
+import com.example.sie.core.designsystem.theme.OnBackground
+import com.example.sie.core.designsystem.theme.OnBackgroundSecondary
+import com.example.sie.core.designsystem.theme.OnSurface
 import com.example.sie.core.model.Question
 
 @Composable
@@ -89,49 +88,22 @@ internal fun BookmarkedScreen(
     onRemoveBookmark: (Int) -> Unit,
     onBackClick: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1a1a2e),
-                        Color(0xFF16213e),
-                        Color(0xFF0f3460)
-                    )
-                )
-            )
-    ) {
+    AppBackground {
         Scaffold(
             containerColor = Color.Transparent,
             snackbarHost = { SnackbarHost(snackbarHostState) },
             topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = stringResource(CommonR.string.bookmarked_title),
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = onBackClick) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = stringResource(CommonR.string.common_back),
-                                tint = Color.White
-                            )
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                ModernGradientTopAppBar(
+                    title = stringResource(CommonR.string.bookmarked_title),
+                    gradient = AccentGradient,
+                    onNavigationClick = onBackClick
                 )
             }
         ) { paddingValues ->
-            Column(
+            Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(horizontal = 16.dp)
             ) {
                 when (uiState) {
                     BookmarkedUiState.Loading -> {
@@ -139,7 +111,7 @@ internal fun BookmarkedScreen(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
-                            CircularProgressIndicator(color = Color.White)
+                            CircularProgressIndicator()
                         }
                     }
 
@@ -153,13 +125,13 @@ internal fun BookmarkedScreen(
                                     imageVector = Icons.Filled.Star,
                                     contentDescription = null,
                                     modifier = Modifier.size(64.dp),
-                                    tint = Color.White.copy(alpha = 0.5f)
+                                    tint = OnBackgroundSecondary
                                 )
                                 Spacer(modifier = Modifier.height(16.dp))
                                 Text(
                                     text = stringResource(CommonR.string.bookmarked_empty),
                                     style = MaterialTheme.typography.bodyLarge,
-                                    color = Color.White.copy(alpha = 0.7f)
+                                    color = OnBackgroundSecondary
                                 )
                             }
                         }
@@ -188,35 +160,61 @@ private fun BookmarkedContent(
     onCategorySelected: (String?) -> Unit,
     onRemoveBookmark: (Int) -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        CategoryFilterChips(
-            categories = categories,
-            selectedCategory = selectedCategory,
-            onCategorySelected = onCategorySelected
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Text(
-            text = "${questions.size} question${if (questions.size != 1) "s" else ""}",
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color.White.copy(alpha = 0.6f)
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(
-                items = questions,
-                key = { it.id }
-            ) { question ->
-                BookmarkedQuestionCard(
-                    question = question,
-                    onRemoveBookmark = { onRemoveBookmark(question.id) }
-                )
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        // Header Badge showing bookmark count
+        item {
+            ModernGradientCard(
+                modifier = Modifier.fillMaxWidth(),
+                gradient = AccentGradient
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Star,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp),
+                        tint = OnSurface
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = stringResource(
+                            CommonR.string.bookmarked_count,
+                            questions.size
+                        ),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = OnSurface
+                    )
+                }
             }
+        }
+
+        // Category Filter Chips
+        item {
+            CategoryFilterChips(
+                categories = categories,
+                selectedCategory = selectedCategory,
+                onCategorySelected = onCategorySelected
+            )
+        }
+
+        // Bookmarked Questions
+        items(
+            items = questions,
+            key = { it.id }
+        ) { question ->
+            BookmarkedQuestionCard(
+                question = question,
+                onRemoveBookmark = { onRemoveBookmark(question.id) }
+            )
         }
     }
 }
@@ -238,19 +236,20 @@ private fun CategoryFilterChips(
                 label = {
                     Text(
                         text = stringResource(CommonR.string.common_filter_all),
-                        color = Color.White
+                        color = if (selectedCategory == null) Color.White else OnBackground
                     )
                 },
                 shape = RoundedCornerShape(12.dp),
                 colors = FilterChipDefaults.filterChipColors(
-                    containerColor = Color.White.copy(alpha = 0.2f),
-                    selectedContainerColor = Color(0xFF667eea)
+                    containerColor = Color.White,
+                    selectedContainerColor = Color(0xFF11998E)
                 ),
                 border = FilterChipDefaults.filterChipBorder(
-                    borderColor = Color.White.copy(alpha = 0.3f),
-                    selectedBorderColor = Color(0xFF667eea),
+                    borderColor = OnBackgroundSecondary,
+                    selectedBorderColor = Color(0xFF11998E),
                     enabled = true,
-                    selected = selectedCategory == null
+                    selected = selectedCategory == null,
+                    borderWidth = 1.dp
                 )
             )
         }
@@ -261,19 +260,20 @@ private fun CategoryFilterChips(
                 label = {
                     Text(
                         text = category,
-                        color = Color.White
+                        color = if (selectedCategory == category) Color.White else OnBackground
                     )
                 },
                 shape = RoundedCornerShape(12.dp),
                 colors = FilterChipDefaults.filterChipColors(
-                    containerColor = Color.White.copy(alpha = 0.2f),
-                    selectedContainerColor = Color(0xFF667eea)
+                    containerColor = Color.White,
+                    selectedContainerColor = Color(0xFF11998E)
                 ),
                 border = FilterChipDefaults.filterChipBorder(
-                    borderColor = Color.White.copy(alpha = 0.3f),
-                    selectedBorderColor = Color(0xFF667eea),
+                    borderColor = OnBackgroundSecondary,
+                    selectedBorderColor = Color(0xFF11998E),
                     enabled = true,
-                    selected = selectedCategory == category
+                    selected = selectedCategory == category,
+                    borderWidth = 1.dp
                 )
             )
         }
@@ -287,12 +287,12 @@ private fun BookmarkedQuestionCard(
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    GlassCard(
+    ModernGradientCard(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { expanded = !expanded }
             .animateContentSize(),
-        gradient = PrimaryGradient
+        gradient = AccentGradient,
+        onClick = { expanded = !expanded }
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Row(
@@ -304,7 +304,7 @@ private fun BookmarkedQuestionCard(
                     Text(
                         text = question.category,
                         style = MaterialTheme.typography.labelSmall,
-                        color = Color(0xFF667eea),
+                        color = Color(0xFF11998E),
                         fontWeight = FontWeight.SemiBold
                     )
 
@@ -313,7 +313,7 @@ private fun BookmarkedQuestionCard(
                     Text(
                         text = question.content,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White,
+                        color = OnSurface,
                         maxLines = if (expanded) Int.MAX_VALUE else 3,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -325,7 +325,7 @@ private fun BookmarkedQuestionCard(
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = stringResource(CommonR.string.common_remove_bookmark),
-                        tint = Color.White.copy(alpha = 0.7f)
+                        tint = OnBackgroundSecondary
                     )
                 }
             }
@@ -336,21 +336,25 @@ private fun BookmarkedQuestionCard(
                 // Options
                 question.options.forEachIndexed { index, option ->
                     val isCorrect = index == question.correctAnswerIndex
-                    val backgroundColor = if (isCorrect) Color(0xFF4caf50).copy(alpha = 0.2f) else Color.Transparent
 
-                    Box(
+                    ModernGradientButton(
+                        text = "${(65 + index).toChar()}. $option",
+                        onClick = { },
+                        enabled = false,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 4.dp)
-                            .background(backgroundColor, RoundedCornerShape(8.dp))
-                            .padding(12.dp)
-                    ) {
-                        Text(
-                            text = "${(65 + index).toChar()}. $option",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = if (isCorrect) Color(0xFF4caf50) else Color.White.copy(alpha = 0.8f)
-                        )
-                    }
+                            .padding(vertical = 4.dp),
+                        gradient = if (isCorrect) {
+                            AccentGradient
+                        } else {
+                            androidx.compose.ui.graphics.Brush.linearGradient(
+                                colors = listOf(
+                                    OnBackgroundSecondary.copy(alpha = 0.3f),
+                                    OnBackgroundSecondary.copy(alpha = 0.3f)
+                                )
+                            )
+                        }
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -359,14 +363,14 @@ private fun BookmarkedQuestionCard(
                 Text(
                     text = stringResource(CommonR.string.common_explanation),
                     style = MaterialTheme.typography.titleSmall,
-                    color = Color(0xFF667eea),
+                    color = Color(0xFF11998E),
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = question.explanation,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color.White.copy(alpha = 0.7f)
+                    color = OnSurface.copy(alpha = 0.8f)
                 )
             }
         }

@@ -131,6 +131,7 @@
     <!-- Bookmarked Screen -->
     <string name="bookmarked_title">收藏题目</string>
     <string name="bookmarked_empty">暂无收藏题目</string>
+    <string name="bookmarked_count">已收藏 %d 道题目</string>
 
     <!-- Wrong Questions Screen -->
     <string name="wrong_questions_title">错题本</string>

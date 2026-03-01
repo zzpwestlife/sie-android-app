@@ -132,6 +132,7 @@
     <!-- Bookmarked Screen -->
     <string name="bookmarked_title">Bookmarked Questions</string>
     <string name="bookmarked_empty">No bookmarked questions yet</string>
+    <string name="bookmarked_count">%d Bookmarked Question(s)</string>
 
     <!-- Wrong Questions Screen -->
     <string name="wrong_questions_title">Wrong Questions</string>
