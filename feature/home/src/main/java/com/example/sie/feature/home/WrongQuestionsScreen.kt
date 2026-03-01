@@ -2,7 +2,6 @@ package com.example.sie.feature.home
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,12 +18,12 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
@@ -32,33 +31,35 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.runtime.collectAsState
 import com.example.sie.core.common.R as CommonR
-import com.example.sie.core.designsystem.component.GlassCard
-import com.example.sie.core.designsystem.component.SieTopAppBar
-import com.example.sie.core.designsystem.theme.ErrorGradient
-import com.example.sie.core.designsystem.theme.SecondaryGradient
+import com.example.sie.core.designsystem.component.AppBackground
+import com.example.sie.core.designsystem.component.ModernGradientCard
+import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
+import com.example.sie.core.designsystem.theme.WarningGradient
+import com.example.sie.core.designsystem.theme.OnBackground
+import com.example.sie.core.designsystem.theme.SpacingMedium
+import com.example.sie.core.designsystem.theme.SpacingSmall
 import com.example.sie.core.model.Question
 
 @Composable
@@ -95,33 +96,15 @@ internal fun WrongQuestionsScreen(
     onRemoveFromWrong: (Int) -> Unit,
     onToggleBookmark: (Int) -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1a1a2e),
-                        Color(0xFF16213e),
-                        Color(0xFF0f3460)
-                    )
-                )
-            )
-    ) {
+    AppBackground {
         Scaffold(
             containerColor = Color.Transparent,
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             topBar = {
-                SieTopAppBar(
+                ModernGradientTopAppBar(
                     title = stringResource(CommonR.string.wrong_questions_title),
-                    navigationIcon = Icons.Filled.ArrowBack,
-                    navigationIconContentDescription = stringResource(CommonR.string.common_back),
-                    onNavigationClick = onBackClick,
-                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = Color.Transparent,
-                        titleContentColor = Color.White,
-                        navigationIconContentColor = Color.White
-                    )
+                    gradient = WarningGradient,
+                    onNavigationClick = onBackClick
                 )
             }
         ) { paddingValues ->
@@ -133,7 +116,7 @@ internal fun WrongQuestionsScreen(
                             .padding(paddingValues),
                         contentAlignment = Alignment.Center
                     ) {
-                        CircularProgressIndicator(color = Color.White)
+                        CircularProgressIndicator()
                     }
                 }
 
@@ -149,13 +132,13 @@ internal fun WrongQuestionsScreen(
                                 imageVector = Icons.Filled.Warning,
                                 contentDescription = null,
                                 modifier = Modifier.size(64.dp),
-                                tint = Color.White.copy(alpha = 0.5f)
+                                tint = OnBackground.copy(alpha = 0.5f)
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
                                 text = stringResource(CommonR.string.wrong_questions_empty),
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = Color.White.copy(alpha = 0.7f)
+                                color = OnBackground.copy(alpha = 0.7f)
                             )
                         }
                     }
@@ -186,11 +169,11 @@ private fun WrongQuestionsContent(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+            .padding(horizontal = SpacingMedium),
+        verticalArrangement = Arrangement.spacedBy(SpacingMedium)
     ) {
         item {
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(SpacingSmall))
             WrongQuestionsStatsCard(stats = state.stats)
         }
 
@@ -214,7 +197,7 @@ private fun WrongQuestionsContent(
         }
 
         item {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(SpacingMedium))
         }
     }
 }
@@ -224,17 +207,40 @@ private fun WrongQuestionsStatsCard(
     stats: WrongQuestionsStats,
     modifier: Modifier = Modifier
 ) {
-    GlassCard(
+    ModernGradientCard(
         modifier = modifier.fillMaxWidth(),
-        gradient = SecondaryGradient
+        gradient = WarningGradient
     ) {
-        Text(
-            text = stringResource(CommonR.string.wrong_questions_stats_title),
-            style = MaterialTheme.typography.titleMedium,
-            color = Color.White,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(12.dp))
+        // Header Badge
+        Box(
+            modifier = Modifier
+                .background(
+                    brush = WarningGradient,
+                    shape = RoundedCornerShape(12.dp)
+                )
+                .padding(horizontal = 12.dp, vertical = 6.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(SpacingSmall)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Warning,
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = Color.White
+                )
+                Text(
+                    text = stringResource(CommonR.string.wrong_questions_stats_title),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(SpacingMedium))
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
@@ -268,14 +274,14 @@ private fun StatItem(
         Text(
             text = value,
             style = MaterialTheme.typography.headlineSmall,
-            color = Color.White,
+            color = OnBackground,
             fontWeight = FontWeight.Bold
         )
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(SpacingSmall))
         Text(
             text = label,
             style = MaterialTheme.typography.bodySmall,
-            color = Color.White.copy(alpha = 0.7f)
+            color = OnBackground.copy(alpha = 0.7f)
         )
     }
 }
@@ -290,7 +296,7 @@ private fun CategoryFilterChips(
 ) {
     LazyRow(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(SpacingSmall)
     ) {
         item {
             FilterChip(
@@ -299,17 +305,19 @@ private fun CategoryFilterChips(
                 label = {
                     Text(
                         text = stringResource(CommonR.string.common_filter_all),
-                        color = Color.White
+                        color = if (selectedCategory == null) Color.White else OnBackground
                     )
                 },
                 shape = RoundedCornerShape(16.dp),
                 colors = FilterChipDefaults.filterChipColors(
-                    containerColor = Color.White.copy(alpha = 0.2f),
-                    selectedContainerColor = Color(0xFF667eea)
+                    containerColor = Color.White,
+                    selectedContainerColor = Color(0xFFFF6B6B),
+                    labelColor = OnBackground,
+                    selectedLabelColor = Color.White
                 ),
                 border = FilterChipDefaults.filterChipBorder(
-                    borderColor = Color.White.copy(alpha = 0.3f),
-                    selectedBorderColor = Color(0xFF667eea),
+                    borderColor = OnBackground.copy(alpha = 0.2f),
+                    selectedBorderColor = Color.Transparent,
                     enabled = true,
                     selected = selectedCategory == null
                 )
@@ -322,17 +330,19 @@ private fun CategoryFilterChips(
                 label = {
                     Text(
                         text = category,
-                        color = Color.White
+                        color = if (selectedCategory == category) Color.White else OnBackground
                     )
                 },
                 shape = RoundedCornerShape(16.dp),
                 colors = FilterChipDefaults.filterChipColors(
-                    containerColor = Color.White.copy(alpha = 0.2f),
-                    selectedContainerColor = Color(0xFF667eea)
+                    containerColor = Color.White,
+                    selectedContainerColor = Color(0xFFFF6B6B),
+                    labelColor = OnBackground,
+                    selectedLabelColor = Color.White
                 ),
                 border = FilterChipDefaults.filterChipBorder(
-                    borderColor = Color.White.copy(alpha = 0.3f),
-                    selectedBorderColor = Color(0xFF667eea),
+                    borderColor = OnBackground.copy(alpha = 0.2f),
+                    selectedBorderColor = Color.Transparent,
                     enabled = true,
                     selected = selectedCategory == category
                 )
@@ -351,14 +361,16 @@ private fun WrongQuestionCard(
     var showRemoveDialog by remember { mutableStateOf(false) }
     var expanded by remember { mutableStateOf(false) }
 
-    GlassCard(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable { expanded = !expanded }
-            .animateContentSize(),
-        gradient = ErrorGradient
+    ModernGradientCard(
+        modifier = modifier.fillMaxWidth(),
+        gradient = WarningGradient,
+        onClick = { expanded = !expanded }
     ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .animateContentSize()
+        ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -368,24 +380,33 @@ private fun WrongQuestionCard(
                     Text(
                         text = question.content,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White,
+                        color = OnBackground,
                         maxLines = if (expanded) Int.MAX_VALUE else 3,
                         overflow = TextOverflow.Ellipsis
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(SpacingSmall))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             text = question.category,
                             style = MaterialTheme.typography.labelSmall,
-                            color = Color.White.copy(alpha = 0.7f)
+                            color = OnBackground.copy(alpha = 0.7f)
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = "\u00d7${question.wrongCount}",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = Color(0xFFff6b6b),
-                            fontWeight = FontWeight.Bold
-                        )
+                        Spacer(modifier = Modifier.width(SpacingSmall))
+                        Box(
+                            modifier = Modifier
+                                .background(
+                                    color = Color(0xFFFF6B6B),
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                                .padding(horizontal = 8.dp, vertical = 2.dp)
+                        ) {
+                            Text(
+                                text = "\u00d7${question.wrongCount}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
                     }
                 }
                 Row {
@@ -393,56 +414,62 @@ private fun WrongQuestionCard(
                         Icon(
                             imageVector = if (question.isBookmarked) Icons.Filled.Star else Icons.Outlined.Star,
                             contentDescription = stringResource(CommonR.string.common_bookmark),
-                            tint = if (question.isBookmarked) Color(0xFFFFD700) else Color.White.copy(alpha = 0.7f)
+                            tint = if (question.isBookmarked) Color(0xFFFFD700) else OnBackground.copy(alpha = 0.5f)
                         )
                     }
                     IconButton(onClick = { showRemoveDialog = true }) {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
                             contentDescription = stringResource(CommonR.string.wrong_questions_remove_from_list),
-                            tint = Color.White.copy(alpha = 0.7f)
+                            tint = OnBackground.copy(alpha = 0.5f)
                         )
                     }
                 }
             }
 
             if (expanded) {
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(SpacingMedium))
 
                 // Options
                 question.options.forEachIndexed { index, option ->
                     val isCorrect = index == question.correctAnswerIndex
-                    val backgroundColor = if (isCorrect) Color(0xFF4caf50).copy(alpha = 0.2f) else Color.Transparent
 
-                    Box(
+                    OutlinedButton(
+                        onClick = {},
+                        enabled = false,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 4.dp)
-                            .background(backgroundColor, RoundedCornerShape(8.dp))
-                            .padding(12.dp)
+                            .padding(vertical = 4.dp),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = if (isCorrect) Color(0xFF00C9FF).copy(alpha = 0.1f) else Color.Transparent,
+                            contentColor = if (isCorrect) Color(0xFF00C9FF) else OnBackground,
+                            disabledContainerColor = if (isCorrect) Color(0xFF00C9FF).copy(alpha = 0.1f) else Color.Transparent,
+                            disabledContentColor = if (isCorrect) Color(0xFF00C9FF) else OnBackground.copy(alpha = 0.8f)
+                        ),
+                        shape = RoundedCornerShape(8.dp)
                     ) {
                         Text(
                             text = "${(65 + index).toChar()}. $option",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = if (isCorrect) Color(0xFF4caf50) else Color.White.copy(alpha = 0.8f)
+                            modifier = Modifier.padding(8.dp)
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(SpacingMedium))
 
                 // Explanation
                 Text(
                     text = stringResource(CommonR.string.common_explanation),
                     style = MaterialTheme.typography.titleSmall,
-                    color = Color.White,
+                    color = OnBackground,
                     fontWeight = FontWeight.Bold
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(SpacingSmall))
                 Text(
                     text = question.explanation,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color.White.copy(alpha = 0.7f)
+                    color = OnBackground.copy(alpha = 0.7f)
                 )
             }
         }
