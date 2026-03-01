@@ -10,13 +10,25 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkedViewModel @Inject constructor(
-    private val questionRepository: QuestionRepository
+    private val questionRepository: QuestionRepository,
+    private val userDataRepository: com.example.sie.core.data.repository.UserDataRepository
 ) : ViewModel() {
 
     private val _selectedCategory = MutableStateFlow<String?>(null)
 
     private val _errorEvents = MutableSharedFlow<String>()
     val errorEvents: SharedFlow<String> = _errorEvents.asSharedFlow()
+
+    private val _language = MutableStateFlow("zh")
+    val language: StateFlow<String> = _language.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            userDataRepository.userData.collect { userData ->
+                _language.value = userData.language
+            }
+        }
+    }
 
     val uiState: StateFlow<BookmarkedUiState> = combine(
         questionRepository.getBookmarkedQuestions(),

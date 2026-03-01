@@ -74,7 +74,6 @@ dependencies {
     implementation(project(":feature:exam"))
     implementation(project(":feature:stats"))
     implementation(project(":feature:settings"))
-    implementation(project(":feature:card"))
     implementation(project(":feature:chapter"))
 
     testImplementation(libs.junit)

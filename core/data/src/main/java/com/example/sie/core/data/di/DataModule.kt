@@ -1,8 +1,6 @@
 package com.example.sie.core.data.di
 
-import com.example.sie.core.data.repository.CardRepository
 import com.example.sie.core.data.repository.ExamRepository
-import com.example.sie.core.data.repository.OfflineCardRepository
 import com.example.sie.core.data.repository.OfflineExamRepository
 import com.example.sie.core.data.repository.OfflineQuestionRepository
 import com.example.sie.core.data.repository.OfflineUserDataRepository
@@ -31,9 +29,4 @@ abstract class DataModule {
     abstract fun bindExamRepository(
         examRepository: OfflineExamRepository
     ): ExamRepository
-
-    @Binds
-    abstract fun bindCardRepository(
-        cardRepository: OfflineCardRepository
-    ): CardRepository
 }

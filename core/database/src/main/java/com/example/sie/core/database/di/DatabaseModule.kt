@@ -10,7 +10,7 @@ import com.example.sie.core.database.MIGRATION_11_12
 import com.example.sie.core.database.MIGRATION_12_13
 import com.example.sie.core.database.MIGRATION_13_14
 import com.example.sie.core.database.MIGRATION_14_15
-import com.example.sie.core.database.dao.CardDao
+import com.example.sie.core.database.MIGRATION_15_16
 import com.example.sie.core.database.dao.ExamResultDao
 import com.example.sie.core.database.dao.QuestionDao
 import dagger.Module
@@ -44,7 +44,7 @@ object DatabaseModule {
             CoroutineScope(Dispatchers.IO + SupervisorJob())
         )
     )
-    .addMigrations(MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12, MIGRATION_12_13, MIGRATION_13_14, MIGRATION_14_15)
+    .addMigrations(MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12, MIGRATION_12_13, MIGRATION_13_14, MIGRATION_14_15, MIGRATION_15_16)
     .fallbackToDestructiveMigration()
     .build()
 
@@ -57,9 +57,4 @@ object DatabaseModule {
     fun providesExamResultDao(
         database: AppDatabase,
     ): ExamResultDao = database.examResultDao()
-
-    @Provides
-    fun providesCardDao(
-        database: AppDatabase,
-    ): CardDao = database.cardDao()
 }

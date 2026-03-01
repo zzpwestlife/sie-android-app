@@ -18,7 +18,6 @@ fun NavGraphBuilder.homeScreen(
     onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
-    onFlashcardsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     composable(route = homeRoute) {
@@ -28,7 +27,6 @@ fun NavGraphBuilder.homeScreen(
             onStatsClick = onStatsClick,
             onBookmarkedClick = onBookmarkedClick,
             onWrongQuestionsClick = onWrongQuestionsClick,
-            onFlashcardsClick = onFlashcardsClick,
             onSettingsClick = onSettingsClick,
         )
     }

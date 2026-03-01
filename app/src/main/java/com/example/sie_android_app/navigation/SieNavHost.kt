@@ -22,12 +22,6 @@ import com.example.sie.feature.stats.navigation.statsScreen
 import com.example.sie.feature.stats.navigation.navigateToStats
 import com.example.sie.feature.settings.navigation.settingsScreen
 import com.example.sie.feature.settings.navigation.navigateToSettings
-import com.example.sie.feature.card.navigation.cardScreen
-import com.example.sie.feature.card.navigation.navigateToCard
-import com.example.sie.feature.card.navigation.cardLearningScreen
-import com.example.sie.feature.card.navigation.navigateToCardLearning
-import com.example.sie.feature.card.navigation.cardCreateScreen
-import com.example.sie.feature.card.navigation.navigateToCardCreate
 import com.example.sie.feature.chapter.navigation.chapterSelectionScreen
 import com.example.sie.feature.chapter.navigation.navigateToChapterSelection
 
@@ -48,7 +42,6 @@ fun SieNavHost(
             onStatsClick = { navController.navigateToStats() },
             onBookmarkedClick = { navController.navigateToBookmarked() },
             onWrongQuestionsClick = { navController.navigateToWrongQuestions() },
-            onFlashcardsClick = { navController.navigateToCard() },
             onSettingsClick = { navController.navigateToSettings() }
         )
         chapterSelectionScreen(
@@ -74,17 +67,6 @@ fun SieNavHost(
             onBackClick = { navController.popBackStack() }
         )
         wrongQuestionsScreen(
-            onBackClick = { navController.popBackStack() }
-        )
-        cardScreen(
-            onBackClick = { navController.popBackStack() },
-            onStartLearning = { navController.navigateToCardLearning() },
-            onCreateCard = { navController.navigateToCardCreate() }
-        )
-        cardLearningScreen(
-            onBackClick = { navController.popBackStack() }
-        )
-        cardCreateScreen(
             onBackClick = { navController.popBackStack() }
         )
         statsScreen(

@@ -62,6 +62,7 @@ fun BookmarkedRoute(
     viewModel: BookmarkedViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val language by viewModel.language.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
@@ -72,6 +73,7 @@ fun BookmarkedRoute(
 
     BookmarkedScreen(
         uiState = uiState,
+        language = language,
         snackbarHostState = snackbarHostState,
         onCategorySelected = viewModel::selectCategory,
         onRemoveBookmark = viewModel::toggleBookmark,
@@ -83,6 +85,7 @@ fun BookmarkedRoute(
 @Composable
 internal fun BookmarkedScreen(
     uiState: BookmarkedUiState,
+    language: String,
     snackbarHostState: SnackbarHostState,
     onCategorySelected: (String?) -> Unit,
     onRemoveBookmark: (Int) -> Unit,
@@ -142,6 +145,7 @@ internal fun BookmarkedScreen(
                             questions = uiState.questions,
                             categories = uiState.categories,
                             selectedCategory = uiState.selectedCategory,
+                            language = language,
                             onCategorySelected = onCategorySelected,
                             onRemoveBookmark = onRemoveBookmark
                         )
@@ -157,6 +161,7 @@ private fun BookmarkedContent(
     questions: List<Question>,
     categories: List<String>,
     selectedCategory: String?,
+    language: String,
     onCategorySelected: (String?) -> Unit,
     onRemoveBookmark: (Int) -> Unit
 ) {
@@ -213,6 +218,7 @@ private fun BookmarkedContent(
         ) { question ->
             BookmarkedQuestionCard(
                 question = question,
+                language = language,
                 onRemoveBookmark = { onRemoveBookmark(question.id) }
             )
         }
@@ -283,6 +289,7 @@ private fun CategoryFilterChips(
 @Composable
 private fun BookmarkedQuestionCard(
     question: Question,
+    language: String,
     onRemoveBookmark: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -311,7 +318,7 @@ private fun BookmarkedQuestionCard(
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
-                        text = question.content,
+                        text = question.getLocalizedContent(language),
                         style = MaterialTheme.typography.bodyMedium,
                         color = OnSurface,
                         maxLines = if (expanded) Int.MAX_VALUE else 3,
@@ -334,11 +341,12 @@ private fun BookmarkedQuestionCard(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Options
-                question.options.forEachIndexed { index, option ->
+                question.options.indices.forEach { index ->
                     val isCorrect = index == question.correctAnswerIndex
+                    val optionText = question.getOption(index, language)
 
                     ModernGradientButton(
-                        text = "${(65 + index).toChar()}. $option",
+                        text = "${(65 + index).toChar()}. $optionText",
                         onClick = { },
                         enabled = false,
                         modifier = Modifier
@@ -368,7 +376,7 @@ private fun BookmarkedQuestionCard(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = question.explanation,
+                    text = question.getExplanation(language),
                     style = MaterialTheme.typography.bodySmall,
                     color = OnSurface.copy(alpha = 0.8f)
                 )

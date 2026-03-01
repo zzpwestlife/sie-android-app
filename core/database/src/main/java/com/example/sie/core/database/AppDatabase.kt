@@ -6,10 +6,8 @@ import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.sie.core.database.converters.Converters
-import com.example.sie.core.database.dao.CardDao
 import com.example.sie.core.database.dao.ExamResultDao
 import com.example.sie.core.database.dao.QuestionDao
-import com.example.sie.core.database.model.CardEntity
 import com.example.sie.core.database.model.ExamAnswerEntity
 import com.example.sie.core.database.model.ExamResultEntity
 import com.example.sie.core.database.model.QuestionEntity
@@ -98,10 +96,16 @@ val MIGRATION_14_15 = object : Migration(14, 15) {
     }
 }
 
-@Database(entities = [QuestionEntity::class, ExamResultEntity::class, CardEntity::class, ExamAnswerEntity::class], version = 15, exportSchema = true)
+val MIGRATION_15_16 = object : Migration(15, 16) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        // Drop cards table - flashcard feature removed
+        database.execSQL("DROP TABLE IF EXISTS cards")
+    }
+}
+
+@Database(entities = [QuestionEntity::class, ExamResultEntity::class, ExamAnswerEntity::class], version = 16, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao
     abstract fun examResultDao(): ExamResultDao
-    abstract fun cardDao(): CardDao
 }

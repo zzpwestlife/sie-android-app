@@ -21,7 +21,6 @@ fun HomeRoute(
     onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
-    onFlashcardsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     HomeScreen(
@@ -30,7 +29,6 @@ fun HomeRoute(
         onStatsClick = onStatsClick,
         onBookmarkedClick = onBookmarkedClick,
         onWrongQuestionsClick = onWrongQuestionsClick,
-        onFlashcardsClick = onFlashcardsClick,
         onSettingsClick = onSettingsClick
     )
 }
@@ -43,7 +41,6 @@ internal fun HomeScreen(
     onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
-    onFlashcardsClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     AppBackground {
@@ -187,23 +184,12 @@ internal fun HomeScreen(
                             )
                         }
 
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
-                        ) {
-                            ModernGradientButton(
-                                text = "Flashcards",
-                                onClick = onFlashcardsClick,
-                                gradient = TertiaryGradient,
-                                modifier = Modifier.weight(1f)
-                            )
-                            ModernGradientButton(
-                                text = "Bookmarks",
-                                onClick = onBookmarkedClick,
-                                gradient = TertiaryGradient,
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
+                        ModernGradientButton(
+                            text = "Bookmarks",
+                            onClick = onBookmarkedClick,
+                            gradient = TertiaryGradient,
+                            modifier = Modifier.fillMaxWidth()
+                        )
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
