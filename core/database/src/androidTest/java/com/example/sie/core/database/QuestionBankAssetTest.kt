@@ -25,47 +25,58 @@ class QuestionBankAssetTest {
             val jsonString = reader.use { it.readText() }
             val jsonArray = JSONArray(jsonString)
 
-            // 1. Assert length >= 251
             assertTrue(
                 "Question count should be at least 251, but was ${jsonArray.length()}",
                 jsonArray.length() >= 251
             )
 
             val existingIds = HashSet<Int>()
-            val nonAsciiRegex = Regex("[^\\x00-\\x7F]")
 
             for (i in 0 until jsonArray.length()) {
                 val question = jsonArray.getJSONObject(i)
 
-                // 2. Validate Required Fields
-                val requiredFields = listOf("id", "content", "options", "correctAnswerIndex", "explanation", "category")
+                val requiredFields = listOf(
+                    "id", "content_en", "content_zh", "options_en", "options_zh",
+                    "correctAnswerIndex", "explanation_en", "explanation_zh",
+                    "category_en", "category_zh", "category_short"
+                )
                 for (field in requiredFields) {
                     assertTrue("Question at index $i missing field: $field", question.has(field))
                 }
 
-                // 3. Validate ID Uniqueness
                 val id = question.getInt("id")
                 assertTrue("Duplicate ID found: $id", !existingIds.contains(id))
                 existingIds.add(id)
 
-                // 4. Validate Bilingual Content (contains newline or non-ASCII)
-                val content = question.getString("content")
-                val isBilingual = content.contains("\n") || nonAsciiRegex.containsMatchIn(content)
-                assertTrue(
-                    "Question $id content should be bilingual (contain newline or non-ASCII characters)",
-                    isBilingual
-                )
+                val content_en = question.getString("content_en")
+                val content_zh = question.getString("content_zh")
+                assertTrue("Question $id content_en should not be empty", content_en.isNotBlank())
+                assertTrue("Question $id content_zh should not be empty", content_zh.isNotBlank())
 
-                // 5. Validate Options
-                val options = question.getJSONArray("options")
-                assertTrue("Question $id options length must be >= 2", options.length() >= 2)
+                val options_en = question.getJSONArray("options_en")
+                val options_zh = question.getJSONArray("options_zh")
+                assertTrue("Question $id options_en length must be >= 2", options_en.length() >= 2)
+                assertTrue("Question $id options_zh length must be >= 2", options_zh.length() >= 2)
+                assertTrue("Question $id options_en and options_zh should have same length",
+                    options_en.length() == options_zh.length())
 
-                // 6. Validate CorrectAnswerIndex within bounds
                 val correctAnswerIndex = question.getInt("correctAnswerIndex")
                 assertTrue(
-                    "Question $id correctAnswerIndex $correctAnswerIndex out of bounds (options length: ${options.length()})",
-                    correctAnswerIndex >= 0 && correctAnswerIndex < options.length()
+                    "Question $id correctAnswerIndex $correctAnswerIndex out of bounds (options_en length: ${options_en.length()})",
+                    correctAnswerIndex >= 0 && correctAnswerIndex < options_en.length()
                 )
+
+                val explanation_en = question.getString("explanation_en")
+                val explanation_zh = question.getString("explanation_zh")
+                assertTrue("Question $id explanation_en should not be empty", explanation_en.isNotBlank())
+                assertTrue("Question $id explanation_zh should not be empty", explanation_zh.isNotBlank())
+
+                val category_en = question.getString("category_en")
+                val category_zh = question.getString("category_zh")
+                val category_short = question.getString("category_short")
+                assertTrue("Question $id category_en should not be empty", category_en.isNotBlank())
+                assertTrue("Question $id category_zh should not be empty", category_zh.isNotBlank())
+                assertTrue("Question $id category_short should not be empty", category_short.isNotBlank())
             }
 
         } catch (e: Exception) {

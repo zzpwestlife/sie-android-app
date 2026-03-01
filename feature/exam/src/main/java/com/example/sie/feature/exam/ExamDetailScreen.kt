@@ -455,7 +455,7 @@ private fun ModernGradientQuestionCard(
         ) {
             // Question text
             Text(
-                text = question.getLocalizedContent(language),
+                text = question.getContent(language),
                 style = MaterialTheme.typography.bodyLarge,
                 color = QuestionText,
                 fontWeight = FontWeight.Medium,
@@ -465,8 +465,9 @@ private fun ModernGradientQuestionCard(
             Spacer(modifier = Modifier.height(SpacingMedium))
 
             // Options
-            question.options.forEachIndexed { index, _ ->
+            question.getOptions(language).forEachIndexed { index, _ ->
                 val optionText = question.getOption(index, language)
+                val selectedOptionIndex = selectedAnswers[question.id]
                 val isSelected = selectedOptionIndex == index
                 val isThisCorrect = index == question.correctAnswerIndex
 
@@ -501,7 +502,7 @@ private fun ModernGradientQuestionCard(
                     textColor = textColor
                 )
 
-                if (index < question.options.size - 1) {
+                if (index < question.getOptions(language).size - 1) {
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }

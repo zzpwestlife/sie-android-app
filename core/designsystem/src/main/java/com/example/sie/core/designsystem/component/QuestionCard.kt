@@ -61,7 +61,7 @@ fun QuestionCard(
             // Question Text
             if (showQuestionText) {
                 Text(
-                    text = question.getLocalizedContent(language),
+                    text = question.getContent(language),
                     style = MaterialTheme.typography.bodyLarge,
                     color = QuestionText,
                     fontWeight = FontWeight.Medium,
@@ -225,11 +225,16 @@ fun QuestionCardPreview() {
         QuestionCard(
             question = Question(
                 id = 1,
-                content = "What is the capital of France?",
-                options = listOf("London", "Paris", "Berlin", "Madrid"),
+                content_en = "What is the capital of France?",
+                content_zh = "法国的首都是哪里？",
+                options_en = listOf("London", "Paris", "Berlin", "Madrid"),
+                options_zh = listOf("伦敦", "巴黎", "柏林", "马德里"),
                 correctAnswerIndex = 1,
-                explanation = "Paris is the capital of France.",
-                category = "Geography"
+                explanation_en = "Paris is the capital of France.",
+                explanation_zh = "巴黎是法国的首都。",
+                category_en = "Geography",
+                category_zh = "地理",
+                category_short = "Geography"
             ),
             selectedOptionIndex = 1,
             onOptionSelected = {}
