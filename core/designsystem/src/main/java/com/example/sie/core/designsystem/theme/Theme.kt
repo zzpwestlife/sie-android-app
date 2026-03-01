@@ -15,10 +15,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// Animation durations
-const val ANIM_FAST = 300 // Button clicks
-const val ANIM_NORMAL = 500 // Page transitions
-const val ANIM_SLOW = 700 // Score reveals
+// Animation durations (minimal approach for performance)
+const val ANIM_FAST = 150    // Button press
+const val ANIM_NORMAL = 300  // Page transitions
+const val ANIM_SLOW = 500    // Progress reveals
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
