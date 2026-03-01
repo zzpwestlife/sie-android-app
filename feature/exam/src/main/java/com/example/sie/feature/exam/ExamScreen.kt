@@ -30,7 +30,6 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.filled.Menu
-
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -76,10 +75,23 @@ import com.example.sie.core.designsystem.component.QuestionCard
 import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.GradientProgressIndicator
 import com.example.sie.core.designsystem.component.GradientButton
+import com.example.sie.core.designsystem.component.AppBackground
+import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
+import com.example.sie.core.designsystem.component.ModernGradientCard
+import com.example.sie.core.designsystem.component.ModernGradientButton
+import com.example.sie.core.designsystem.component.ModernGradientProgressBar
 import com.example.sie.core.designsystem.theme.SuccessGradient
 import com.example.sie.core.designsystem.theme.ErrorGradient
 import com.example.sie.core.designsystem.theme.PrimaryGradient
 import com.example.sie.core.designsystem.theme.SecondaryGradient
+import com.example.sie.core.designsystem.theme.AccentGradient
+import com.example.sie.core.designsystem.theme.WarningGradient
+import com.example.sie.core.designsystem.theme.OnBackground
+import com.example.sie.core.designsystem.theme.OnBackgroundSecondary
+import com.example.sie.core.designsystem.theme.OnSurface
+import com.example.sie.core.designsystem.theme.SpacingMedium
+import com.example.sie.core.designsystem.theme.SpacingSmall
+import com.example.sie.core.designsystem.theme.SpacingLarge
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -119,19 +131,7 @@ internal fun ExamScreen(
     onResetExam: () -> Unit,
     language: String
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1a1a2e),
-                        Color(0xFF16213e),
-                        Color(0xFF0f3460)
-                    )
-                )
-            )
-    ) {
+    AppBackground {
         when (uiState) {
             ExamUiState.Loading -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -179,25 +179,10 @@ private fun ExamIntroContent(
     Scaffold(
         containerColor = Color.Transparent,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(CommonR.string.exam_title),
-                        color = Color.White
-                    )
-                },
-                navigationIcon = {
-                    androidx.compose.material3.IconButton(onClick = onBackClick) {
-                        androidx.compose.material3.Icon(
-                            imageVector = androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(CommonR.string.common_back),
-                            tint = Color.White
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                )
+            ModernGradientTopAppBar(
+                title = stringResource(CommonR.string.exam_title),
+                gradient = SecondaryGradient,
+                onNavigationClick = onBackClick
             )
         }
     ) { paddingValues ->
@@ -205,24 +190,22 @@ private fun ExamIntroContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+                .padding(SpacingMedium),
+            verticalArrangement = Arrangement.spacedBy(SpacingLarge)
         ) {
             // Exam Rules Card
-            androidx.compose.material3.Card(
-                modifier = Modifier.fillMaxWidth(),
-                elevation = androidx.compose.material3.CardDefaults.cardElevation(defaultElevation = 2.dp),
-                colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ModernGradientCard(
+                gradient = SecondaryGradient,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                    verticalArrangement = Arrangement.spacedBy(SpacingMedium)
                 ) {
                     Text(
                         text = stringResource(CommonR.string.exam_rules_title),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.primary
+                        color = OnSurface
                     )
 
                     IntroItem(
@@ -250,19 +233,12 @@ private fun ExamIntroContent(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(
+            ModernGradientButton(
+                text = stringResource(CommonR.string.exam_button_start),
                 onClick = onStartExam,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
-            ) {
-                Text(
-                    text = stringResource(CommonR.string.exam_button_start),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+                gradient = SecondaryGradient,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
@@ -338,61 +314,73 @@ private fun ExamInProgressContent(
         containerColor = Color.Transparent,
         snackbarHost = { androidx.compose.material3.SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    TextButton(onClick = { showReviewDialog = true }) {
+            ModernGradientTopAppBar(
+                title = stringResource(CommonR.string.exam_title),
+                gradient = SecondaryGradient,
+                actions = {
+                    // Timer Badge with gradient background
+                    val timerGradient = if (state.timeLeftMillis < 10 * 60 * 1000) {
+                        WarningGradient
+                    } else {
+                        SecondaryGradient
+                    }
+
+                    // Pulse animation when time is running out
+                    val infiniteTransition = rememberInfiniteTransition(label = "timer_pulse")
+                    val scale by infiniteTransition.animateFloat(
+                        initialValue = 1f,
+                        targetValue = if (state.timeLeftMillis < 10 * 60 * 1000) 1.08f else 1f,
+                        animationSpec = infiniteRepeatable(
+                            animation = tween(1000),
+                            repeatMode = RepeatMode.Reverse
+                        ),
+                        label = "timer_pulse_scale"
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .padding(end = SpacingSmall)
+                            .background(
+                                brush = timerGradient,
+                                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
+                            )
+                            .padding(horizontal = 12.dp, vertical = 6.dp)
+                            .scale(scale)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            androidx.compose.material3.Icon(
+                                imageVector = Icons.Default.Notifications,
+                                contentDescription = null,
+                                tint = Color.White,
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Text(
+                                text = formatTime(state.timeLeftMillis),
+                                style = MaterialTheme.typography.labelLarge,
+                                color = Color.White,
+                                fontWeight = if (state.timeLeftMillis < 10 * 60 * 1000) FontWeight.Bold else FontWeight.Normal
+                            )
+                        }
+                    }
+
+                    androidx.compose.material3.IconButton(onClick = { showReviewDialog = true }) {
                         androidx.compose.material3.Icon(
-                            imageVector = androidx.compose.material.icons.Icons.Default.Menu,
+                            imageVector = Icons.Default.Menu,
                             contentDescription = stringResource(CommonR.string.exam_dialog_review_title),
                             tint = Color.White
                         )
                     }
-                },
-                title = {
-                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                         val timeColor = when {
-                            state.timeLeftMillis < 1 * 60 * 1000 -> Color(0xFFF44336)
-                            state.timeLeftMillis < 5 * 60 * 1000 -> Color(0xFFFFA500)
-                            else -> Color.White
-                        }
 
-                        // Pulse animation when time is running out
-                        val infiniteTransition = rememberInfiniteTransition(label = "timer_pulse")
-                        val scale by infiniteTransition.animateFloat(
-                            initialValue = 1f,
-                            targetValue = if (state.timeLeftMillis < 5 * 60 * 1000) 1.08f else 1f,
-                            animationSpec = infiniteRepeatable(
-                                animation = tween(1000),
-                                repeatMode = RepeatMode.Reverse
-                            ),
-                            label = "timer_pulse_scale"
-                        )
-
+                    TextButton(onClick = { showSubmitDialog = true }) {
                         Text(
-                            text = formatTime(state.timeLeftMillis),
-                            style = MaterialTheme.typography.titleMedium,
-                            color = timeColor,
-                            fontWeight = if (state.timeLeftMillis < 5 * 60 * 1000) FontWeight.Bold else FontWeight.Normal,
-                            modifier = Modifier.scale(scale)
+                            text = stringResource(CommonR.string.exam_button_submit),
+                            color = Color.White
                         )
                     }
-                },
-                actions = {
-                    val currentQuestion = state.questions.getOrNull(pagerState.currentPage)
-                    if (currentQuestion != null) {
-                        // Flag is now inside the card, but we can keep a submit button here or just time
-                        // Keeping Submit here for accessibility
-                        TextButton(onClick = { showSubmitDialog = true }) {
-                            Text(
-                                text = stringResource(CommonR.string.exam_button_submit),
-                                color = Color.White
-                            )
-                        }
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                )
+                }
             )
         },
         bottomBar = {
@@ -444,7 +432,8 @@ private fun ExamInProgressContent(
                 
                 // Big Action Button
                 val isLastQuestion = pagerState.currentPage == state.questions.size - 1
-                Button(
+                ModernGradientButton(
+                    text = if (isLastQuestion) stringResource(CommonR.string.exam_button_submit_exam) else stringResource(CommonR.string.exam_button_next_question),
                     onClick = {
                         if (isLastQuestion) {
                             showSubmitDialog = true
@@ -457,17 +446,9 @@ private fun ExamInProgressContent(
                             }
                         }
                     },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
-                ) {
-                    Text(
-                        text = if (isLastQuestion) stringResource(CommonR.string.exam_button_submit_exam) else stringResource(CommonR.string.exam_button_next_question),
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+                    gradient = SecondaryGradient,
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         }
     ) { paddingValues ->
@@ -658,25 +639,10 @@ private fun ExamResultContent(
         Scaffold(
             containerColor = Color.Transparent,
             topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = stringResource(CommonR.string.exam_result_title),
-                            color = Color.White
-                        )
-                    },
-                    navigationIcon = {
-                        androidx.compose.material3.IconButton(onClick = onBackClick) {
-                            androidx.compose.material3.Icon(
-                                imageVector = androidx.compose.material.icons.Icons.Default.Close,
-                                contentDescription = stringResource(CommonR.string.common_close),
-                                tint = Color.White
-                            )
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent
-                    )
+                ModernGradientTopAppBar(
+                    title = stringResource(CommonR.string.exam_result_title),
+                    gradient = SecondaryGradient,
+                    onNavigationClick = onBackClick
                 )
             }
         ) { paddingValues ->
@@ -685,26 +651,25 @@ private fun ExamResultContent(
                     .fillMaxSize()
                     .padding(paddingValues)
                     .verticalScroll(rememberScrollState())
-                    .padding(16.dp),
+                    .padding(SpacingMedium),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(24.dp)
+                verticalArrangement = Arrangement.spacedBy(SpacingLarge)
             ) {
                 // Score Circle and Status
-                androidx.compose.material3.Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                    elevation = androidx.compose.material3.CardDefaults.cardElevation(defaultElevation = 2.dp)
+                ModernGradientCard(
+                    gradient = if (state.passed) AccentGradient else WarningGradient,
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(
-                        modifier = Modifier.padding(24.dp).fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                        verticalArrangement = Arrangement.spacedBy(SpacingMedium)
                     ) {
                         // Pass/Fail Icon
                         androidx.compose.material3.Icon(
                             imageVector = if (state.passed) androidx.compose.material.icons.Icons.Default.CheckCircle else androidx.compose.material.icons.Icons.Default.Close,
                             contentDescription = null,
-                            tint = if (state.passed) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error,
+                            tint = if (state.passed) Color(0xFF4CAF50) else Color(0xFFF44336),
                             modifier = Modifier.size(48.dp)
                         )
 
@@ -712,7 +677,7 @@ private fun ExamResultContent(
                             text = if (state.passed) stringResource(CommonR.string.exam_result_passed) else stringResource(CommonR.string.exam_result_failed),
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Bold,
-                            color = if (state.passed) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error
+                            color = if (state.passed) Color(0xFF4CAF50) else Color(0xFFF44336)
                         )
 
                         // Animated Score Circle
@@ -745,18 +710,18 @@ private fun ExamResultContent(
                 // Action Buttons
                 Column(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(SpacingSmall)
                 ) {
-                    GradientButton(
+                    ModernGradientButton(
                         text = stringResource(CommonR.string.exam_result_review),
-                        gradient = PrimaryGradient,
+                        gradient = SecondaryGradient,
                         onClick = { isReviewing = true },
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    GradientButton(
+                    ModernGradientButton(
                         text = stringResource(CommonR.string.exam_result_retake),
-                        gradient = SecondaryGradient,
+                        gradient = PrimaryGradient,
                         onClick = onResetExam,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -767,25 +732,24 @@ private fun ExamResultContent(
                     ) {
                         Text(
                             text = stringResource(CommonR.string.common_back_to_home),
-                            color = Color.White
+                            color = OnBackground
                         )
                     }
                 }
 
                 // Category Breakdown
-                androidx.compose.material3.Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                    elevation = androidx.compose.material3.CardDefaults.cardElevation(defaultElevation = 2.dp)
+                ModernGradientCard(
+                    gradient = SecondaryGradient,
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(
-                        modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                        verticalArrangement = Arrangement.spacedBy(SpacingMedium)
                     ) {
                         Text(
                             text = stringResource(CommonR.string.exam_result_category_breakdown),
                             style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            color = OnSurface
                         )
                         
                         // Calculate stats per category
@@ -808,21 +772,21 @@ private fun ExamResultContent(
                                 Text(
                                     text = category.substringBefore("/"), // Simplified name
                                     style = MaterialTheme.typography.bodyMedium,
+                                    color = OnSurface,
                                     modifier = Modifier.weight(1f)
                                 )
                                 Text(
                                     text = "$percentage% ($correct/$total)",
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.Bold,
-                                    color = if (percentage >= 70) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error
+                                    color = if (percentage >= 70) Color(0xFF4CAF50) else Color(0xFFF44336)
                                 )
                             }
-                            GradientProgressIndicator(
+                            ModernGradientProgressBar(
                                 progress = correct.toFloat() / total,
-                                gradient = if (percentage >= 70) SuccessGradient else ErrorGradient,
-                                modifier = Modifier.fillMaxWidth(),
-                                backgroundColor = Color.White.copy(alpha = 0.2f),
-                                animate = true
+                                gradient = if (percentage >= 70) AccentGradient else WarningGradient,
+                                showLabel = false,
+                                modifier = Modifier.fillMaxWidth()
                             )
                         }
                     }
@@ -901,31 +865,20 @@ private fun ExamReviewContent(
     Scaffold(
         containerColor = Color.Transparent,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(CommonR.string.exam_review_title),
-                        color = Color.White
-                    )
-                },
-                navigationIcon = {
-                    TextButton(onClick = onCloseReview) {
-                        Text(stringResource(CommonR.string.common_close), color = Color.White)
-                    }
-                },
+            ModernGradientTopAppBar(
+                title = stringResource(CommonR.string.exam_review_title),
+                gradient = SecondaryGradient,
+                onNavigationClick = onCloseReview,
                 actions = {
                     Text(
                         text = "${pagerState.currentPage + 1}/${state.questions.size}",
                         color = Color.White.copy(alpha = 0.8f),
-                        modifier = Modifier.padding(end = 8.dp)
+                        modifier = Modifier.padding(end = SpacingSmall)
                     )
                     TextButton(onClick = { showReviewDialog = true }) {
                         Text(stringResource(CommonR.string.exam_dialog_all_questions), color = Color.White)
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                )
+                }
             )
         },
         bottomBar = {
