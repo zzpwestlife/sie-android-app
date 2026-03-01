@@ -72,4 +72,8 @@ class OfflineExamRepository @Inject constructor(
     override suspend fun clearAllExamHistory() {
         examResultDao.clearAllExamHistory()
     }
+
+    override suspend fun getRecentExamQuestionIds(limit: Int): List<Int> {
+        return examResultDao.getRecentExamQuestionIds(limit)
+    }
 }

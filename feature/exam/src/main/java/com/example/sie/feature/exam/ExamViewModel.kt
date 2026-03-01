@@ -53,10 +53,13 @@ class ExamViewModel @Inject constructor(
             try {
                 // Fetch all questions to perform weighted selection
                 val allQuestions = questionRepository.getAllQuestionsList()
-                
+
+                // Get recently used question IDs (last 3 exams)
+                val recentQuestionIds = examRepository.getRecentExamQuestionIds(3).toSet()
+
                 if (allQuestions.isNotEmpty()) {
-                    val selectedQuestions = selectWeightedQuestions(allQuestions)
-                    
+                    val selectedQuestions = selectSmartWeightedQuestions(allQuestions, recentQuestionIds)
+
                     _uiState.value = ExamUiState.InProgress(
                         questions = selectedQuestions,
                         currentQuestionIndex = 0,
@@ -73,44 +76,88 @@ class ExamViewModel @Inject constructor(
         }
     }
 
-    private fun selectWeightedQuestions(allQuestions: List<Question>): List<Question> {
-        // Weights definition
+    /**
+     * Smart weighted question selection with priority system:
+     * 1. Wrong questions (isWrong = true) - highest priority
+     * 2. Unstudied questions (lastStudiedAt = null) - second priority
+     * 3. Old questions (lastStudiedAt > 7 days) - third priority
+     * 4. Recent correct questions - lowest priority
+     *
+     * Also avoids questions from recent exams (deduplication)
+     */
+    private fun selectSmartWeightedQuestions(
+        allQuestions: List<Question>,
+        recentQuestionIds: Set<Int>
+    ): List<Question> {
+        // Category weights (unchanged)
         val weights = mapOf(
-            "1. Macroeconomics / 宏观经济学" to 0.19, // 18-20% -> 19%
+            "1. Macroeconomics / 宏观经济学" to 0.19,
             "2. Stocks / 股票" to 0.15,
             "3. ETF / 交易所交易基金" to 0.10,
             "4. Options / 期权" to 0.10,
             "5. Funds / 基金" to 0.10,
-            "6. Indexes / 常见指数" to 0.07, // 6-8% -> 7%
+            "6. Indexes / 常见指数" to 0.07,
             "7. Financial Analysis / 财报分析" to 0.15,
-            "8. Revenue & Industry / 营收与行业分析" to 0.07, // 6-8% -> 7%
-            "9. Financial Ethics / 金融道德" to 0.04 // 3-5% -> 4%
+            "8. Revenue & Industry / 营收与行业分析" to 0.07,
+            "9. Financial Ethics / 金融道德" to 0.04
         )
-        
+
         val totalQuestions = 32
         val selectedQuestions = mutableListOf<Question>()
-        
+        val currentTime = System.currentTimeMillis()
+        val sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000L
+
         // Group questions by category
         val questionsByCategory = allQuestions.groupBy { it.category }
-        
-        // Calculate count for each category
+
+        // Select questions for each category
         weights.forEach { (category, weight) ->
             val count = (totalQuestions * weight).toInt()
-            val questions = questionsByCategory[category] ?: emptyList()
-            if (questions.isNotEmpty()) {
-                selectedQuestions.addAll(questions.shuffled().take(count))
+            val categoryQuestions = questionsByCategory[category] ?: emptyList()
+
+            if (categoryQuestions.isNotEmpty()) {
+                // Sort questions by priority
+                val sortedQuestions = categoryQuestions.sortedWith(
+                    compareByDescending<Question> { it.isWrong } // Wrong questions first
+                        .thenByDescending { it.wrongCount } // More errors = higher priority
+                        .thenBy { it.lastStudiedAt != null } // Unstudied before studied
+                        .thenBy { question ->
+                            // Older studied questions first
+                            question.lastStudiedAt ?: Long.MAX_VALUE
+                        }
+                        .thenBy {
+                            // Avoid recent exam questions (push to end)
+                            if (it.id in recentQuestionIds) 1 else 0
+                        }
+                )
+
+                // Take top questions, but add some randomness to avoid predictability
+                val topCandidates = sortedQuestions.take(count * 2) // Get 2x candidates
+                val selected = topCandidates.shuffled().take(count) // Random from top candidates
+                selectedQuestions.addAll(selected)
             }
         }
-        
-        // Fill remaining if any (due to rounding or missing categories)
+
+        // Fill remaining slots if needed
         val remainingCount = totalQuestions - selectedQuestions.size
         if (remainingCount > 0) {
             val alreadySelectedIds = selectedQuestions.map { it.id }.toSet()
-            val remainingPool = allQuestions.filter { it.id !in alreadySelectedIds }
-            selectedQuestions.addAll(remainingPool.shuffled().take(remainingCount))
+            val remainingPool = allQuestions
+                .filter { it.id !in alreadySelectedIds }
+                .sortedWith(
+                    compareByDescending<Question> { it.isWrong }
+                        .thenByDescending { it.wrongCount }
+                        .thenBy { it.lastStudiedAt != null }
+                        .thenBy { it.lastStudiedAt ?: Long.MAX_VALUE }
+                        .thenBy { if (it.id in recentQuestionIds) 1 else 0 }
+                )
+            selectedQuestions.addAll(remainingPool.take(remainingCount))
         }
-        
-        return selectedQuestions.shuffled()
+
+        // Sort by category to maintain chapter order (better learning experience)
+        return selectedQuestions.sortedBy { question ->
+            weights.keys.indexOf(question.category)
+        }
     }
 
     private fun startTimer() {

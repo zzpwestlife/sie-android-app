@@ -11,4 +11,5 @@ interface ExamRepository {
     fun getExamAnswers(examResultId: Int): Flow<List<ExamAnswer>>
     fun getExamResultById(id: Int): Flow<ExamResult?>
     suspend fun clearAllExamHistory()
+    suspend fun getRecentExamQuestionIds(limit: Int): List<Int>
 }

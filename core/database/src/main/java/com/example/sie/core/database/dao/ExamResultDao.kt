@@ -51,4 +51,15 @@ abstract class ExamResultDao {
         clearExamAnswers()
         clearExamResults()
     }
+
+    @Query("""
+        SELECT DISTINCT questionId
+        FROM exam_answers
+        WHERE examResultId IN (
+            SELECT id FROM exam_results
+            ORDER BY date DESC
+            LIMIT :limit
+        )
+    """)
+    abstract suspend fun getRecentExamQuestionIds(limit: Int): List<Int>
 }
