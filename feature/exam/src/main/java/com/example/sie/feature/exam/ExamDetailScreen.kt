@@ -1,8 +1,13 @@
 package com.example.sie.feature.exam
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,39 +20,54 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.sie.core.common.R as CommonR
-import com.example.sie.core.designsystem.component.QuestionCard
-import com.example.sie.core.model.ExamAnswer
+import com.example.sie.core.designsystem.component.AppBackground
+import com.example.sie.core.designsystem.component.ModernGradientCard
+import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
+import com.example.sie.core.designsystem.theme.*
 import com.example.sie.core.model.Question
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -74,39 +94,14 @@ internal fun ExamDetailScreen(
     onBackClick: () -> Unit,
     onToggleFilter: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1a1a2e),
-                        Color(0xFF16213e),
-                        Color(0xFF0f3460)
-                    )
-                )
-            )
-    ) {
+    AppBackground {
         Scaffold(
             containerColor = Color.Transparent,
             topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = stringResource(CommonR.string.exam_detail_title),
-                            color = Color.White
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = onBackClick) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = stringResource(CommonR.string.common_back),
-                                tint = Color.White
-                            )
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                ModernGradientTopAppBar(
+                    title = stringResource(CommonR.string.exam_detail_title),
+                    gradient = SecondaryGradient,
+                    onNavigationClick = onBackClick
                 )
             }
         ) { paddingValues ->
@@ -118,14 +113,14 @@ internal fun ExamDetailScreen(
                 when (uiState) {
                     ExamDetailUiState.Loading -> {
                         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                            CircularProgressIndicator(color = Color.White)
+                            CircularProgressIndicator()
                         }
                     }
                     ExamDetailUiState.Error -> {
                         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                             Text(
                                 text = stringResource(CommonR.string.common_error),
-                                color = Color.White,
+                                color = OnBackground,
                                 style = MaterialTheme.typography.bodyLarge
                             )
                         }
@@ -156,7 +151,7 @@ private fun ExamDetailContent(
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
                 text = stringResource(CommonR.string.exam_history_empty),
-                color = Color.White,
+                color = OnBackground,
                 style = MaterialTheme.typography.bodyLarge
             )
         }
@@ -168,39 +163,63 @@ private fun ExamDetailContent(
     val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
 
     Column(modifier = Modifier.fillMaxSize()) {
-        // Header info
-        Row(
+        // Header info card
+        ModernGradientCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                .padding(16.dp),
+            gradient = SecondaryGradient
         ) {
-            Column {
-                Text(
-                    text = dateFormat.format(Date(state.examResult.date)),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Color.White.copy(alpha = 0.7f)
-                )
-                Text(
-                    text = "${state.examResult.score}% · ${state.examResult.correctCount}/${state.examResult.totalQuestions}",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
-            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = dateFormat.format(Date(state.examResult.date)),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = OnBackgroundSecondary
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "${state.examResult.score}% · ${state.examResult.correctCount}/${state.examResult.totalQuestions}",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = OnSurface
+                    )
+                }
 
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FilterChip(
-                    selected = !state.filterWrongOnly,
-                    onClick = { if (state.filterWrongOnly) onToggleFilter() },
-                    label = { Text(stringResource(CommonR.string.exam_detail_filter_all)) }
-                )
-                FilterChip(
-                    selected = state.filterWrongOnly,
-                    onClick = { if (!state.filterWrongOnly) onToggleFilter() },
-                    label = { Text(stringResource(CommonR.string.exam_detail_filter_wrong)) }
-                )
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = !state.filterWrongOnly,
+                        onClick = { if (state.filterWrongOnly) onToggleFilter() },
+                        label = {
+                            Text(
+                                text = stringResource(CommonR.string.exam_detail_filter_all),
+                                color = if (!state.filterWrongOnly) Color.White else OnSurface
+                            )
+                        },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = Color(0xFF1FA2FF),
+                            selectedLabelColor = Color.White
+                        )
+                    )
+                    FilterChip(
+                        selected = state.filterWrongOnly,
+                        onClick = { if (!state.filterWrongOnly) onToggleFilter() },
+                        label = {
+                            Text(
+                                text = stringResource(CommonR.string.exam_detail_filter_wrong),
+                                color = if (state.filterWrongOnly) Color.White else OnSurface
+                            )
+                        },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = Color(0xFFFF6B6B),
+                            selectedLabelColor = Color.White
+                        )
+                    )
+                }
             }
         }
 
@@ -212,7 +231,8 @@ private fun ExamDetailContent(
                 filteredQuestions.size
             ),
             style = MaterialTheme.typography.bodyMedium,
-            color = Color.White.copy(alpha = 0.8f),
+            color = OnBackgroundSecondary,
+            fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
         )
 
@@ -233,12 +253,14 @@ private fun ExamDetailContent(
             ) {
                 Column {
                     // Status indicators
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        if (answer != null) {
+                    if (answer != null) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -260,48 +282,46 @@ private fun ExamDetailContent(
                                     Icon(
                                         imageVector = if (answer.isCorrect) Icons.Default.CheckCircle else Icons.Default.Close,
                                         contentDescription = null,
-                                        tint = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
+                                        tint = if (answer.isCorrect) Color(0xFF00C9FF) else Color(0xFFFF6B6B),
                                         modifier = Modifier.size(20.dp)
                                     )
                                     Text(
                                         text = if (answer.isCorrect) stringResource(CommonR.string.exam_result_correct)
                                                else stringResource(CommonR.string.exam_result_incorrect),
-                                        color = if (answer.isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
+                                        color = if (answer.isCorrect) Color(0xFF00C9FF) else Color(0xFFFF6B6B),
                                         style = MaterialTheme.typography.bodyMedium,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
                             }
-                        }
 
-                        if (answer?.isFlagged == true) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(4.dp)
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Info,
-                                    contentDescription = null,
-                                    tint = Color(0xFFFFA500),
-                                    modifier = Modifier.size(16.dp)
-                                )
-                                Text(
-                                    text = stringResource(CommonR.string.exam_detail_flagged),
-                                    color = Color(0xFFFFA500),
-                                    style = MaterialTheme.typography.bodySmall
-                                )
+                            if (answer.isFlagged) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Info,
+                                        contentDescription = null,
+                                        tint = Color(0xFFFFA500),
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Text(
+                                        text = stringResource(CommonR.string.exam_detail_flagged),
+                                        color = Color(0xFFFFA500),
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+                                }
                             }
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    QuestionCard(
+                    // Question card with Modern Gradient design
+                    ModernGradientQuestionCard(
                         question = question,
                         selectedOptionIndex = answer?.selectedOptionIndex,
-                        onOptionSelected = {},
-                        showFeedback = true,
-                        showExplanation = true
+                        isCorrect = answer?.isCorrect ?: false,
+                        isAnswered = answer?.isAnswered ?: false
                     )
                 }
             }
@@ -324,13 +344,9 @@ private fun ExamDetailContent(
                 },
                 enabled = pagerState.currentPage > 0,
                 colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color.White,
-                    disabledContentColor = Color.White.copy(alpha = 0.38f)
+                    contentColor = OnSurface
                 ),
-                border = BorderStroke(
-                    1.dp,
-                    if (pagerState.currentPage > 0) Color.White else Color.White.copy(alpha = 0.12f)
-                )
+                border = BorderStroke(1.dp, OnBackgroundSecondary.copy(alpha = 0.5f))
             ) {
                 Text(stringResource(CommonR.string.common_previous))
             }
@@ -347,6 +363,168 @@ private fun ExamDetailContent(
             ) {
                 Text(stringResource(CommonR.string.common_next))
             }
+        }
+    }
+}
+
+@Composable
+private fun ModernGradientQuestionCard(
+    question: Question,
+    selectedOptionIndex: Int?,
+    isCorrect: Boolean,
+    isAnswered: Boolean,
+    modifier: Modifier = Modifier
+) {
+    // Determine left gradient based on answer correctness
+    val cardGradient = when {
+        !isAnswered -> PrimaryGradient
+        isCorrect -> AccentGradient
+        else -> WarningGradient
+    }
+
+    var isExplanationExpanded by remember { mutableStateOf(false) }
+    val rotationAngle by animateFloatAsState(
+        targetValue = if (isExplanationExpanded) 180f else 0f,
+        label = "explanation_arrow_rotation"
+    )
+
+    Column(modifier = modifier) {
+        // Question content card
+        ModernGradientCard(
+            gradient = cardGradient
+        ) {
+            // Question text
+            Text(
+                text = question.content,
+                style = MaterialTheme.typography.titleMedium,
+                color = QuestionText,
+                fontWeight = FontWeight.SemiBold
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Options
+            question.options.forEachIndexed { index, optionText ->
+                val isSelected = selectedOptionIndex == index
+                val isThisCorrect = index == question.correctAnswerIndex
+
+                val (borderColor, containerColor, textColor) = when {
+                    isAnswered && isThisCorrect -> Triple(
+                        Color(0xFF00C9FF),
+                        Color(0xFFE0F7FA),
+                        Color(0xFF006064)
+                    )
+                    isAnswered && isSelected && !isThisCorrect -> Triple(
+                        Color(0xFFFF6B6B),
+                        Color(0xFFFFEBEE),
+                        Color(0xFFC62828)
+                    )
+                    isSelected -> Triple(
+                        Color(0xFF1FA2FF),
+                        Color(0xFFE3F2FD),
+                        Color(0xFF0D47A1)
+                    )
+                    else -> Triple(
+                        Color(0xFFE0E0E0),
+                        Color.White,
+                        AnswerText
+                    )
+                }
+
+                ModernOptionRow(
+                    text = optionText,
+                    isSelected = isSelected,
+                    borderColor = borderColor,
+                    containerColor = containerColor,
+                    textColor = textColor
+                )
+
+                if (index < question.options.size - 1) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+            }
+        }
+
+        // Expandable explanation card
+        if (isAnswered) {
+            Spacer(modifier = Modifier.height(12.dp))
+
+            ModernGradientCard(
+                gradient = if (isCorrect) AccentGradient else WarningGradient,
+                onClick = { isExplanationExpanded = !isExplanationExpanded }
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(CommonR.string.common_explanation),
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isCorrect) Color(0xFF006064) else Color(0xFFC62828)
+                    )
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowDown,
+                        contentDescription = if (isExplanationExpanded) "Collapse" else "Expand",
+                        tint = if (isCorrect) Color(0xFF006064) else Color(0xFFC62828),
+                        modifier = Modifier.rotate(rotationAngle)
+                    )
+                }
+
+                AnimatedVisibility(
+                    visible = isExplanationExpanded,
+                    enter = expandVertically(),
+                    exit = shrinkVertically()
+                ) {
+                    Column {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = question.explanation ?: "",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = AnswerText,
+                            lineHeight = MaterialTheme.typography.bodyMedium.lineHeight
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ModernOptionRow(
+    text: String,
+    isSelected: Boolean,
+    borderColor: Color,
+    containerColor: Color,
+    textColor: Color,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(8.dp),
+        border = BorderStroke(1.5.dp, borderColor),
+        color = containerColor
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            RadioButton(
+                selected = isSelected,
+                onClick = null,
+                colors = RadioButtonDefaults.colors(
+                    selectedColor = textColor,
+                    unselectedColor = textColor.copy(alpha = 0.6f)
+                )
+            )
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(start = 8.dp),
+                color = textColor
+            )
         }
     }
 }
