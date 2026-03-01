@@ -15,7 +15,6 @@ fun NavController.navigateToHome(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.homeScreen(
     onTopicSelectionClick: () -> Unit,
     onMockExamClick: () -> Unit,
-    onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
     onSettingsClick: () -> Unit,
@@ -24,7 +23,6 @@ fun NavGraphBuilder.homeScreen(
         HomeRoute(
             onTopicSelectionClick = onTopicSelectionClick,
             onMockExamClick = onMockExamClick,
-            onStatsClick = onStatsClick,
             onBookmarkedClick = onBookmarkedClick,
             onWrongQuestionsClick = onWrongQuestionsClick,
             onSettingsClick = onSettingsClick,

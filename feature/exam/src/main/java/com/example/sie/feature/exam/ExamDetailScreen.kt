@@ -369,22 +369,7 @@ private fun ExamDetailContent(
                             }
 
                             if (answer.isFlagged) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Info,
-                                        contentDescription = null,
-                                        tint = Color(0xFFFFA500),
-                                        modifier = Modifier.size(16.dp)
-                                    )
-                                    Text(
-                                        text = stringResource(CommonR.string.exam_detail_flagged),
-                                        color = Color(0xFFFFA500),
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                }
+                                // Flag removed
                             }
                         }
                     }

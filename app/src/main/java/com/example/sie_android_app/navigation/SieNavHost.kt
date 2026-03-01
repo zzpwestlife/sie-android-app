@@ -18,8 +18,6 @@ import com.example.sie.feature.exam.navigation.examDetailScreen
 import com.example.sie.feature.exam.navigation.navigateToExam
 import com.example.sie.feature.exam.navigation.navigateToExamHistory
 import com.example.sie.feature.exam.navigation.navigateToExamDetail
-import com.example.sie.feature.stats.navigation.statsScreen
-import com.example.sie.feature.stats.navigation.navigateToStats
 import com.example.sie.feature.settings.navigation.settingsScreen
 import com.example.sie.feature.settings.navigation.navigateToSettings
 import com.example.sie.feature.chapter.navigation.chapterSelectionScreen
@@ -39,7 +37,6 @@ fun SieNavHost(
         homeScreen(
             onTopicSelectionClick = { navController.navigateToChapterSelection() },
             onMockExamClick = { navController.navigateToExam() },
-            onStatsClick = { navController.navigateToStats() },
             onBookmarkedClick = { navController.navigateToBookmarked() },
             onWrongQuestionsClick = { navController.navigateToWrongQuestions() },
             onSettingsClick = { navController.navigateToSettings() }
@@ -68,10 +65,6 @@ fun SieNavHost(
         )
         wrongQuestionsScreen(
             onBackClick = { navController.popBackStack() }
-        )
-        statsScreen(
-            onExamHistoryClick = { navController.navigateToExamHistory() },
-            onExamResultClick = { examResultId -> navController.navigateToExamDetail(examResultId) }
         )
         settingsScreen()
     }

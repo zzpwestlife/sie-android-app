@@ -22,7 +22,6 @@ import com.example.sie.core.designsystem.theme.*
 fun HomeRoute(
     onTopicSelectionClick: () -> Unit,
     onMockExamClick: () -> Unit,
-    onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
     onSettingsClick: () -> Unit,
@@ -34,7 +33,6 @@ fun HomeRoute(
         uiState = uiState,
         onTopicSelectionClick = onTopicSelectionClick,
         onMockExamClick = onMockExamClick,
-        onStatsClick = onStatsClick,
         onBookmarkedClick = onBookmarkedClick,
         onWrongQuestionsClick = onWrongQuestionsClick,
         onSettingsClick = onSettingsClick
@@ -47,7 +45,6 @@ internal fun HomeScreen(
     uiState: HomeUiState,
     onTopicSelectionClick: () -> Unit,
     onMockExamClick: () -> Unit,
-    onStatsClick: () -> Unit,
     onBookmarkedClick: () -> Unit,
     onWrongQuestionsClick: () -> Unit,
     onSettingsClick: () -> Unit,
@@ -127,79 +124,6 @@ internal fun HomeScreen(
                     }
                 }
 
-                // Statistics Row
-                item {
-                    when (uiState) {
-                        is HomeUiState.Loading -> {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
-                            ) {
-                                ModernGradientCard(
-                                    modifier = Modifier.weight(1f),
-                                    gradient = TertiaryGradient
-                                ) {
-                                    CircularProgressIndicator(
-                                        modifier = Modifier.size(32.dp),
-                                        color = OnSurface
-                                    )
-                                }
-                                ModernGradientCard(
-                                    modifier = Modifier.weight(1f),
-                                    gradient = AccentGradient
-                                ) {
-                                    CircularProgressIndicator(
-                                        modifier = Modifier.size(32.dp),
-                                        color = OnSurface
-                                    )
-                                }
-                            }
-                        }
-                        is HomeUiState.Success -> {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
-                            ) {
-                                ModernGradientCard(
-                                    modifier = Modifier.weight(1f),
-                                    gradient = TertiaryGradient
-                                ) {
-                                    Text(
-                                        text = "${uiState.questionsStudied}",
-                                        style = MaterialTheme.typography.headlineMedium,
-                                        color = OnSurface,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                    Text(
-                                        text = stringResource(CommonR.string.home_questions_studied),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = OnBackgroundSecondary,
-                                        fontSize = 12.sp
-                                    )
-                                }
-
-                                ModernGradientCard(
-                                    modifier = Modifier.weight(1f),
-                                    gradient = AccentGradient
-                                ) {
-                                    Text(
-                                        text = "${uiState.correctRate}%",
-                                        style = MaterialTheme.typography.headlineMedium,
-                                        color = OnSurface,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                    Text(
-                                        text = stringResource(CommonR.string.home_correct_rate),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = OnBackgroundSecondary,
-                                        fontSize = 12.sp
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-
                 // Feature Buttons Grid
                 item {
                     Text(
@@ -253,14 +177,6 @@ internal fun HomeScreen(
                                 modifier = Modifier.weight(1f)
                             )
                         }
-
-                        // Row 3: Statistics (独占一行)
-                        ModernGradientButton(
-                            text = stringResource(CommonR.string.home_statistics),
-                            onClick = onStatsClick,
-                            gradient = AccentGradient,
-                            modifier = Modifier.fillMaxWidth()
-                        )
                     }
                 }
             }

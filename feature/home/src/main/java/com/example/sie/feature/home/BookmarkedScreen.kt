@@ -49,7 +49,7 @@ import com.example.sie.core.common.R as CommonR
 import com.example.sie.core.designsystem.component.AppBackground
 import com.example.sie.core.designsystem.component.ModernGradientCard
 import com.example.sie.core.designsystem.component.ModernGradientTopAppBar
-import com.example.sie.core.designsystem.component.ModernGradientButton
+import com.example.sie.core.designsystem.component.QuestionCard
 import com.example.sie.core.designsystem.theme.AccentGradient
 import com.example.sie.core.designsystem.theme.OnBackground
 import com.example.sie.core.designsystem.theme.OnBackgroundSecondary
@@ -294,18 +294,21 @@ private fun BookmarkedQuestionCard(
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    ModernGradientCard(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .animateContentSize(),
-        gradient = AccentGradient,
-        onClick = { expanded = !expanded }
+            .animateContentSize()
     ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
+        // Header: Category + Remove button
+        ModernGradientCard(
+            modifier = Modifier.fillMaxWidth(),
+            gradient = AccentGradient,
+            onClick = { expanded = !expanded }
+        ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
@@ -314,9 +317,7 @@ private fun BookmarkedQuestionCard(
                         color = Color(0xFF11998E),
                         fontWeight = FontWeight.SemiBold
                     )
-
                     Spacer(modifier = Modifier.height(8.dp))
-
                     Text(
                         text = question.getLocalizedContent(language),
                         style = MaterialTheme.typography.bodyMedium,
@@ -336,51 +337,22 @@ private fun BookmarkedQuestionCard(
                     )
                 }
             }
+        }
 
-            if (expanded) {
-                Spacer(modifier = Modifier.height(16.dp))
+        // Expanded: QuestionCard with options + explanation
+        if (expanded) {
+            Spacer(modifier = Modifier.height(8.dp))
 
-                // Options
-                question.options.indices.forEach { index ->
-                    val isCorrect = index == question.correctAnswerIndex
-                    val optionText = question.getOption(index, language)
-
-                    ModernGradientButton(
-                        text = "${(65 + index).toChar()}. $optionText",
-                        onClick = { },
-                        enabled = false,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp),
-                        gradient = if (isCorrect) {
-                            AccentGradient
-                        } else {
-                            androidx.compose.ui.graphics.Brush.linearGradient(
-                                colors = listOf(
-                                    OnBackgroundSecondary.copy(alpha = 0.3f),
-                                    OnBackgroundSecondary.copy(alpha = 0.3f)
-                                )
-                            )
-                        }
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Explanation
-                Text(
-                    text = stringResource(CommonR.string.common_explanation),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = Color(0xFF11998E),
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = question.getExplanation(language),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = OnSurface.copy(alpha = 0.8f)
-                )
-            }
+            QuestionCard(
+                question = question,
+                selectedOptionIndex = question.correctAnswerIndex,
+                onOptionSelected = {},
+                showFeedback = true,
+                showExplanation = true,
+                showQuestionText = false,
+                language = language,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }

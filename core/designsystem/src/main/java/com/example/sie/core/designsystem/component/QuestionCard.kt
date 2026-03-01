@@ -42,6 +42,7 @@ fun QuestionCard(
     modifier: Modifier = Modifier,
     showFeedback: Boolean = false,
     showExplanation: Boolean = true,
+    showQuestionText: Boolean = true,
     language: String = "en"
 ) {
     Card(
@@ -58,15 +59,17 @@ fun QuestionCard(
             modifier = Modifier.padding(SpacingMedium)
         ) {
             // Question Text
-            Text(
-                text = question.getLocalizedContent(language),
-                style = MaterialTheme.typography.bodyLarge,
-                color = QuestionText,
-                fontWeight = FontWeight.Medium,
-                lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
-            )
+            if (showQuestionText) {
+                Text(
+                    text = question.getLocalizedContent(language),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = QuestionText,
+                    fontWeight = FontWeight.Medium,
+                    lineHeight = MaterialTheme.typography.bodyLarge.lineHeight
+                )
 
-            Spacer(modifier = Modifier.height(SpacingMedium))
+                Spacer(modifier = Modifier.height(SpacingMedium))
+            }
 
             // Options
             question.options.forEachIndexed { index, _ ->
@@ -84,6 +87,25 @@ fun QuestionCard(
                 if (index < question.options.size - 1) {
                     Spacer(modifier = Modifier.height(SpacingSmall))
                 }
+            }
+
+            // Explanation
+            if (showExplanation && showFeedback && question.explanation.isNotBlank()) {
+                Spacer(modifier = Modifier.height(SpacingMedium))
+
+                Text(
+                    text = stringResource(CommonR.string.common_explanation),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = Color(0xFF4CAF50),
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(SpacingSmall))
+                Text(
+                    text = question.getExplanation(language),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = QuestionText.copy(alpha = 0.8f),
+                    lineHeight = MaterialTheme.typography.bodySmall.lineHeight
+                )
             }
         }
     }

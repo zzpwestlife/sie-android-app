@@ -193,21 +193,6 @@ class ExamViewModel @Inject constructor(
         }
     }
 
-    fun onFlagQuestion(questionId: Int) {
-        _uiState.update { state ->
-            if (state is ExamUiState.InProgress) {
-                val newFlagged = if (state.flaggedQuestions.contains(questionId)) {
-                    state.flaggedQuestions - questionId
-                } else {
-                    state.flaggedQuestions + questionId
-                }
-                state.copy(flaggedQuestions = newFlagged)
-            } else {
-                state
-            }
-        }
-    }
-
     fun toggleBookmark(questionId: Int) {
         viewModelScope.launch {
             questionRepository.toggleBookmark(questionId)
@@ -273,7 +258,7 @@ class ExamViewModel @Inject constructor(
 
                 saveResultWithAnswers(
                     score, state.questions.size, correctCount,
-                    state.questions, state.userAnswers, state.flaggedQuestions
+                    state.questions, state.userAnswers
                 )
                 markWrongQuestions(state.questions, state.userAnswers)
 
@@ -295,8 +280,7 @@ class ExamViewModel @Inject constructor(
         totalQuestions: Int,
         correctCount: Int,
         questions: List<Question>,
-        userAnswers: Map<Int, Int>,
-        flaggedQuestions: Set<Int>
+        userAnswers: Map<Int, Int>
     ) {
         viewModelScope.launch {
             val answers = questions.map { question ->
@@ -306,7 +290,7 @@ class ExamViewModel @Inject constructor(
                     questionId = question.id,
                     selectedOptionIndex = userAnswers[question.id] ?: -1,
                     isCorrect = isAnswered && userAnswers[question.id] == question.correctAnswerIndex,
-                    isFlagged = question.id in flaggedQuestions,
+                    isFlagged = false,
                     isAnswered = isAnswered
                 )
             }
@@ -377,8 +361,7 @@ sealed interface ExamUiState {
         val questions: List<Question>,
         val currentQuestionIndex: Int,
         val userAnswers: Map<Int, Int>,
-        val timeLeftMillis: Long,
-        val flaggedQuestions: Set<Int> = emptySet()
+        val timeLeftMillis: Long
     ) : ExamUiState
     data class Finished(
         val score: Int,

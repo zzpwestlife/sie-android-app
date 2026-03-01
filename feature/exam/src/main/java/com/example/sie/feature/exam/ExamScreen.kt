@@ -107,7 +107,6 @@ fun ExamRoute(
         uiState = uiState,
         onStartExam = viewModel::startExam,
         onAnswerSelected = viewModel::onAnswerSelected,
-        onFlagQuestion = viewModel::onFlagQuestion,
         onToggleBookmark = viewModel::toggleBookmark,
         onSubmitExam = viewModel::submitExam,
         onBackClick = onBackClick,
@@ -123,7 +122,6 @@ internal fun ExamScreen(
     uiState: ExamUiState,
     onStartExam: () -> Unit,
     onAnswerSelected: (Int, Int) -> Unit,
-    onFlagQuestion: (Int) -> Unit,
     onToggleBookmark: (Int) -> Unit,
     onSubmitExam: () -> Unit,
     onBackClick: () -> Unit,
@@ -149,7 +147,6 @@ internal fun ExamScreen(
                 ExamInProgressContent(
                     state = uiState,
                     onAnswerSelected = onAnswerSelected,
-                    onFlagQuestion = onFlagQuestion,
                     onToggleBookmark = onToggleBookmark,
                     onSubmitExam = onSubmitExam,
                     onQuestionSelected = onQuestionSelected,
@@ -224,11 +221,6 @@ private fun ExamIntroContent(
                         title = stringResource(CommonR.string.exam_intro_pass),
                         subtitle = stringResource(CommonR.string.exam_intro_pass_subtitle)
                     )
-                    IntroItem(
-                        icon = androidx.compose.material.icons.Icons.Default.Star,
-                        title = stringResource(CommonR.string.exam_intro_flagging),
-                        subtitle = stringResource(CommonR.string.exam_intro_flagging_subtitle)
-                    )
                 }
             }
 
@@ -291,7 +283,6 @@ private fun IntroItem(
 private fun ExamInProgressContent(
     state: ExamUiState.InProgress,
     onAnswerSelected: (Int, Int) -> Unit,
-    onFlagQuestion: (Int) -> Unit,
     onToggleBookmark: (Int) -> Unit,
     onSubmitExam: () -> Unit,
     onQuestionSelected: (Int) -> Unit,
@@ -307,8 +298,6 @@ private fun ExamInProgressContent(
     val snackbarHostState = remember { androidx.compose.material3.SnackbarHostState() }
 
     // Pre-fetch strings for use in coroutine scope
-    val flaggedText = stringResource(CommonR.string.exam_flagged)
-    val unflaggedText = stringResource(CommonR.string.exam_unflagged)
     val bookmarkedText = stringResource(CommonR.string.study_bookmarked)
     val bookmarkRemovedText = stringResource(CommonR.string.study_bookmark_removed)
 
@@ -406,42 +395,15 @@ private fun ExamInProgressContent(
                 // Progress Indicator
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    androidx.compose.material3.TextButton(
-                        onClick = {
-                            scope.launch {
-                                val prevPage = pagerState.currentPage - 1
-                                if (prevPage >= 0) {
-                                    onQuestionSelected(prevPage)
-                                }
-                            }
-                        },
-                        enabled = pagerState.currentPage > 0
-                    ) {
-                        Text("< " + stringResource(CommonR.string.exam_button_prev))
-                    }
-
                     Text(
-                        text = "${pagerState.currentPage + 1} / ${state.questions.size}",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        text = stringResource(CommonR.string.exam_detail_question_index, pagerState.currentPage + 1, state.questions.size),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = OnBackground,
+                        fontWeight = FontWeight.Medium
                     )
-
-                    androidx.compose.material3.TextButton(
-                        onClick = {
-                            scope.launch {
-                                val nextPage = pagerState.currentPage + 1
-                                if (nextPage < state.questions.size) {
-                                    onQuestionSelected(nextPage)
-                                }
-                            }
-                        },
-                        enabled = pagerState.currentPage < state.questions.size - 1
-                    ) {
-                        Text(stringResource(CommonR.string.exam_button_next) + " >")
-                    }
                 }
                 
                 // Big Action Button
@@ -501,26 +463,6 @@ private fun ExamInProgressContent(
 
                             androidx.compose.material3.IconButton(
                                 onClick = {
-                                    val isFlagged = state.flaggedQuestions.contains(question.id)
-                                    onFlagQuestion(question.id)
-                                    scope.launch {
-                                        snackbarHostState.currentSnackbarData?.dismiss()
-                                        snackbarHostState.showSnackbar(
-                                            if (isFlagged) unflaggedText else flaggedText
-                                        )
-                                    }
-                                }
-                            ) {
-                                androidx.compose.material3.Icon(
-                                    imageVector = if (state.flaggedQuestions.contains(question.id)) androidx.compose.material.icons.Icons.Filled.CheckCircle else androidx.compose.material.icons.Icons.Outlined.CheckCircle,
-                                    contentDescription = stringResource(CommonR.string.exam_intro_flagging),
-                                    tint = if (state.flaggedQuestions.contains(question.id)) MaterialTheme.colorScheme.tertiary else Color.White.copy(alpha = 0.6f),
-                                    modifier = Modifier.size(28.dp)
-                                )
-                            }
-
-                            androidx.compose.material3.IconButton(
-                                onClick = {
                                     onToggleBookmark(question.id)
                                     scope.launch {
                                         snackbarHostState.currentSnackbarData?.dismiss()
@@ -570,7 +512,6 @@ private fun ExamInProgressContent(
                     itemsIndexed(state.questions) { index, question ->
                         val isAnswered = state.userAnswers.containsKey(question.id)
                         val isCurrent = index == state.currentQuestionIndex
-                        val isFlagged = state.flaggedQuestions.contains(question.id)
                         
                         Box(
                             modifier = Modifier
@@ -586,11 +527,9 @@ private fun ExamInProgressContent(
                                  contentPadding = PaddingValues(0.dp),
                                  colors = ButtonDefaults.buttonColors(
                                      containerColor = if (isCurrent) MaterialTheme.colorScheme.primary 
-                                                      else if (isFlagged) MaterialTheme.colorScheme.tertiaryContainer // Flagged
                                                       else if (isAnswered) MaterialTheme.colorScheme.secondaryContainer
                                                       else MaterialTheme.colorScheme.surfaceVariant,
                                      contentColor = if (isCurrent) MaterialTheme.colorScheme.onPrimary
-                                                    else if (isFlagged) MaterialTheme.colorScheme.onTertiaryContainer
                                                     else if (isAnswered) MaterialTheme.colorScheme.onSecondaryContainer
                                                     else MaterialTheme.colorScheme.onSurfaceVariant
                                  )

@@ -72,7 +72,6 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:study"))
     implementation(project(":feature:exam"))
-    implementation(project(":feature:stats"))
     implementation(project(":feature:settings"))
     implementation(project(":feature:chapter"))
 

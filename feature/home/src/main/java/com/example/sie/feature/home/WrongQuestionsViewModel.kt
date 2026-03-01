@@ -3,6 +3,7 @@ package com.example.sie.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sie.core.data.repository.QuestionRepository
+import com.example.sie.core.data.repository.UserDataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -10,8 +11,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WrongQuestionsViewModel @Inject constructor(
-    private val questionRepository: QuestionRepository
+    private val questionRepository: QuestionRepository,
+    private val userDataRepository: UserDataRepository
 ) : ViewModel() {
+
+    private val _language = MutableStateFlow("zh")
+    val language: StateFlow<String> = _language.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            userDataRepository.userData.collect { userData ->
+                _language.value = userData.language
+            }
+        }
+    }
 
     private val _selectedCategory = MutableStateFlow<String?>(null)
 

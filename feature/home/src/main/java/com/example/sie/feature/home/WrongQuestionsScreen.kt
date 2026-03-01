@@ -23,7 +23,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ButtonDefaults
+import com.example.sie.core.designsystem.component.QuestionCard
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
@@ -31,7 +31,6 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -68,6 +67,7 @@ fun WrongQuestionsRoute(
     viewModel: WrongQuestionsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val language by viewModel.language.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
@@ -78,6 +78,7 @@ fun WrongQuestionsRoute(
 
     WrongQuestionsScreen(
         uiState = uiState,
+        language = language,
         snackbarHostState = snackbarHostState,
         onBackClick = onBackClick,
         onCategorySelected = viewModel::selectCategory,
@@ -90,6 +91,7 @@ fun WrongQuestionsRoute(
 @Composable
 internal fun WrongQuestionsScreen(
     uiState: WrongQuestionsUiState,
+    language: String,
     snackbarHostState: SnackbarHostState,
     onBackClick: () -> Unit,
     onCategorySelected: (String?) -> Unit,
@@ -147,6 +149,7 @@ internal fun WrongQuestionsScreen(
                 is WrongQuestionsUiState.Success -> {
                     WrongQuestionsContent(
                         state = uiState,
+                        language = language,
                         modifier = Modifier.padding(paddingValues),
                         onCategorySelected = onCategorySelected,
                         onRemoveFromWrong = onRemoveFromWrong,
@@ -161,6 +164,7 @@ internal fun WrongQuestionsScreen(
 @Composable
 private fun WrongQuestionsContent(
     state: WrongQuestionsUiState.Success,
+    language: String,
     modifier: Modifier = Modifier,
     onCategorySelected: (String?) -> Unit,
     onRemoveFromWrong: (Int) -> Unit,
@@ -191,6 +195,7 @@ private fun WrongQuestionsContent(
         ) { question ->
             WrongQuestionCard(
                 question = question,
+                language = language,
                 onRemoveClick = { onRemoveFromWrong(question.id) },
                 onToggleBookmark = { onToggleBookmark(question.id) }
             )
@@ -354,6 +359,7 @@ private fun CategoryFilterChips(
 @Composable
 private fun WrongQuestionCard(
     question: Question,
+    language: String,
     onRemoveClick: () -> Unit,
     onToggleBookmark: () -> Unit,
     modifier: Modifier = Modifier
@@ -361,117 +367,90 @@ private fun WrongQuestionCard(
     var showRemoveDialog by remember { mutableStateOf(false) }
     var expanded by remember { mutableStateOf(false) }
 
-    ModernGradientCard(
-        modifier = modifier.fillMaxWidth(),
-        gradient = WarningGradient,
-        onClick = { expanded = !expanded }
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .animateContentSize()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize()
+        // Header card with question preview + actions
+        ModernGradientCard(
+            modifier = Modifier.fillMaxWidth(),
+            gradient = WarningGradient,
+            onClick = { expanded = !expanded }
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
-            ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = question.content,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = OnBackground,
-                        maxLines = if (expanded) Int.MAX_VALUE else 3,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Spacer(modifier = Modifier.height(SpacingSmall))
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = question.category,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = OnBackground.copy(alpha = 0.7f)
+                            text = question.getLocalizedContent(language),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = OnBackground,
+                            maxLines = if (expanded) Int.MAX_VALUE else 3,
+                            overflow = TextOverflow.Ellipsis
                         )
-                        Spacer(modifier = Modifier.width(SpacingSmall))
-                        Box(
-                            modifier = Modifier
-                                .background(
-                                    color = Color(0xFFFF6B6B),
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .padding(horizontal = 8.dp, vertical = 2.dp)
-                        ) {
+                        Spacer(modifier = Modifier.height(SpacingSmall))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                text = "\u00d7${question.wrongCount}",
+                                text = question.category,
                                 style = MaterialTheme.typography.labelSmall,
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold
+                                color = OnBackground.copy(alpha = 0.7f)
+                            )
+                            Spacer(modifier = Modifier.width(SpacingSmall))
+                            Box(
+                                modifier = Modifier
+                                    .background(
+                                        color = Color(0xFFFF6B6B),
+                                        shape = RoundedCornerShape(8.dp)
+                                    )
+                                    .padding(horizontal = 8.dp, vertical = 2.dp)
+                            ) {
+                                Text(
+                                    text = "\u00d7${question.wrongCount}",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                    Row {
+                        IconButton(onClick = onToggleBookmark) {
+                            Icon(
+                                imageVector = if (question.isBookmarked) Icons.Filled.Star else Icons.Outlined.Star,
+                                contentDescription = stringResource(CommonR.string.common_bookmark),
+                                tint = if (question.isBookmarked) Color(0xFFFFD700) else OnBackground.copy(alpha = 0.5f)
+                            )
+                        }
+                        IconButton(onClick = { showRemoveDialog = true }) {
+                            Icon(
+                                imageVector = Icons.Outlined.Delete,
+                                contentDescription = stringResource(CommonR.string.wrong_questions_remove_from_list),
+                                tint = OnBackground.copy(alpha = 0.5f)
                             )
                         }
                     }
                 }
-                Row {
-                    IconButton(onClick = onToggleBookmark) {
-                        Icon(
-                            imageVector = if (question.isBookmarked) Icons.Filled.Star else Icons.Outlined.Star,
-                            contentDescription = stringResource(CommonR.string.common_bookmark),
-                            tint = if (question.isBookmarked) Color(0xFFFFD700) else OnBackground.copy(alpha = 0.5f)
-                        )
-                    }
-                    IconButton(onClick = { showRemoveDialog = true }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Delete,
-                            contentDescription = stringResource(CommonR.string.wrong_questions_remove_from_list),
-                            tint = OnBackground.copy(alpha = 0.5f)
-                        )
-                    }
-                }
             }
+        }
 
-            if (expanded) {
-                Spacer(modifier = Modifier.height(SpacingMedium))
+        // Expanded: QuestionCard with options + explanation
+        if (expanded) {
+            Spacer(modifier = Modifier.height(8.dp))
 
-                // Options
-                question.options.forEachIndexed { index, option ->
-                    val isCorrect = index == question.correctAnswerIndex
-
-                    OutlinedButton(
-                        onClick = {},
-                        enabled = false,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = if (isCorrect) Color(0xFF00C9FF).copy(alpha = 0.1f) else Color.Transparent,
-                            contentColor = if (isCorrect) Color(0xFF00C9FF) else OnBackground,
-                            disabledContainerColor = if (isCorrect) Color(0xFF00C9FF).copy(alpha = 0.1f) else Color.Transparent,
-                            disabledContentColor = if (isCorrect) Color(0xFF00C9FF) else OnBackground.copy(alpha = 0.8f)
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        Text(
-                            text = "${(65 + index).toChar()}. $option",
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.padding(8.dp)
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(SpacingMedium))
-
-                // Explanation
-                Text(
-                    text = stringResource(CommonR.string.common_explanation),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = OnBackground,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(SpacingSmall))
-                Text(
-                    text = question.explanation,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = OnBackground.copy(alpha = 0.7f)
-                )
-            }
+            QuestionCard(
+                question = question,
+                selectedOptionIndex = question.correctAnswerIndex,
+                onOptionSelected = {},
+                showFeedback = true,
+                showExplanation = true,
+                showQuestionText = false,
+                language = language,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 

@@ -1,435 +1,184 @@
-# 代码审查报告：考试历史功能
+# Code Review -- feature/unit-testing 分支未提交变更
 
-## 审查范围
-- **提交范围**: 69b8179 → 024be7e (7次提交)
-- **审查日期**: 2026-02-28
-- **功能**: 考试历史记录与详情查看
-- **变更文件**: 8个新增文件，多个现有文件修改
+**审查日期**: 2026-03-01
+**审查分支**: `feature/unit-testing` (未提交变更, 对比已提交的 HEAD)
+**变更规模**: 22 个文件, +185 / -905 行 (净删除 720 行)
 
 ---
 
-## 执行摘要
+## 一、变更概览
 
-本次代码审查覆盖了考试历史功能的完整实现，包括数据模型、数据库迁移、Repository层扩展、ViewModel层、UI层以及导航集成。整体实现质量良好，遵循了MVVM + Repository架构模式，但存在一个**严重的数据库迁移问题**需要立即修复。
+本次变更包含四大主题:
 
-**总体评估**: ⚠️ **需要修复后才能合并**
+1. **QuestionCard 组件复用重构** -- 将 `BookmarkedScreen` 和 `WrongQuestionsScreen` 中手写的选项/解析展示逻辑替换为统一的 `QuestionCard` 组件
+2. **Stats 模块完整移除** -- 删除 `feature/stats` 模块及所有关联引用 (导航、字符串资源、build 依赖)
+3. **Exam 标记 (Flag) 功能移除** -- 移除考试中的题目标记功能，简化 ExamViewModel 和 ExamScreen
+4. **WrongQuestionsViewModel 添加多语言支持** -- 注入 `UserDataRepository` 以获取用户语言偏好
 
 ---
 
-## 🚨 严重问题（必须修复）
+## 二、严重问题 (Critical Issues)
 
-### 1. 数据库索引命名不一致 - Migration与Schema不匹配
+### 2.1 ExamDetailScreen 遗留空 if 分支
 
-**位置**:
-- `core/database/src/main/java/com/example/sie/core/database/AppDatabase.kt:88`
-- `core/database/schemas/.../14.json`
-
-**问题描述**:
-
-在 `MIGRATION_13_14` 中创建的索引名称为 `index_exam_answers_result`:
+**文件**: `feature/exam/src/main/java/com/example/sie/feature/exam/ExamDetailScreen.kt` (第 371-373 行)
 
 ```kotlin
-// AppDatabase.kt, line 88
-database.execSQL(
-    "CREATE INDEX IF NOT EXISTS `index_exam_answers_result` ON `exam_answers`(`examResultId`)"
-)
-```
-
-但Room生成的实际schema文件中，索引名称为 `index_exam_answers_examResultId`:
-
-```json
-// 14.json
-{
-  "name": "index_exam_answers_examResultId",
-  "createSql": "CREATE INDEX IF NOT EXISTS `index_exam_answers_examResultId` ..."
+if (answer.isFlagged) {
+    // Flag removed
 }
 ```
 
-**影响**:
-1. Migration执行后的数据库结构与Room期望的schema不匹配
-2. 后续从版本14进行迁移时会出现schema验证失败
-3. 可能导致数据库索引重复创建
-4. 可能触发Room的fallbackToDestructiveMigration导致数据丢失
+这是一个空的 `if` 分支，仅留了一行注释。虽然 `isFlagged` 在 `ExamViewModel` 中现在始终被设为 `false`，但历史数据中 `isFlagged` 可能为 `true`，此时进入该分支后什么都不做，且构成 Dead Code。
 
-**修复方案**:
+**建议**: 完全删除此 `if` 块。
 
-修改 `MIGRATION_13_14` 中的索引名称以匹配Room生成的名称:
+### 2.2 isFlagged 字段半移除导致层级不一致
 
-```kotlin
-database.execSQL(
-    "CREATE INDEX IF NOT EXISTS `index_exam_answers_examResultId` ON `exam_answers`(`examResultId`)"
-)
-```
+**文件**:
+- `feature/exam/src/main/java/com/example/sie/feature/exam/ExamViewModel.kt` (第 293 行): `isFlagged = false` 硬编码
+- `core/model/src/main/java/com/example/sie/core/model/ExamAnswer.kt`: `isFlagged` 字段仍存在
+- `core/database/src/main/java/com/example/sie/core/database/model/ExamAnswerEntity.kt`: `isFlagged` 列仍存在
+- `core/database/src/main/java/com/example/sie/core/database/AppDatabase.kt`: `isFlagged` DDL 仍存在
 
-**验证方法**:
-1. 修复后重新运行数据库迁移测试
-2. 对比生成的schema与migration SQL
-3. 在真实设备上测试从版本13升级到版本14
+UI 层已完全移除标记功能，但模型层和数据库层仍保留了 `isFlagged` 字段，而 ViewModel 中强制写入 `false`。这种半移除状态会让后续维护者困惑。
+
+**建议**: 若确认永久移除标记功能，应在 `ExamAnswer` model 上标注 `@Deprecated`，并在后续版本通过数据库迁移清理该字段。当前至少应在代码中添加明确的 TODO 注释说明意图。
 
 ---
 
-## ⚠️ 重要改进建议（应该修复）
+## 三、改进建议 (Improvement Suggestions)
 
-### 2. ExamDetailViewModel中可能出现的数据不一致
+### 3.1 WrongQuestionsViewModel 和 BookmarkedViewModel 使用 FQN 而非 import
 
-**位置**: `feature/exam/src/main/java/com/example/sie/feature/exam/ExamDetailViewModel.kt:46-49`
-
-**问题描述**:
+**文件**:
+- `feature/home/src/main/java/com/example/sie/feature/home/WrongQuestionsViewModel.kt` (第 14 行)
+- `feature/home/src/main/java/com/example/sie/feature/home/BookmarkedViewModel.kt` (第 14 行)
 
 ```kotlin
-val questionIds = answers.map { it.questionId }
-val allQuestions = questionRepository.getAllQuestionsList()
-val questionsMap = allQuestions.associateBy { it.id }
-val questions = questionIds.mapNotNull { questionsMap[it] }
+private val userDataRepository: com.example.sie.core.data.repository.UserDataRepository
 ```
 
-如果题库中的某个问题被删除，但历史记录中仍然存在该问题ID，使用`mapNotNull`会静默丢弃这些答案记录，导致：
-- 答案数量与问题数量不匹配
-- 用户无法查看完整的考试记录
-- 统计数据可能出现偏差
+两处均使用完全限定名而非顶部 import 声明，降低了可读性，且不符合 Kotlin 惯用风格。
 
-**修复方案**:
+**建议**: 添加 `import com.example.sie.core.data.repository.UserDataRepository` 并使用简称。
 
-1. **推荐方案**: 添加显式的错误处理和日志记录
+### 3.2 语言收集可用 stateIn 替代手动 collect
+
+**文件**:
+- `feature/home/src/main/java/com/example/sie/feature/home/WrongQuestionsViewModel.kt` (第 20-26 行)
+- `feature/home/src/main/java/com/example/sie/feature/home/BookmarkedViewModel.kt` (第 25-31 行)
+
 ```kotlin
-val questions = questionIds.mapNotNull { id ->
-    questionsMap[id].also { question ->
-        if (question == null) {
-            Log.w("ExamDetailViewModel", "Question $id not found in repository")
+init {
+    viewModelScope.launch {
+        userDataRepository.userData.collect { userData ->
+            _language.value = userData.language
         }
     }
 }
-
-if (questions.size != questionIds.size) {
-    Log.e("ExamDetailViewModel", "Missing ${questionIds.size - questions.size} questions")
-    // 考虑是否要显示错误状态
-}
 ```
 
-2. **更好的方案**: 在UI中显示"题目已删除"的占位符，而不是完全忽略这些记录
-
-**风险等级**: 中等 - 在正常情况下不太可能出现，但缺乏防御性编程
-
----
-
-### 3. ExamViewModel中的未回答问题处理逻辑问题
-
-**位置**: `feature/exam/src/main/java/com/example/sie/feature/exam/ExamViewModel.kt:259`
-
-**问题描述**:
+通过 `launch` + `collect` 手动收集 Flow 并更新 `MutableStateFlow`。更惯用的写法:
 
 ```kotlin
-selectedOptionIndex = userAnswers[question.id] ?: -1,
-isCorrect = userAnswers[question.id] == question.correctAnswerIndex,
+val language: StateFlow<String> = userDataRepository.userData
+    .map { it.language }
+    .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "zh")
 ```
 
-当用户未回答某个问题时（`userAnswers[question.id]`为null）：
-- `selectedOptionIndex` 被设置为 -1（合理）
-- `isCorrect` 被设置为 `null == correctAnswerIndex`，结果为 `false`（合理）
+这样更简洁、声明式，且与同文件中 `uiState` 的写法风格一致。
 
-但这种处理方式无法区分"回答错误"和"未回答"两种状态。
+### 3.3 ExamScreen 中残留未使用的 import
 
-**影响**:
-- 在统计和分析中无法准确区分这两种情况
-- ExamDetailScreen无法正确显示"未作答"状态（尽管字符串资源中已准备了`exam_detail_not_answered`）
+**文件**: `feature/exam/src/main/java/com/example/sie/feature/exam/ExamScreen.kt`
 
-**修复方案**:
+移除标记 (Flag) 相关 UI 后，以下 import 不再被使用:
 
-考虑在ExamAnswer模型中添加一个可选的状态字段：
+- 第 30 行: `import androidx.compose.material.icons.outlined.CheckCircle` -- Flag 图标的 outlined 版本已无引用点
+
+**建议**: 删除该行 import。
+
+### 3.4 展开后题目文本重复显示
+
+**文件**:
+- `feature/home/src/main/java/com/example/sie/feature/home/BookmarkedScreen.kt` (第 322 行 + 展开区)
+- `feature/home/src/main/java/com/example/sie/feature/home/WrongQuestionsScreen.kt` (第 389 行 + 展开区)
+
+在 `BookmarkedQuestionCard` 和 `WrongQuestionCard` 中，收起状态的 `ModernGradientCard` 已显示题目文本 (`question.getLocalizedContent(language)`)，展开后 `QuestionCard` 内部会再次显示完整的题目文本。用户会看到同一道题的内容出现两次。
+
+**建议**: 考虑在 `QuestionCard` 中添加 `showQuestionText: Boolean = true` 参数，在此场景中设为 `false`；或在展开时隐藏头部卡片中的题目预览。
+
+### 3.5 错误信息硬编码英文未国际化
+
+**文件**:
+- `feature/home/src/main/java/com/example/sie/feature/home/WrongQuestionsViewModel.kt` (第 80、92 行)
+- `feature/home/src/main/java/com/example/sie/feature/home/BookmarkedViewModel.kt` (第 69 行)
 
 ```kotlin
-data class ExamAnswer(
-    val id: Int = 0,
-    val examResultId: Int,
-    val questionId: Int,
-    val selectedOptionIndex: Int, // -1 = 未回答
-    val isCorrect: Boolean,
-    val isFlagged: Boolean = false,
-    val isAnswered: Boolean = true // 新增字段
-)
+_errorEvents.emit("Failed to remove from wrong list: ${e.message}")
+_errorEvents.emit("Failed to toggle bookmark: ${e.message}")
 ```
 
-并在ExamViewModel中：
-```kotlin
-val isAnswered = userAnswers.containsKey(question.id)
-ExamAnswer(
-    selectedOptionIndex = userAnswers[question.id] ?: -1,
-    isCorrect = isAnswered && userAnswers[question.id] == question.correctAnswerIndex,
-    isAnswered = isAnswered
-)
-```
+在支持中英双语的应用中，这些 Snackbar 消息始终显示英文。
 
-**注意**: 这需要创建一个新的数据库迁移（14→15）
+**建议**: 改用字符串资源 ID 或错误代码，在 UI 层通过 `stringResource` 转换为对应语言。
 
 ---
 
-### 4. 缺少对ExamRepository.saveExamResultWithAnswers的错误处理
+## 四、代码风格与规范 (Code Style)
 
-**位置**: `core/data/src/main/java/com/example/sie/core/data/repository/OfflineExamRepository.kt:32-50`
+### 4.1 import 语句插入位置不当
 
-**问题描述**:
+**文件**: `feature/home/src/main/java/com/example/sie/feature/home/WrongQuestionsScreen.kt` (第 26 行)
 
 ```kotlin
-override suspend fun saveExamResultWithAnswers(examResult: ExamResult, answers: List<ExamAnswer>) {
-    val resultId = examResultDao.insertExamResultAndGetId(examResult.toEntity())
-    val answerEntities = answers.map { answer ->
-        ExamAnswerEntity(
-            examResultId = resultId.toInt(),
-            // ...
-        )
-    }
-    examResultDao.insertExamAnswers(answerEntities)
-}
+import androidx.compose.material3.AlertDialog
+import com.example.sie.core.designsystem.component.QuestionCard  // <-- 项目 import 混入 material3 组中间
+import androidx.compose.material3.CircularProgressIndicator
 ```
 
-这个方法不是事务性的，如果在插入answers时发生错误：
-- ExamResult已经被保存
-- 但Answers没有保存
-- 导致数据不一致
+**建议**: 将 `QuestionCard` import 移至文件中其他 `com.example.sie` import 所在的区域。
 
-**修复方案**:
+### 4.2 Spacing 值混用
 
-使用Room的@Transaction注解或手动管理事务：
+展开区域的间距使用了硬编码 `8.dp`:
 
 ```kotlin
-@Transaction
-suspend fun saveExamResultWithAnswers(examResult: ExamResult, answers: List<ExamAnswer>) {
-    val resultId = examResultDao.insertExamResultAndGetId(examResult.toEntity())
-    val answerEntities = answers.map { answer ->
-        ExamAnswerEntity(
-            examResultId = resultId.toInt(),
-            // ...
-        )
-    }
-    examResultDao.insertExamAnswers(answerEntities)
-}
+// BookmarkedScreen.kt 第 344 行, WrongQuestionsScreen.kt 第 442 行
+Spacer(modifier = Modifier.height(8.dp))
 ```
 
-或在DAO中创建一个事务性方法：
-
-```kotlin
-@Transaction
-suspend fun insertExamResultWithAnswers(
-    examResult: ExamResultEntity,
-    answers: List<ExamAnswerEntity>
-): Long {
-    val resultId = insertExamResultAndGetId(examResult)
-    insertExamAnswers(answers.map { it.copy(examResultId = resultId.toInt()) })
-    return resultId
-}
-```
+而代码库中已定义了 `SpacingSmall` 等主题常量，其他位置也在使用。应统一使用主题常量以保持一致性。
 
 ---
 
-## 💡 代码风格与约定建议（可选修复）
+## 五、积极亮点 (Positive Highlights)
 
-### 5. 测试覆盖率可以提升
+1. **组件复用方向正确**: 将 `BookmarkedScreen` 和 `WrongQuestionsScreen` 中各自手写的选项展示逻辑统一到 `QuestionCard` 组件，消除了约 80 行重复代码。后续只需维护一处选项渲染逻辑。
 
-**当前状态**:
-- ✅ ExamHistoryViewModel: 3个测试用例（加载、空列表、成功）
-- ✅ ExamDetailViewModel: 3个测试用例（加载、过滤、错误）
-- ✅ ExamViewModel: 已更新验证`saveExamResultWithAnswers`
+2. **Stats 模块清理彻底**: `feature/stats` 的移除非常干净 -- `settings.gradle.kts`、`app/build.gradle.kts`、`SieNavHost.kt`、`HomeNavigation.kt`、`HomeScreen.kt`、英文/中文字符串资源全部同步清理，grep 确认无残留引用。
 
-**建议补充**:
-1. **Repository层测试**:
-   - `OfflineExamRepository.saveExamResultWithAnswers`的单元测试
-   - 验证事务性行为
-   - 验证外键约束
+3. **QuestionCard 解析展示条件严谨**: 新增的解析区域条件 `showExplanation && showFeedback && question.explanation.isNotBlank()` 覆盖了三重校验，且正确使用 `question.getExplanation(language)` 适配多语言。
 
-2. **ExamDetailViewModel边界场景**:
-   - 当某些问题在题库中不存在时的行为
-   - 空答案列表的处理
-   - 过滤后结果为空的情况
+4. **HomeViewModel 职责精简**: 移除了 `ExamRepository` 依赖和多余的统计计算，从 `combine(两个Flow)` 简化为 `单个Flow.map`，ViewModel 更加聚焦。
 
-3. **数据库迁移测试**:
-   - 从版本13迁移到版本14的完整测试
-   - 验证外键级联删除
-   - 验证索引是否正确创建
-
-**示例测试**:
-```kotlin
-@Test
-fun `saveExamResultWithAnswers maintains referential integrity`() = runTest {
-    val result = ExamResult(...)
-    val answers = listOf(...)
-
-    repository.saveExamResultWithAnswers(result, answers)
-
-    val savedAnswers = repository.getExamAnswers(savedId).first()
-    assertEquals(answers.size, savedAnswers.size)
-}
-```
+5. **i18n 资源同步清理**: 英文 (`values/strings.xml`) 和中文 (`values-zh/strings.xml`) 的字符串删除完全对称，共移除 stats 6条 + flag 4条 + home 4条 = 14 条已废弃的字符串资源。
 
 ---
 
-### 6. UI层可访问性改进
+## 六、审查总结
 
-**位置**:
-- `feature/exam/src/main/java/com/example/sie/feature/exam/ExamHistoryScreen.kt`
-- `feature/exam/src/main/java/com/example/sie/feature/exam/ExamDetailScreen.kt`
+| 类别 | 数量 |
+|------|------|
+| 严重问题 | 2 |
+| 改进建议 | 5 |
+| 风格规范 | 2 |
 
-**问题**: 某些交互元素缺少明确的contentDescription
-
-**建议**:
-```kotlin
-Icon(
-    imageVector = Icons.Default.CheckCircle,
-    contentDescription = stringResource(CommonR.string.exam_detail_correct_answer),
-    tint = Color(0xFF4CAF50)
-)
-```
+**整体评估**: 这是一次合理的代码精简和组件复用重构。核心方向 -- 用统一的 `QuestionCard` 替代各处手写的选项展示 -- 是正确且有效的。主要风险点在于: (1) Flag 功能的半移除状态造成了模型层与 UI 层的不一致; (2) 展开卡片后题目文本重复显示影响用户体验。建议优先处理严重问题后再提交。
 
 ---
 
-### 7. 字符串资源组织良好但存在格式化问题
-
-**位置**: `core/common/src/main/res/values/strings.xml`
-
-**优点**:
-- ✅ 完整的双语支持（英文/中文）
-- ✅ 使用参数化字符串（如`%1$d / %2$d`）
-- ✅ 命名空间清晰（exam_history_*, exam_detail_*）
-
-**小问题**:
-在`ExamHistoryScreen.kt`中使用了硬编码的格式化逻辑：
-```kotlin
-// Line 186
-text = "${state.examResult.score}% · ${state.examResult.correctCount}/${state.examResult.totalQuestions}"
-```
-
-**建议**: 创建字符串资源
-```xml
-<string name="exam_result_summary">%1$d%% · %2$d/%3$d</string>
-```
-
----
-
-## ✅ 做得好的地方
-
-### 1. 架构设计
-- ✅ 严格遵循MVVM + Repository模式
-- ✅ 清晰的层次分离（Model/Entity/ViewModel/UI）
-- ✅ 正确使用Hilt进行依赖注入
-- ✅ 使用Flow实现响应式数据流
-
-### 2. 数据库设计
-- ✅ 外键约束配置正确（CASCADE删除）
-- ✅ 正确创建了索引优化查询性能
-- ✅ Schema导出已启用（exportSchema = true）
-- ✅ 使用Room的migration机制而非破坏性迁移
-
-### 3. UI实现
-- ✅ 使用Compose最佳实践
-- ✅ 状态管理清晰（Loading/Empty/Success/Error）
-- ✅ 使用HorizontalPager实现流畅的问题浏览体验
-- ✅ Glassmorphism设计风格一致
-- ✅ 响应式布局，适配不同屏幕尺寸
-
-### 4. 导航集成
-- ✅ 正确使用Navigation Compose
-- ✅ 类型安全的导航参数（examResultId: Int）
-- ✅ 清晰的导航回调链（StatsScreen → ExamHistory → ExamDetail）
-
-### 5. 测试实践
-- ✅ 使用MockK进行单元测试
-- ✅ 正确配置Coroutine测试环境
-- ✅ 测试覆盖了主要的业务逻辑路径
-- ✅ 更新了现有测试以适配新的API
-
-### 6. 代码质量
-- ✅ 命名清晰且符合Kotlin约定
-- ✅ 使用密封接口定义UI状态
-- ✅ 合理使用扩展函数（asEntity/asExternalModel）
-- ✅ 正确处理nullable类型
-
----
-
-## 🔍 安全性审查
-
-### 无严重安全问题
-
-- ✅ 不涉及用户输入注入
-- ✅ 不涉及网络请求和数据传输
-- ✅ 使用参数化查询（Room自动处理）
-- ✅ 外键约束防止孤儿记录
-
----
-
-## 🚀 性能考虑
-
-### 潜在性能问题
-
-1. **ExamDetailViewModel.loadExamDetail()**
-   ```kotlin
-   val allQuestions = questionRepository.getAllQuestionsList()
-   ```
-   加载所有题目到内存，当题库很大时（>1000题）可能影响性能。
-
-   **优化建议**: 创建专门的Repository方法按ID批量查询
-   ```kotlin
-   suspend fun getQuestionsByIds(ids: List<Int>): List<Question>
-   ```
-
-2. **ExamHistoryScreen显示所有历史记录**
-   如果用户有几百次考试记录，LazyColumn可能出现卡顿。
-
-   **建议**: 实现分页加载或只显示最近N条记录
-
----
-
-## 📊 测试验证结果
-
-### 自动化测试状态
-```
-✅ ExamHistoryViewModelTest: 3/3 通过
-✅ ExamDetailViewModelTest: 3/3 通过
-✅ ExamViewModelTest: 更新后仍然通过
-```
-
-### 需要补充的测试
-- ⚠️ 数据库迁移测试（MIGRATION_13_14）
-- ⚠️ Repository层事务性测试
-- ⚠️ UI层Compose测试
-
----
-
-## 🎯 修复优先级总结
-
-| 优先级 | 问题 | 影响 | 预计工作量 |
-|--------|------|------|------------|
-| P0 | 数据库索引命名不一致 | 可能导致数据丢失 | 5分钟 |
-| P1 | saveExamResultWithAnswers缺少事务 | 数据不一致风险 | 30分钟 |
-| P2 | ExamDetailViewModel数据丢失处理 | 用户体验问题 | 1小时 |
-| P3 | 未回答状态区分 | 分析精度下降 | 2小时（含migration） |
-| P4 | 测试覆盖率提升 | 长期维护性 | 4小时 |
-
----
-
-## 📝 验证清单
-
-在合并前请确认：
-
-- [ ] 修复数据库索引命名问题
-- [ ] 在真实设备上测试数据库迁移（13→14）
-- [ ] 验证外键级联删除是否生效
-- [ ] 测试考试历史为空的情况
-- [ ] 测试过滤功能在各种场景下的表现
-- [ ] 检查双语切换是否正常工作
-- [ ] 验证从Stats页面到History再到Detail的完整导航流程
-- [ ] 性能测试：题库1000+题时的加载时间
-- [ ] 添加saveExamResultWithAnswers的事务保护
-
----
-
-## 👏 总结
-
-这是一次高质量的功能实现，展现了对Android架构组件和最佳实践的深入理解。主要问题集中在数据库迁移的细节处理上，这是一个容易被忽略但非常重要的方面。
-
-修复严重问题（P0）后即可合并，其他改进建议可以在后续迭代中逐步完善。
-
----
-
-**审查人员**: Claude (claude-sonnet-4-5)
-**审查日期**: 2026-02-28
+**审查人员**: Claude (claude-opus-4-6)
 **代码库**: sie-android-app
-**分支**: feature/unit-testing → main
+**分支**: feature/unit-testing
