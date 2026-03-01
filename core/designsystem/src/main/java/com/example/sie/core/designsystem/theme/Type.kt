@@ -73,30 +73,30 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        fontSize = 18.sp,          // +2sp for question text (WCAG AAA)
+        lineHeight = 28.sp,        // 1.55x ratio (optimal reading)
+        letterSpacing = 0.25.sp    // Reduced for better readability
     ),
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
+        fontWeight = FontWeight.Medium,  // Medium weight for scanning
+        fontSize = 16.sp,          // +2sp for answer options
+        lineHeight = 24.sp,
+        letterSpacing = 0.2.sp
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
+        fontSize = 15.sp,          // +3sp for explanations
+        lineHeight = 24.sp,        // Larger line height to reduce density
+        letterSpacing = 0.3.sp
     ),
     labelLarge = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
+        fontWeight = FontWeight.SemiBold,  // Bold for button recognition
+        fontSize = 16.sp,          // +2sp for buttons
         lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
+        letterSpacing = 0.5.sp     // Wider spacing for emphasis
     ),
     labelMedium = TextStyle(
         fontFamily = FontFamily.Default,
