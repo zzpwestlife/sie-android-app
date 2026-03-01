@@ -190,8 +190,9 @@ private fun ExamIntroContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
+                .verticalScroll(rememberScrollState())
                 .padding(SpacingMedium),
-            verticalArrangement = Arrangement.spacedBy(SpacingLarge)
+            verticalArrangement = Arrangement.spacedBy(SpacingMedium)
         ) {
             // Exam Rules Card
             ModernGradientCard(
@@ -203,9 +204,9 @@ private fun ExamIntroContent(
                 ) {
                     Text(
                         text = stringResource(CommonR.string.exam_rules_title),
-                        style = MaterialTheme.typography.titleMedium,
+                        style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        color = OnSurface
+                        color = OnBackground
                     )
 
                     IntroItem(
@@ -231,14 +232,19 @@ private fun ExamIntroContent(
                 }
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(SpacingMedium))
 
+            // Start Exam Button - Large and prominent
             ModernGradientButton(
                 text = stringResource(CommonR.string.exam_button_start),
                 onClick = onStartExam,
                 gradient = SecondaryGradient,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(64.dp)
             )
+
+            Spacer(modifier = Modifier.height(SpacingMedium))
         }
     }
 }
@@ -249,24 +255,32 @@ private fun IntroItem(
     title: String,
     subtitle: String
 ) {
-    Row(verticalAlignment = Alignment.Top) {
+    Row(
+        verticalAlignment = Alignment.Top,
+        modifier = Modifier.fillMaxWidth()
+    ) {
         androidx.compose.material3.Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(top = 2.dp)
+            tint = Color(0xFF1FA2FF), // SecondaryGradient start color
+            modifier = Modifier
+                .padding(top = 2.dp)
+                .size(24.dp)
         )
-        Spacer(modifier = Modifier.width(12.dp))
-        Column {
+        Spacer(modifier = Modifier.width(SpacingMedium))
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.Bold,
+                color = OnBackground
             )
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = OnBackgroundSecondary,
+                lineHeight = MaterialTheme.typography.bodyMedium.lineHeight
             )
         }
     }
